@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книга Андрея, сына Пустоты</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background-image: url('https://drive.google.com/file/d/19YHC77c_7vfgaBKorYgQFAieiWTA6RyP/view?usp=drive_link');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .glitch {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 2px 0 #ff0000, -2px 0 #00ff00;
+            margin: 0;
+        }
+        .glitch:hover {
+            animation: glitch 0.3s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+            100% { transform: translate(0); }
+        }
+        .subheadline {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .cta-button {
+            background-color: #8b0000;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            animation: glitch 0.3s infinite;
+        }
+        .teaser {
+            background: url('https://drive.google.com/file/d/1tI-mZzhB_zVrgogWu9exvkJQpMCtdo2f/view?usp=drive_link') repeat;
+            background-color: #2a2a2a;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        .glitch-text {
+            color: #f0f0f0;
+            position: relative;
+        }
+        .glitch-text::before {
+            content: 'Н̴у̶ль';
+            position: absolute;
+            left: 0;
+            color: #ff0000;
+            opacity: 0.5;
+            animation: flicker 1s infinite;
+        }
+        @keyframes flicker {
+            0% { opacity: 0.5; }
+            50% { opacity: 0.2; }
+            100% { opacity: 0.5; }
+        }
+        .about {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 10px;
+        }
+        .about-image {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px;
+        }
+        .glitch-image {
+            filter: brightness(80%) contrast(120%);
+            max-width: 100%;
+        }
+        .glitch-image:hover {
+            filter: blur(1px) brightness(90%) contrast(150%);
+        }
+        .cta-section {
+            background-color: #333;
+            padding: 30px;
+        }
+        .footer {
+            font-size: 0.8em;
+            color: #aaa;
+            padding: 10px;
+        }
+        .footer a:hover {
+            animation: glitch 0.3s infinite;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap');
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
+        <p class="subheadline">Куда ведут твои педали в пустоте?</p>
+        <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY/edit?usp=sharing" class="cta-button">Читать историю</a>
+    </div>
+    <div class="teaser">
+        <p class="glitch-text">Н̴у̶ль смотрит, педали скрипят, а п̴у̶с̴т̴о̴т̴а̴ ждёт. Андрей крутит, но куда?</p>
+    </div>
+    <div class="about">
+        <div class="about-text">
+            <p><em>Книга Андрея, сына Пустоты</em> — психологическая драма о велосипедисте, чья душа рвётся между лайками, призраками прошлого и пустотой внутри. Сюрреальные образы и цифровая тьма затягивают вглубь. Готов ли ты заглянуть в Нуль?</p>
+        </div>
+        <div class="about-image">
+            <img src="YOUR_BOOK_COVER_URL" alt="Book Cover" class="glitch-image">
+        </div>
+    </div>
+    <div class="cta-section">
+        <p>Погрузись в тьму. Читай сейчас.<br>Куда ведут твои педали?</p>
+        <a href="https://docs.google.com/document/d/YOUR_DOC_ID" class="cta-button">Читать историю</a>
+    </div>
+    <div class="footer">
+        <p>© 2025 [Kirill]. Контакт: <a href="mailto:kirill.zotov@gmail.com">kirill.zotov@gmail.com</a></p>
+    </div>
+</body>
+</html>
