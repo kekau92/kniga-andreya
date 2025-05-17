@@ -44,7 +44,7 @@
             justify-content: center;
             align-items: center;
         }
-        .mute-button, .play-button {
+        .mute-button {
             position: absolute;
             top: 20px;
             right: 20px;
@@ -57,10 +57,7 @@
             z-index: 3;
             font-size: 0.8em;
         }
-        .play-button {
-            right: 100px;
-        }
-        .mute-button:hover, .play-button:hover {
+        .mute-button:hover {
             animation: glitch 0.3s infinite;
         }
         .glitch {
@@ -241,7 +238,6 @@
             Your browser does not support the video tag.
         </video>
         <button class="mute-button" onclick="toggleMute()">Заглушить</button>
-        <button class="play-button" onclick="playVideo()">Play Video</button>
         <div class="header-overlay">
             <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
             <p class="subheadline">Сколько версий себя ты похоронил на этом пути?</p>
@@ -307,17 +303,11 @@
                 button.textContent = 'Включить звук';
             }
         }
-        function playVideo() {
-            video.muted = false;
-            video.play();
-            document.querySelector('.play-button').style.display = 'none';
-        }
         document.addEventListener('DOMContentLoaded', () => {
             video.muted = false;
             video.play().catch(() => {
                 video.muted = true;
                 document.querySelector('.mute-button').textContent = 'Включить звук';
-                document.querySelector('.play-button').style.display = 'block';
             });
         });
         function openModal() {
