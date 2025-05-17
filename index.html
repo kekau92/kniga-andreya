@@ -60,6 +60,22 @@
         .mute-button:hover {
             animation: glitch 0.3s infinite;
         }
+        .loading-indicator {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            color: #f0f0f0;
+            font-size: 0.8em;
+            text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
+            z-index: 3;
+            opacity: 0.9;
+            transition: opacity 0.5s ease-out;
+            animation: glitch-text 0.4s infinite;
+        }
+        .loading-indicator.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
         .glitch {
             font-family: 'Roboto', sans-serif;
             font-size: 2.5em;
@@ -78,6 +94,11 @@
             60% { transform: translate(-2px, -2px); }
             80% { transform: translate(2px, 2px); }
             100% { transform: translate(0); }
+        }
+        @keyframes glitch-text {
+            0% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
+            50% { transform: translate(1px, -1px); text-shadow: -1px 0 #ff0000, 1px 0 #00ff00; }
+            100% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
         }
         .subheadline {
             font-size: 1.2em;
@@ -272,6 +293,7 @@
             Your browser does not support the video tag.
         </video>
         <button class="mute-button" onclick="toggleMute()">Заглушить</button>
+        <div class="loading-indicator" id="loading-indicator">Загрузка: 0%</div>
         <div class="header-overlay">
             <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
             <p class="subheadline">Сколько версий себя ты похоронил на этом пути?</p>
@@ -327,6 +349,8 @@
     </div>
     <script>
         const video = document.querySelector('.header-video');
+        const loadingIndicator = document.getElementById('loading-indicator');
+
         function toggleMute() {
             const button = document.querySelector('.mute-button');
             if (video.muted) {
@@ -337,16 +361,43 @@
                 button.textContent = 'Включить звук';
             }
         }
+
+        function updateLoadingProgress() {
+            if (video.duration && video.buffered.length > 0) {
+                const buffered = video.buffered.end(0);
+                const percent = Math.round((buffered / video.duration) * 100);
+                loadingIndicator.textContent = `Загрузка: ${percent}%`;
+                if (percent >= 100) {
+                    loadingIndicator.classList.add('hidden');
+                    video.removeEventListener('progress', updateLoadingProgress);
+                }
+            } else {
+                loadingIndicator.textContent = 'Загрузка...';
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             video.muted = false;
             video.play().catch(() => {
                 video.muted = true;
                 document.querySelector('.mute-button').textContent = 'Включить звук';
             });
+
+            // Handle loading progress
+            video.addEventListener('progress', updateLoadingProgress);
+            video.addEventListener('loadedmetadata', updateLoadingProgress);
+            video.addEventListener('canplay', () => {
+                if (!loadingIndicator.classList.contains('hidden')) {
+                    loadingIndicator.classList.add('hidden');
+                    video.removeEventListener('progress', updateLoadingProgress);
+                }
+            });
         });
+
         function openModal() {
             document.getElementById('instructions-modal').style.display = 'block';
         }
+
         function closeModal() {
             document.getElementById('instructions-modal').style.display = 'none';
         }
