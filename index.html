@@ -44,7 +44,7 @@
             justify-content: center;
             align-items: center;
         }
-        .unmute-button {
+        .mute-button {
             position: absolute;
             top: 20px;
             right: 20px;
@@ -57,7 +57,7 @@
             z-index: 3;
             font-size: 0.8em;
         }
-        .unmute-button:hover {
+        .mute-button:hover {
             animation: glitch 0.3s infinite;
         }
         .glitch {
@@ -178,6 +178,55 @@
         .footer a:hover {
             animation: glitch 0.3s infinite;
         }
+        .instructions-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .instructions-link:hover {
+            animation: glitch 0.3s infinite;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            padding: 20px;
+            max-width: 90vw;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1000;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+        .modal-content {
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        .close-button {
+            background-color: #8b0000;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            float: right;
+        }
+        .close-button:hover {
+            animation: glitch 0.3s infinite;
+        }
+        .video-info {
+            font-size: 0.8em;
+            color: #aaa;
+            margin-top: 10px;
+            text-align: left;
+        }
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap');
     </style>
 </head>
@@ -188,7 +237,7 @@
             <source src="main_video_small.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
-        <button class="unmute-button" onclick="unmuteVideo()">Unmute</button>
+        <button class="mute-button" onclick="toggleMute()">Mute</button>
         <div class="header-overlay">
             <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
             <p class="subheadline">Куда ведут твои педали в пустоте?</p>
@@ -201,6 +250,28 @@
     <div class="about">
         <div class="about-text">
             <p class="glitch-annotation"><em>Книга Андрея, сына Пустоты</em> — психологическая драма о велосипедисте, чья душа рвётся под гнётом лайков, призраков прошлого и всепоглощающей тьмы внутри. Велосипед — метафора мучительного пути самопознания, где каждый оборот педалей — битва с самим собой, а физическое истощение отражает ментальный распад. Сюрреальные образы — зрачок-шприц, чёрная река — рушат грань реальности, затягивая в цифровую тьму, где соцсети — паутина одиночества. Готов ли ты заглянуть в Тьму, где герой встречает гул своей души? Эта история — испытание: ощути холод ветра, тяжесть его мыслей и вопрос: куда ведёт твой путь — к свету или в бездну? Книга оставляет эхо, зовущее к смелости перед внутренней тьмой.</p>
+            <a href="#" class="instructions-link" onclick="openModal()">Инструкция</a>
+            <div id="instructions-modal" class="modal">
+                <div class="modal-content">
+                    <h3>Инструкция для чтения</h3>
+                    <p>Для погружения в <em>Книга Андрея, сына Пустоты</em>:</p>
+                    <p><strong>Перед чтением</strong><br>
+                    - <strong>Состояние ума</strong>: Откажитесь от линейного сюжета. Готовьтесь к рефлексии об одиночестве, травмах, цифровой зависимости.<br>
+                    - <strong>Настроение</strong>: Примите меланхоличную, тревожную атмосферу.<br>
+                    - <strong>Время</strong>: Читайте ночью при мягком свете (лампа, свеча).<br>
+                    - <strong>Музыка</strong>: Минималистичный эмбиент (Hildur Guðnadóttir, Ben Frost) или шум дождя/ветра.<br>
+                    - <strong>Окружение</strong>: Уберите гаджеты, создайте тишину.</p>
+                    <p><strong>Во время чтения</strong><br>
+                    - <strong>Темп</strong>: Читайте медленно, паузы на описаниях природы, диалогах с «Гравий-Вилдадом», флэшбеках.<br>
+                    - <strong>Символы</strong>: Замечайте повторы («цепь», «пустота», «Стрекоза»).<br>
+                    - <strong>Взаимодействие</strong>: Записывайте цитаты, визуализируйте метафоры («зрачок-шприц», «ртутный нерв»).</p>
+                    <p><strong>Скрытая глава</strong><br>
+                    - Читайте в тишине после основного текста.<br>
+                    - Держите блокнот для намёков. Глава — лабиринт подсознания, где реальность и цифра сливаются.</p>
+                    <p class="video-info">Ben Frost - Threshold Of Faith (Official Video)</p>
+                    <button class="close-button" onclick="closeModal()">Закрыть</button>
+                </div>
+            </div>
         </div>
         <div class="about-image">
             <img src="cover.jpg" alt="Book Cover" class="glitch-image">
@@ -214,19 +285,34 @@
         <p>© 2025 Кирилл, Пермь. Контакт: <a href="https://t.me/kirill_z_re">@kirill_z_re</a></p>
     </div>
     <script>
-        function unmuteVideo() {
+        function toggleMute() {
             const video = document.querySelector('.header-video');
-            video.muted = false;
-            document.querySelector('.unmute-button').style.display = 'none';
+            const button = document.querySelector('.mute-button');
+            if (video.muted) {
+                video.muted = false;
+                button.textContent = 'Mute';
+            } else {
+                video.muted = true;
+                button.textContent = 'Unmute';
+            }
         }
-        // Attempt autoplay with sound, fall back to muted if blocked
+        // Ensure video starts unmuted
         document.addEventListener('DOMContentLoaded', () => {
             const video = document.querySelector('.header-video');
+            video.muted = false;
             video.play().catch(() => {
                 video.muted = true;
                 video.play();
+                document.querySelector('.mute-button').textContent = 'Unmute';
             });
         });
+        // Modal functions
+        function openModal() {
+            document.getElementById('instructions-modal').style.display = 'block';
+        }
+        function closeModal() {
+            document.getElementById('instructions-modal').style.display = 'none';
+        }
     </script>
 </body>
 </html>
