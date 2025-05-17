@@ -44,7 +44,7 @@
             justify-content: center;
             align-items: center;
         }
-        .mute-button {
+        .mute-button, .play-button {
             position: absolute;
             top: 20px;
             right: 20px;
@@ -57,7 +57,10 @@
             z-index: 3;
             font-size: 0.8em;
         }
-        .mute-button:hover {
+        .play-button {
+            right: 100px;
+        }
+        .mute-button:hover, .play-button:hover {
             animation: glitch 0.3s infinite;
         }
         .glitch {
@@ -238,37 +241,38 @@
             Your browser does not support the video tag.
         </video>
         <button class="mute-button" onclick="toggleMute()">Заглушить</button>
+        <button class="play-button" onclick="playVideo()">Play Video</button>
         <div class="header-overlay">
             <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
             <p class="subheadline">Сколько версий себя ты похоронил на этом пути?</p>
-            <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">ВОЙТИ В ТЕКСТ</a>
+            <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">ПОГРУЗИТЬСЯ В ПУСТОТУ</a>
         </div>
     </div>
     <div class="teaser">
-        <p class="glitch-text">Тьма следит, экран мерцает, а пустота зовёт. Андрей едет, но куда?</p>
+        <p class="glitch-text">Тьма следит, экран мерцает, а пустота зовёт. Андрей шагает, но куда?</p>
     </div>
     <div class="about">
         <div class="about-text">
-            <p class="glitch-annotation"><em>Книга Андрея, сына Пустоты</em> — психологическая драма о молодом человеке из Перми, чья жизнь тонет в рутине офисных дней, цифровой зависимости и тенях прошлого. Андрей — не герой, а обычный мужчина, чьи будни в сером офисе становятся метафорой внутренней борьбы. Экран телефона — его цепь, воспоминания — груз, а вопросы о смысле жизни — тихий шёпот в пустоте. Сюрреальные образы, такие как зрачок-шприц или чёрная река, размывают реальность, затягивая в цифровую тьму. Сможешь ли ты пройти его путь, услышать тишину его души и найти свет в бездне? Эта история — вызов: столкнись с собственной тьмой.</p>
-            <a href="#" class="instructions-link" onclick="openModal()">Инструкция</a>
+            <p class="glitch-annotation"><em>Книга Андрея, сына Пустоты</em> — психологическая драма о молодом человеке из Перми, чья жизнь тонет в рутине офисных дней, цифровой зависимости и тенях прошлого. Андрей — не герой, а обычный мужчина, чьи будни в сером офисе становятся метафорой внутренней борьбы. Экран телефона — его цепь, воспоминания — груз, а вопросы о смысле жизни — тихий шёпот в пустоте. Сюрреальные образы, такие как зрачок-шприц или чёрная река, размывают реальность, затягивая в цифровую тьму. В конце пути ждёт скрытая глава — лабиринт, где реальность и цифра сливаются. Сможешь ли ты пройти его путь, услышать тишину его души и найти свет в бездне? Эта история — вызов: столкнись с собственной тьмой.</p>
+            <a href="#" class="instructions-link" onclick="openModal()">ПОДГОТОВЬТЕСЬ К ЧТЕНИЮ</a>
             <div id="instructions-modal" class="modal">
                 <div class="modal-content">
-                    <h3>Инструкция для чтения</h3>
-                    <h3>[▼ Приготовьтесь к исповеди]</h3>
-                    <p>Для погружения в <em>историю Андрея, сына Пустоты</em>:</p>
-                    <p><strong>Перед чтением</strong><br>
-                    - <strong>Состояние ума</strong>: Откажитесь от линейного сюжета. Готовьтесь к рефлексии об одиночестве, травмах, цифровой зависимости.<br>
-                    - <strong>Настроение</strong>: Примите меланхоличную, тревожную атмосферу.<br>
-                    - <strong>Время</strong>: Читайте ночью при мягком свете (лампа, свеча).<br>
-                    - <strong>Музыка</strong>: Минималистичный эмбиент (Hildur Guðnadóttir, Ben Frost) или шум дождя/ветра.<br>
-                    - <strong>Окружение</strong>: Уберите гаджеты, создайте тишину.</p>
-                    <p><strong>Во время чтения</strong><br>
-                    - <strong>Темп</strong>: Читайте медленно, паузы на описаниях природы, диалогах с «Гравий-Вилдадом», флэшбеках.<br>
-                    - <strong>Символы</strong>: Замечайте повторы («цепь», «пустота», «Стрекоза»).<br>
-                    - <strong>Взаимодействие</strong>: Записывайте цитаты, визуализируйте метафоры («зрачок-шприц», «ртутный нерв»).</p>
+                    <h3>Подготовка к чтению</h3>
+                    <h3>[▼ Вдохните атмосферу]</h3>
+                    <p>Для погружения в <em>историю Андрея, сына Пустоты</em> рассмотрите:</p>
+                    <p><strong>Перед началом</strong><br>
+                    - <strong>Настрой</strong>: История нелинейна — позвольте одиночеству, травмам и цифровой тьме вести вас.<br>
+                    - <strong>Атмосфера</strong>: Попробуйте меланхоличный или тревожный настрой.<br>
+                    - <strong>Время</strong>: Ночь и мягкий свет (лампа, свеча) могут усилить ощущение.<br>
+                    - <strong>Звук</strong>: Минималистичный эмбиент (Hildur Guðnadóttir, Ben Frost) или шум дождя/ветра.<br>
+                    - <strong>Пространство</strong>: Уберите отвлекающие гаджеты, дайте тишине шанс.</p>
+                    <p><strong>В процессе</strong><br>
+                    - <strong>Ритм</strong>: Замедлитесь на описаниях природы, диалогах с «Гравий-Вилдадом», флэшбеках.<br>
+                    - <strong>Образы</strong>: Обращайте внимание на «цепь», «пустоту», «Стрекозу».<br>
+                    - <strong>Взаимодействие</strong>: Попробуйте записать цитаты или представить «зрачок-шприц», «ртутный нерв».</p>
                     <p><strong>Скрытая глава</strong><br>
-                    - Читайте в тишине после основного текста.<br>
-                    - Держите блокнот для намёков. Глава — лабиринт подсознания, где реальность и цифра сливаются.</p>
+                    - Откройте её в тишине после основного текста.<br>
+                    - Блокнот под рукой поможет уловить намёки. Это лабиринт подсознания Андрея.</p>
                     <button class="close-button" onclick="closeModal()">Закрыть</button>
                 </div>
             </div>
@@ -279,15 +283,15 @@
     </div>
     <div class="cta-section">
         <p>Погрузись в тьму. Читай сейчас.<br>Куда ведут твои шаги?</p>
-        <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">НАЧАТЬ ПУТЬ В ПУСТОТУ</a>
+        <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">НАЧАТЬ ПУТЬ В ПrejectУСТОТУ</a>
     </div>
     <div class="footer">
         <p class="video-info">Ben Frost - Threshold Of Faith (Official Video)</p>
         <p>© 2025 Кирилл, Пермь. Контакт: <a href="https://t.me/kirill_z_re">@kirill_z_re</a></p>
     </div>
     <script>
+        const video = document.querySelector('.header-video');
         function toggleMute() {
-            const video = document.querySelector('.header-video');
             const button = document.querySelector('.mute-button');
             if (video.muted) {
                 video.muted = false;
@@ -297,13 +301,17 @@
                 button.textContent = 'Включить звук';
             }
         }
+        function playVideo() {
+            video.muted = false;
+            video.play();
+            document.querySelector('.play-button').style.display = 'none';
+        }
         document.addEventListener('DOMContentLoaded', () => {
-            const video = document.querySelector('.header-video');
             video.muted = false;
             video.play().catch(() => {
                 video.muted = true;
-                video.play();
                 document.querySelector('.mute-button').textContent = 'Включить звук';
+                document.querySelector('.play-button').style.display = 'block';
             });
         });
         function openModal() {
