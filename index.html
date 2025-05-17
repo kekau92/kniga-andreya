@@ -13,9 +13,22 @@
             padding: 0;
             text-align: center;
         }
-        .header {
+        .header-wrapper {
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
             position: relative;
-            min-height: 500px;
+            aspect-ratio: 16 / 9;
+            /* Fallback for older browsers */
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -28,8 +41,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            z-index: 1;
+            object-fit: fill; /* Assumes 16:9 video; use 'cover' if ratio differs */
         }
         .header-overlay {
             position: absolute;
@@ -46,7 +58,7 @@
         }
         .mute-button {
             position: absolute;
-            top: 20px;
+            top: 10px;
             right: 20px;
             background-color: #8b0000;
             color: #fff;
@@ -62,7 +74,7 @@
         }
         .loading-indicator {
             position: absolute;
-            top: 60px;
+            top: 50px;
             right: 20px;
             color: #f0f0f0;
             font-size: 0.8em;
@@ -173,7 +185,7 @@
             animation: glitch-top 0.3s infinite, flicker 0.5s infinite;
             transform: translate(-4px, -3px) skewX(15deg);
         }
-        .glitch-text:hover::after {
+        .glitch-text::after {
             animation: glitch-bottom 0.4s infinite, flicker 0.6s infinite;
             transform: translate(4px, 3px) skewX(-15deg);
         }
@@ -286,19 +298,21 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <video class="header-video" autoplay loop playsinline>
-            <source src="video_main_s.mp4" type="video/mp4">
-            <!-- <source src="video_main_s.webm" type="video/webm"> -->
-            <!-- Note: WebM source commented out as no new WebM file was provided. Add a WebM file here if needed for broader browser compatibility. -->
-            Your browser does not support the video tag.
-        </video>
-        <button class="mute-button" onclick="toggleMute()">Заглушить</button>
-        <div class="loading-indicator" id="loading-indicator">Загрузка: 0%</div>
-        <div class="header-overlay">
-            <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
-            <p class="subheadline">Сколько версий себя ты похоронил на этом пути?</p>
-            <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">ПОГРУЗИТЬСЯ В БЕЗДНУ</a>
+    <div class="header-wrapper">
+        <div class="header">
+            <video class="header-video" autoplay loop playsinline>
+                <source src="video_main_s.mp4" type="video/mp4">
+                <!-- <source src="video_main_s.webm" type="video/webm"> -->
+                <!-- Note: WebM source commented out as no new WebM file was provided. Add a WebM file here if needed for broader browser compatibility. -->
+                Your browser does not support the video tag.
+            </video>
+            <button class="mute-button" onclick="toggleMute()">Заглушить</button>
+            <div class="loading-indicator" id="loading-indicator">Загрузка: 0%</div>
+            <div class="header-overlay">
+                <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
+                <p class="subheadline">Сколько версий себя ты похоронил на этом пути?</p>
+                <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">ПОГРУЗИТЬСЯ В БЕЗДНУ</a>
+            </div>
         </div>
     </div>
     <div class="teaser">
