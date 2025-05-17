@@ -283,6 +283,21 @@
         .close-button:hover {
             animation: glitch 0.3s infinite;
         }
+        @media (max-width: 600px) {
+            .modal {
+                max-width: 95vw;
+            }
+            .modal-content {
+                font-size: 1em;
+                line-height: 1.6;
+                padding: 10px;
+            }
+            .close-button {
+                float: none;
+                display: block;
+                margin: 10px auto 0;
+            }
+        }
         .video-info {
             font-size: 0.8em;
             color: #aaa;
