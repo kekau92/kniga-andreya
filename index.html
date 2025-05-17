@@ -108,19 +108,53 @@
         .glitch-text {
             color: #f0f0f0;
             position: relative;
+            display: inline-block;
+            font-size: 1.2em;
         }
-        .glitch-text::before {
+        .glitch-text::before,
+        .glitch-text::after {
             content: 'Тьма';
             position: absolute;
             left: 0;
+            width: 100%;
+            clip-path: inset(0 0 50% 0);
+        }
+        .glitch-text::before {
+            content: 'Тьма';
             color: #ff0000;
-            opacity: 0.5;
-            animation: flicker 1s infinite;
+            opacity: 0.7;
+            animation: glitch-top 0.5s infinite, flicker 0.7s infinite;
+            transform: translate(-2px, -1px) skewX(5deg);
+        }
+        .glitch-text::after {
+            content: 'пустота';
+            color: #00ff00;
+            opacity: 0.6;
+            animation: glitch-bottom 0.6s infinite, flicker 0.9s infinite;
+            transform: translate(2px, 1px) skewX(-5deg);
+        }
+        @keyframes glitch-top {
+            0% { transform: translate(-2px, -1px) skewX(5deg); }
+            50% { transform: translate(-3px, -2px) skewX(10deg); }
+            100% { transform: translate(-2px, -1px) skewX(5deg); }
+        }
+        @keyframes glitch-bottom {
+            0% { transform: translate(2px, 1px) skewX(-5deg); }
+            50% { transform: translate(3px, 2px) skewX(-10deg); }
+            100% { transform: translate(2px, 1px) skewX(-5deg); }
         }
         @keyframes flicker {
-            0% { opacity: 0.5; }
-            50% { opacity: 0.2; }
-            100% { opacity: 0.5; }
+            0% { opacity: 0.7; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+        .glitch-text:hover::before {
+            animation: glitch-top 0.3s infinite, flicker 0.5s infinite;
+            transform: translate(-4px, -3px) skewX(15deg);
+        }
+        .glitch-text:hover::after {
+            animation: glitch-bottom 0.4s infinite, flicker 0.6s infinite;
+            transform: translate(4px, 3px) skewX(-15deg);
         }
         .about {
             padding: 20px;
@@ -261,10 +295,10 @@
                     - <strong>Настрой</strong>: История нелинейна — позвольте одиночеству, травмам и цифровой тьме вести вас.<br>
                     - <strong>Атмосфера</strong>: Попробуйте меланхоличный или тревожный настрой.<br>
                     - <strong>Время</strong>: Ночь и мягкий свет (лампа, свеча) могут усилить ощущение.<br>
-                    - <strong>Звук</strong>: Минималистичный эмбиент (Hildur Guðnadóttir, Ben Frost) или шум дождя/ветра.<br>
+                    - <strong>Звук</strong>: Минималистичный эмбиент (Hildur Guðnadóttir, Ben Frost) или звуки природы, такие как шум дождя или ветра.<br>
                     - <strong>Пространство</strong>: Уберите отвлекающие гаджеты, дайте тишине шанс.</p>
                     <p><strong>В процессе</strong><br>
-                    - <strong>Ритм</strong>: Замедлитесь на описаниях природы, диалогах с «Гравий-Вилдадом», флэшбеках.<br>
+                    - <strong>Ритм</strong>: Дышите в такт истории. Замедляйтесь на описаниях природы, где лес и река шепчут об одиночестве. Вчитывайтесь в язвительные сообщения «Гравий-Вилдада» — они бьют, как уведомления. Задержитесь на флэшбеках и галлюцинациях, где голос матери душит Андрея. Ловите его внутренние вопросы («Куда ты гонишь?»), повторяющиеся, как пульс. Чувствуйте, как рвётся ритм между гонкой и тишиной, особенно в скрытой главе. Пауза после её туннеля обязательна — дайте образам осесть.<br>
                     - <strong>Образы</strong>: Обращайте внимание на «цепь», «пустоту», «Стрекозу».<br>
                     - <strong>Взаимодействие</strong>: Попробуйте записать цитаты или представить «зрачок-шприц», «ртутный нерв».<br>
                     - <strong>Цифровой слой</strong>: Перечитайте сообщения Гравий-Вилдада — они скрывают подтекст о вине и контроле.</p>
