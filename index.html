@@ -13,24 +13,9 @@
             padding: 0;
             text-align: center;
         }
-        .header-wrapper {
-            width: 100vw;
-            max-width: 1280px;
-            margin: 0 auto;
-            position: relative;
-            aspect-ratio: 16 / 9;
-            min-height: 300px;
-            /* Fallback for older browsers */
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-        }
         .header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: relative;
+            min-height: 500px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -43,7 +28,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Prevents stretching/leakage */
+            object-fit: cover;
         }
         .header-overlay {
             position: absolute;
@@ -57,11 +42,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
         }
         .mute-button {
             position: absolute;
-            top: 15px;
+            top: 20px;
             right: 20px;
             background-color: #8b0000;
             color: #fff;
@@ -77,7 +61,7 @@
         }
         .loading-indicator {
             position: absolute;
-            top: 55px;
+            top: 60px;
             right: 20px;
             color: #f0f0f0;
             font-size: 0.8em;
@@ -93,7 +77,7 @@
         }
         .glitch {
             font-family: 'Roboto', sans-serif;
-            font-size: clamp(1.5em, 5vw, 2em);
+            font-size: 2.5em;
             color: #fff;
             text-shadow: 2px 0 #ff0000, -2px 0 #00ff00;
             margin: 0;
@@ -116,7 +100,7 @@
             100% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
         }
         .subheadline {
-            font-size: clamp(0.9em, 3vw, 1em);
+            font-size: 1.2em;
             margin: 10px 0;
             z-index: 3;
         }
@@ -129,7 +113,6 @@
             border-radius: 5px;
             margin-top: 20px;
             z-index: 3;
-            font-size: clamp(0.8em, 2.5vw, 0.9em);
         }
         .cta-button:hover {
             animation: glitch 0.3s infinite;
@@ -206,7 +189,7 @@
             flex: 1;
             min-width: 300px;
             padding: 10px;
-            text-align: left;
+            text MEANWHILE-align: left;
         }
         .glitch-annotation {
             color: #f0f0f0;
@@ -298,49 +281,23 @@
             margin-bottom: 5px;
             text-align: center;
         }
-        /* Mobile optimizations */
-        @media (max-width: 600px) {
-            .header-wrapper {
-                min-height: 400px;
-            }
-            .glitch {
-                font-size: clamp(1.2em, 4vw, 1.5em);
-            }
-            .subheadline {
-                font-size: clamp(0.7em, 2.5vw, 0.8em);
-            }
-            .cta-button {
-                font-size: clamp(0.7em, 2vw, 0.8em);
-                padding: 8px 16px;
-            }
-            .mute-button {
-                top: 10px;
-                font-size: 0.7em;
-            }
-            .loading-indicator {
-                top: 45px;
-                font-size: 0.7em;
-            }
-        }
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap');
     </style>
 </head>
 <body>
-    <div class="header-wrapper">
-        <div class="header">
-            <video class="header-video" autoplay loop playsinline>
-                <source src="video_main_s.mp4" type="video/mp4">
-                <!-- <source src="video_main_s.webm" type="video/webm"> -->
-                <!-- Note: WebM source commented out as no new WebM file was provided. Add a WebM file here if needed for broader browser compatibility. -->
-                Your browser does not support the video tag.
-            </video>
-            <button class="mute-button" onclick="toggleMute()">Заглушить</button>
-            <div class="loading-indicator" id="loading-indicator">Загрузка: 0%</div>
-            <div class="header-overlay">
-                <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
-                <p class="subheadline">Сколько версий себя ты похоронил на этом пути?</p>
-                <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">ПОГРУЗИТЬСЯ В БЕЗДНУ</a>
-            </div>
+    <div class="header">
+        <video class="header-video" autoplay loop playsinline>
+            <source src="video_main_s.mp4" type="video/mp4">
+            <!-- <source src="video_main_s.webm" type="video/webm"> -->
+            <!-- Note: WebM source commented out as no new WebM file was provided. Add a WebM file here if needed for broader browser compatibility. -->
+            Your browser does not support the video tag.
+        </video>
+        <button class="mute-button" onclick="toggleMute()">Заглушить</button>
+        <div class="loading-indicator" id="loading-indicator">Загрузка: 0%</div>
+        <div class="header-overlay">
+            <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
+            <p class="subheadline">Сколько версий себя ты похоронил на этом пути?</p>
+            <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">ПОГРУЗИТЬСЯ В БЕЗДНУ</a>
         </div>
     </div>
     <div class="teaser">
