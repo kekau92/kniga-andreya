@@ -5,119 +5,228 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Книга Андрея, сына Пустоты</title>
     <style>
-        /* Добавленные стили для модального окна и видео */
-        .video-background {
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #000000;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .header-video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.2;
-            z-index: 0;
-        }
-
-        .header-content {
-            position: relative;
             z-index: 1;
         }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #000;
-            padding: 30px;
-            border: 1px solid #8b0000;
-            max-width: 600px;
-            z-index: 1000;
-            box-shadow: 0 0 30px rgba(139,0,0,0.5);
-        }
-
-        .modal-close {
+        .header-overlay {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            color: #8b0000;
-            cursor: pointer;
-            font-size: 1.5em;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-
-        .instructions-link {
-            color: #8b0000;
+        .unmute-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #8b0000;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            text-decoration: underline;
-            margin-top: 15px;
-            display: inline-block;
+            z-index: 3;
+            font-size: 0.8em;
         }
-
-        /* Остальные существующие стили остаются без изменений */
-        /* ... */
+        .unmute-button:hover {
+            animation: glitch 0.3s infinite;
+        }
+        .glitch {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 2px 0 #ff0000, -2px 0 #00ff00;
+            margin: 0;
+            z-index: 3;
+        }
+        .glitch:hover {
+            animation: glitch 0.3s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+            100% { transform: translate(0); }
+        }
+        .subheadline {
+            font-size: 1.2em;
+            margin: 10px 0;
+            z-index: 3;
+        }
+        .cta-button {
+            background-color: #8b0000;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 20px;
+            z-index: 3;
+        }
+        .cta-button:hover {
+            animation: glitch 0.3s infinite;
+        }
+        .teaser {
+            background-color: #000000;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            font-style: italic;
+            opacity: 1;
+        }
+        .glitch-text {
+            color: #f0f0f0;
+            position: relative;
+        }
+        .glitch-text::before {
+            content: 'Тьма';
+            position: absolute;
+            left: 0;
+            color: #ff0000;
+            opacity: 0.5;
+            animation: flicker 1s infinite;
+        }
+        @keyframes flicker {
+            0% { opacity: 0.5; }
+            50% { opacity: 0.2; }
+            100% { opacity: 0.5; }
+        }
+        .about {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background-color: #000000;
+        }
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 10px;
+            text-align: left;
+        }
+        .glitch-annotation {
+            color: #f0f0f0;
+            text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
+            position: relative;
+            transition: all 0.2s;
+        }
+        .glitch-annotation:hover {
+            animation: glitch-annotation 0.4s infinite;
+        }
+        @keyframes glitch-annotation {
+            0% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
+            25% { transform: translate(1px, -1px); text-shadow: -1px 0 #ff0000, 1px 0 #00ff00; }
+            50% { transform: translate(-1px, 1px); text-shadow: 1px 0 #00ff00, -1px 0 #ff0000; }
+            75% { transform: translate(1px, 1px); text-shadow: -1px 0 #00ff00, 1px 0 #ff0000; }
+            100% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
+        }
+        .about-image {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px;
+        }
+        .glitch-image {
+            filter: brightness(80%) contrast(120%);
+            max-width: 100%;
+        }
+        .glitch-image:hover {
+            filter: blur(1px) brightness(90%) contrast(150%);
+        }
+        .cta-section {
+            background-color: #000000;
+            padding: 30px;
+        }
+        .footer {
+            font-size: 0.8em;
+            color: #aaa;
+            padding: 10px;
+            background-color: #000000;
+        }
+        .footer a:hover {
+            animation: glitch 0.3s infinite;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap');
     </style>
 </head>
 <body>
     <div class="header">
-        <!-- Добавленное видео -->
-        <iframe 
-            class="video-background" 
-            src="https://www.youtube.com/embed/Z1_sSbXoDH0?autoplay=1&mute=1&loop=1&playlist=Z1_sSbXoDH0&controls=0" 
-            frameborder="0" 
-            allow="autoplay; encrypted-media" 
-            allowfullscreen>
-        </iframe>
-
-        <div class="header-content">
+        <video class="header-video" autoplay loop playsinline>
+            <source src="taiga-river.mp4" type="video/mp4">
+            <source src="taiga-river.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        <button class="unmute-button" onclick="unmuteVideo()">Unmute</button>
+        <div class="header-overlay">
             <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
             <p class="subheadline">Куда ведут твои педали в пустоте?</p>
-            <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY/preview" class="cta-button">Читать историю</a>
+            <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">Читать историю</a>
         </div>
     </div>
-
-    <!-- Добавленное модальное окно -->
-    <div id="instructionModal" class="modal">
-        <span class="modal-close" onclick="closeModal()">&times;</span>
-        <h3>Инструкция для погружения</h3>
-        <p>1️⃣ Читай ночью при тусклом свете<br>
-        2️⃣ Включи эмбиент-шум (дождь/ветер)<br>
-        3️⃣ Отключи уведомления<br>
-        4️⃣ Дыши в ритм педалям<br>
-        5️⃣ Прими боль как проводник<br>
-        🔥 Скрытая глава требует полной капитуляции чувств</p>
-    </div>
-
     <div class="teaser">
         <p class="glitch-text">Тьма смотрит, педали скрипят, а бездна ждёт. Андрей крутит, но куда?</p>
     </div>
-
     <div class="about">
         <div class="about-text">
-            <p class="glitch-annotation"><em>Книга Андрея, сына Пустоты</em> — психологическая драма...</p>
-            <!-- Добавленная ссылка -->
-            <div class="instructions-link" onclick="openModal()">Как правильно читать эту историю?</div>
+            <p class="glitch-annotation"><em>Книга Андрея, сына Пустоты</em> — психологическая драма о велосипедисте, чья душа рвётся под гнётом лайков, призраков прошлого и всепоглощающей тьмы внутри. Велосипед — метафора мучительного пути самопознания, где каждый оборот педалей — битва с самим собой, а физическое истощение отражает ментальный распад. Сюрреальные образы — зрачок-шприц, чёрная река — рушат грань реальности, затягивая в цифровую тьму, где соцсети — паутина одиночества. Готов ли ты заглянуть в Тьму, где герой встречает гул своей души? Эта история — испытание: ощути холод ветра, тяжесть его мыслей и вопрос: куда ведёт твой путь — к свету или в бездну? Книга оставляет эхо, зовущее к смелости перед внутренней тьмой.</p>
         </div>
         <div class="about-image">
             <img src="cover.jpg" alt="Book Cover" class="glitch-image">
         </div>
     </div>
-
+    <div class="cta-section">
+        <p>Погрузись в тьму. Читай сейчас.<br>Куда ведут твои педали?</p>
+        <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">Читать историю</a>
+    </div>
+    <div class="footer">
+        <p>© 2025 Кирилл, Пермь. Контакт: <a href="https://t.me/kirill_z_re">@kirill_z_re</a></p>
+    </div>
     <script>
-        // Скрипт для управления модальным окном
-        function openModal() {
-            document.getElementById('instructionModal').style.display = 'block';
+        function unmuteVideo() {
+            const video = document.querySelector('.header-video');
+            video.muted = false;
+            document.querySelector('.unmute-button').style.display = 'none';
         }
-
-        function closeModal() {
-            document.getElementById('instructionModal').style.display = 'none';
-        }
-
-        // Закрытие при клике вне окна
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') {
-                closeModal();
-            }
-        }
+        // Attempt autoplay with sound, fall back to muted if blocked
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.querySelector('.header-video');
+            video.play().catch(() => {
+                video.muted = true;
+                video.play();
+            });
+        });
     </script>
 </body>
 </html>
