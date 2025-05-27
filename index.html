@@ -4,20 +4,373 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Книга Андрея, сына Пустоты</title>
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Погрузитесь в психологическую драму 'Книга Андрея, сына Пустоты' — история молодого человека из Перми, борющегося с прошлым, цифровой зависимостью и внутренними демонами. Скрытая глава и сюрреалистические образы ждут вас.">
-    <meta name="keywords" content="Книга Андрея, сын Пустоты, психологическая драма, Пермь, цифровая зависимость, скрытая глава, литература">
-    <meta name="robots" content="index, follow"> <!-- Allows indexing and following links -->
-    <meta name="author" content="Кирилл, Пермь">
-    <meta name="publisher" content="xAI">
-    <!-- Open Graph Tags for Social Media Sharing -->
-    <meta property="og:title" content="Книга Андрея, сына Пустоты">
-    <meta property="og:description" content="Психологическая драма о борьбе с прошлым и цифровой тьмой. Погрузитесь в мир Андрея.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/book-andrey.html"> <!-- Replace with actual URL -->
-    <meta property="og:image" content="https://yourdomain.com/cover.jpg"> <!-- Replace with actual image URL -->
     <style>
-        /* [Your existing CSS remains unchanged] */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #000000;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        a {
+            color: #ff0000;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            color: #ff6666;
+        }
+        .header {
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .header-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .mute-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #8b0000;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 3;
+            font-size: 0.8em;
+        }
+        .mute-button:hover {
+            animation: glitch 0.3s infinite;
+        }
+        .loading-indicator {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            color: #f0f0f0;
+            font-size: 0.8em;
+            text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
+            z-index: 3;
+            opacity: 0.9;
+            transition: opacity 0.5s ease-out;
+            animation: glitch-text 0.4s infinite;
+        }
+        .loading-indicator.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .glitch {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 2px 0 #ff0000, -2px 0 #00ff00;
+            margin: 0;
+            z-index: 3;
+        }
+        .glitch:hover {
+            animation: glitch 0.3s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+            100% { transform: translate(0); }
+        }
+        @keyframes glitch-text {
+            0% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
+            50% { transform: translate(1px, -1px); text-shadow: -1px 0 #ff0000, 1px 0 #00ff00; }
+            100% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
+        }
+        .subheadline {
+            font-size: 1.2em;
+            margin: 10px 0;
+            z-index: 3;
+        }
+        .cta-button {
+            background-color: #8b0000;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 20px;
+            z-index: 3;
+        }
+        .cta-button:hover {
+            color: #fff;
+            animation: glitch 0.3s infinite;
+        }
+        .teaser {
+            background-color: #000000;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            font-style: italic;
+            opacity: 1;
+        }
+        .glitch-text {
+            color: #f0f0f0;
+            position: relative;
+            display: inline-block;
+            font-size: 1.2em;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: 'Тьма';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            clip-path: inset(0 0 50% 0);
+        }
+        .glitch-text::before {
+            content: 'Тьма';
+            color: #ff0000;
+            opacity: 0.7;
+            animation: glitch-top 0.5s infinite, flicker 0.7s infinite;
+            transform: translate(-2px, -1px) skewX(5deg);
+        }
+        .glitch-text::after {
+            content: 'пустота';
+            color: #00ff00;
+            opacity: 0.6;
+            animation: glitch-bottom 0.6s infinite, flicker 0.9s infinite;
+            transform: translate(2px, 1px) skewX(-5deg);
+        }
+        @keyframes glitch-top {
+            0% { transform: translate(-2px, -1px) skewX(5deg); }
+            50% { transform: translate(-3px, -2px) skewX(10deg); }
+            100% { transform: translate(-2px, -1px) skewX(5deg); }
+        }
+        @keyframes glitch-bottom {
+            0% { transform: translate(2px, 1px) skewX(-5deg); }
+            50% { transform: translate(3px, 2px) skewX(-10deg); }
+            100% { transform: translate(2px, 1px) skewX(-5deg); }
+        }
+        @keyframes flicker {
+            0% { opacity: 0.7; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+        .glitch-text:hover::before {
+            animation: glitch-top 0.3s infinite, flicker 0.5s infinite;
+            transform: translate(-4px, -3px) skewX(15deg);
+        }
+        .glitch-text:hover::after {
+            animation: glitch-bottom 0.4s infinite, flicker 0.6s infinite;
+            transform: translate(4px, 3px) skewX(-15deg);
+        }
+        .about {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background-color: #000000;
+        }
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 10px;
+            text-align: left;
+        }
+        .glitch-annotation {
+            color: #f0f0f0;
+            text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
+            position: relative;
+            transition: all 0.2s;
+        }
+        .glitch-annotation:hover {
+            animation: glitch-annotation 0.4s infinite;
+        }
+        @keyframes glitch-annotation {
+            0% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
+            25% { transform: translate(1px, -1px); text-shadow: -1px 0 #ff0000, 1px 0 #00ff00; }
+            50% { transform: translate(-1px, 1px); text-shadow: 1px 0 #00ff00, -1px 0 #ff0000; }
+            75% { transform: translate(1px, 1px); text-shadow: -1px 0 #00ff00, 1px 0 #ff0000; }
+            100% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
+        }
+        .about-image {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px;
+        }
+        .glitch-image {
+            filter: brightness(80%) contrast(120%);
+            max-width: 100%;
+        }
+        .glitch-image:hover {
+            filter: blur(1px) brightness(90%) contrast(150%);
+        }
+        .instructions {
+            display: none;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease, height 0.5s ease, padding 0.5s ease, margin 0.5s ease;
+        }
+        .instructions.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: instructions-glitch-in 0.6s ease-out forwards;
+        }
+        .instructions.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            height: 0;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            animation: instructions-glitch-out 0.6s ease-out forwards;
+        }
+        @keyframes instructions-glitch-in {
+            0% { opacity: 0; transform: translateY(20px); }
+            20% { transform: translate(-2px, 1px); }
+            40% { transform: translate(1px, -2px); }
+            60% { transform: translate(-1px, 2px); }
+            80% { transform: translate(2px, -1px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes instructions-glitch-out {
+            0% { opacity: 1; transform: translateY(0); height: auto; padding: 20px; margin: 20px auto; }
+            20% { transform: translate(2px, -1px); }
+            40% { transform: translate(-1px, 2px); }
+            60% { transform: translate(1px, -2px); }
+            80% { transform: translate(-2px, 1px); }
+            100% { opacity: 0; transform: translateY(20px); height: 0; padding: 0; margin: 0; }
+        }
+        .modal-content {
+            font-size: 0.9em;
+            line-height: 1.5;
+            text-align: left;
+        }
+        .modal-content h4 {
+            margin: 1em 0 0.5em;
+            font-size: 1.1em;
+        }
+        .close-button {
+            background-color: #8b0000;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px auto 0;
+            display: block;
+        }
+        .close-button:hover {
+            animation: glitch 0.3s infinite;
+        }
+        .reopen-instructions {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .reopen-instructions.hidden {
+            display: none;
+        }
+        .reopen-instructions.visible {
+            display: block;
+        }
+        .cta-section {
+            background-color: #000000;
+            padding: 30px;
+        }
+        .footer {
+            font-size: 0.8em;
+            color: #aaa;
+            padding: 10px;
+            background-color: #000000;
+        }
+        .footer a:hover {
+            animation: glitch 0.3s infinite;
+        }
+        .instructions-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .instructions-link:hover {
+            animation: glitch 0.3s infinite;
+        }
+        .dropdown-trigger {
+            color: #ff0000;
+            text-decoration: underline;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .dropdown-trigger:hover {
+            color: #ff6666;
+            animation: glitch 0.3s infinite;
+        }
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .dropdown-content.open {
+            max-height: 500px;
+        }
+        @media (max-width: 600px) {
+            .instructions-link {
+                font-size: 1.1em;
+                padding: 8px 12px;
+                text-align: center;
+            }
+            .instructions {
+                max-width: 95vw;
+                padding: 10px;
+            }
+            .modal-content {
+                font-size: 1em;
+                line-height: 1.6;
+            }
+            .dropdown-content.open {
+                max-height: 600px; /* Slightly larger for mobile */
+            }
+        }
+        .video-info {
+            font-size: 0.8em;
+            color: #aaa;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap');
     </style>
 </head>
 <body>
@@ -31,7 +384,7 @@
         <div class="header-overlay">
             <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
             <p class="subheadline">Сколько версий себя ты похоронил на этом пути?</p>
-            <a href="https://docs.google.com/document/d/1bO3_jfIT0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">ПОГРУЗИТЬСЯ В БЕЗДНУ</a>
+            <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">ПОГРУЗИТЬСЯ В БЕЗДНУ</a>
         </div>
     </div>
     <div class="teaser">
@@ -43,7 +396,7 @@
             <a href="#instructions" class="instructions-link" onclick="openInstructions()">▼ Как читать эту историю</a>
         </div>
         <div class="about-image">
-            <img src="cover.jpg" alt="Обложка книги 'Книга Андрея, сына Пустоты'" class="glitch-image">
+            <img src="cover.jpg" alt="Book Cover" class="glitch-image">
         </div>
     </div>
     <section id="instructions" class="instructions">
@@ -60,22 +413,22 @@
             <p><strong>Атмосфера:</strong></p>
             <p><strong>Рекомендации по саундтрекам для фона:</strong><br>
             <strong>Для мрачного настроения:</strong><br>
-            Попробуйте работы <a href="https://www.youtube.com/watch?v=nj_DqmRac78" target="_blank">Lustmord</a> или <a href="https://www.youtube.com/watch?v=r9W2fKZH7bw?si=b20-0jQUvv898ofP" target="_blank">Vatican Shadow</a>. Их музыка часто содержит глубокие, резонирующие звуки, которые могут ассоциироваться с индустриальными пейзажами, системами или чувством неотвратимой угрозы.<br>
+            Попробуйте работы <a href="https://www.youtube.com/watch?v=nj_DqmRac78" target="_blank">Lustmord</a> или <a href="https://youtu.be/r9W2fKZH7bw?si=b20-0jQUvv898ofP" target="_blank">Vatican Shadow</a>. Их музыка часто содержит глубокие, резонирующие звуки, которые могут ассоциироваться с индустриальными пейзажами, системами или чувством неотвратимой угрозы.<br>
             <strong>Темный или мрачный лес:</strong><br>
-            <a href="https://www.youtube.com/watch?v=EUer-Tto1ZA" target="_blank">DARK FOREST Ambience and Music</a> — звуки тёмного туманного леса с эмбиентной музыкой от Martia's Muses.<br>
+            <a href="http://www.youtube.com/watch?v=EUer-Tto1ZA" target="_blank">DARK FOREST Ambience and Music</a> — звуки тёмного туманного леса с эмбиентной музыкой от Martia's Muses.<br>
             <strong>Для более лёгкого настроения:</strong><br>
             <strong>Эмбиент с элементами глитча:</strong><br>
-            <a href="https://www.youtube.com/watch?v=68f-BTczc58" target="_blank">Electronic Music Mix</a> — экспериментальный, эмбиентный, IDM, индустриальный, глитч, кинематографичный микс от Neon Rhythms.<br>
-            <a href="https://www.youtube.com/watch?v=4oxGHCb-De8" target="_blank">B-SIDE Electronic Music Mix</a> — эмбиент, IDM, экспериментальный, индустриальный, глитч от Neon Rhythms.<br>
+            <a href="http://www.youtube.com/watch?v=68f-BTczc58" target="_blank">Electronic Music Mix</a> — экспериментальный, эмбиентный, IDM, индустриальный, глитч, кинематографичный микс от Neon Rhythms.<br>
+            <a href="http://www.youtube.com/watch?v=4oxGHCb-De8" target="_blank">B-SIDE Electronic Music Mix</a> — эмбиент, IDM, экспериментальный, индустриальный, глитч от Neon Rhythms.<br>
             <a class="dropdown-trigger" onclick="toggleDropdown()">Показать больше саундтреков ▼</a></p>
             <div class="dropdown-content">
                 <p><strong>Темный или мрачный лес (продолжение):</strong><br>
-                <a href="https://www.youtube.com/watch?v=9b20XeIfjs8" target="_blank">Enclosed Forest</a> — зловещая фауна, жуткие звуки, ночная атмосфера от Michael Ghelfi Studios.<br>
+                <a href="http://www.youtube.com/watch?v=9b20XeIfjs8" target="_blank">Enclosed Forest</a> — зловещая фауна, жуткие звуки, ночная атмосфера от Michael Ghelfi Studios.<br>
                 <strong>Эмбиентная электроника и минимал-техно:</strong><br>
-                <a href="https://www.youtube.com/watch?v=2F6B9EibJjw" target="_blank">AMBIENT TECHNO mix 002</a> — микс от Rob Jenkins.<br>
-                <a href="https://www.youtube.com/watch?v=CZim0p_etvM" target="_blank">Best of Antent</a> — электроника, эмбиент, синтивейв, чилл от BLUME.<br>
-                <a href="https://www.youtube.com/watch?v=ElDaTAueHHo" target="_blank">Relaxing Electronic Music</a> — расслабляющая электроника от Chill Music Lab.<br>
-                <a href="https://www.youtube.com/watch?v=pkV9Cv6R_1Q" target="_blank">Dub Techno, Minimal, Ambient Mix</a> — даб-техно и минимал от sound-tv.</p>
+                <a href="http://www.youtube.com/watch?v=2F6B9EibJjw" target="_blank">AMBIENT TECHNO mix 002</a> — микс от Rob Jenkins.<br>
+                <a href="http://www.youtube.com/watch?v=CZim0p_etvM" target="_blank">Best of Antent</a> — электроника, эмбиент, синтивейв, чилл от BLUME.<br>
+                <a href="http://www.youtube.com/watch?v=ElDaTAueHHo" target="_blank">Relaxing Electronic Music</a> — расслабляющая электроника от Chill Music Lab.<br>
+                <a href="http://www.youtube.com/watch?v=pkV9Cv6R_1Q" target="_blank">Dub Techno, Minimal, Ambient Mix</a> — даб-техно и минимал от sound-tv.</p>
             </div>
             <p><strong>Время:</strong><br>
             Ночь или сумерки. Мягкий свет (лампа, свеча) усилит контраст между тенями и текстом.</p>
@@ -101,13 +454,13 @@
             Установите таймер на 15 минут. Если тяжело — прервитесь, выпейте воды.<br>
             Спросите себя: «Чей голос в туннеле — матери, Андрея или алгоритмов?».<br>
             Запишите ассоциации: какие запахи, звуки вызвала глава?<br>
-            После прочтения 'скрытой главы', подумайте, что было бы, если бы этот 'код' был частью вашего собственного сознания. Какие 'алгоритмы' управляют вами?</p>
+            После прочтения "скрытой главы", подумайте, что было бы, если бы этот "код" был частью вашего собственного сознания. Какие "алгоритмы" управляют вами?</p>
             <h4>После чтения</h4>
             <p><strong>Рефлексия:</strong><br>
             Прогуляйтесь или напишите письмо Андрею/матери: «Что вы хотите им сказать?».<br>
             Перечитайте цитату: «Пустота не поглощает — она насыщает тишиной».<br>
-            Проанализируйте свои собственные 'цифровые зависимости' и их влияние на вашу жизнь. Где ваши 'лайки', 'уведомления' и 'алгоритмы'?<br>
-            Обсудите историю с кем-то. Разговор может помочь 'заземлить' сложные эмоции и образы.</p>
+            Проанализируйте свои собственные "цифровые зависимости" и их влияние на вашу жизнь. Где ваши "лайки", "уведомления" и "алгоритмы"?<br>
+            Обсудите историю с кем-то. Разговор может помочь "заземлить" сложные эмоции и образы.</p>
             <p><strong>Заземление:</strong><br>
             Сожмите и разожмите кулаки 10 раз.<br>
             Выпейте тёплый чай с мёдом, ощущая тепло в ладонях.<br>
@@ -122,7 +475,7 @@
     </div>
     <div class="cta-section">
         <p>Погрузись в тьму. Читай сейчас.<br>Куда ведут твои шаги?</p>
-        <a href="https://docs.google.com/document/d/1bO3_jfIT0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">НАЧАТЬ ПУТЬ В БЕЗДНУ</a>
+        <a href="https://docs.google.com/document/d/1bO3_jfITF0dXPCdMqWsgrLvJXTAvInzoObzAdng9jUY" class="cta-button">НАЧАТЬ ПУТЬ В БЕЗДНУ</a>
     </div>
     <div class="footer">
         <p class="video-info"><a href="https://www.youtube.com/watch?v=Z1_sSbXoDH0">Ben Frost - Threshold Of Faith (Official Video)</a></p>
