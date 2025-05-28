@@ -266,7 +266,7 @@
             padding: 10px;
         }
         .glitch-image {
-            filter: brightness(80%) contrast(120%);
+            filter: brightness(100%) contrast(100%); /* Adjusted to original look */
             max-width: 100%;
         }
         .glitch-image:hover {
@@ -439,7 +439,7 @@
             aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
             object-fit: cover;
             cursor: pointer;
-            filter: brightness(80%) contrast(120%);
+            filter: brightness(100%) contrast(100%); /* Adjusted to original look */
             transition: filter 0.3s ease;
         }
         .gallery-item img:hover {
@@ -460,7 +460,7 @@
             aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
             object-fit: cover;
             cursor: pointer;
-            filter: brightness(80%) contrast(120%);
+            filter: brightness(100%) contrast(100%); /* Adjusted to original look */
             transition: filter 0.3s ease;
         }
         .gallery-single img:hover {
@@ -517,7 +517,11 @@
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
-            filter: brightness(80%) contrast(120%);
+            filter: brightness(100%) contrast(100%); /* Adjusted to original look */
+            transition: filter 0.3s ease;
+        }
+        .modal img:hover {
+            filter: blur(1px) brightness(90%) contrast(150%);
         }
         .modal-close {
             position: absolute;
