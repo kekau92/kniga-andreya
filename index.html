@@ -446,8 +446,30 @@
             filter: blur(1px) brightness(90%) contrast(150%);
             animation: glitch 0.3s infinite;
         }
+        /* Single Item Below Grid */
+        .gallery-single {
+            margin-top: 20px; /* Space between grid and single item */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .gallery-single img {
+            width: 100%;
+            max-width: 620px; /* Match combined width of two thumbnails (300 + 20 + 300) */
+            height: auto;
+            aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
+            object-fit: cover;
+            cursor: pointer;
+            filter: brightness(80%) contrast(120%);
+            transition: filter 0.3s ease;
+        }
+        .gallery-single img:hover {
+            filter: blur(1px) brightness(90%) contrast(150%);
+            animation: glitch 0.3s infinite;
+        }
         /* Audio Player Styles */
-        .gallery-item audio {
+        .gallery-item audio,
+        .gallery-single audio {
             margin-top: 10px;
             width: 100%;
             max-width: 300px; /* Match thumbnail width on desktop */
@@ -455,18 +477,27 @@
             background-color: #8b0000; /* Red background */
             border-radius: 5px;
         }
-        .gallery-item audio::-webkit-media-controls-panel {
+        .gallery-single audio {
+            max-width: 620px; /* Match single image width on desktop */
+        }
+        .gallery-item audio::-webkit-media-controls-panel,
+        .gallery-single audio::-webkit-media-controls-panel {
             background-color: #8b0000; /* Red panel */
             color: #ffffff; /* White text/controls */
         }
         .gallery-item audio::-webkit-media-controls-play-button,
         .gallery-item audio::-webkit-media-controls-volume-slider,
         .gallery-item audio::-webkit-media-controls-current-time-display,
-        .gallery-item audio::-webkit-media-controls-time-remaining-display {
+        .gallery-item audio::-webkit-media-controls-time-remaining-display,
+        .gallery-single audio::-webkit-media-controls-play-button,
+        .gallery-single audio::-webkit-media-controls-volume-slider,
+        .gallery-single audio::-webkit-media-controls-current-time-display,
+        .gallery-single audio::-webkit-media-controls-time-remaining-display {
             filter: brightness(100%) contrast(120%);
             color: #ffffff; /* White controls */
         }
-        .gallery-item audio:hover {
+        .gallery-item audio:hover,
+        .gallery-single audio:hover {
             animation: glitch 0.3s infinite;
         }
         /* Modal Styles for Enlarged Image */
@@ -512,6 +543,12 @@
             }
             .gallery-item audio {
                 max-width: 250px; /* Match thumbnail width on mobile */
+            }
+            .gallery-single img {
+                max-width: 250px; /* Match single thumbnail width on mobile */
+            }
+            .gallery-single audio {
+                max-width: 250px; /* Match single image width on mobile */
             }
         }
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap');
@@ -648,6 +685,14 @@
                     Your browser does not support the audio element.
                 </audio>
             </div>
+        </div>
+        <!-- Single Image and Audio Below Grid -->
+        <div class="gallery-single">
+            <img src="hidden_chapter_book_main_small.jpg" alt="Скрытая Часть" onclick="openModal('hidden_chapter_book_main_small.jpg')">
+            <audio controls onplay="pauseOtherAudios(this)">
+                <source src="Look_What_Your_Love_Has_Done_To_Me_Amelie_Lens_Remix_Perc.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
         </div>
     </section>
     <!-- Modal for Enlarged Image -->
