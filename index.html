@@ -446,30 +446,8 @@
             filter: blur(1px) brightness(90%) contrast(150%);
             animation: glitch 0.3s infinite;
         }
-        /* Single Item Below Grid */
-        .gallery-single {
-            margin-top: 20px; /* Space between grid and single item */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .gallery-single img {
-            width: 100%;
-            max-width: 620px; /* Match combined width of two thumbnails (300 + 20 + 300) */
-            height: auto;
-            aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
-            object-fit: cover;
-            cursor: pointer;
-            filter: brightness(100%) contrast(100%); /* Adjusted to original look */
-            transition: filter 0.3s ease;
-        }
-        .gallery-single img:hover {
-            filter: blur(1px) brightness(90%) contrast(150%);
-            animation: glitch 0.3s infinite;
-        }
         /* Audio Player Styles */
-        .gallery-item audio,
-        .gallery-single audio {
+        .gallery-item audio {
             margin-top: 10px;
             width: 100%;
             max-width: 300px; /* Match thumbnail width on desktop */
@@ -477,27 +455,18 @@
             background-color: #8b0000; /* Red background */
             border-radius: 5px;
         }
-        .gallery-single audio {
-            max-width: 620px; /* Match single image width on desktop */
-        }
-        .gallery-item audio::-webkit-media-controls-panel,
-        .gallery-single audio::-webkit-media-controls-panel {
+        .gallery-item audio::-webkit-media-controls-panel {
             background-color: #8b0000; /* Red panel */
             color: #ffffff; /* White text/controls */
         }
         .gallery-item audio::-webkit-media-controls-play-button,
         .gallery-item audio::-webkit-media-controls-volume-slider,
         .gallery-item audio::-webkit-media-controls-current-time-display,
-        .gallery-item audio::-webkit-media-controls-time-remaining-display,
-        .gallery-single audio::-webkit-media-controls-play-button,
-        .gallery-single audio::-webkit-media-controls-volume-slider,
-        .gallery-single audio::-webkit-media-controls-current-time-display,
-        .gallery-single audio::-webkit-media-controls-time-remaining-display {
+        .gallery-item audio::-webkit-media-controls-time-remaining-display {
             filter: brightness(100%) contrast(120%);
             color: #ffffff; /* White controls */
         }
-        .gallery-item audio:hover,
-        .gallery-single audio:hover {
+        .gallery-item audio:hover {
             animation: glitch 0.3s infinite;
         }
         /* Modal Styles for Enlarged Image */
@@ -547,12 +516,6 @@
             }
             .gallery-item audio {
                 max-width: 250px; /* Match thumbnail width on mobile */
-            }
-            .gallery-single img {
-                max-width: 250px; /* Match single thumbnail width on mobile */
-            }
-            .gallery-single audio {
-                max-width: 250px; /* Match single image width on mobile */
             }
         }
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap');
@@ -661,6 +624,7 @@
     <!-- Gallery Section with Thumbnails and Audio -->
     <section class="gallery">
         <div class="gallery-grid">
+            <!-- Row 1: svitok_1, chapter_2 -->
             <div class="gallery-item">
                 <img src="svitok_1_mirror_fake.jpg" alt="Свиток I - Ничего" onclick="openModal('svitok_1_mirror_fake.jpg')">
                 <audio controls onplay="pauseOtherAudios(this)">
@@ -675,6 +639,7 @@
                     Your browser does not support the audio element.
                 </audio>
             </div>
+            <!-- Row 2: svitok_3, hidden_chapter -->
             <div class="gallery-item">
                 <img src="svitok_3_milk_zero.jpg" alt="Свиток III - Ноль" onclick="openModal('svitok_3_milk_zero.jpg')">
                 <audio controls onplay="pauseOtherAudios(this)">
@@ -683,20 +648,27 @@
                 </audio>
             </div>
             <div class="gallery-item">
+                <img src="hidden_chapter_book_main_web.webp" alt="Скрытая Часть" onclick="openModal('hidden_chapter_book_main_web.webp')">
+                <audio controls onplay="pauseOtherAudios(this)">
+                    <source src="Look_What_Your_Love_Has_Done_To_Me_Amelie_Lens_Remix_Perc.mp3" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <!-- Row 3: svitok_4, chapter_5 -->
+            <div class="gallery-item">
                 <img src="svitok_4_crack_hands.jpg" alt="Свиток IV - Трещина" onclick="openModal('svitok_4_crack_hands.jpg')">
                 <audio controls onplay="pauseOtherAudios(this)">
                     <source src="Turning the Prism - Ben Frost.mp3" type="audio/mp3">
                     Your browser does not support the audio element.
                 </audio>
             </div>
-        </div>
-        <!-- Single Image and Audio Below Grid -->
-        <div class="gallery-single">
-            <img src="hidden_chapter_book_main_web.webp" alt="Скрытая Часть" onclick="openModal('hidden_chapter_book_main_web.webp')">
-            <audio controls onplay="pauseOtherAudios(this)">
-                <source src="Look_What_Your_Love_Has_Done_To_Me_Amelie_Lens_Remix_Perc.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
+            <div class="gallery-item">
+                <img src="chapter_5_coffee.png" alt="Свиток V - Кофе" onclick="openModal('chapter_5_coffee.png')">
+                <audio controls onplay="pauseOtherAudios(this)">
+                    <source src="Memoria - Murcof.mp3" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
         </div>
     </section>
     <!-- Modal for Enlarged Image -->
