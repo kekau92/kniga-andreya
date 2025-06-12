@@ -1,1 +1,90 @@
+/* Quotes */
+.quote-block, .highlight-quote {
+    background: linear-gradient(to bottom, #111111, #222222);
+    padding: 1.5rem;
+    margin: 2.5rem 0;
+    border: 1px solid #3affc2;
+    border-radius: 8px;
+    font-style: italic;
+    color: #a0a0a0;
+}
 
+/* Glitching Text */
+.glitch-1 { animation: glitch 2s infinite; }
+.glitch-2 { animation: glitch 2s infinite 0.2s; }
+.glitch-3 { animation: glitch 2s infinite 0.4s; }
+.glitch-4 { animation: glitch 2s infinite 0.6s; }
+.glitch-5 { animation: glitch 2s infinite 0.8s; }
+
+@keyframes glitch {
+    0% { text-shadow: 0 0 2px #ff4d4d; }
+    50% { text-shadow: 2px 2px 2px #3affc2, -2px -2px 2px #ff4d4d; }
+    100% { text-shadow: 0 0 2px #ff4d4d; }
+}
+
+/* Pseudo-Code */
+.glitch-text {
+    position: relative;
+    z-index: -1;
+    opacity: 0.5;
+    background: none;
+    border: none;
+    padding: 0;
+    color: #3affc2;
+    font-family: 'Roboto Mono', monospace;
+    animation: code-glitch 3s infinite;
+}
+
+@keyframes code-glitch {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(-2px, 2px); }
+    20% { transform: translate(2px, -2px); }
+    30% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    50% { transform: translate(0, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Chapter Dividers */
+.chapter-divider {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #3affc2, transparent);
+    background-size: 100% 2px;
+    background-repeat: no-repeat;
+    margin: 4rem auto;
+    width: 80%;
+}
+
+/* Chapter Headings */
+h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 3rem 0;
+    color: #e0e0e0;
+    text-shadow: 0 0 5px #3affc2, 0 0 10px #3affc2, 0 0 15px #3affc2, 0 0 20px #3affc2;
+    animation: neon-flicker 1.5s infinite;
+}
+
+@keyframes neon-flicker {
+    0% { text-shadow: 0 0 5px #3affc2, 0 0 10px #3affc2, 0 0 15px #3affc2, 0 0 20px #3affc2; }
+    50% { text-shadow: 0 0 10px #3affc2, 0 0 20px #3affc2, 0 0 30px #3affc2, 0 0 40px #3affc2; }
+    100% { text-shadow: 0 0 5px #3affc2, 0 0 10px #3affc2, 0 0 15px #3affc2, 0 0 20px #3affc2; }
+}
+
+/* Left-Aligned Text */
+p.font-mono.text-\[\#3affc2\] {
+    text-align: left;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem;
+    }
+    .quote-block, .highlight-quote {
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+}
