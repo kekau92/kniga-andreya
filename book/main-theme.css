@@ -1,12 +1,38 @@
-/* Quotes */
-.quote-block, .highlight-quote {
-    background: linear-gradient(to bottom, #111111, #222222);
-    padding: 1.5rem;
+/* Neurolink Code - Blue version */
+.neurolink-console {
+    background-color: #040d0d;
+    color: #1e90ff;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 11pt;
+    line-height: 1.6em;
+    box-shadow: 0 0 20px rgba(30, 144, 255, 0.35);
+    border: 1px solid rgba(30, 144, 255, 0.2);
+    margin: 2rem 0;
+    overflow-x: auto;
+}
+
+.neurolink-header {
+    background: linear-gradient(90deg, #040d0d, #0a1a2a);
+    padding: 8px 12px;
+    margin: -20px -20px 15px -20px;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid rgba(30, 144, 255, 0.1);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: #1e90ff;
+}
+
+/* Modern Quote Block */
+.quote-block {
+    background-color: rgba(30, 144, 255, 0.05);
+    border-left: 3px solid rgba(30,144,255,0.3);
+    padding: 1rem 1.5rem;
     margin: 2.5rem 0;
-    border: 1px solid #3affc2;
-    border-radius: 8px;
     font-style: italic;
     color: #a0a0a0;
+    border-radius: 0 8px 8px 0;
 }
 
 /* Glitching Text */
@@ -18,7 +44,7 @@
 
 @keyframes glitch {
     0% { text-shadow: 0 0 2px #ff4d4d; }
-    50% { text-shadow: 2px 2px 2px #3affc2, -2px -2px 2px #ff4d4d; }
+    50% { text-shadow: 2px 2px 2px #1e90ff, -2px -2px 2px #ff4d4d; }
     100% { text-shadow: 0 0 2px #ff4d4d; }
 }
 
@@ -30,8 +56,9 @@
     background: none;
     border: none;
     padding: 0;
-    color: #3affc2;
-    font-family: 'Roboto Mono', monospace;
+    color: #1e90ff;
+    font-family: 'Courier New', monospace;
+    font-size: 11pt;
     animation: code-glitch 3s infinite;
 }
 
@@ -49,7 +76,7 @@
 .chapter-divider {
     border: 0;
     height: 2px;
-    background: linear-gradient(to right, transparent, #3affc2, transparent);
+    background: linear-gradient(to right, transparent, #1e90ff, transparent);
     background-size: 100% 2px;
     background-repeat: no-repeat;
     margin: 4rem auto;
@@ -63,18 +90,18 @@ h2 {
     text-align: center;
     margin: 3rem 0;
     color: #e0e0e0;
-    text-shadow: 0 0 5px #3affc2, 0 0 10px #3affc2, 0 0 15px #3affc2, 0 0 20px #3affc2;
+    text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 15px #1e90ff, 0 0 20px #1e90ff;
     animation: neon-flicker 1.5s infinite;
 }
 
 @keyframes neon-flicker {
-    0% { text-shadow: 0 0 5px #3affc2, 0 0 10px #3affc2, 0 0 15px #3affc2, 0 0 20px #3affc2; }
-    50% { text-shadow: 0 0 10px #3affc2, 0 0 20px #3affc2, 0 0 30px #3affc2, 0 0 40px #3affc2; }
-    100% { text-shadow: 0 0 5px #3affc2, 0 0 10px #3affc2, 0 0 15px #3affc2, 0 0 20px #3affc2; }
+    0% { text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 15px #1e90ff, 0 0 20px #1e90ff; }
+    50% { text-shadow: 0 0 10px #1e90ff, 0 0 20px #1e90ff, 0 0 30px #1e90ff, 0 0 40px #1e90ff; }
+    100% { text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 15px #1e90ff, 0 0 20px #1e90ff; }
 }
 
 /* Left-Aligned Text */
-p.font-mono.text-\[\#3affc2\] {
+p.font-mono.text-\[\#1e90ff\] {
     text-align: left;
 }
 
@@ -83,8 +110,8 @@ p.font-mono.text-\[\#3affc2\] {
     h2 {
         font-size: 2rem;
     }
-    .quote-block, .highlight-quote {
+    .quote-block {
         padding: 1rem;
-        margin: 1.5rem 0;
+        margin: 1.5rem 0.5rem;
     }
 }
