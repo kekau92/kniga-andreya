@@ -252,6 +252,15 @@
             border-top: 1px solid #222;
             margin-top: 40px;
         }
+
+        /* Footer link hover effects */
+footer a {
+    transition: all 0.3s ease;
+}
+footer a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 5px rgba(150, 50, 80, 0.5);
+}
         
         /* Эффект параллакса для фона */
         .parallax {
@@ -637,12 +646,21 @@
             <p class="fade-in" style="text-align: center;">Песок точил кожу.</p>
         </div>
         
-        <footer>
-            <p>Книга Андрея, сына Пустоты • Кирилл Зотов • Пермь 2025</p>
-            <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
-                <span class="pulse">◼︎</span> Свиток III½ завершён <span class="pulse">◼︎</span>
-            </p>
-        </footer>
+       <footer>
+    <p>
+        <a href="https://kekau92.github.io/kniga-andreya/" target="_blank" style="color: #d8b5c5; text-decoration: none;">
+            Книга Андрея, сына Пустоты
+        </a> 
+        • Кирилл Зотов 
+        <a href="https://twitter.com/kirill_z_re" target="_blank" style="color: #8a6380; text-decoration: none;">
+            (@kirill_z_re)
+        </a> 
+        • Пермь 2025
+    </p>
+    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
+        <span class="pulse">◼︎</span> Свиток III½ завершён <span class="pulse">◼︎</span>
+    </p>
+</footer>
     </div>
 
  <script>
