@@ -221,7 +221,10 @@
     <div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-blue-500 z-50"></div>
     <div class="book-container">
         <header class="text-center my-24">
-            <img data-src="https://kekau92.github.io/kniga-andreya/book/media/void_bell_small.png" alt="Void Bell">
+            <img src="/kniga-andreya/book/media/void_bell_small.png" 
+     alt="Void Bell" 
+     class="mx-auto mb-12 w-full max-w-sm" 
+     onerror="this.onerror=null;this.src='https://placehold.co/400x600/111111/c4c4c4?text=Обложка';">
             <div style="display: none; background-color: #222; padding: 2rem; border-radius: 8px; max-width: 300px; margin: 0 auto;">
                 <p class="text-gray-500 text-center">Обложка отсутствует</p>
             </div>
@@ -557,25 +560,6 @@ external_signal = "@Гравий: Сердце — 30. Обратный отсч
             btn.addEventListener('click', () => {
                 btn.closest('section').nextElementSibling?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
-        });
-    </script>
-    <script defer>
-        document.addEventListener("DOMContentLoaded", () => {
-            const lazyImages = [].slice.call(document.querySelectorAll("img"));
-            if ("IntersectionObserver" in window) {
-                const lazyImageObserver = new IntersectionObserver((entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            const lazyImage = entry.target;
-                            lazyImage.src = lazyImage.dataset.src;
-                            lazyImageObserver.unobserve(lazyImage);
-                        }
-                    });
-                });
-                lazyImages.forEach((lazyImage) => {
-                    lazyImageObserver.observe(lazyImage);
-                });
-            }
         });
     </script>
 </body>
