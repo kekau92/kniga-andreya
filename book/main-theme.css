@@ -299,7 +299,7 @@ h2::after {
     white-space: pre-wrap;
     word-break: break-word;
 }
-.neurolink-console::after {
+.neurolink-console-code::after {
     content: "";
     position: absolute;
     top: 0;
