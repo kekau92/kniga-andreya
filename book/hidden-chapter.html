@@ -153,6 +153,12 @@
             font-size: 12px;
             color: #8a6380;
         }
+
+        .telegram-message.voice-message::before {
+            content: "ГРАВИЙ-ВИЛДАД" " / " "голосовое сообщение";
+            display: flex;
+            gap: 5px;
+        }
         
         /* Эффекты текста */
         .glitch {
@@ -362,8 +368,7 @@
 
             <p class="fade-in">Белая деревянная рама, холод стекла, вжатого в лоб. За ним — двор, застывший в сизой плёнке ноября: облезлая горка, ржавые качели, чьи цепи скрипят, будто перемалывают кости. Он стоит у окна. Внутри — жара стыда. Внизу — огромные призраки, не люди, а функция пространства: тени подъезда, вышедшие из облезлой плитки и горячих батарей.</p>
 
-            <div class="telegram-message fade-in">
-                <p>голосовое сообщение</p>
+            <div class="telegram-message fade-in voice-message">
                 <p><em>«Спринт до клаустрофобии? Это окно всё ещё не откроется, да? Хардкорчик, ага. Я пытался разбить его за тебя. Стекло режет, как цепь без смазки. Твой FTP ниже, чем моя оценка твоей психики. Дропни руль и плачь.»</em></p>
                 <p style="font-size: 0.9em; color: #8a8a8a; margin-top: 10px;">(2 пропущенных вызова, 01:33)<br>*FTP = Functional Threshold Power; «дропни руль» — отсылка к агрессивной посадке велогонщиков</p>
             </div>
@@ -473,8 +478,7 @@
 
             <p class="fade-in">Андрей посмотрел на только что сделанный кадр: церковь в темноте, уродливо размазанная в шумах цифровой матрицы. Очертания куполов едва угадывались за зёрнами пикселей, будто сквозь грязное стекло. Вместо луны — размазанная тёмная точка с мутным белым ореолом. Ни святости, ни намёка на торжественность, что жила в его памяти — только жалкая пародия, которую не захочется выкладывать в сеть.</p>
 
-            <div class="telegram-message fade-in">
-                <p>голосовое сообщение</p>
+            <div class="telegram-message fade-in voice-message">
                 <p><em>«Лайков: 0. Душнила. Ты удаляешь не то. Проблема не в хреновом кадре, а в том, что твой пульс на подъёме — как курс акций твоего достоинства. Продолжаешь фоткать, будто залипаешь в Zwift вместо реальной гонки. Сожги церковь, или она сожжёт тебя. Трек: 100% fail.»</em></p>
                 <p style="font-size: 0.9em; color: #8a8a8a; margin-top: 10px;">(Был в сети 5 мин назад)<br>*Zwift — виртуальная велоплатформа</p>
             </div>
@@ -633,32 +637,37 @@
         </footer>
     </div>
 
-    <script>
-        // Анимация появления элементов при прокрутке
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const fadeInObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'fadeIn 1.2s ease-out forwards';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            fadeElements.forEach(element => {
-                fadeInObserver.observe(element);
-                element.style.opacity = '0';
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Fade-in elements observer
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1'; // Ensure this is set
+                    entry.target.style.animation = 'fadeIn 1.2s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
             });
-            
-            // Создание эффекта мерцающих звёзд на заднем фоне
-            const stars = document.querySelector('.stars');
-            if (stars) {
-                // Уже есть звёзды в фоне, добавим анимацию
-                stars.style.animation = 'pulse 8s infinite alternate';
-            }
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px' // Triggers when 50px from viewport bottom
         });
-    </script>
+
+        fadeElements.forEach(element => {
+            element.style.opacity = '0'; // Initialize as invisible
+            element.style.willChange = 'opacity'; // Optimization
+            fadeInObserver.observe(element);
+        });
+
+        // 2. Stars animation
+        const stars = document.querySelector('.stars');
+        if (stars) {
+            stars.style.animation = 'pulse 8s infinite alternate';
+            stars.style.willChange = 'opacity'; // Optimization
+        }
+    });
+</script>
 </body>
 </html>
