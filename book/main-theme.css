@@ -105,7 +105,7 @@ p.font-mono.text-\[\#1e90ff\] {
     text-align: left;
 }
 
-/* Responsive Adjustments */
+/* Mobile optimizations */
 @media (max-width: 768px) {
     h2 {
         font-size: 2rem;
@@ -113,5 +113,17 @@ p.font-mono.text-\[\#1e90ff\] {
     .quote-block {
         padding: 1rem;
         margin: 1.5rem 0.5rem;
+    }
+    .neurolink-console {
+        padding: 15px;
+        font-size: 10pt;
+    }
+    .neurolink-console pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+    .neurolink-header {
+        padding: 6px 10px;
+        font-size: 10pt;
     }
 }
