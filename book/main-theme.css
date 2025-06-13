@@ -334,8 +334,8 @@ h2::after {
     overflow: hidden;
     white-space: pre-wrap;
     word-break: break-word;
-    filter: blur(0.5px); /* Subtle blur for leaking effect */
-    animation: flicker-leak 1.8s infinite, distort-leak 2.2s infinite;
+    filter: blur(1px); /* Subtle blur for leaking effect */
+    animation: flicker-leak 3s infinite, distort-leak 4s infinite;
 }
 .neurolink-leak::before {
     content: "";
@@ -365,7 +365,7 @@ h2::after {
 }
 .leak-glitch-1, .leak-glitch-2, .leak-glitch-3, .leak-glitch-4, .leak-glitch-5 {
     display: inline-block;
-    animation: leak-glitch-anim 1.3s infinite;
+    animation: leak-glitch-anim 2s infinite;
 }
 .leak-glitch-2 { animation-delay: 0.2s; }
 .leak-glitch-3 { animation-delay: 0.3s; }
