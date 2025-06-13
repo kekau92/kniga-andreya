@@ -286,9 +286,9 @@ h2::after {
     background-color: #040d0d;
     color: #1e90ff;
     padding: 10px;
-    border-radius: 6px;
+    border-radius: 10px;
     font-family: 'Courier New', monospace;
-    font-size: 11pt;
+    font-size: 6pt;
     line-height: 1.3em;
     box-shadow: 0 0 20px rgba(30, 144, 255, 0.35);
     border: 1px solid rgba(30, 144, 255, 0.2);
