@@ -1,166 +1,118 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#111111">
-    <title>Книга Андрея, сына Пустоты</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main-theme.css">
-    <style>
-        body {
-            background-color: #111111;
-            color: #c4c4c4;
-            font-family: 'Lora', serif;
-            font-size: 18px;
-            line-height: 1.8;
-            position: relative;
-        }
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 70%, #111111 100%);
-            z-index: -1;
-            pointer-events: none;
-        }
-        /* Moved to main-theme.css for consistency:
-        ::selection {
-            background-color: #1e90ff;
-            color: #ffffff;
-        }
-        ::-moz-selection {
-            background-color: #1e90ff;
-            color: #ffffff;
-        }
-        */
-        /* Custom scrollbar for WebKit browsers */
-        ::-webkit-scrollbar {
-            width: 8px;
-            background-color: #111111;
-        }
-        ::-webkit-scrollbar-thumb {
-            background-color: #1e90ff;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-track {
-            background-color: #111111;
-        }
+/* Global Body & Typography */
+body {
+    background-color: #111111;
+    color: #c4c4c4;
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    line-height: 1.8;
+    position: relative;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 30%, rgba(30,144,255,0.05) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(30,144,255,0.03) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: -1;
+}
 
-        /* Basic image styling to work with Tailwind's mx-auto */
-        img {
-            display: block; /* Ensures mx-auto works for centering */
-            border-radius: 8px;
-            object-fit: contain;
-            max-height: 450px; /* Optional: if you want a max height */
-        }
-    </style>
-</head>
-<body class="antialiased">
-    <div class="container mx-auto px-6 md:px-12 py-12 max-w-3xl">
-        <header class="text-center my-24">
-            <img src="/kniga-andreya/book/media/void_bell_small.png" 
-                 alt="Void Bell" 
-                 class="mx-auto mb-12 w-full max-w-sm" 
-                 onerror="this.onerror=null;this.src='https://placehold.co/400x600/111111/c4c4c4?text=Обложка';">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Книга Андрея, сына Пустоты</h1>
-            <p class="text-xl text-gray-400 mb-4">Кирилл Зотов</p>
-            <p class="text-lg text-gray-500">Пермь 2025</p>
-        </header>
+/* Text Selection */
+::selection {
+    background: #3a0000;
+    color: #e0e0e0;
+}
+::-moz-selection { /* For Firefox */
+    background: #3a0000;
+    color: #e0e0e0;
+}
 
-        <main class="text-gray-300">
-            <section class="chapter mb-16">
-                <p>Текст в процессе написания...</p>
-                <div class="flex justify-center mt-8">
-                    <button class="page-turner bg-cyan-700 hover:bg-cyan-800 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
-                        Начать читать
-                    </button>
-                </div>
-            </section>
-        </main>
+/* Helper Class */
+.font-mono {
+    font-family: 'Roboto Mono', monospace;
+}
 
-        <footer class="text-center text-gray-600 mt-24">
-            <p>&copy; 2025 Кирилл Зотов. Все права защищены.</p>
-            <div class="mt-4">
-                <a href="https://kekau92.github.io/kniga-andreya/" class="font-mono">[ Вернуться на главный сайт ]</a>
-            </div>
-        </footer>
-    </div>
-    <div class="fixed bottom-4 right-4 z-50 md:hidden">
-        <div class="bg-black bg-opacity-70 rounded-full p-2">
-            <span class="text-xs text-cyan-400 font-mono">SCROLL</span>
-        </div>
-    </div>
+/* Chapter Headings */
+h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 3rem 0;
+    color: #e0e0e0;
+    position: relative;
+    text-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+}
+h2::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    width: 50px;
+    height: 1px;
+    background: #1e90ff;
+    box-shadow: 0 0 5px #1e90ff;
+    transform: translateX(-50%);
+}
 
-    <canvas id="atmosphere" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1]"></canvas>
+/* Chapter Dividers */
+.chapter-divider {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(30,144,255,0), rgba(30,144,255,0.2), rgba(30,144,255,0));
+    margin: 6rem auto;
+    width: 80%;
+}
 
-    <script>
-        document.querySelectorAll('.page-turner').forEach(btn => {
-            btn.addEventListener('click', () => {
-                btn.closest('section').nextElementSibling?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
+/* Mirrored Text Effect */
+.mirrored-text {
+    display: inline-block;
+    transform: scaleX(-1);
+}
 
-        // Particle system for psychological tension
-        const canvas = document.getElementById('atmosphere');
-        const ctx = canvas.getContext('2d');
-        
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
+/* Special Text Styles */
+.trauma-text {
+    color: #ff4d4d;
+    font-weight: bold;
+    text-shadow: 0 0 3px #ff4d4d;
+    animation: trauma-pulse 3s infinite;
+}
+@keyframes trauma-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
 
-        const particles = [];
-        for (let i = 0; i < 80; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 2 + 0.5,
-                speed: Math.random() * 0.3 + 0.1,
-                opacity: Math.random() * 0.1 + 0.05
-            });
-        }
+.highlight-quote {
+    color: #1e90ff;
+    font-style: italic;
+}
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(p => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(150, 150, 150, ${p.opacity})`;
-                ctx.fill();
-                
-                p.y += p.speed;
-                if (p.y > canvas.height) {
-                    p.y = 0;
-                    p.x = Math.random() * canvas.width;
-                }
-            });
-            
-            requestAnimationFrame(animate);
-        }
-        animate();
+/* Glitching Text spans */
+.glitch-1, .glitch-2, .glitch-3, .glitch-4, .glitch-5 {
+    display: inline-block;
+    animation: glitch-text-anim 2.5s infinite;
+}
+.glitch-2 { animation-delay: 0.1s; }
+.glitch-3 { animation-delay: 0.2s; }
+.glitch-4 { animation-delay: 0.3s; }
+.glitch-5 { animation-delay: 0.4s; }
 
-        // Progressive darkness as user scrolls
-        window.addEventListener('scroll', () => {
-            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-            const darkenValue = 0.05 + scrollPercent * 0.1; /* Adjusted values for more subtle darkness within the existing body background */
-            document.body.style.backgroundColor = `hsl(0, 0%, ${5 - darkenValue * 5}%)`; /* Use HSL for precise darkening from current very dark gray */
-        });
-    </script>
-</body>
-</html>
-__
+@keyframes glitch-text-anim {
+    0% { transform: translate(0); opacity: 1; }
+    25% { transform: translate(0); opacity: 1; }
+    26% { transform: translate(-2px, 1px); opacity: 0.8; }
+    27% { transform: translate(1px, -1px); opacity: 1; }
+    50% { transform: translate(0); opacity: 1; }
+    75% { transform: translate(0); opacity: 1; }
+    76% { transform: translate(2px, -1px); opacity: 0.5; color: #ff4d4d }
+    77% { transform: translate(0, 0); opacity: 1; color: inherit; }
+    100% { transform: translate(0); opacity: 1; }
+}
 
-/* Neurolink Code - Blue version */
+
+/* Neurolink Console Block */
 .neurolink-console {
     background-color: #040d0d;
     color: #1e90ff;
@@ -173,246 +125,153 @@ __
     border: 1px solid rgba(30, 144, 255, 0.2);
     margin: 2rem 0;
     overflow-x: auto;
-    /* Added for neurolink console scanline effect */
     position: relative;
     overflow: hidden;
 }
-
 .neurolink-console::after {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        rgba(4, 13, 13, 0.8) 50%,
-        transparent 100%
-    );
-    pointer-events: none;
-    animation: scan 8s linear infinite;
+    height: 2px;
+    background: #1e90ff;
+    box-shadow: 0 0 5px #1e90ff;
+    animation: scanline 4s linear infinite;
 }
-
-@keyframes scan {
-    0% { background-position: 0 -100%; }
-    100% { background-position: 0 100%; }
+@keyframes scanline {
+    0% { top: -5%; }
+    100% { top: 105%; }
 }
-
-
 .neurolink-header {
-    background: linear-gradient(90deg, #040d0d, #0a1a2a);
+    background-color: #0a1a2a;
     padding: 8px 12px;
     margin: -20px -20px 15px -20px;
-    border-radius: 8px 8px 0 0;
     border-bottom: 1px solid rgba(30, 144, 255, 0.1);
     font-weight: bold;
-    letter-spacing: 0.5px;
-    color: #1e90ff;
 }
 
-/* Modern Quote Block */
+/* CTA Button inside Console */
+.cta-button {
+    display: inline-block;
+    background-color: #1e90ff;
+    color: #111111;
+    font-weight: bold;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(30,144,255,0.4);
+    margin-top: 1rem;
+}
+.cta-button:hover {
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(30,144,255,0.7);
+    transform: translateY(-2px);
+}
+
+/* Standard Quote Block */
 .quote-block {
-    background-color: rgba(30, 144, 255, 0.05); /* Lighter blue background */
-    border-left: 4px solid #1e90ff; /* Solid blue left border */
-    padding: 1.5rem;
-    border-radius: 8px;
+    background-color: rgba(30, 144, 255, 0.05);
+    border-left: 3px solid rgba(30,144,255,0.3);
+    padding: 1rem 1.5rem;
+    margin: 2.5rem 0;
     font-style: italic;
-    color: #a0a0a0; /* Slightly lighter text for quotes */
-    margin: 2rem 0;
-    box-shadow: 0 0 15px rgba(30, 144, 255, 0.1); /* Subtle blue glow */
-    position: relative;
-    overflow: hidden;
+    color: #a0a0a0;
+    border-radius: 0 8px 8px 0;
 }
 
-.quote-block::before {
-    content: "“"; /* Opening quote */
-    font-family: serif;
-    font-size: 4rem;
-    color: rgba(30, 144, 255, 0.2); /* Faded blue */
+/* Telegram Message Bubble */
+.telegram-message {
+    position: relative;
+    background-color: #182533;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin: 2.5rem 0 2.5rem 10px; /* Отступ слева для "хвостика" */
+    border-left: none; /* Убираем стандартную границу */
+}
+.telegram-message::before {
+    content: '';
     position: absolute;
-    top: 0.5rem;
-    left: 1rem;
-    line-height: 1;
-    z-index: 0;
+    left: -10px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-color: #182533;
+    border-left: 0;
+}
+.telegram-message .username {
+    color: #a334d3;
+    font-weight: bold;
+    font-family: 'Lora', serif;
+    font-style: normal;
+    margin-bottom: 0.25rem;
+}
+.telegram-message .message-text {
+    color: #c4c4c4;
+    font-style: normal;
+    margin: 0.5rem 0;
+}
+.telegram-message .message-meta {
+    text-align: right;
+    font-size: 0.8em;
+    color: #5b6978;
+    margin-top: 0.5rem;
+    font-style: normal;
+}
+.message-photo-desc {
+    background-color: rgba(0,0,0,0.2);
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9em;
+    font-style: italic;
 }
 
-.quote-block p {
-    position: relative;
-    z-index: 1;
-    margin-left: 2rem; /* Indent text to clear the large quote mark */
-}
-
-/* Page Turner Button */
+/* Page Turner Arrow */
 .page-turner {
+    display: block;
+    margin: 4rem auto;
+    text-align: center;
     cursor: pointer;
+}
+.page-turner svg {
+    width: 40px;
+    height: 40px;
+    color: #1e90ff;
+    animation: pulse-blue 2s infinite;
+}
+@keyframes pulse-blue {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* Start reading button */
+.page-turner-button {
     animation: pulse-blue 2s infinite;
 }
 
-@keyframes pulse-blue {
-    0% { box-shadow: 0 0 0 0 rgba(30, 144, 255, 0.7); }
-    70% { box-shadow: 0 0 0 20px rgba(30, 144, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(30, 144, 255, 0); }
-}
-
-/* Global transitions for interactive elements */
-a, button {
-    transition: all 0.3s ease-in-out;
-}
-
-/* Underline effect for links */
-a:hover {
-    text-decoration: underline;
-    text-decoration-color: #1e90ff;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
-}
-
-/* Typewriter effect for code */
-.typewriter-effect {
-    font-family: 'Roboto Mono', monospace;
-    white-space: pre-wrap; /* Allows text to wrap */
-    overflow: hidden;
-    border-right: .15em solid #1e90ff; /* Blinking cursor */
-    animation: 
-        typing 3.5s steps(40, end),
-        blink-caret .75s step-end infinite;
-    animation-fill-mode: forwards; /* Keep the final state */
-}
-
-/* Typing animation */
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-/* Blinking cursor animation */
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #1e90ff; }
-}
-
-
-/* Gradient text for titles or specific elements */
-.gradient-text {
-    background: linear-gradient(90deg, #1e90ff, #00bfff, #1e90ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% auto;
-    animation: gradient-shift 3s ease-in-out infinite;
-}
-
-@keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Subtle background movement effect */
-@keyframes subtle-move {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(-1px, 1px); }
-    50% { transform: translate(0, 0); }
-    75% { transform: translate(1px, -1px); }
-    100% { transform: translate(0, 0); }
-}
-
-/* Chapter Dividers */
-.chapter-divider {
-    border: 0;
-    height: 2px;
-    background: linear-gradient(to right, transparent, #1e90ff, transparent);
-    background-size: 100% 2px;
-    background-repeat: no-repeat;
-    margin: 4rem auto;
-    width: 80%;
-}
-
-/* Chapter Headings */
-h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin: 3rem 0;
-    color: #e0e0e0;
-    text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 15px #1e90ff, 0 0 20px #1e90ff;
-    animation: neon-flicker 1.5s infinite;
-    /* Added for h2 after pseudo-element */
-    position: relative;
-}
-
-/* Added for h2 after pseudo-element */
-h2::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    width: 50%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #1e90ff, transparent);
-    transform: translateX(-50%);
-}
-
-@keyframes neon-flicker {
-    0% { text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 15px #1e90ff, 0 0 20px #1e90ff; }
-    20% { text-shadow: none; }
-    22% { text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 15px #1e90ff, 0 0 20px #1e90ff; }
-    24% { text-shadow: none; }
-    26% { text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 15px #1e90ff, 0 0 20px #1e90ff; }
-    60% { text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 15px #1e90ff, 0 0 20px #1e90ff; }
-    62% { text-shadow: none; }
-    64% { text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 15px #1e90ff, 0 0 20px #1e90ff; }
-    100% { text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 15px #1e90ff, 0 0 20px #1e90ff; }
-}
-
-/* Added styles for telegram messages */
-.telegram-message {
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.telegram-message:hover {
-    box-shadow: 0 0 15px rgba(200, 0, 0, 0.4);
-}
-
-.telegram-message::before {
-    content: "⚡";
-    position: absolute;
-    left: -25px;
-    top: 10px;
-    color: #f00;
-    filter: blur(0.5px);
-    font-size: 1.2rem;
-}
-
-/* Blood-red pulse for high-intensity messages */
-@keyframes blood-pulse {
-    0% { box-shadow: 0 0 5px rgba(160, 0, 0, 0.3); }
-    50% { box-shadow: 0 0 15px rgba(200, 0, 0, 0.6); }
-    100% { box-shadow: 0 0 5px rgba(160, 0, 0, 0.3); }
-}
-
-.telegram-message.high-intensity {
-    animation: blood-pulse 2s infinite;
-    border-left: 3px solid #a00;
-}
-
-/* Trauma text */
-.trauma-text {
-    text-shadow: 0 0 3px #ff4d4d;
-    animation: trauma-pulse 3s infinite;
-}
-
-@keyframes trauma-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
-
-/* Text selection */
-::selection {
-    background: #3a0000;
-    color: #e0e0e0;
-}
-::-moz-selection { /* For Firefox */
-    background: #3a0000;
-    color: #e0e0e0;
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    .quote-block, .telegram-message {
+        margin: 1.5rem 0.5rem;
+    }
+    .neurolink-console {
+        padding: 15px;
+        font-size: 10pt;
+    }
+    .neurolink-console pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
 }
