@@ -209,20 +209,28 @@
         }
         
         /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 1.2s ease-out forwards;
-        }
-        
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
-        .delay-5 { animation-delay: 1.0s; }
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.fade-in {
+    opacity: 0; /* Start invisible */
+    animation: none; /* No animation by default */
+}
+
+/* Delay classes remain the same */
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
+.delay-5 { animation-delay: 1.0s; }
         
         /* Пульсация */
         @keyframes pulse {
@@ -637,35 +645,32 @@
         </footer>
     </div>
 
-  <script>
+ <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // 1. Fade-in elements observer
         const fadeElements = document.querySelectorAll('.fade-in');
         
-        const fadeInObserver = new IntersectionObserver((entries, observer) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1'; // Ensure this is set
                     entry.target.style.animation = 'fadeIn 1.2s ease-out forwards';
+                    entry.target.style.opacity = '1';
                     observer.unobserve(entry.target);
                 }
             });
         }, { 
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px' // Triggers when 50px from viewport bottom
+            rootMargin: '0px 0px -100px 0px' // Trigger 100px before element enters viewport
         });
 
-        fadeElements.forEach(element => {
-            element.style.opacity = '0'; // Initialize as invisible
-            element.style.willChange = 'opacity'; // Optimization
-            fadeInObserver.observe(element);
+        fadeElements.forEach(el => {
+            el.style.opacity = '0'; // Double ensure elements start hidden
+            observer.observe(el);
         });
 
-        // 2. Stars animation
+        // Stars animation (unchanged)
         const stars = document.querySelector('.stars');
         if (stars) {
             stars.style.animation = 'pulse 8s infinite alternate';
-            stars.style.willChange = 'opacity'; // Optimization
         }
     });
 </script>
