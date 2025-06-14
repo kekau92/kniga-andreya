@@ -435,6 +435,113 @@
                 padding-bottom: 50px;
             }
         }
+
+        /* Дополнительные стили для саундтрека */
+.sound-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.sound-toggle {
+    width: 50px;
+    height: 50px;
+    background: rgba(20, 10, 15, 0.7);
+    border: 1px solid #5a2a44;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(150, 50, 80, 0.3);
+}
+
+.sound-toggle:hover {
+    background: rgba(90, 42, 68, 0.5);
+    transform: scale(1.1);
+}
+
+.sound-icon {
+    width: 24px;
+    height: 24px;
+    position: relative;
+}
+
+.sound-icon::before,
+.sound-icon::after {
+    content: "";
+    position: absolute;
+    background: #d8b5c5;
+}
+
+/* Иконка звуковых волн */
+.sound-icon::before {
+    width: 8px;
+    height: 15px;
+    left: 8px;
+    top: 4px;
+    border-radius: 4px 0 0 4px;
+}
+
+.sound-icon::after {
+    width: 4px;
+    height: 20px;
+    right: 8px;
+    top: 2px;
+    border-radius: 0 4px 4px 0;
+}
+
+.playing .sound-icon::before {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.playing .sound-icon::after {
+    animation: pulse 1.5s infinite ease-in-out 0.2s;
+}
+
+.sound-label {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #c9a0b9;
+    font-size: 12px;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+}
+
+.sound-toggle:hover .sound-label {
+    opacity: 1;
+}
+
+@keyframes pulse {
+    0%, 100% { height: 15px; top: 4px; }
+    50% { height: 24px; top: 0; }
+}
+
+/* Индикатор текущей сцены */
+.scene-indicator {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    background: rgba(20, 10, 15, 0.7);
+    border: 1px solid #5a2a44;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #c9a0b9;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+.sound-container:hover + .scene-indicator {
+    opacity: 1;
+}
     </style>
 </head>
 <body>
@@ -781,28 +888,641 @@
         </footer>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'fadeIn 1.2s ease-out forwards';
-                        entry.target.style.opacity = '1';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { 
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Существующий код для анимации появления текста
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 1.2s ease-out forwards';
+                    entry.target.style.opacity = '1';
+                    observer.unobserve(entry.target);
+                }
             });
-
-            fadeElements.forEach(el => {
-                el.style.opacity = '0';
-                observer.observe(el);
-            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
         });
-    </script>
+
+        fadeElements.forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+
+        // ===== НАЧАЛО ЗВУКОВОЙ СИСТЕМЫ =====
+        // Селекторы для ключевых сцен
+        const scenes = [
+            { 
+                selector: '.scroll-header', 
+                name: 'Дорога',
+                sounds: ['wind', 'bicycle', 'heartbeat'] 
+            },
+            { 
+                selector: 'p:nth-child(8)',  // Окно
+                name: 'Воспоминание',
+                sounds: ['childVoice', 'window'] 
+            },
+            { 
+                selector: '.telegram-message:first-of-type', 
+                name: 'Гравий-Вилдад',
+                sounds: ['digital', 'notification'] 
+            },
+            { 
+                selector: 'strong:first-of-type', 
+                name: 'Голос матери',
+                sounds: ['motherVoice'] 
+            },
+            { 
+                selector: '.telegram-message:nth-of-type(2)', 
+                name: 'Краш-тест',
+                sounds: ['crash', 'pain'] 
+            },
+            { 
+                selector: 'p:nth-child(49)',  // Церковь
+                name: 'Церковь',
+                sounds: ['choir', 'bells'] 
+            },
+            { 
+                selector: 'p:nth-child(61)',  // Костер
+                name: 'Костер',
+                sounds: ['fire', 'plastic'] 
+            },
+            { 
+                selector: 'p:nth-child(72)',  // Туннель
+                name: 'Туннель',
+                sounds: ['tunnel', 'heartbeat', 'whispers'] 
+            },
+            { 
+                selector: 'mark', 
+                name: 'Финал',
+                sounds: ['water', 'void'] 
+            }
+        ];
+        
+        // Звуковые генераторы
+        const soundGenerators = {
+            wind: function() {
+                const bufferSize = 2 * audioContext.sampleRate;
+                const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = Math.random() * 2 - 1;
+                }
+                
+                const source = audioContext.createBufferSource();
+                source.buffer = noiseBuffer;
+                source.loop = true;
+                
+                const filter = audioContext.createBiquadFilter();
+                filter.type = 'highpass';
+                filter.frequency.value = 500;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0.1;
+                
+                source.connect(filter);
+                filter.connect(gain);
+                gain.connect(masterGain);
+                
+                source.start();
+                return source;
+            },
+            
+            bicycle: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.value = 80;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0.05;
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    gain.gain.linearRampToValueAtTime(0.1, audioContext.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.05, audioContext.currentTime + 0.1);
+                }, 1500);
+                
+                oscillator.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            },
+            
+            heartbeat: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 60;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0;
+                
+                let beatCount = 0;
+                const beat = () => {
+                    if (!isPlaying) return;
+                    
+                    gain.gain.cancelScheduledValues(audioContext.currentTime);
+                    gain.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+                    
+                    beatCount++;
+                    if (beatCount % 4 === 0) {
+                        setTimeout(() => {
+                            if (!isPlaying) return;
+                            gain.gain.setValueAtTime(0.15, audioContext.currentTime);
+                            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                        }, 150);
+                    }
+                    
+                    setTimeout(beat, 800 - (beatCount % 3) * 100);
+                };
+                
+                beat();
+                
+                oscillator.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            },
+            
+            childVoice: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 600;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0;
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    oscillator.frequency.setValueAtTime(500 + Math.random() * 400, audioContext.currentTime);
+                    gain.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+                }, 3000);
+                
+                oscillator.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            },
+            
+            window: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 100;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0.02;
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    oscillator.frequency.setValueAtTime(80 + Math.random() * 40, audioContext.currentTime);
+                    gain.gain.setValueAtTime(0.05, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.02, audioContext.currentTime + 1);
+                }, 5000);
+                
+                oscillator.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            },
+            
+            digital: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'square';
+                oscillator.frequency.value = 1500;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0;
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    oscillator.frequency.setValueAtTime(1000 + Math.random() * 2000, audioContext.currentTime);
+                    gain.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0, audioContext.currentTime + 0.05);
+                }, 200);
+                
+                oscillator.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            },
+            
+            notification: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 800;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0;
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    gain.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0, audioContext.currentTime + 0.1);
+                    setTimeout(() => {
+                        if (!isPlaying) return;
+                        gain.gain.setValueAtTime(0.1, audioContext.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0, audioContext.currentTime + 0.1);
+                    }, 150);
+                }, 10000);
+                
+                oscillator.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            },
+            
+            motherVoice: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.value = 200;
+                
+                const filter = audioContext.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.value = 500;
+                filter.Q.value = 5.0;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0.1;
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    oscillator.frequency.setValueAtTime(180 + Math.random() * 40, audioContext.currentTime);
+                    gain.gain.setValueAtTime(0.15, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.1, audioContext.currentTime + 1);
+                }, 3000);
+                
+                oscillator.connect(filter);
+                filter.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            },
+            
+            crash: function() {
+                const bufferSize = audioContext.sampleRate * 0.1;
+                const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = Math.random() * 2 - 1;
+                }
+                
+                const source = audioContext.createBufferSource();
+                source.buffer = noiseBuffer;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0.5;
+                
+                source.connect(gain);
+                gain.connect(masterGain);
+                
+                setTimeout(() => {
+                    if (isPlaying) source.start();
+                }, 1000);
+                
+                return source;
+            },
+            
+            pain: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 120;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0;
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    gain.gain.setValueAtTime(0.15, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.05, audioContext.currentTime + 0.5);
+                    setTimeout(() => {
+                        if (!isPlaying) return;
+                        gain.gain.setValueAtTime(0.15, audioContext.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.05, audioContext.currentTime + 0.3);
+                    }, 600);
+                }, 3000);
+                
+                oscillator.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            },
+            
+            choir: function() {
+                const oscillators = [];
+                
+                for (let i = 0; i < 5; i++) {
+                    const osc = audioContext.createOscillator();
+                    osc.type = 'sine';
+                    osc.frequency.value = 300 + i * 50;
+                    
+                    const gain = audioContext.createGain();
+                    gain.gain.value = 0.03;
+                    
+                    osc.connect(gain);
+                    gain.connect(masterGain);
+                    osc.start();
+                    oscillators.push(osc);
+                }
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    oscillators.forEach((osc, i) => {
+                        osc.frequency.linearRampToValueAtTime(
+                            300 + i * 50 + Math.sin(audioContext.currentTime) * 20, 
+                            audioContext.currentTime + 2
+                        );
+                    });
+                }, 3000);
+                
+                return oscillators;
+            },
+            
+            bells: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 800;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0;
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    gain.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0, audioContext.currentTime + 3);
+                    oscillator.frequency.setValueAtTime(700, audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(900, audioContext.currentTime + 0.1);
+                    oscillator.frequency.exponentialRampToValueAtTime(700, audioContext.currentTime + 0.3);
+                }, 10000);
+                
+                oscillator.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            },
+            
+            fire: function() {
+                const bufferSize = 2 * audioContext.sampleRate;
+                const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = Math.random() * 2 - 1;
+                }
+                
+                const source = audioContext.createBufferSource();
+                source.buffer = noiseBuffer;
+                source.loop = true;
+                
+                const filter = audioContext.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.value = 1000;
+                filter.Q.value = 1.0;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0.1;
+                
+                source.connect(filter);
+                filter.connect(gain);
+                gain.connect(masterGain);
+                
+                source.start();
+                return source;
+            },
+            
+            plastic: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.value = 200;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0.05;
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    gain.gain.setValueAtTime(0.08, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.05, audioContext.currentTime + 0.5);
+                }, 2000);
+                
+                oscillator.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            },
+            
+            tunnel: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 55;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0.15;
+                
+                const delay = audioContext.createDelay(5.0);
+                delay.delayTime.value = 0.3;
+                const feedback = audioContext.createGain();
+                feedback.gain.value = 0.4;
+                
+                oscillator.connect(gain);
+                gain.connect(delay);
+                delay.connect(feedback);
+                feedback.connect(delay);
+                feedback.connect(masterGain);
+                gain.connect(masterGain);
+                
+                oscillator.start();
+                return oscillator;
+            },
+            
+            whispers: function() {
+                const bufferSize = 2 * audioContext.sampleRate;
+                const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = Math.random() * 2 - 1;
+                }
+                
+                const source = audioContext.createBufferSource();
+                source.buffer = noiseBuffer;
+                source.loop = true;
+                
+                const filter = audioContext.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.value = 1000;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0.05;
+                
+                source.connect(filter);
+                filter.connect(gain);
+                gain.connect(masterGain);
+                
+                source.start();
+                return source;
+            },
+            
+            water: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 400;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0.1;
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    oscillator.frequency.setValueAtTime(300 + Math.random() * 200, audioContext.currentTime);
+                    gain.gain.setValueAtTime(0.15, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.1, audioContext.currentTime + 1);
+                }, 3000);
+                
+                oscillator.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            },
+            
+            void: function() {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 40;
+                
+                const gain = audioContext.createGain();
+                gain.gain.value = 0.05;
+                
+                setInterval(() => {
+                    if (!isPlaying) return;
+                    oscillator.frequency.setValueAtTime(30 + Math.random() * 20, audioContext.currentTime);
+                }, 5000);
+                
+                oscillator.connect(gain);
+                gain.connect(masterGain);
+                oscillator.start();
+                return oscillator;
+            }
+        };
+        
+        // Аудиоконтекст и глобальные переменные
+        let audioContext;
+        let isPlaying = false;
+        let masterGain;
+        let currentSounds = {};
+        
+        // Инициализация аудио
+        function initAudio() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            masterGain = audioContext.createGain();
+            masterGain.gain.value = 0.3;
+            masterGain.connect(audioContext.destination);
+        }
+        
+        // Остановить все звуки
+        function stopAllSounds() {
+            Object.values(currentSounds).flat().forEach(sound => {
+                if (Array.isArray(sound)) {
+                    sound.forEach(s => s.stop());
+                } else {
+                    sound.stop();
+                }
+            });
+            currentSounds = {};
+        }
+        
+        // Воспроизвести звуки для сцены
+        function playSceneSounds(scene) {
+            stopAllSounds();
+            
+            scene.sounds.forEach(soundName => {
+                if (soundGenerators[soundName]) {
+                    currentSounds[soundName] = soundGenerators[soundName]();
+                }
+            });
+            
+            // Обновить индикатор сцены
+            document.getElementById('sceneIndicator').textContent = scene.name;
+        }
+        
+        // Обработчик кнопки
+        document.getElementById('soundToggle').addEventListener('click', () => {
+            if (!audioContext) {
+                initAudio();
+            }
+            
+            if (isPlaying) {
+                stopAllSounds();
+                isPlaying = false;
+                document.getElementById('soundToggle').classList.remove('playing');
+            } else {
+                isPlaying = true;
+                document.getElementById('soundToggle').classList.add('playing');
+                
+                // Запустить звуки для текущей сцены
+                const currentScene = getCurrentScene();
+                if (currentScene) {
+                    playSceneSounds(currentScene);
+                }
+            }
+        });
+        
+        // Автопауза при скрытии вкладки
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && isPlaying) {
+                stopAllSounds();
+                isPlaying = false;
+                document.getElementById('soundToggle').classList.remove('playing');
+            }
+        });
+        
+        // Определить текущую сцену
+        function getCurrentScene() {
+            const viewportHeight = window.innerHeight;
+            const scrollPosition = window.scrollY + viewportHeight / 2;
+            
+            for (const scene of scenes) {
+                const element = document.querySelector(scene.selector);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    const elementTop = rect.top + window.scrollY;
+                    const elementBottom = elementTop + rect.height;
+                    
+                    if (scrollPosition >= elementTop && scrollPosition <= elementBottom) {
+                        return scene;
+                    }
+                }
+            }
+            
+            return scenes[0]; // По умолчанию первая сцена
+        }
+        
+        // Отслеживание скролла для смены сцены
+        let lastScene = null;
+        
+        function checkSceneChange() {
+            if (!isPlaying) return;
+            
+            const currentScene = getCurrentScene();
+            if (currentScene !== lastScene) {
+                playSceneSounds(currentScene);
+                lastScene = currentScene;
+            }
+        }
+        
+        // Проверять сцену при скролле
+        window.addEventListener('scroll', checkSceneChange);
+        window.addEventListener('resize', checkSceneChange);
+    });
+</script>
+    <!-- Контейнер для саундтрека -->
+<div class="sound-container">
+    <div class="sound-toggle" id="soundToggle">
+        <div class="sound-icon"></div>
+        <div class="sound-label">СТИКС / СУД</div>
+    </div>
+</div>
+<div class="scene-indicator" id="sceneIndicator">Дорога</div>
 </body>
 </html>
