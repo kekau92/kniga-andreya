@@ -5,31 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Свиток III½: Суд на берегу Стикса | Книга Андрея, сына Пустоты</title>
     <style>
-      .scroll-header {
-    /* SVG fallback first */
+     .scroll-header {
+    /* Primary background with image */
     background: 
         linear-gradient(to bottom, rgba(10, 15, 25, 0.9), rgba(10, 10, 15, 0.7)),
-        url('data:image/svg+xml;utf8,<svg...></svg>');
-    
-    /* Actual image on top (will cover SVG if it loads) */
-    background: 
-        linear-gradient(to bottom, rgba(10, 15, 25, 0.9), rgba(10, 10, 15, 0.7)),
-        url('test/moon-taiga-background.jpg'),
-        url('data:image/svg+xml;utf8,<svg...></svg>');
+        url('https://github.com/kekau92/kniga-andreya/raw/main/book/test/moon-taiga-background.jpg');
     background-size: cover;
+    
+    /* Fallback styles if image fails to load */
+    background-color: #0a0f19; /* Solid color fallback */
 }
 
 footer {
-    /* Same approach for footer */
+    /* Primary background with image */
     background: 
         linear-gradient(to top, rgba(8, 12, 20, 0.95), rgba(10, 15, 25, 0.7)),
-        url('data:image/svg+xml;utf8,<svg...></svg>');
-    
-    background: 
-        linear-gradient(to top, rgba(8, 12, 20, 0.95), rgba(10, 15, 25, 0.7)),
-        url('test/kama-river-background.jpg'),
-        url('data:image/svg+xml;utf8,<svg...></svg>');
+        url('https://github.com/kekau92/kniga-andreya/raw/main/book/test/kama-river-background.jpg');
     background-size: cover;
+    
+    /* Fallback styles if image fails to load */
+    background-color: #080c14;
 }
         /* Основные стили */
         * {
@@ -794,5 +789,29 @@ footer a:hover {
         document.querySelector('.scroll-title').style.textShadow = '0 0 15px rgba(240, 240, 210, 0.4)';
     </script>
     <!-- ▲▲▲ END OF SCRIPT ▲▲▲ -->
+<script>
+// Image fallback handler
+document.addEventListener('DOMContentLoaded', function() {
+    // Check header image
+    const headerImg = new Image();
+    headerImg.src = 'https://github.com/kekau92/kniga-andreya/raw/main/book/test/moon-taiga-background.jpg';
+    headerImg.onerror = function() {
+        document.querySelector('.scroll-header').style.background = `
+            linear-gradient(to bottom, rgba(10, 15, 25, 0.9), rgba(10, 10, 15, 0.7)),
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><defs><filter id="moon-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="15" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter></defs><circle cx="950" cy="100" r="40" fill="%23F0F0D0" filter="url(%23moon-glow)"/><path d="M0,300 L1200,300 L1200,200 Q1000,150 800,180 Q600,100 400,150 Q200,100 0,150 L0,300Z" fill="%231a1f25"/><path d="M0,250 Q200,180 400,200 Q600,150 800,160 Q1000,100 1200,120 L1200,300 L0,300Z" fill="%2315191d"/></svg>')
+        `;
+    };
+
+    // Check footer image
+    const footerImg = new Image();
+    footerImg.src = 'https://github.com/kekau92/kniga-andreya/raw/main/book/test/kama-river-background.jpg';
+    footerImg.onerror = function() {
+        document.querySelector('footer').style.background = `
+            linear-gradient(to top, rgba(8, 12, 20, 0.95), rgba(10, 15, 25, 0.7)),
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><defs><linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%231d2b3a" stop-opacity="0.8"/><stop offset="100%" stop-color="%23151a25" stop-opacity="0.9"/></linearGradient></defs><path d="M0,200 L1200,200 L1200,100 Q1000,80 800,90 Q600,60 400,70 Q200,40 0,50 L0,200Z" fill="url(%23water)"/><path d="M0,150 Q200,140 400,130 Q600,120 800,110 Q1000,100 1200,90 L1200,200 L0,200Z" fill="%231a1f25" opacity="0.7"/></svg>')
+        `;
+    };
+});
+</script>
 </body>
 </html>
