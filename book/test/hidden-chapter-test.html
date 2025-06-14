@@ -397,38 +397,66 @@
                 padding-bottom: 50px;
             }
         }
+
+        @keyframes image-fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes text-fade-in {
+  0% { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ensure black background covers during load */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+}
     </style>
 </head>
 <body>
+    <div style="background: #000; min-height: 100vh;">
     <div class="parallax">
         <div class="stars"></div>
     </div>
     
     <div class="container">
-<header class="scroll-header" style="
-    background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/moon-taiga-background.jpg') center/cover no-repeat;
-    padding: 15vh 0 10vh;
-    min-height: 40vh;
-    max-height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-">
-    <div style="position: relative;">
-        <h1 class="scroll-title" style="
-            text-shadow: 0 0 8px rgba(200, 150, 180, 0.7), 
-                         0 0 15px rgba(150, 80, 120, 0.5),
-                         0 0 25px rgba(100, 30, 80, 0.3);
-            animation: pulse-glow 3s ease-in-out infinite alternate;
-        ">Свиток III½</h1>
-        <div class="scroll-subtitle">Суд на берегу Стикса<br>Круги без выхода</div>
-    </div>
-</header>
-        
-        <div class="content">
-            <p class="fade-in">Ночь — тугая кишка тишины. Трасса — ртутный нерв, дрожащий под кожей мира. Тайга справа — застывшая шахта; ветки-крюки впиваются в мысли, смолистые и саднящие, словно боль упавших иголок. Слева — вязкое чрево Камы, её дыхание, тяжёлое и влажное, обволакивает кожу, как больное одеяло. Ветер донёс обрывок его детского смеХа — тонкого, звонкого. Андрей резко дёрнул головой: никого.</p>
+  <!-- Header image (fades in first) -->
+  <header class="scroll-header" style="
+      background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/moon-taiga-background.jpg') center/cover no-repeat;
+      min-height: 60vh;
+      opacity: 0;
+      animation: image-fade-in 1.2s ease-out forwards;
+  "></header>
+
+  <!-- Title (fades in after image) -->
+  <div class="container" style="
+      opacity: 0;
+      animation: text-fade-in 1s ease-out forwards;
+      animation-delay: 1.2s;
+  ">
+    <h1 class="scroll-title" style="
+        text-shadow: 0 0 8px rgba(200, 150, 180, 0.7);
+        margin-top: -30vh;
+    ">Свиток III½</h1>
+    <div class="scroll-subtitle">Суд на берегу Стикса<br>Круги без выхода</div>
+  </div>
+
+  <!-- First paragraph (fades in last) -->
+  <div class="content" style="
+      opacity: 0;
+      animation: text-fade-in 1s ease-out forwards;
+      animation-delay: 1.8s;
+  ">
+    <p>Ночь — тугая кишка тишины. Трасса — ртутный нерв, дрожащий под кожей мира. Тайга справа — застывшая шахта; ветки-крюки впиваются в мысли, смолистые и саднящие, словно боль упавших иголок. Слева — вязкое чрево Камы, её дыхание, тяжёлое и влажное, обволакивает кожу, как больное одеяло. Ветер донёс обрывок его детского смеХа — тонкого, звонкого. Андрей резко дёрнул головой: никого.</p>
 
             <p class="fade-in delay-1">Но тень на обочине шевельнулась не в такт фонарям — низкая, коренастая, в рваных кедах.</p>
 
