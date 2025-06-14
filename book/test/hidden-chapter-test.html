@@ -86,7 +86,6 @@
         .content {
             padding: 20px 0 80px;
             position: relative;
-            z-index: 2;
         }
         
         p {
@@ -95,6 +94,7 @@
             hyphens: auto;
             -webkit-hyphens: auto;
             -ms-hyphens: auto;
+            position: relative;
         }
         
         /* Специальные элементы */
@@ -258,46 +258,6 @@
             animation: pulse 3s infinite;
         }
         
-        /* Искры под текстом */
-        .sparks {
-            position: relative;
-            width: 100%;
-            height: 150px;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 3;
-            margin-top: -30px;
-            margin-bottom: 30px;
-            background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 100%);
-        }
-        
-        .spark {
-            position: absolute;
-            bottom: 20px;
-            width: 4px;
-            height: 4px;
-            background: #ffcccc;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #ff9999, 0 0 20px #ff6666, 0 0 30px #ff3333;
-            animation: spark-rise 1.2s ease-out forwards;
-            opacity: 0;
-        }
-        
-        @keyframes spark-rise {
-            0% {
-                opacity: 1;
-                transform: translateY(0) translateX(0);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translateY(-80px) translateX(calc(var(--spark-offset) * 15px));
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-150px) translateX(calc(var(--spark-offset) * 30px));
-            }
-        }
-        
         /* Подвал */
         footer {
             text-align: center;
@@ -312,7 +272,6 @@
             flex-direction: column;
             justify-content: flex-end;
             position: relative;
-            z-index: 1;
         }
         
         footer::before {
@@ -368,52 +327,46 @@
             opacity: 0.15;
         }
         
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .scroll-title {
-                font-size: 2rem;
-            }
-            
-            .scroll-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            body {
-                font-size: 16px;
-            }
-            
-            .scroll-header {
-                min-height: 200px;
-                padding: 20px 0 15px;
-            }
-            
-            footer {
-                min-height: 200px;
-                padding: 40px 20px 20px;
-            }
-            
-            .sparks {
-                height: 100px;
-            }
-            
-            .spark {
-                width: 3px;
-                height: 3px;
-            }
+        /* Spark effects */
+        .spark {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+            z-index: 0;
+            animation: sparkle 1.5s infinite alternate;
         }
         
-        @media (max-width: 480px) {
-            .scroll-title {
-                font-size: 1.6rem;
-            }
-            
-            .scroll-subtitle {
-                font-size: 1rem;
-            }
+        .spark-small {
+            width: 1px;
+            height: 1px;
+            animation: sparkle-small 1.2s infinite alternate;
+        }
+        
+        .spark-large {
+            width: 3px;
+            height: 3px;
+            animation: sparkle-large 1.8s infinite alternate;
+        }
+        
+        @keyframes sparkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+            100% { opacity: 0.3; transform: scale(0.9); }
+        }
+        
+        @keyframes sparkle-small {
+            0% { opacity: 0.1; transform: scale(0.7); }
+            50% { opacity: 0.6; transform: scale(1); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+        
+        @keyframes sparkle-large {
+            0% { opacity: 0.3; transform: scale(0.9); }
+            50% { opacity: 0.9; transform: scale(1.2); }
+            100% { opacity: 0.4; transform: scale(1); }
         }
         
         /* Mother's voice (bold) */
@@ -448,6 +401,10 @@
             100% { text-shadow: 0 0 12px rgba(220, 170, 200, 0.8), 
                                 0 0 20px rgba(170, 100, 140, 0.6),
                                 0 0 30px rgba(120, 50, 100, 0.4); }
+        }
+        .content {
+            position: relative;
+            z-index: 1;
         }
         .content p:last-child {
             margin-bottom: -50px;
@@ -555,7 +512,7 @@
 
             <blockquote class="fade-in">
                 <p>— Куда ты гонишь?</p>
-                <p>— Чтобы не услышать.</p>
+                <p>— Чтобы не слышать.</p>
             </blockquote>
 
             <p class="fade-in">Боится, что обратный ход педалей уведёт его прямо в подъезд, где было холоднее, чем здесь, но казалось безопаснее — там хоть знали правила.</p>
@@ -659,7 +616,7 @@
 
             <p class="fade-in" style="font-style: italic; text-align: center;">«<em>Печатный станок дал Библию народу — и породил секты. Интернет дал голос каждому — и миллионы одиночеств.</em>»</p>
 
-            <p class="fade-in">Сообщение исчезло через секунду, растворяясь, как то краткое облегчение после исповеди. Но разочарование осталось — густое, как смог над промзоной. Он представил, как эта церковь теперь навсегда останется в цифровом морге его галереи: среди тысяч других неудачных кадров, которые он когда-нибудь массово удалит в приступе весенней уборки.</p>
+            <p class="fade-in">Сообщение исчезло через секунду, растворявшись, как то краткое облегчение после исповеди. Но разочарование осталось — густое, как смог над промзоной. Он представил, как эта церковь теперь навсегда останется в цифровом морге его галереи: среди тысяч других неудачных кадров, которые он когда-нибудь массово удалит в приступе весенней уборки.</p>
 
             <p class="fade-in">Андрей спешился с велосипеда и пошёл к реке, где тлело кострище. Шипы на подошвах разносили хруст песка и камней, раскидывая звук по его закисленному внутреннему вакууму. Тропа к реке сужалась, крапива хлестала по ногам, оставляя жгучие полосы, похожие на штрих-коды зашифрованных ощущений бытия. Она цеплялась за спицы колёс, с треском отрываясь и наматывая клубки вокруг оси.</p>
 
@@ -671,7 +628,7 @@
 
             <p class="fade-in">— Хоть что-то в России постоянно, — подумал он. Присев у затухающего костра, он начал импульсивно вытягивать длинные волосовидные отростки из спиц своего колеса.</p>
 
-            <p class="fade-in">Запах тлеющего костра напомнил едкий белый дым — тот, что он вдыхал в третьем классе, когда набивал газету нарезанными теннисными шариками и поджигал. Первая «дымовуха» своими руками, в тени от всего мира, но с громким “я”. Дым стелился по двору, Андрей чувствовал, как он увеличивается, заполняя пространство вокруг себя густым и плотным белым облаком. Но вместо оваций откуда-то сверху мать кричала —</p>
+            <p class="fade-in">Запах тлеющего костра напомнил едкий белый дым — тот, что он вдыхал в третьем классе, когда набивал газету нарезанными теннисными шариками и поджигал. Первая «дымовуха» своими руками, в тени от всего мира, но с громким "я". Дым стелился по двору, Андрей чувствовал, как он увеличивается, заполняя пространство вокруг себя густым и плотным белым облаком. Но вместо оваций откуда-то сверху мать кричала —</p>
 
             <p class="fade-in"><strong>— Ты дебил?! Опять дурью маешься? Щас как дам ремнём — свет белый не мил будет!</strong></p>
 
@@ -793,10 +750,6 @@
             <p class="fade-in" style="text-align: center;">Песок точил кожу.</p>
         </div>
         
-        <div class="sparks">
-            <!-- Sparks will be generated via JavaScript -->
-        </div>
-        
         <footer style="background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/media/kama-river-background.jpg') center/cover no-repeat; min-height: 60vh; padding: 0; margin-top: 0; position: relative;">
             <div style="position: absolute; bottom: 40px; left: 0; right: 0; padding: 15px; text-align: center; color: #eee; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
                 <p style="margin: 0; line-height: 1.6;">
@@ -838,20 +791,74 @@
                 stars.style.animation = 'pulse 8s infinite alternate';
             }
 
-            // Generate sparks
-            const sparksContainer = document.querySelector('.sparks');
-            function createSpark() {
-                const spark = document.createElement('div');
-                spark.classList.add('spark');
-                spark.style.left = `${Math.random() * 100}%`;
-                spark.style.animationDelay = `${Math.random() * 0.8}s`;
-                spark.style.setProperty('--spark-offset', Math.random() * 2 - 1); // Random horizontal offset
-                sparksContainer.appendChild(spark);
-                setTimeout(() => spark.remove(), 1200); // Remove spark after animation
+            // Create sparks
+            function createSparks() {
+                const container = document.querySelector('.container');
+                const content = document.querySelector('.content');
+                
+                // Create sparks for the entire container
+                for (let i = 0; i < 100; i++) {
+                    const spark = document.createElement('div');
+                    spark.classList.add('spark');
+                    
+                    // Randomly assign size class
+                    const sizeRand = Math.random();
+                    if (sizeRand < 0.3) {
+                        spark.classList.add('spark-small');
+                    } else if (sizeRand > 0.7) {
+                        spark.classList.add('spark-large');
+                    }
+                    
+                    // Random position within container
+                    const left = Math.random() * 100;
+                    const top = Math.random() * (container.scrollHeight + 1000);
+                    
+                    spark.style.left = `${left}%`;
+                    spark.style.top = `${top}px`;
+                    
+                    // Random animation delay
+                    spark.style.animationDelay = `${Math.random() * 2}s`;
+                    
+                    // Random opacity
+                    spark.style.opacity = Math.random() * 0.7 + 0.1;
+                    
+                    // Add to container
+                    container.appendChild(spark);
+                }
+                
+                // Create additional sparks specifically for content area
+                for (let i = 0; i < 50; i++) {
+                    const spark = document.createElement('div');
+                    spark.classList.add('spark');
+                    
+                    // Randomly assign size class
+                    const sizeRand = Math.random();
+                    if (sizeRand < 0.3) {
+                        spark.classList.add('spark-small');
+                    } else if (sizeRand > 0.7) {
+                        spark.classList.add('spark-large');
+                    }
+                    
+                    // Position within content area
+                    const left = Math.random() * 100;
+                    const top = content.offsetTop + Math.random() * content.scrollHeight;
+                    
+                    spark.style.left = `${left}%`;
+                    spark.style.top = `${top}px`;
+                    
+                    // Random animation delay
+                    spark.style.animationDelay = `${Math.random() * 2}s`;
+                    
+                    // Random opacity
+                    spark.style.opacity = Math.random() * 0.5 + 0.1;
+                    
+                    // Add to container
+                    container.appendChild(spark);
+                }
             }
 
-            // Create sparks at shorter intervals for more density
-            setInterval(createSpark, 100);
+            // Initialize sparks
+            createSparks();
         });
     </script>
 </body>
