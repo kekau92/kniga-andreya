@@ -56,7 +56,7 @@
             margin-bottom: 40px;
             position: relative;
             background: 
-                linear-gradient(to bottom, rgba(10, 15, 25, 0.9), rgba(10, 10, 15, 0.7)),
+                linear-gradient(to bottom, rgba(10, 15, 25, 0.7), rgba(10, 10, 15, 0.5)),
                 url('https://kekau92.github.io/kniga-andreya/book/test/moon-taiga-background.jpg');
             background-size: cover;
             background-position: center;
@@ -258,7 +258,7 @@
             border-top: 1px solid #222;
             margin-top: 40px;
             background: 
-                linear-gradient(to top, rgba(8, 12, 20, 0.95), rgba(10, 15, 25, 0.7)),
+                linear-gradient(to top, rgba(8, 12, 20, 0.8), rgba(10, 15, 25, 0.6)),
                 url('https://kekau92.github.io/kniga-andreya/book/test/kama-river-background.jpg');
             background-size: cover;
             background-position: center;
@@ -358,41 +358,10 @@
             100% { opacity: 0.7; }
         }
         
-        .scroll-header::before {
-            content: "";
-            position: absolute;
-            top: 10%;
-            right: 10%;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, rgba(240, 240, 210, 0.8) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
-            animation: moon-pulse 8s infinite ease-in-out;
-        }
-
         /* Water reflection animation */
         @keyframes water-shimmer {
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
-        }
-        
-        footer::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 30px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(80, 120, 160, 0.2), 
-                rgba(100, 150, 200, 0.3),
-                rgba(80, 120, 160, 0.2), 
-                transparent);
-            background-size: 200% 100%;
-            animation: water-shimmer 15s infinite linear;
-            opacity: 0.6;
         }
     </style>
 </head>
@@ -741,6 +710,37 @@
             });
 
             // Stars animation (unchanged)
+            const stars = document.querySelector('.stars');
+            if (stars) {
+                stars.style.animation = 'pulse 8s infinite alternate';
+            }
+
+            // Add moon glow to header text
+            document.querySelector('.scroll-title').style.textShadow = '0 0 15px rgba(240, 240, 210, 0.4)';
+        });
+    </script> <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 1.2s ease-out forwards';
+                        entry.target.style.opacity = '1';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            fadeElements.forEach(el => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
+
+            // Stars animation
             const stars = document.querySelector('.stars');
             if (stars) {
                 stars.style.animation = 'pulse 8s infinite alternate';
