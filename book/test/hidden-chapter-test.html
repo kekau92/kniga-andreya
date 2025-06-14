@@ -420,6 +420,47 @@ html, body {
   padding: 0;
   background: #000;
 }
+
+        <style>
+@keyframes image-fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes text-fade-in {
+    0% { 
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Original title styles preserved */
+.scroll-title {
+    font-size: 2.8rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    color: #d0d0d0;
+    text-shadow: 0 0 10px rgba(100, 0, 50, 0.3);
+}
+
+.scroll-subtitle {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #999;
+    letter-spacing: 1px;
+}
+
+/* Ensure proper spacing */
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+}
     </style>
 </head>
 <body>
@@ -430,33 +471,52 @@ html, body {
     
     <div class="container">
   <!-- Header image (fades in first) -->
-  <header class="scroll-header" style="
-      background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/moon-taiga-background.jpg') center/cover no-repeat;
-      min-height: 60vh;
-      opacity: 0;
-      animation: image-fade-in 1.2s ease-out forwards;
-  "></header>
-
-  <!-- Title (fades in after image) -->
-  <div class="container" style="
-      opacity: 0;
-      animation: text-fade-in 1s ease-out forwards;
-      animation-delay: 1.2s;
-  ">
-    <h1 class="scroll-title" style="
-        text-shadow: 0 0 8px rgba(200, 150, 180, 0.7);
-        margin-top: -30vh;
-    ">Свиток III½</h1>
-    <div class="scroll-subtitle">Суд на берегу Стикса<br>Круги без выхода</div>
-  </div>
+<header class="scroll-header" style="
+    background: #000;
+    padding: 0;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+">
+    <!-- Background image (fades in first) -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/moon-taiga-background.jpg') center/cover no-repeat;
+        opacity: 0;
+        animation: image-fade-in 1.2s ease-out forwards;
+    "></div>
+    
+    <!-- Title container (fades in after image) -->
+    <div class="container" style="
+        opacity: 0;
+        animation: text-fade-in 1s ease-out forwards;
+        animation-delay: 1.2s;
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        width: 100%;
+        padding: 40px 0;
+    ">
+        <h1 class="scroll-title">Свиток III½</h1>
+        <div class="scroll-subtitle">Суд на берегу Стикса<br>Круги без выхода</div>
+    </div>
+</header>
 
   <!-- First paragraph (fades in last) -->
-  <div class="content" style="
-      opacity: 0;
-      animation: text-fade-in 1s ease-out forwards;
-      animation-delay: 1.8s;
-  ">
-    <p>Ночь — тугая кишка тишины. Трасса — ртутный нерв, дрожащий под кожей мира. Тайга справа — застывшая шахта; ветки-крюки впиваются в мысли, смолистые и саднящие, словно боль упавших иголок. Слева — вязкое чрево Камы, её дыхание, тяжёлое и влажное, обволакивает кожу, как больное одеяло. Ветер донёс обрывок его детского смеХа — тонкого, звонкого. Андрей резко дёрнул головой: никого.</p>
+<div class="content" style="
+    opacity: 0;
+    animation: text-fade-in 1s ease-out forwards;
+    animation-delay: 1.8s;
+">
+    <p class="fade-in">Ночь — тугая кишка тишины. Трасса — ртутный нерв, дрожащий под кожей мира. Тайга справа — застывшая шахта; ветки-крюки впиваются в мысли, смолистые и саднящие, словно боль упавших иголок. Слева — вязкое чрево Камы, её дыхание, тяжёлое и влажное, обволакивает кожу, как больное одеяло. Ветер донёс обрывок его детского смеХа — тонкого, звонкого. Андрей резко дёрнул головой: никого.</p>
 
             <p class="fade-in delay-1">Но тень на обочине шевельнулась не в такт фонарям — низкая, коренастая, в рваных кедах.</p>
 
