@@ -27,8 +27,8 @@
             max-width: 700px;
             margin: 0 auto;
             position: relative;
-            z-index: 1;
-            background-color: rgba(10, 10, 10, 0.9);
+            z-index: 2;
+            background-color: rgba(10, 10, 10, 0.7);
             padding: 0 20px;
         }
         
@@ -86,6 +86,7 @@
         .content {
             padding: 20px 0 80px;
             position: relative;
+            z-index: 2;
         }
         
         p {
@@ -272,6 +273,7 @@
             flex-direction: column;
             justify-content: flex-end;
             position: relative;
+            z-index: 2;
         }
         
         footer::before {
@@ -309,7 +311,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
         }
         
         .stars {
@@ -327,48 +329,20 @@
             opacity: 0.15;
         }
         
-        /* Spark effects */
-        .spark {
+        /* Twinkling stars */
+        .star {
             position: absolute;
-            width: 2px;
-            height: 2px;
+            background-color: white;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.7);
-            pointer-events: none;
-            z-index: 0;
-            animation: sparkle 1.5s infinite alternate;
+            animation: twinkle var(--duration) infinite ease-in-out;
+            opacity: 0;
         }
         
-        .spark-small {
-            width: 1px;
-            height: 1px;
-            animation: sparkle-small 1.2s infinite alternate;
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
         }
-        
-        .spark-large {
-            width: 3px;
-            height: 3px;
-            animation: sparkle-large 1.8s infinite alternate;
-        }
-        
-        @keyframes sparkle {
-            0% { opacity: 0.2; transform: scale(0.8); }
-            50% { opacity: 0.8; transform: scale(1.1); }
-            100% { opacity: 0.3; transform: scale(0.9); }
-        }
-        
-        @keyframes sparkle-small {
-            0% { opacity: 0.1; transform: scale(0.7); }
-            50% { opacity: 0.6; transform: scale(1); }
-            100% { opacity: 0.2; transform: scale(0.8); }
-        }
-        
-        @keyframes sparkle-large {
-            0% { opacity: 0.3; transform: scale(0.9); }
-            50% { opacity: 0.9; transform: scale(1.2); }
-            100% { opacity: 0.4; transform: scale(1); }
-        }
-        
+
         /* Mother's voice (bold) */
         strong {
             font-weight: bold;
@@ -786,79 +760,40 @@
                 observer.observe(el);
             });
 
-            const stars = document.querySelector('.stars');
-            if (stars) {
-                stars.style.animation = 'pulse 8s infinite alternate';
-            }
-
-            // Create sparks
-            function createSparks() {
-                const container = document.querySelector('.container');
-                const content = document.querySelector('.content');
+            // Create twinkling stars
+            function createStars() {
+                const container = document.querySelector('.parallax');
+                const starsContainer = document.querySelector('.stars');
                 
-                // Create sparks for the entire container
-                for (let i = 0; i < 100; i++) {
-                    const spark = document.createElement('div');
-                    spark.classList.add('spark');
-                    
-                    // Randomly assign size class
-                    const sizeRand = Math.random();
-                    if (sizeRand < 0.3) {
-                        spark.classList.add('spark-small');
-                    } else if (sizeRand > 0.7) {
-                        spark.classList.add('spark-large');
-                    }
-                    
-                    // Random position within container
-                    const left = Math.random() * 100;
-                    const top = Math.random() * (container.scrollHeight + 1000);
-                    
-                    spark.style.left = `${left}%`;
-                    spark.style.top = `${top}px`;
-                    
-                    // Random animation delay
-                    spark.style.animationDelay = `${Math.random() * 2}s`;
-                    
-                    // Random opacity
-                    spark.style.opacity = Math.random() * 0.7 + 0.1;
-                    
-                    // Add to container
-                    container.appendChild(spark);
-                }
+                // Clear any existing stars
+                starsContainer.innerHTML = '';
                 
-                // Create additional sparks specifically for content area
-                for (let i = 0; i < 50; i++) {
-                    const spark = document.createElement('div');
-                    spark.classList.add('spark');
+                // Create stars
+                for (let i = 0; i < 200; i++) {
+                    const star = document.createElement('div');
+                    star.classList.add('star');
                     
-                    // Randomly assign size class
-                    const sizeRand = Math.random();
-                    if (sizeRand < 0.3) {
-                        spark.classList.add('spark-small');
-                    } else if (sizeRand > 0.7) {
-                        spark.classList.add('spark-large');
-                    }
+                    // Random size
+                    const size = Math.random() * 2;
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
                     
-                    // Position within content area
-                    const left = Math.random() * 100;
-                    const top = content.offsetTop + Math.random() * content.scrollHeight;
+                    // Random position
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.top = `${Math.random() * 100}%`;
                     
-                    spark.style.left = `${left}%`;
-                    spark.style.top = `${top}px`;
+                    // Random animation duration and delay
+                    const duration = 2 + Math.random() * 3;
+                    const delay = Math.random() * 5;
+                    star.style.setProperty('--duration', `${duration}s`);
+                    star.style.animationDelay = `${delay}s`;
                     
-                    // Random animation delay
-                    spark.style.animationDelay = `${Math.random() * 2}s`;
-                    
-                    // Random opacity
-                    spark.style.opacity = Math.random() * 0.5 + 0.1;
-                    
-                    // Add to container
-                    container.appendChild(spark);
+                    starsContainer.appendChild(star);
                 }
             }
 
-            // Initialize sparks
-            createSparks();
+            // Initialize stars
+            createStars();
         });
     </script>
 </body>
