@@ -6,14 +6,29 @@
     <title>Свиток III½: Суд на берегу Стикса | Книга Андрея, сына Пустоты</title>
     <style>
       .scroll-header {
-    background: linear-gradient(to bottom, rgba(10, 15, 25, 0.9), rgba(10, 10, 15, 0.7)), 
-                url('test/moon-taiga-background.jpg');
+    /* SVG fallback first */
+    background: 
+        linear-gradient(to bottom, rgba(10, 15, 25, 0.9), rgba(10, 10, 15, 0.7)),
+        url('data:image/svg+xml;utf8,<svg...></svg>');
+    
+    /* Actual image on top (will cover SVG if it loads) */
+    background: 
+        linear-gradient(to bottom, rgba(10, 15, 25, 0.9), rgba(10, 10, 15, 0.7)),
+        url('test/moon-taiga-background.jpg'),
+        url('data:image/svg+xml;utf8,<svg...></svg>');
     background-size: cover;
 }
 
 footer {
-    background: linear-gradient(to top, rgba(8, 12, 20, 0.95), rgba(10, 15, 25, 0.7)), 
-                url('test/kama-river-background.jpg');
+    /* Same approach for footer */
+    background: 
+        linear-gradient(to top, rgba(8, 12, 20, 0.95), rgba(10, 15, 25, 0.7)),
+        url('data:image/svg+xml;utf8,<svg...></svg>');
+    
+    background: 
+        linear-gradient(to top, rgba(8, 12, 20, 0.95), rgba(10, 15, 25, 0.7)),
+        url('test/kama-river-background.jpg'),
+        url('data:image/svg+xml;utf8,<svg...></svg>');
     background-size: cover;
 }
         /* Основные стили */
