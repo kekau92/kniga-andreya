@@ -18,27 +18,9 @@
             font-family: 'Times New Roman', serif;
             line-height: 1.7;
             font-size: 18px;
-            padding: 20px;
-            background-image: 
-                radial-gradient(circle at 15% 30%, rgba(20, 30, 50, 0.15) 0%, transparent 25%),
-                radial-gradient(circle at 85% 70%, rgba(40, 20, 30, 0.15) 0%, transparent 25%);
-            background-attachment: fixed;
+            padding: 0;
             position: relative;
             overflow-x: hidden;
-        }
-        
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 80% 20%, rgba(30, 10, 40, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 20% 80%, rgba(10, 30, 40, 0.2) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
         }
         
         .container {
@@ -46,6 +28,8 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            background-color: rgba(10, 10, 10, 0.9);
+            padding: 0 20px;
         }
         
         /* Заголовок */
@@ -55,6 +39,13 @@
             border-bottom: 1px solid #333;
             margin-bottom: 40px;
             position: relative;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0) 100%),
+                        url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/media/moon-taiga-background.jpg') center/cover no-repeat;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
         .scroll-header::after {
@@ -75,6 +66,8 @@
             margin-bottom: 15px;
             color: #d0d0d0;
             text-shadow: 0 0 10px rgba(100, 0, 50, 0.3);
+            position: relative;
+            z-index: 2;
         }
         
         .scroll-subtitle {
@@ -82,6 +75,8 @@
             font-style: italic;
             color: #999;
             letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
         }
         
         /* Контент */
@@ -209,28 +204,28 @@
         }
         
         /* Анимации */
-@keyframes fadeIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
 
-.fade-in {
-    opacity: 0; /* Start invisible */
-    animation: none; /* No animation by default */
-}
+        .fade-in {
+            opacity: 0; /* Start invisible */
+            animation: none; /* No animation by default */
+        }
 
-/* Delay classes remain the same */
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
-.delay-4 { animation-delay: 0.8s; }
-.delay-5 { animation-delay: 1.0s; }
+        /* Delay classes remain the same */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1.0s; }
         
         /* Пульсация */
         @keyframes pulse {
@@ -246,21 +241,46 @@
         /* Подвал */
         footer {
             text-align: center;
-            padding: 40px 0;
-            color: #666;
+            padding: 60px 20px 40px;
+            color: #d8d8d8;
             font-size: 14px;
-            border-top: 1px solid #222;
             margin-top: 40px;
+            background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.5) 30%, transparent 100%),
+                        url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/kama-river-background.jpg') center/cover no-repeat;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, transparent 100%);
+            z-index: 1;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 2;
+            padding-bottom: 30px;
         }
 
         /* Footer link hover effects */
-footer a {
-    transition: all 0.3s ease;
-}
-footer a:hover {
-    text-decoration: underline;
-    text-shadow: 0 0 5px rgba(150, 50, 80, 0.5);
-}
+        footer a {
+            transition: all 0.3s ease;
+            color: #d8b5c5;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+            text-shadow: 0 0 5px rgba(150, 50, 80, 0.5);
+        }
         
         /* Эффект параллакса для фона */
         .parallax {
@@ -305,14 +325,28 @@ footer a:hover {
             body {
                 font-size: 16px;
             }
+            
+            .scroll-header {
+                min-height: 200px;
+                padding: 20px 0 15px;
+            }
+            
+            footer {
+                min-height: 200px;
+                padding: 40px 20px 20px;
+            }
         }
         
         @media (max-width: 480px) {
             .scroll-title {
                 font-size: 1.6rem;
             }
+            
+            .scroll-subtitle {
+                font-size: 1rem;
+            }
         }
-          /* --- ADD THESE NEW RULES BELOW YOUR EXISTING ONES --- */
+        
         /* Mother's voice (bold) */
         strong {
             font-weight: bold;
@@ -338,7 +372,31 @@ footer a:hover {
         em {
             text-shadow: 0 0 4px rgba(20, 60, 50, 0.3);
         }
-        /* --- END OF NEW RULES --- */
+
+                @keyframes pulse-glow {
+            0% { text-shadow: 0 0 8px rgba(200, 150, 180, 0.7), 
+                              0 0 15px rgba(150, 80, 120, 0.5),
+                              0 0 25px rgba(100, 30, 80, 0.3); }
+            100% { text-shadow: 0 0 12px rgba(220, 170, 200, 0.8), 
+                                0 0 20px rgba(170, 100, 140, 0.6),
+                                0 0 30px rgba(120, 50, 100, 0.4); }
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        .content p:last-child {
+            margin-bottom: -50px;
+            padding-bottom: 70px;
+            color: #ddd;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+        }
+        @media (max-width: 768px) {
+            .content p:last-child {
+                margin-bottom: -30px;
+                padding-bottom: 50px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -347,11 +405,27 @@ footer a:hover {
     </div>
     
     <div class="container">
-        <header class="scroll-header fade-in">
-            <h1 class="scroll-title">Свиток III½</h1>
-            <div class="scroll-subtitle">Суд на берегу Стикса<br>
-Круги без выхода</div>
-        </header>
+<header class="scroll-header" style="
+    background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/moon-taiga-background.jpg') center/cover no-repeat;
+    padding: 15vh 0 10vh;
+    min-height: 40vh;
+    max-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+">
+    <div style="position: relative;">
+        <h1 class="scroll-title" style="
+            text-shadow: 0 0 8px rgba(200, 150, 180, 0.7), 
+                         0 0 15px rgba(150, 80, 120, 0.5),
+                         0 0 25px rgba(100, 30, 80, 0.3);
+            animation: pulse-glow 3s ease-in-out infinite alternate;
+        ">Свиток III½</h1>
+        <div class="scroll-subtitle">Суд на берегу Стикса<br>Круги без выхода</div>
+    </div>
+</header>
         
         <div class="content">
             <p class="fade-in">Ночь — тугая кишка тишины. Трасса — ртутный нерв, дрожащий под кожей мира. Тайга справа — застывшая шахта; ветки-крюки впиваются в мысли, смолистые и саднящие, словно боль упавших иголок. Слева — вязкое чрево Камы, её дыхание, тяжёлое и влажное, обволакивает кожу, как больное одеяло. Ветер донёс обрывок его детского смеХа — тонкого, звонкого. Андрей резко дёрнул головой: никого.</p>
@@ -601,7 +675,7 @@ footer a:hover {
 
             <p class="fade-in">Туннель сужался, стены дышали гарью. Он полз, ветви рвали кожу, но страх небытия — исчезнуть без её удавки — гнал его вперёд. В конце туннеля — он сам, восьмилетний, в луже мочи, запертый в кладовке. Сердце рвалось, как игла шприца в зрачке, отсчитывая её хрип. Андрей протянул руки, чтобы обнять, но мальчик оскалился её голосом:</p>
 
-            <p class="fade-in"><strong>— Ты её ударил! Бог накажет за непослушание! В аду гореть будешь!</strong></p>
+            <p class="fade-in"><strong>— Ты её удавил! Бог накажет за непослушание! В аду гореть будешь!</strong></p>
 
             <p class="fade-in">Мальчик превратился в паука, челюсти впились в шею, и боль треснула, как экран монитора, покрываясь чёрными пикселями. Его голос прозвучал не из пасти, а из самого воздуха, густой и липкий, как деготь:</p>
 
@@ -646,51 +720,48 @@ footer a:hover {
             <p class="fade-in" style="text-align: center;">Песок точил кожу.</p>
         </div>
         
-       <footer>
-    <p>
-        <a href="https://kekau92.github.io/kniga-andreya/" target="_blank" style="color: #d8b5c5; text-decoration: none;">
-            Книга Андрея, сына Пустоты
-        </a> 
-        • Кирилл Зотов 
-        <a href="https://twitter.com/kirill_z_re" target="_blank" style="color: #8a6380; text-decoration: none;">
-            (@kirill_z_re)
-        </a> 
-        • Пермь 2025
-    </p>
-    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
-        <span class="pulse">◼︎</span> Свиток III½ завершён <span class="pulse">◼︎</span>
-    </p>
-</footer>
+        <footer style="background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/media/kama-river-background.jpg') center/cover no-repeat; min-height: 60vh; padding: 0; margin-top: 0; position: relative;">
+            <div style="position: absolute; bottom: 40px; left: 0; right: 0; padding: 15px; text-align: center; color: #eee; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
+                <p style="margin: 0; line-height: 1.6;">
+                    <a href="https://kekau92.github.io/kniga-andreya/" target="_blank" style="color: #e8c0d0; text-decoration: none;">Книга Андрея, сына Пустоты</a> 
+                    • <a href="https://twitter.com/kirill_z_re" target="_blank" style="color: #e8c0d0; text-decoration: none;">Кирилл Зотов</a> 
+                    • Пермь 2025
+                </p>
+                <p style="margin: 10px 0 0; font-size: 0.9em;">
+                    <span style="color: #aaa;">◼︎</span> Свиток III½ завершён <span style="color: #aaa;">◼︎</span>
+                </p>
+            </div>
+        </footer>
     </div>
 
- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeIn 1.2s ease-out forwards';
-                    entry.target.style.opacity = '1';
-                    observer.unobserve(entry.target);
-                }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 1.2s ease-out forwards';
+                        entry.target.style.opacity = '1';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
             });
-        }, { 
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px' // Trigger 100px before element enters viewport
-        });
 
-        fadeElements.forEach(el => {
-            el.style.opacity = '0'; // Double ensure elements start hidden
-            observer.observe(el);
-        });
+            fadeElements.forEach(el => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
 
-        // Stars animation (unchanged)
-        const stars = document.querySelector('.stars');
-        if (stars) {
-            stars.style.animation = 'pulse 8s infinite alternate';
-        }
-    });
-</script>
+            // Stars animation
+            const stars = document.querySelector('.stars');
+            if (stars) {
+                stars.style.animation = 'pulse 8s infinite alternate';
+            }
+        });
+    </script>
 </body>
 </html>
