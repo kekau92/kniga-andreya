@@ -382,17 +382,27 @@
     <div class="container">
 <header class="scroll-header" style="
     background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/moon-taiga-background.jpg') center/cover no-repeat;
-    min-height: 0;
-    padding: 80px 0;
-    height: 70vh;
-    max-height: 800px;
+    padding: 20vh 0 10vh;
+    min-height: 40vh;
+    max-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 ">
-    <h1 class="scroll-title">Свиток III½</h1>
-    <div class="scroll-subtitle">Суд на берегу Стикса<br>Круги без выхода</div>
+    <div style="position: relative; z-index: 2;">
+        <h1 class="scroll-title">Свиток III½</h1>
+        <div class="scroll-subtitle">Суд на берегу Стикса<br>Круги без выхода</div>
+    </div>
+    <div style="
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: linear-gradient(to bottom, transparent, #0a0a0a);
+    "></div>
 </header>
         
         <div class="content">
@@ -690,16 +700,15 @@
         
 <footer style="
     background: 
-        linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,0.85) 15%, #0a0a0a 100%),
+        linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,0.7) 15%, #0a0a0a 30%),
         url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/kama-river-background.jpg') center/cover no-repeat;
-    min-height: 60vh;
-    max-height: 800px;
+    min-height: 50vh;
     padding: 0;
     margin-top: 0;
+    position: relative;
 ">
     <div style="
-        padding-top: 40vh;
-        padding-bottom: 40px;
+        padding: 30vh 20px 40px;
         background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 30%);
     ">
         <p>
