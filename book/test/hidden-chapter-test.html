@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Свиток III½: Суд на берегу Стикса | Книга Андрея, сына Пустоты</title>
     <style>
+        .scroll-header {
+    background: linear-gradient(to bottom, rgba(10, 15, 25, 0.9), rgba(10, 10, 15, 0.7)), 
+                url('moon-taiga-background.jpg');
+    background-size: cover;
+}
+
+        footer {
+    background: linear-gradient(to top, rgba(8, 12, 20, 0.95), rgba(10, 15, 25, 0.7)), 
+                url('kama-river-background.jpg');
+    background-size: cover;
+}
         /* Основные стили */
         * {
             margin: 0;
@@ -339,6 +350,76 @@ footer a:hover {
             text-shadow: 0 0 4px rgba(20, 60, 50, 0.3);
         }
         /* --- END OF NEW RULES --- */
+
+         /* NEW HEADER BACKGROUND - Moon and Taiga */
+    .scroll-header {
+        background: linear-gradient(to bottom, 
+            rgba(10, 15, 25, 0.9) 0%, 
+            rgba(10, 10, 15, 0.7) 100%),
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><defs><filter id="moon-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="15" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter></defs><circle cx="950" cy="100" r="40" fill="%23F0F0D0" filter="url(%23moon-glow)"/><path d="M0,300 L1200,300 L1200,200 Q1000,150 800,180 Q600,100 400,150 Q200,100 0,150 L0,300Z" fill="%231a1f25"/><path d="M0,250 Q200,180 400,200 Q600,150 800,160 Q1000,100 1200,120 L1200,300 L0,300Z" fill="%2315191d"/></svg>');
+        background-size: cover;
+        background-position: center top;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* NEW FOOTER BACKGROUND - Kama River Shore */
+    footer {
+        background: linear-gradient(to top, 
+            rgba(8, 12, 20, 0.95) 0%, 
+            rgba(10, 15, 25, 0.7) 100%),
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><defs><linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%231d2b3a" stop-opacity="0.8"/><stop offset="100%" stop-color="%23151a25" stop-opacity="0.9"/></linearGradient></defs><path d="M0,200 L1200,200 L1200,100 Q1000,80 800,90 Q600,60 400,70 Q200,40 0,50 L0,200Z" fill="url(%23water)"/><path d="M0,150 Q200,140 400,130 Q600,120 800,110 Q1000,100 1200,90 L1200,200 L0,200Z" fill="%231a1f25" opacity="0.7"/></svg>');
+        background-size: cover;
+        background-position: center bottom;
+        padding-top: 60px;
+        padding-bottom: 100px;
+    }
+
+    /* Moon glow animation */
+    @keyframes moon-pulse {
+        0% { opacity: 0.7; }
+        50% { opacity: 0.9; }
+        100% { opacity: 0.7; }
+    }
+    
+    .scroll-header::before {
+        content: "";
+        position: absolute;
+        top: 10%;
+        right: 10%;
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(circle, rgba(240, 240, 210, 0.8) 0%, transparent 70%);
+        border-radius: 50%;
+        z-index: -1;
+        animation: moon-pulse 8s infinite ease-in-out;
+    }
+
+    /* Water reflection animation */
+    @keyframes water-shimmer {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
+    
+    footer::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(80, 120, 160, 0.2), 
+            rgba(100, 150, 200, 0.3),
+            rgba(80, 120, 160, 0.2), 
+            transparent);
+        background-size: 200% 100%;
+        animation: water-shimmer 15s infinite linear;
+        opacity: 0.6;
+    }
+
+    /* ▲▲▲ ADD THE ABOVE CODE ▲▲▲ */
     </style>
 </head>
 <body>
@@ -692,5 +773,11 @@ footer a:hover {
         }
     });
 </script>
+      <!-- ▼▼▼ ADD THIS SCRIPT ▼▼▼ -->
+    <script>
+        // Add moon glow to header text
+        document.querySelector('.scroll-title').style.textShadow = '0 0 15px rgba(240, 240, 210, 0.4)';
+    </script>
+    <!-- ▲▲▲ END OF SCRIPT ▲▲▲ -->
 </body>
 </html>
