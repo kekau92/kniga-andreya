@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Свиток III½: Суд на берегу Стикса | Книга Андрея, сына Пустоты</title>
-     <style>
+    <style>
         /* Основные стили */
         * {
             margin: 0;
@@ -18,63 +18,294 @@
             font-family: 'Times New Roman', serif;
             line-height: 1.7;
             font-size: 18px;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
         }
         
         .container {
             max-width: 700px;
             margin: 0 auto;
             position: relative;
+            z-index: 1;
+            background-color: rgba(10, 10, 10, 0.9);
+            padding: 0 20px;
         }
         
-        /* Подвал с полным изображением */
-        footer {
+        /* Заголовок */
+        .scroll-header {
+            text-align: center;
+            padding: 40px 0 30px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 40px;
             position: relative;
-            min-height: 100vh; /* Минимальная высота во весь экран */
+            background: linear-gradient(to bottom, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0) 100%),
+                        url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/moon-taiga-background.jpg') center/cover no-repeat;
+            min-height: 300px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            overflow: hidden;
+            justify-content: center;
+            align-items: center;
         }
         
-        .footer-image {
+        .scroll-header::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 25%;
+            width: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #555, transparent);
+        }
+        
+        .scroll-title {
+            font-size: 2.8rem;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            color: #d0d0d0;
+            text-shadow: 0 0 10px rgba(100, 0, 50, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .scroll-subtitle {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #999;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Контент */
+        .content {
+            padding: 20px 0 80px;
+        }
+        
+        p {
+            margin-bottom: 30px;
+            text-align: left;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+        }
+        
+        /* Специальные элементы */
+        blockquote {
+            border-left: 3px solid #5a2a44;
+            padding: 15px 20px;
+            margin: 30px 0;
+            background-color: rgba(30, 15, 25, 0.3);
+            font-style: italic;
+            position: relative;
+        }
+        
+        blockquote::before {
+            content: """;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            font-size: 60px;
+            color: rgba(90, 42, 68, 0.3);
+            font-family: Georgia, serif;
+        }
+        
+        mark {
+            background-color: rgba(150, 50, 80, 0.3);
+            color: #f0f0f0;
+            padding: 0 2px;
+        }
+        
+        em {
+            font-style: italic;
+            color: #c9a0b9;
+        }
+        
+        strong {
+            font-weight: bold;
+            color: #d8b5c5;
+        }
+        
+        .telegram-message {
+            background-color: #1a1a2a;
+            border-left: 3px solid #5a2a44;
+            padding: 15px;
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            position: relative;
+        }
+        
+        .telegram-message::before {
+            content: "ГРАВИЙ-ВИЛДАД";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: #1a1a2a;
+            padding: 0 5px;
+            font-size: 12px;
+            color: #8a6380;
+        }
+
+        .telegram-message.voice-message::before {
+            content: "ГРАВИЙ-ВИЛДАД" " / " "голосовое сообщение";
+            display: flex;
+            gap: 5px;
+        }
+        
+        /* Эффекты текста */
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            z-index: 0;
         }
         
-        .footer-gradient {
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 rgba(255, 0, 0, 0.7);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 rgba(0, 0, 255, 0.7);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(25px, 9999px, 15px, 0); }
+            20% { clip: rect(50px, 9999px, 30px, 0); }
+            40% { clip: rect(35px, 9999px, 15px, 0); }
+            60% { clip: rect(40px, 9999px, 25px, 0); }
+            80% { clip: rect(15px, 9999px, 45px, 0); }
+            100% { clip: rect(30px, 9999px, 55px, 0); }
+        }
+        
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(15px, 9999px, 35px, 0); }
+            40% { clip: rect(75px, 9999px, 5px, 0); }
+            60% { clip: rect(45px, 9999px, 65px, 0); }
+            80% { clip: rect(25px, 9999px, 85px, 0); }
+            100% { clip: rect(5px, 9999px, 95px, 0); }
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .fade-in {
+            opacity: 0; /* Start invisible */
+            animation: none; /* No animation by default */
+        }
+
+        /* Delay classes remain the same */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1.0s; }
+        
+        /* Пульсация */
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        /* Подвал */
+        footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: #d8d8d8;
+            font-size: 14px;
+            margin-top: 40px;
+            background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.5) 30%, transparent 100%),
+                        url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/kama-river-background.jpg') center/cover no-repeat;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+        }
+        
+        footer::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 30%;
-            background: linear-gradient(to bottom, rgba(10,10,10,1), rgba(10,10,10,0));
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, transparent 100%);
             z-index: 1;
         }
         
         .footer-content {
             position: relative;
             z-index: 2;
-            padding: 40px 20px;
-            text-align: center;
-            background: linear-gradient(to top, rgba(8, 12, 20, 0.9), transparent);
+            padding-bottom: 30px;
+        }
+
+        /* Footer link hover effects */
+        footer a {
+            transition: all 0.3s ease;
+            color: #d8b5c5;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+            text-shadow: 0 0 5px rgba(150, 50, 80, 0.5);
         }
         
-        .poetic-text {
-            font-style: italic;
-            margin: 2rem 0;
-            line-height: 2;
-            text-shadow: 0 0 10px rgba(0,0,0,0.7);
+        /* Эффект параллакса для фона */
+        .parallax {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
         
-        .footer-meta {
-            color: #666;
-            font-size: 14px;
-            padding-top: 20px;
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 2px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 1px),
+                radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 1px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            opacity: 0.15;
         }
         
         /* Адаптивность */
@@ -82,6 +313,64 @@
             .container {
                 padding: 0 15px;
             }
+            
+            .scroll-title {
+                font-size: 2rem;
+            }
+            
+            .scroll-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            body {
+                font-size: 16px;
+            }
+            
+            .scroll-header {
+                min-height: 200px;
+                padding: 20px 0 15px;
+            }
+            
+            footer {
+                min-height: 200px;
+                padding: 40px 20px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .scroll-title {
+                font-size: 1.6rem;
+            }
+            
+            .scroll-subtitle {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Mother's voice (bold) */
+        strong {
+            font-weight: bold;
+            color: #d8b5c5;
+            background-color: rgba(90, 42, 68, 0.15);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        /* Inner child (italic) */
+        em {
+            font-style: italic;
+            color: #a0c9b9;
+            background-color: rgba(20, 60, 50, 0.1);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        /* Optional text shadows (add if desired) */
+        strong {
+            text-shadow: 0 0 4px rgba(90, 42, 68, 0.3);
+        }
+        em {
+            text-shadow: 0 0 4px rgba(20, 60, 50, 0.3);
         }
     </style>
 </head>
@@ -93,8 +382,7 @@
     <div class="container">
         <header class="scroll-header fade-in">
             <h1 class="scroll-title">Свиток III½</h1>
-            <div class="scroll-subtitle">Суд на берегу Стикса<br>
-Круги без выхода</div>
+            <div class="scroll-subtitle">Суд на берегу Стикса<br>Круги без выхода</div>
         </header>
         
         <div class="content">
@@ -225,7 +513,7 @@
 
             <p class="fade-in">С имитацией звука затвора открылось воспоминание:</p>
 
-            <p class="fade-in">Внутри церковь была ярко освещена, переполнена людьми, образовавшими тесный круг. В центре священник с кропилом в руках мерно обходил пространство, разбрызгивая святую воду. Капли сверкали в лучах света, падающего через высокие окна, и Андрей заворожённо наблюдал, как они описывают в воздухе медленные дуги, прежде чем упасть на склонённые головы прихожан.</p>
+            <p class="fade-in">Внутри церковь была ярко освещена, переполнена людьми, образовавшими тесный круг. В центре священник с кропилом в руках мерно обходил пространство, разбрызгивая святую воду. Капли сверкали в лучах света, падающего через высокие окна, и Андрей заворожённо наблюдал, как они описывали в воздухе медленные дуги, прежде чем упасть на склонённые головы прихожан.</p>
 
             <p class="fade-in">Запах стоял густой — пар от дыхания смешивался с ладаном, создавая плотную, почти осязаемую атмосферу.</p>
 
@@ -268,7 +556,7 @@
 
             <p class="fade-in">— Хоть что-то в России постоянно, — подумал он. Присев у затухающего костра, он начал импульсивно вытягивать длинные волосовидные отростки из спиц своего колеса.</p>
 
-            <p class="fade-in">Запах тлеющего костра напомнил едкий белый дым — тот, что он вдыхал в третьем классе, когда набивал газету нарезанными теннисными шариками и поджигал. Первая «дымовуха» своими руками, в тени от всего мира, но с громким "я". Дым стелился по двору, Андрей чувствовал, как он увеличивается, заполняя пространство вокруг себя густым и плотным белым облаком. Но вместо оваций откуда-то сверху мать кричала —</p>
+            <p class="fade-in">Запах тлеющего костра напомнил едкий белый дым — тот, что он вдыхал в третьем классе, когда набивал газету нарезанными теннисными шариками и поджигал. Первая «дымовуха» своими руками, в тени от всего мира, но с громким “я”. Дым стелился по двору, Андрей чувствовал, как он увеличивается, заполняя пространство вокруг себя густым и плотным белым облаком. Но вместо оваций откуда-то сверху мать кричала —</p>
 
             <p class="fade-in"><strong>— Ты дебил?! Опять дурью маешься? Щас как дам ремнём — свет белый не мил будет!</strong></p>
 
@@ -345,7 +633,7 @@
 
             <p class="fade-in">Туннель сужался, стены дышали гарью. Он полз, ветви рвали кожу, но страх небытия — исчезнуть без её удавки — гнал его вперёд. В конце туннеля — он сам, восьмилетний, в луже мочи, запертый в кладовке. Сердце рвалось, как игла шприца в зрачке, отсчитывая её хрип. Андрей протянул руки, чтобы обнять, но мальчик оскалился её голосом:</p>
 
-            <p class="fade-in"><strong>— Ты её ударил! Бог накажет за непослушание! В аду гореть будешь!</strong></p>
+            <p class="fade-in"><strong>— Ты её удавил! Бог накажет за непослушание! В аду гореть будешь!</strong></p>
 
             <p class="fade-in">Мальчик превратился в паука, челюсти впились в шею, и боль треснула, как экран монитора, покрываясь чёрными пикселями. Его голос прозвучал не из пасти, а из самого воздуха, густой и липкий, как деготь:</p>
 
@@ -377,74 +665,34 @@
 
             <p class="fade-in">Из зрачка бил свет, ледяной и неумолимый, бесконечный, словно нить стального холода, разрывающая завесу ночи. Огни трассы мерцали вдали — немые, бездушные, но знакомые до дрожи. Будто тени дорог шептали: «Ты ещё здесь», помнящих каждый твой шаг.</p>
 
-            <footer>
-            <img src="https://kekau92.github.io/kniga-andreya/book/test/kama-river-background.jpg" 
-                 alt="Река Кама" 
-                 class="footer-image">
-            
-            <div class="footer-gradient"></div>
-            
+            <p class="fade-in" style="text-align: center;">— <mark>Я всё ещё здесь?</mark> — мелькнула мысль, тонкая, как трещина в стекле.</p>
+
+            <p class="fade-in" style="text-align: center;">Щелчок.</p>
+
+            <p class="fade-in" style="text-align: center;">Внутри — рябь и пустота.</p>
+
+            <p class="fade-in" style="text-align: center;">Что-то отошло.</p>
+
+            <p class="fade-in" style="text-align: center;">Что-то ушло.</p>
+
+            <p class="fade-in" style="text-align: center;">Песок точил кожу.</p>
+        </div>
+        
+        <footer>
             <div class="footer-content">
-                <div class="poetic-text">
-                    <p>— Я всё ещё здесь? — мелькнула мысль, тонкая, как трещина в стекле.</p>
-                    <p>Щелчок.</p>
-                    <p>Внутри — рябь и пустота.</p>
-                    <p>Что-то отошло.</p>
-                    <p>Что-то ушло.</p>
-                    <p>Песок точил кожу.</p>
-                </div>
-                
-                <div class="footer-meta">
-                    <p>
-                        <a href="https://kekau92.github.io/kniga-andreya/" target="_blank">
-                            Книга Андрея, сына Пустоты
-                        </a> 
-                        • Кирилл Зотов 
-                        <a href="https://twitter.com/kirill_z_re" target="_blank">
-                            (@kirill_z_re)
-                        </a> 
-                        • Пермь 2025
-                    </p>
-                    <p style="margin-top: 10px;">
-                        <span>◼︎</span> Свиток III½ завершён <span>◼︎</span>
-                    </p>
-                </div>
+                <p>
+                    <a href="https://kekau92.github.io/kniga-andreya/" target="_blank">Книга Андрея, сына Пустоты</a> 
+                    • <a href="https://twitter.com/kirill_z_re" target="_blank">Кирилл Зотов</a> 
+                    • Пермь 2025
+                </p>
+                <p style="margin-top: 15px; font-size: 0.9em; color: #aaa;">
+                    <span class="pulse">◼︎</span> Свиток III½ завершён <span class="pulse">◼︎</span>
+                </p>
             </div>
         </footer>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'fadeIn 1.2s ease-out forwards';
-                        entry.target.style.opacity = '1';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { 
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px' // Trigger 100px before element enters viewport
-            });
-
-            fadeElements.forEach(el => {
-                el.style.opacity = '0'; // Double ensure elements start hidden
-                observer.observe(el);
-            });
-
-            // Stars animation (unchanged)
-            const stars = document.querySelector('.stars');
-            if (stars) {
-                stars.style.animation = 'pulse 8s infinite alternate';
-            }
-
-            // Add moon glow to header text
-            document.querySelector('.scroll-title').style.textShadow = '0 0 15px rgba(240, 240, 210, 0.4)';
-        });
-    </script> <script>
         document.addEventListener('DOMContentLoaded', function() {
             const fadeElements = document.querySelectorAll('.fade-in');
             
@@ -471,9 +719,6 @@
             if (stars) {
                 stars.style.animation = 'pulse 8s infinite alternate';
             }
-
-            // Add moon glow to header text
-            document.querySelector('.scroll-title').style.textShadow = '0 0 15px rgba(240, 240, 210, 0.4)';
         });
     </script>
 </body>
