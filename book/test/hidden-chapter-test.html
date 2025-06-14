@@ -372,6 +372,15 @@
         em {
             text-shadow: 0 0 4px rgba(20, 60, 50, 0.3);
         }
+
+                @keyframes pulse-glow {
+            0% { text-shadow: 0 0 8px rgba(200, 150, 180, 0.7), 
+                              0 0 15px rgba(150, 80, 120, 0.5),
+                              0 0 25px rgba(100, 30, 80, 0.3); }
+            100% { text-shadow: 0 0 12px rgba(220, 170, 200, 0.8), 
+                                0 0 20px rgba(170, 100, 140, 0.6),
+                                0 0 30px rgba(120, 50, 100, 0.4); }
+        }
     </style>
 </head>
 <body>
@@ -382,7 +391,7 @@
     <div class="container">
 <header class="scroll-header" style="
     background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/moon-taiga-background.jpg') center/cover no-repeat;
-    padding: 20vh 0 10vh;
+    padding: 15vh 0 10vh;
     min-height: 40vh;
     max-height: 60vh;
     display: flex;
@@ -391,18 +400,15 @@
     align-items: center;
     position: relative;
 ">
-    <div style="position: relative; z-index: 2;">
-        <h1 class="scroll-title">Свиток III½</h1>
+    <div style="position: relative;">
+        <h1 class="scroll-title" style="
+            text-shadow: 0 0 8px rgba(200, 150, 180, 0.7), 
+                         0 0 15px rgba(150, 80, 120, 0.5),
+                         0 0 25px rgba(100, 30, 80, 0.3);
+            animation: pulse-glow 3s ease-in-out infinite alternate;
+        ">Свиток III½</h1>
         <div class="scroll-subtitle">Суд на берегу Стикса<br>Круги без выхода</div>
     </div>
-    <div style="
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 30px;
-        background: linear-gradient(to bottom, transparent, #0a0a0a);
-    "></div>
 </header>
         
         <div class="content">
@@ -701,19 +707,26 @@
 <footer style="
     background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/kama-river-background.jpg') center/cover no-repeat;
     min-height: 50vh;
-    padding: 40px 20px;
+    padding: 20px;
     margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    position: relative;
 ">
-    <div style="background: rgba(10, 10, 10, 0.7); padding: 20px; border-radius: 4px;">
-        <p>
-            <a href="https://kekau92.github.io/kniga-andreya/" target="_blank">Книга Андрея, сына Пустоты</a> 
-            • <a href="https://twitter.com/kirill_z_re" target="_blank">Кирилл Зотов</a> 
+    <div style="
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #ddd;
+        text-align: center;
+    ">
+        <p style="margin: 0;">
+            <a href="https://kekau92.github.io/kniga-andreya/" target="_blank" style="color: #d8b5c5;">Книга Андрея, сына Пустоты</a> 
+            • <a href="https://twitter.com/kirill_z_re" target="_blank" style="color: #d8b5c5;">Кирилл Зотов</a> 
             • Пермь 2025
         </p>
-        <p style="margin-top: 15px; font-size: 0.9em; color: #aaa;">
+        <p style="margin: 10px 0 0; font-size: 0.9em; color: #aaa;">
             <span class="pulse">◼︎</span> Свиток III½ завершён <span class="pulse">◼︎</span>
         </p>
     </div>
