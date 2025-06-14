@@ -381,6 +381,22 @@
                                 0 0 20px rgba(170, 100, 140, 0.6),
                                 0 0 30px rgba(120, 50, 100, 0.4); }
         }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        .content p:last-child {
+            margin-bottom: -50px;
+            padding-bottom: 70px;
+            color: #ddd;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+        }
+        @media (max-width: 768px) {
+            .content p:last-child {
+                margin-bottom: -30px;
+                padding-bottom: 50px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -704,33 +720,18 @@
             <p class="fade-in" style="text-align: center;">Песок точил кожу.</p>
         </div>
         
-<footer style="
-    background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/kama-river-background.jpg') center/cover no-repeat;
-    min-height: 50vh;
-    padding: 20px;
-    margin-top: 0;
-    position: relative;
-">
-    <div style="
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.5);
-        color: #ddd;
-        text-align: center;
-    ">
-        <p style="margin: 0;">
-            <a href="https://kekau92.github.io/kniga-andreya/" target="_blank" style="color: #d8b5c5;">Книга Андрея, сына Пустоты</a> 
-            • <a href="https://twitter.com/kirill_z_re" target="_blank" style="color: #d8b5c5;">Кирилл Зотов</a> 
-            • Пермь 2025
-        </p>
-        <p style="margin: 10px 0 0; font-size: 0.9em; color: #aaa;">
-            <span class="pulse">◼︎</span> Свиток III½ завершён <span class="pulse">◼︎</span>
-        </p>
-    </div>
-</footer>
+        <footer style="background: url('https://raw.githubusercontent.com/kekau92/kniga-andreya/main/book/test/kama-river-background.jpg') center/cover no-repeat; min-height: 60vh; padding: 0; margin-top: 0; position: relative;">
+            <div style="position: absolute; bottom: 40px; left: 0; right: 0; padding: 15px; text-align: center; color: #eee; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
+                <p style="margin: 0; line-height: 1.6;">
+                    <a href="https://kekau92.github.io/kniga-andreya/" target="_blank" style="color: #e8c0d0; text-decoration: none;">Книга Андрея, сына Пустоты</a> 
+                    • <a href="https://twitter.com/kirill_z_re" target="_blank" style="color: #e8c0d0; text-decoration: none;">Кирилл Зотов</a> 
+                    • Пермь 2025
+                </p>
+                <p style="margin: 10px 0 0; font-size: 0.9em;">
+                    <span style="color: #aaa;">◼︎</span> Свиток III½ завершён <span style="color: #aaa;">◼︎</span>
+                </p>
+            </div>
+        </footer>
     </div>
 
     <script>
