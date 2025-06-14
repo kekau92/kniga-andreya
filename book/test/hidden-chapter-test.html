@@ -5,27 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Свиток III½: Суд на берегу Стикса | Книга Андрея, сына Пустоты</title>
     <style>
-     .scroll-header {
-    /* Primary background with image */
-    background: 
-        linear-gradient(to bottom, rgba(10, 15, 25, 0.9), rgba(10, 10, 15, 0.7)),
-        url('https://github.com/kekau92/kniga-andreya/raw/main/book/test/moon-taiga-background.jpg');
-    background-size: cover;
-    
-    /* Fallback styles if image fails to load */
-    background-color: #0a0f19; /* Solid color fallback */
-}
-
-footer {
-    /* Primary background with image */
-    background: 
-        linear-gradient(to top, rgba(8, 12, 20, 0.95), rgba(10, 15, 25, 0.7)),
-        url('https://github.com/kekau92/kniga-andreya/raw/main/book/test/kama-river-background.jpg');
-    background-size: cover;
-    
-    /* Fallback styles if image fails to load */
-    background-color: #080c14;
-}
         /* Основные стили */
         * {
             margin: 0;
@@ -76,6 +55,12 @@ footer {
             border-bottom: 1px solid #333;
             margin-bottom: 40px;
             position: relative;
+            background: 
+                linear-gradient(to bottom, rgba(10, 15, 25, 0.9), rgba(10, 10, 15, 0.7)),
+                url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
         }
         
         .scroll-header::after {
@@ -230,28 +215,28 @@ footer {
         }
         
         /* Анимации */
-@keyframes fadeIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
 
-.fade-in {
-    opacity: 0; /* Start invisible */
-    animation: none; /* No animation by default */
-}
+        .fade-in {
+            opacity: 0; /* Start invisible */
+            animation: none; /* No animation by default */
+        }
 
-/* Delay classes remain the same */
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
-.delay-4 { animation-delay: 0.8s; }
-.delay-5 { animation-delay: 1.0s; }
+        /* Delay classes remain the same */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1.0s; }
         
         /* Пульсация */
         @keyframes pulse {
@@ -272,16 +257,22 @@ footer {
             font-size: 14px;
             border-top: 1px solid #222;
             margin-top: 40px;
+            background: 
+                linear-gradient(to top, rgba(8, 12, 20, 0.95), rgba(10, 15, 25, 0.7)),
+                url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
         }
 
         /* Footer link hover effects */
-footer a {
-    transition: all 0.3s ease;
-}
-footer a:hover {
-    text-decoration: underline;
-    text-shadow: 0 0 5px rgba(150, 50, 80, 0.5);
-}
+        footer a {
+            transition: all 0.3s ease;
+        }
+        footer a:hover {
+            text-decoration: underline;
+            text-shadow: 0 0 5px rgba(150, 50, 80, 0.5);
+        }
         
         /* Эффект параллакса для фона */
         .parallax {
@@ -333,7 +324,7 @@ footer a:hover {
                 font-size: 1.6rem;
             }
         }
-          /* --- ADD THESE NEW RULES BELOW YOUR EXISTING ONES --- */
+        
         /* Mother's voice (bold) */
         strong {
             font-weight: bold;
@@ -359,77 +350,50 @@ footer a:hover {
         em {
             text-shadow: 0 0 4px rgba(20, 60, 50, 0.3);
         }
-        /* --- END OF NEW RULES --- */
 
-         /* NEW HEADER BACKGROUND - Moon and Taiga */
-    .scroll-header {
-        background: linear-gradient(to bottom, 
-            rgba(10, 15, 25, 0.9) 0%, 
-            rgba(10, 10, 15, 0.7) 100%),
-            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><defs><filter id="moon-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="15" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter></defs><circle cx="950" cy="100" r="40" fill="%23F0F0D0" filter="url(%23moon-glow)"/><path d="M0,300 L1200,300 L1200,200 Q1000,150 800,180 Q600,100 400,150 Q200,100 0,150 L0,300Z" fill="%231a1f25"/><path d="M0,250 Q200,180 400,200 Q600,150 800,160 Q1000,100 1200,120 L1200,300 L0,300Z" fill="%2315191d"/></svg>');
-        background-size: cover;
-        background-position: center top;
-        position: relative;
-        overflow: hidden;
-    }
+        /* Moon glow animation */
+        @keyframes moon-pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 0.9; }
+            100% { opacity: 0.7; }
+        }
+        
+        .scroll-header::before {
+            content: "";
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(240, 240, 210, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: moon-pulse 8s infinite ease-in-out;
+        }
 
-    /* NEW FOOTER BACKGROUND - Kama River Shore */
-    footer {
-        background: linear-gradient(to top, 
-            rgba(8, 12, 20, 0.95) 0%, 
-            rgba(10, 15, 25, 0.7) 100%),
-            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><defs><linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%231d2b3a" stop-opacity="0.8"/><stop offset="100%" stop-color="%23151a25" stop-opacity="0.9"/></linearGradient></defs><path d="M0,200 L1200,200 L1200,100 Q1000,80 800,90 Q600,60 400,70 Q200,40 0,50 L0,200Z" fill="url(%23water)"/><path d="M0,150 Q200,140 400,130 Q600,120 800,110 Q1000,100 1200,90 L1200,200 L0,200Z" fill="%231a1f25" opacity="0.7"/></svg>');
-        background-size: cover;
-        background-position: center bottom;
-        padding-top: 60px;
-        padding-bottom: 100px;
-    }
-
-    /* Moon glow animation */
-    @keyframes moon-pulse {
-        0% { opacity: 0.7; }
-        50% { opacity: 0.9; }
-        100% { opacity: 0.7; }
-    }
-    
-    .scroll-header::before {
-        content: "";
-        position: absolute;
-        top: 10%;
-        right: 10%;
-        width: 80px;
-        height: 80px;
-        background: radial-gradient(circle, rgba(240, 240, 210, 0.8) 0%, transparent 70%);
-        border-radius: 50%;
-        z-index: -1;
-        animation: moon-pulse 8s infinite ease-in-out;
-    }
-
-    /* Water reflection animation */
-    @keyframes water-shimmer {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 100% 50%; }
-    }
-    
-    footer::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 30px;
-        background: linear-gradient(90deg, 
-            transparent, 
-            rgba(80, 120, 160, 0.2), 
-            rgba(100, 150, 200, 0.3),
-            rgba(80, 120, 160, 0.2), 
-            transparent);
-        background-size: 200% 100%;
-        animation: water-shimmer 15s infinite linear;
-        opacity: 0.6;
-    }
-
-    /* ▲▲▲ ADD THE ABOVE CODE ▲▲▲ */
+        /* Water reflection animation */
+        @keyframes water-shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        footer::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(80, 120, 160, 0.2), 
+                rgba(100, 150, 200, 0.3),
+                rgba(80, 120, 160, 0.2), 
+                transparent);
+            background-size: 200% 100%;
+            animation: water-shimmer 15s infinite linear;
+            opacity: 0.6;
+        }
     </style>
 </head>
 <body>
@@ -572,7 +536,7 @@ footer a:hover {
 
             <p class="fade-in">С имитацией звука затвора открылось воспоминание:</p>
 
-            <p class="fade-in">Внутри церковь была ярко освещена, переполнена людьми, образовавшими тесный круг. В центре священник с кропилом в руках мерно обходил пространство, разбрызгивая святую воду. Капли сверкали в лучах света, падающего через высокие окна, и Андрей заворожённо наблюдал, как они описывали в воздухе медленные дуги, прежде чем упасть на склонённые головы прихожан.</p>
+            <p class="fade-in">Внутри церковь была ярко освещена, переполнена людьми, образовавшими тесный круг. В центре священник с кропилом в руках мерно обходил пространство, разбрызгивая святую воду. Капли сверкали в лучах света, падающего через высокие окна, и Андрей заворожённо наблюдал, как они описывают в воздухе медленные дуги, прежде чем упасть на склонённые головы прихожан.</p>
 
             <p class="fade-in">Запах стоял густой — пар от дыхания смешивался с ладаном, создавая плотную, почти осязаемую атмосферу.</p>
 
@@ -615,7 +579,7 @@ footer a:hover {
 
             <p class="fade-in">— Хоть что-то в России постоянно, — подумал он. Присев у затухающего костра, он начал импульсивно вытягивать длинные волосовидные отростки из спиц своего колеса.</p>
 
-            <p class="fade-in">Запах тлеющего костра напомнил едкий белый дым — тот, что он вдыхал в третьем классе, когда набивал газету нарезанными теннисными шариками и поджигал. Первая «дымовуха» своими руками, в тени от всего мира, но с громким “я”. Дым стелился по двору, Андрей чувствовал, как он увеличивается, заполняя пространство вокруг себя густым и плотным белым облаком. Но вместо оваций откуда-то сверху мать кричала —</p>
+            <p class="fade-in">Запах тлеющего костра напомнил едкий белый дым — тот, что он вдыхал в третьем классе, когда набивал газету нарезанными теннисными шариками и поджигал. Первая «дымовуха» своими руками, в тени от всего мира, но с громким "я". Дым стелился по двору, Андрей чувствовал, как он увеличивается, заполняя пространство вокруг себя густым и плотным белым облаком. Но вместо оваций откуда-то сверху мать кричала —</p>
 
             <p class="fade-in"><strong>— Ты дебил?! Опять дурью маешься? Щас как дам ремнём — свет белый не мил будет!</strong></p>
 
@@ -737,81 +701,54 @@ footer a:hover {
             <p class="fade-in" style="text-align: center;">Песок точил кожу.</p>
         </div>
         
-       <footer>
-    <p>
-        <a href="https://kekau92.github.io/kniga-andreya/" target="_blank" style="color: #d8b5c5; text-decoration: none;">
-            Книга Андрея, сына Пустоты
-        </a> 
-        • Кирилл Зотов 
-        <a href="https://twitter.com/kirill_z_re" target="_blank" style="color: #8a6380; text-decoration: none;">
-            (@kirill_z_re)
-        </a> 
-        • Пермь 2025
-    </p>
-    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
-        <span class="pulse">◼︎</span> Свиток III½ завершён <span class="pulse">◼︎</span>
-    </p>
-</footer>
+        <footer>
+            <p>
+                <a href="https://kekau92.github.io/kniga-andreya/" target="_blank" style="color: #d8b5c5; text-decoration: none;">
+                    Книга Андрея, сына Пустоты
+                </a> 
+                • Кирилл Зотов 
+                <a href="https://twitter.com/kirill_z_re" target="_blank" style="color: #8a6380; text-decoration: none;">
+                    (@kirill_z_re)
+                </a> 
+                • Пермь 2025
+            </p>
+            <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
+                <span class="pulse">◼︎</span> Свиток III½ завершён <span class="pulse">◼︎</span>
+            </p>
+        </footer>
     </div>
 
- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeIn 1.2s ease-out forwards';
-                    entry.target.style.opacity = '1';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { 
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px' // Trigger 100px before element enters viewport
-        });
-
-        fadeElements.forEach(el => {
-            el.style.opacity = '0'; // Double ensure elements start hidden
-            observer.observe(el);
-        });
-
-        // Stars animation (unchanged)
-        const stars = document.querySelector('.stars');
-        if (stars) {
-            stars.style.animation = 'pulse 8s infinite alternate';
-        }
-    });
-</script>
-      <!-- ▼▼▼ ADD THIS SCRIPT ▼▼▼ -->
     <script>
-        // Add moon glow to header text
-        document.querySelector('.scroll-title').style.textShadow = '0 0 15px rgba(240, 240, 210, 0.4)';
-    </script>
-    <!-- ▲▲▲ END OF SCRIPT ▲▲▲ -->
-<script>
-// Image fallback handler
-document.addEventListener('DOMContentLoaded', function() {
-    // Check header image
-    const headerImg = new Image();
-    headerImg.src = 'https://github.com/kekau92/kniga-andreya/raw/main/book/test/moon-taiga-background.jpg';
-    headerImg.onerror = function() {
-        document.querySelector('.scroll-header').style.background = `
-            linear-gradient(to bottom, rgba(10, 15, 25, 0.9), rgba(10, 10, 15, 0.7)),
-            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><defs><filter id="moon-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="15" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter></defs><circle cx="950" cy="100" r="40" fill="%23F0F0D0" filter="url(%23moon-glow)"/><path d="M0,300 L1200,300 L1200,200 Q1000,150 800,180 Q600,100 400,150 Q200,100 0,150 L0,300Z" fill="%231a1f25"/><path d="M0,250 Q200,180 400,200 Q600,150 800,160 Q1000,100 1200,120 L1200,300 L0,300Z" fill="%2315191d"/></svg>')
-        `;
-    };
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 1.2s ease-out forwards';
+                        entry.target.style.opacity = '1';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px' // Trigger 100px before element enters viewport
+            });
 
-    // Check footer image
-    const footerImg = new Image();
-    footerImg.src = 'https://github.com/kekau92/kniga-andreya/raw/main/book/test/kama-river-background.jpg';
-    footerImg.onerror = function() {
-        document.querySelector('footer').style.background = `
-            linear-gradient(to top, rgba(8, 12, 20, 0.95), rgba(10, 15, 25, 0.7)),
-            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><defs><linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%231d2b3a" stop-opacity="0.8"/><stop offset="100%" stop-color="%23151a25" stop-opacity="0.9"/></linearGradient></defs><path d="M0,200 L1200,200 L1200,100 Q1000,80 800,90 Q600,60 400,70 Q200,40 0,50 L0,200Z" fill="url(%23water)"/><path d="M0,150 Q200,140 400,130 Q600,120 800,110 Q1000,100 1200,90 L1200,200 L0,200Z" fill="%231a1f25" opacity="0.7"/></svg>')
-        `;
-    };
-});
-</script>
+            fadeElements.forEach(el => {
+                el.style.opacity = '0'; // Double ensure elements start hidden
+                observer.observe(el);
+            });
+
+            // Stars animation (unchanged)
+            const stars = document.querySelector('.stars');
+            if (stars) {
+                stars.style.animation = 'pulse 8s infinite alternate';
+            }
+
+            // Add moon glow to header text
+            document.querySelector('.scroll-title').style.textShadow = '0 0 15px rgba(240, 240, 210, 0.4)';
+        });
+    </script>
 </body>
 </html>
