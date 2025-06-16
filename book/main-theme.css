@@ -387,10 +387,21 @@ h2::after {
 }
 
     .pulsate-link {
-        animation: pulse 2s infinite;
+        animation: pulse 1.5s infinite ease-in-out;
+        font-weight: 500;
+        text-decoration: none !important;
     }
     @keyframes pulse {
-        0% { opacity: 0.7; }
-        50% { opacity: 1; text-shadow: 0 0 5px rgba(100, 200, 255, 0.5); }
-        100% { opacity: 0.7; }
+        0% { 
+            opacity: 0.8;
+            text-shadow: 0 0 0px rgba(100, 200, 255, 0);
+        }
+        50% { 
+            opacity: 1;
+            text-shadow: 0 0 8px rgba(100, 200, 255, 0.7);
+        }
+        100% { 
+            opacity: 0.8;
+            text-shadow: 0 0 0px rgba(100, 200, 255, 0);
+        }
     }
