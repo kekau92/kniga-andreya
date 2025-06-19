@@ -13,8 +13,8 @@
     <meta name="yandex-verification" content="c3b20cb36125f0b0" />
 
     <meta charset="UTF-8">
-    <!-- Improved viewport for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <!-- Original viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Книга Андрея, сына Пустоты</title>
     <!-- SEO Meta Tags -->
     <meta name="description" content="Погрузитесь в психологическую драму 'Книга Андрея, сына Пустоты' — история молодого человека из Перми, борющегося с прошлым, цифровой зависимостью и внутренними демонами. Скрытая глава и сюрреалистические образы ждут вас.">
@@ -35,7 +35,7 @@
     <meta property="og:image" content="https://kekau92.github.io/kniga-andreya/cover.jpg"> <!-- Replace with actual image URL -->
     <meta property="og:locale" content="ru_RU">
 
-    <!-- Structured Data (Schema.org) with image added -->
+    <!-- Structured Data (Schema.org) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -95,7 +95,7 @@
         }
         .header {
             position: relative;
-            min-height: 500px;
+            min-height: 500px; /* Original header size */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -124,21 +124,14 @@
             justify-content: center;
             align-items: center;
         }
-        /* Larger touch targets for mobile */
-        .mute-button, .cta-button, .close-button, .instructions-link {
-            min-height: 44px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            -webkit-tap-highlight-color: rgba(255,255,255,0.3);
-        }
+        /* Original CTA button sizes */
         .mute-button {
             position: absolute;
             top: 20px;
             right: 20px;
             background-color: #8b0000;
             color: #fff;
-            padding: 12px 15px;
+            padding: 5px 10px; /* Original size */
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -193,10 +186,11 @@
             margin: 10px 0;
             z-index: 3;
         }
+        /* Original CTA button size */
         .cta-button {
             background-color: #8b0000;
             color: #fff;
-            padding: 12px 24px;
+            padding: 10px 20px; /* Original size */
             text-decoration: none;
             font-weight: bold;
             border-radius: 5px;
@@ -362,10 +356,11 @@
             margin: 1em 0 0.5em;
             font-size: 1.1em;
         }
+        /* Original close button size */
         .close-button {
             background-color: #8b0000;
             color: #fff;
-            padding: 10px 20px;
+            padding: 5px 10px; /* Original size */
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -399,11 +394,11 @@
         .footer a:hover {
             animation: glitch 0.3s infinite;
         }
+        /* Original instructions link size */
         .instructions-link {
             display: inline-block;
             margin-top: 10px;
             font-weight: bold;
-            padding: 12px 18px;
         }
         .instructions-link:hover {
             animation: glitch 0.3s infinite;
@@ -414,8 +409,6 @@
             cursor: pointer;
             display: inline-block;
             margin-top: 10px;
-            min-height: 44px;
-            padding: 5px 10px;
         }
         .dropdown-trigger:hover {
             color: #ff6666;
@@ -429,42 +422,22 @@
         .dropdown-content.open {
             max-height: 500px;
         }
-        /* Mobile-first responsive adjustments */
-        @media (max-width: 768px) {
-            .glitch {
-                font-size: 1.8em;
-            }
-            .subheadline {
-                font-size: 1em;
-            }
-            .about {
-                flex-direction: column;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            .mute-button {
-                padding: 10px 12px;
-                font-size: 0.7em;
-            }
-            .cta-button {
-                padding: 10px 15px;
-                font-size: 1em;
-            }
-        }
-        @media (max-width: 480px) {
-            .header {
-                min-height: 400px;
-            }
-            .glitch {
-                font-size: 1.5em;
-            }
-            .subheadline {
-                font-size: 0.9em;
-            }
+        @media (max-width: 600px) {
             .instructions-link {
-                font-size: 0.9em;
+                font-size: 1.1em;
+                padding: 8px 12px;
+                text-align: center;
+            }
+            .instructions {
+                max-width: 95vw;
+                padding: 10px;
+            }
+            .modal-content {
+                font-size: 1em;
+                line-height: 1.6;
+            }
+            .dropdown-content.open {
+                max-height: 600px;
             }
         }
         .video-info {
@@ -552,18 +525,18 @@
         .modal img:hover {
             filter: blur(1px) brightness(90%) contrast(150%);
         }
+        /* Original modal close button size */
         .modal-close {
             position: absolute;
             top: 20px;
             right: 20px;
             background-color: #8b0000;
             color: #fff;
-            padding: 8px 15px;
+            padding: 5px 10px; /* Original size */
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 0.9em;
-            min-height: 36px;
         }
         .modal-close:hover {
             animation: glitch 0.3s infinite;
@@ -571,7 +544,6 @@
         @media (max-width: 768px) {
             .gallery-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
             }
             .gallery-item img {
                 max-width: 250px;
