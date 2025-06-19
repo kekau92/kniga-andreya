@@ -7,14 +7,14 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-K93Q34YBXJ');
     </script>
 
     <meta name="yandex-verification" content="c3b20cb36125f0b0" />
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <!-- Improved viewport for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Книга Андрея, сына Пустоты</title>
     <!-- SEO Meta Tags -->
     <meta name="description" content="Погрузитесь в психологическую драму 'Книга Андрея, сына Пустоты' — история молодого человека из Перми, борющегося с прошлым, цифровой зависимостью и внутренними демонами. Скрытая глава и сюрреалистические образы ждут вас.">
@@ -35,17 +35,18 @@
     <meta property="og:image" content="https://kekau92.github.io/kniga-andreya/cover.jpg"> <!-- Replace with actual image URL -->
     <meta property="og:locale" content="ru_RU">
 
-    <!-- Structured Data (Schema.org) -->
+    <!-- Structured Data (Schema.org) with image added -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Book",
       "name": "Книга Андрея, сына Пустоты",
+      "image": "https://kekau92.github.io/kniga-andreya/cover.jpg",
       "author": {
         "@type": "Person",
         "name": "Кирилл, Пермь"
       },
-      "description": "Психологическая драма о молодом человеке из Перми, чья жизнь тонет в рутине, цифровой зависимости и тенях прошлого. Скрытая глава открывает лабиринт подсознания.",
+      "description": "Психологическая драма о молодом человеке из Перми, чья жизнь тонет в рутине офисных дней, цифровой зависимости и тенях прошлого. Скрытая глава открывает лабиринт подсознания.",
       "genre": "Psychological Drama",
       "datePublished": "2025-05-27",
       "publisher": {
@@ -59,7 +60,23 @@
     <!-- Sitemap Hint -->
     <link rel="sitemap" type="application/xml" href="https://yourdomain.com/sitemap.xml"> <!-- Replace with actual sitemap URL -->
 
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #8b0000;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+        
         body {
             font-family: 'Open Sans', sans-serif;
             background-color: #000000;
@@ -107,13 +124,21 @@
             justify-content: center;
             align-items: center;
         }
+        /* Larger touch targets for mobile */
+        .mute-button, .cta-button, .close-button, .instructions-link {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: rgba(255,255,255,0.3);
+        }
         .mute-button {
             position: absolute;
             top: 20px;
             right: 20px;
             background-color: #8b0000;
             color: #fff;
-            padding: 5px 10px;
+            padding: 12px 15px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -171,7 +196,7 @@
         .cta-button {
             background-color: #8b0000;
             color: #fff;
-            padding: 10px 20px;
+            padding: 12px 24px;
             text-decoration: none;
             font-weight: bold;
             border-radius: 5px;
@@ -278,7 +303,7 @@
             padding: 10px;
         }
         .glitch-image {
-            filter: brightness(100%) contrast(100%); /* Adjusted to original look */
+            filter: brightness(100%) contrast(100%);
             max-width: 100%;
         }
         .glitch-image:hover {
@@ -340,7 +365,7 @@
         .close-button {
             background-color: #8b0000;
             color: #fff;
-            padding: 5px 10px;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -378,6 +403,7 @@
             display: inline-block;
             margin-top: 10px;
             font-weight: bold;
+            padding: 12px 18px;
         }
         .instructions-link:hover {
             animation: glitch 0.3s infinite;
@@ -388,6 +414,8 @@
             cursor: pointer;
             display: inline-block;
             margin-top: 10px;
+            min-height: 44px;
+            padding: 5px 10px;
         }
         .dropdown-trigger:hover {
             color: #ff6666;
@@ -401,22 +429,42 @@
         .dropdown-content.open {
             max-height: 500px;
         }
-        @media (max-width: 600px) {
-            .instructions-link {
-                font-size: 1.1em;
-                padding: 8px 12px;
-                text-align: center;
+        /* Mobile-first responsive adjustments */
+        @media (max-width: 768px) {
+            .glitch {
+                font-size: 1.8em;
             }
-            .instructions {
-                max-width: 95vw;
-                padding: 10px;
-            }
-            .modal-content {
+            .subheadline {
                 font-size: 1em;
-                line-height: 1.6;
             }
-            .dropdown-content.open {
-                max-height: 600px; /* Slightly larger for mobile */
+            .about {
+                flex-direction: column;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .mute-button {
+                padding: 10px 12px;
+                font-size: 0.7em;
+            }
+            .cta-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+        @media (max-width: 480px) {
+            .header {
+                min-height: 400px;
+            }
+            .glitch {
+                font-size: 1.5em;
+            }
+            .subheadline {
+                font-size: 0.9em;
+            }
+            .instructions-link {
+                font-size: 0.9em;
             }
         }
         .video-info {
@@ -428,13 +476,13 @@
         /* Gallery Section Styles */
         .gallery {
             padding: 20px;
-            max-width: 800px; /* Match .about section width */
-            margin: 40px auto; /* Add space above and below */
+            max-width: 800px;
+            margin: 40px auto;
             background-color: #000000;
         }
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two items per row on desktop */
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             justify-items: center;
         }
@@ -446,12 +494,12 @@
         }
         .gallery-item img {
             width: 100%;
-            max-width: 300px; /* Larger thumbnails to fill block on desktop */
+            max-width: 300px;
             height: auto;
-            aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
+            aspect-ratio: 1 / 1;
             object-fit: cover;
             cursor: pointer;
-            filter: brightness(100%) contrast(100%); /* Adjusted to original look */
+            filter: brightness(100%) contrast(100%);
             transition: filter 0.3s ease;
         }
         .gallery-item img:hover {
@@ -462,21 +510,21 @@
         .gallery-item audio {
             margin-top: 10px;
             width: 100%;
-            max-width: 300px; /* Match thumbnail width on desktop */
+            max-width: 300px;
             height: 30px;
-            background-color: #8b0000; /* Red background */
+            background-color: #8b0000;
             border-radius: 5px;
         }
         .gallery-item audio::-webkit-media-controls-panel {
-            background-color: #8b0000; /* Red panel */
-            color: #ffffff; /* White text/controls */
+            background-color: #8b0000;
+            color: #ffffff;
         }
         .gallery-item audio::-webkit-media-controls-play-button,
         .gallery-item audio::-webkit-media-controls-volume-slider,
         .gallery-item audio::-webkit-media-controls-current-time-display,
         .gallery-item audio::-webkit-media-controls-time-remaining-display {
             filter: brightness(100%) contrast(120%);
-            color: #ffffff; /* White controls */
+            color: #ffffff;
         }
         .gallery-item audio:hover {
             animation: glitch 0.3s infinite;
@@ -498,7 +546,7 @@
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
-            filter: brightness(100%) contrast(100%); /* Adjusted to original look */
+            filter: brightness(100%) contrast(100%);
             transition: filter 0.3s ease;
         }
         .modal img:hover {
@@ -510,33 +558,40 @@
             right: 20px;
             background-color: #8b0000;
             color: #fff;
-            padding: 5px 10px;
+            padding: 8px 15px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 0.9em;
+            min-height: 36px;
         }
         .modal-close:hover {
             animation: glitch 0.3s infinite;
         }
         @media (max-width: 768px) {
             .gallery-grid {
-                grid-template-columns: 1fr; /* One item per row on mobile */
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
             .gallery-item img {
-                max-width: 250px; /* Smaller max-width on mobile */
+                max-width: 250px;
             }
             .gallery-item audio {
-                max-width: 250px; /* Match thumbnail width on mobile */
+                max-width: 250px;
             }
         }
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap');
     </style>
 </head>
 <body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
+    
     <div class="header">
-        <video class="header-video" autoplay loop playsinline>
+        <!-- Updated video with MP4 fallback and muted attribute -->
+        <video class="header-video" autoplay loop playsinline muted>
             <source src="video_loop.webm" type="video/webm">
+            <source src="video_loop.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button class="mute-button" onclick="toggleMute()">Заглушить</button>
@@ -547,170 +602,179 @@
             <a href="/kniga-andreya/book/" class="cta-button">ПОГРУЗИТЬСЯ В БЕЗДНУ</a>
         </div>
     </div>
-    <div class="teaser">
-        <p class="glitch-text">Тьма следит, экран мерцает, а пустота зовёт. Андрей шагает, но куда?</p>
-    </div>
-    <div class="about">
-        <div class="about-text">
-            <p class="glitch-annotation"><em>Книга Андрея, сына Пустоты</em> — психологическая драма о молодом человеке из Перми, чья жизнь тонет в рутине офисных дней, цифровой зависимости и тенях прошлого. Андрей — не герой, а обычный мужчина, чьи будни в сером офисе становятся метафорой внутренней борьбы. Экран телефона — его цепь, воспоминания о материнской хватке — груз, а вопросы о смысле жизни — тихий шёпот в пустоте. Сюрреальные образы, такие как зрачок-шприц или чёрная река, размывают реальность, затягивая в цифровой капкан. В конце пути ждёт скрытая глава — лабиринт подсознания, где Андрей сталкивается с голосом, который не отпускает. Сможешь ли ты пройти его путь, услышать тишину его души и найти свет в бездне? Эта история — вызов: столкнись с собственной тьмой.</p>
-            <a href="#instructions" class="instructions-link" onclick="openInstructions()">▼ Как читать эту историю</a>
+    
+    <main id="main-content">
+        <div class="teaser">
+            <p class="glitch-text">Тьма следит, экран мерцает, а пустота зовёт. Андрей шагает, но куда?</p>
         </div>
-        <div class="about-image">
-            <img src="cover.jpg" alt="Обложка книги 'Книга Андрея, сына Пустоты'" class="glitch-image"> <!-- Updated alt text for SEO -->
-        </div>
-    </div>
-    <section id="instructions" class="instructions">
-        <div class="modal-content">
-            <h3>Подготовка к чтению</h3>
-            <h3>▼ Вдохните атмосферу</h3>
-            <p><strong>Предупреждение:</strong><br>
-            История затрагивает темы эмоционального насилия, травмы и созависимости. Если эти темы вызывают дискомфорт, позаботьтесь о себе — сделайте паузу, обсудите чувства с близким человеком или обратитесь за поддержкой на горячую линию <a href="tel:124">124</a>. Работает круглосуточно.</p>
-            <p>Для погружения в историю Андрея, сына Пустоты:</p>
-            <h4>Перед началом</h4>
-            <p><strong>Настрой:</strong><br>
-            Примите нелинейность — позвольте одиночеству, цифровой тьме и обрывкам памяти вести вас.<br>
-            Откройтесь для метафор и символов — не пытайтесь рационализировать всё сразу. Позвольте образам говорить с вами.</p>
-            <p><strong>Атмосфера:</strong></p>
-            <p><strong>Рекомендации по саундтрекам для фона:</strong><br>
-            <strong>Для мрачного настроения:</strong><br>
-            Попробуйте работы <a href="https://www.youtube.com/watch?v=nj_DqmRac78" target="_blank">Lustmord</a> или <a href="https://www.youtube.com/watch?v=r9W2fKZH7bw?si=b20-0jQUvv898ofP" target="_blank">Vatican Shadow</a>. Их музыка часто содержит глубокие, резонирующие звуки, которые могут ассоциироваться с индустриальными пейзажами, системами или чувством неотвратимой угрозы.<br>
-            <strong>Темный или мрачный лес:</strong><br>
-            <a href="https://www.youtube.com/watch?v=EUer-Tto1ZA" target="_blank">DARK FOREST Ambience and Music</a> — звуки тёмного туманного леса с эмбиентной музыкой от Martia's Muses.<br>
-            <strong>Для более лёгкого настроения:</strong><br>
-            <strong>Эмбиент с элементами глитча:</strong><br>
-            <a href="https://www.youtube.com/watch?v=68f-BTczc58" target="_blank">Electronic Music Mix</a> — экспериментальный, эмбиентный, IDM, индустриальный, глитч, кинематографичный микс от Neon Rhythms.<br>
-            <a href="https://www.youtube.com/watch?v=4oxGHCb-De8" target="_blank">B-SIDE Electronic Music Mix</a> — эмбиент, IDM, экспериментальный, индустриальный, глитч от Neon Rhythms.<br>
-            <a class="dropdown-trigger" onclick="toggleDropdown()">Показать больше саундтреков ▼</a></p>
-            <div class="dropdown-content">
-                <p><strong>Темный или мрачный лес (продолжение):</strong><br>
-                <a href="https://www.youtube.com/watch?v=9b20XeIfjs8" target="_blank">Enclosed Forest</a> — зловещая фауна, жуткие звуки, ночная атмосфера от Michael Ghelfi Studios.<br>
-                <strong>Эмбиентная электроника и минимал-техно:</strong><br>
-                <a href="https://www.youtube.com/watch?v=2F6B9EibJjw" target="_blank">AMBIENT TECHNO mix 002</a> — микс от Rob Jenkins.<br>
-                <a href="https://www.youtube.com/watch?v=CZim0p_etvM" target="_blank">Best of Antent</a> — электроника, эмбиент, синтивейв, чилл от BLUME.<br>
-                <a href="https://www.youtube.com/watch?v=ElDaTAueHHo" target="_blank">Relaxing Electronic Music</a> — расслабляющая электроника от Chill Music Lab.<br>
-                <a href="https://www.youtube.com/watch?v=pkV9Cv6R_1Q" target="_blank">Dub Techno, Minimal, Ambient Mix</a> — даб-техно и минимал от sound-tv.</p>
+        <div class="about">
+            <div class="about-text">
+                <p class="glitch-annotation"><em>Книга Андрея, сына Пустоты</em> — психологическая драма о молодом человеке из Перми, чья жизнь тонет в рутине офисных дней, цифровой зависимости и тенях прошлого. Андрей — не герой, а обычный мужчина, чьи будни в сером офисе становятся метафорой внутренней борьбы. Экран телефона — его цепь, воспоминания о материнской хватке — груз, а вопросы о смысле жизни — тихий шёпот в пустоте. Сюрреальные образы, такие как зрачок-шприц или чёрная река, размывают реальность, затягивая в цифровой капкан. В конце пути ждёт скрытая глава — лабиринт подсознания, где Андрей сталкивается с голосом, который не отпускает. Сможешь ли ты пройти его путь, услышать тишину его души и найти свет в бездне? Эта история — вызов: столкнись с собственной тьмой.</p>
+                <a href="#instructions" class="instructions-link" onclick="openInstructions()">▼ Как читать эту историю</a>
             </div>
-            <p><strong>Время:</strong><br>
-            Ночь или сумерки. Мягкий свет (лампа, свеча) усилит контраст между тенями и текстом.</p>
-            <p><strong>Пространство:</strong><br>
-            Уберите гаджеты, закройте вкладки. Отключите уведомления — пусть только «Стрекоза» гудит в тишине.<br>
-            По возможности, создайте полумрак, оставив единственный источник света, направленный на книгу или экран. Это усилит ощущение изоляции и контраста, отражающего мир Андрея.</p>
-            <h4>В процессе</h4>
-            <p><strong>Ритм:</strong><br>
-            Дышите в такт тексту. Замедляйтесь на описаниях природы («пшеничное море», «чёрная вода»).<br>
-            Читайте сообщения «Гравий-Вилдада» шёпотом — их яд должен просачиваться, как уведомления.<br>
-            После скрытой главы — пауза 5 минут. Дайте образам осесть.<br>
-            При чтении диалогов Андрея, попробуйте прислушаться к его внутреннему голосу — как он звучит? Уставший, подавленный, отчаявшийся?</p>
-            <p><strong>Образы:</strong><br>
-            Ведите дневник: зарисуйте «зрачок-шприц», «цепь» или «ртутный нерв». Даже каракули сгодятся.<br>
-            Ищите повторяющиеся символы: «Орлёнок», «пустота», «Стрекоза».<br>
-            Попробуйте представить себя Андреем в его самых тяжелых моментах. Что вы чувствуете? Как бы вы реагировали?</p>
-            <p><strong>Цифровой слой:</strong><br>
-            Перечитайте сообщения «Гравий-Вилдада» — за агрессией скрывается его страх одиночества.</p>
-            <h4>Скрытая глава</h4>
-            <p><strong>Когда:</strong><br>
-            После основной истории, но перед «Словом рассказчика».</p>
-            <p><strong>Как:</strong><br>
-            Установите таймер на 15 минут. Если тяжело — прервитесь, выпейте воды.<br>
-            Спросите себя: «Чей голос в туннеле — матери, Андрея или алгоритмов?».<br>
-            Запишите ассоциации: какие запахи, звуки вызвала глава?<br>
-            После прочтения 'скрытой главы', подумайте, что было бы, если бы этот 'код' был частью вашего собственного сознания. Какие 'алгоритмы' управляют вами?</p>
-            <h4>После чтения</h4>
-            <p><strong>Рефлексия:</strong><br>
-            Прогуляйтесь или напишите письмо Андрею/матери: «Что вы хотите им сказать?».<br>
-            Перечитайте цитату: «Пустота не поглощает — она насыщает тишиной».<br>
-            Проанализируйте свои собственные 'цифровые зависимости' и их влияние на вашу жизнь. Где ваши 'лайки', 'уведомления' и 'алгоритмы'?<br>
-            Обсудите историю с кем-то. Разговор может помочь 'заземлить' сложные эмоции и образы.</p>
-            <p><strong>Заземление:</strong><br>
-            Сожмите и разожмите кулаки 10 раз.<br>
-            Выпейте тёплый чай с мёдом, ощущая тепло в ладонях.<br>
-            После завершения чтения, сделайте что-то, что требует полного физического присутствия и контакта с реальным миром: потрогайте шершавую кору дерева, ощутите холод камня, почувствуйте текстуру ткани.</p>
-            <p><strong>P.S.</strong><br>
-            История останется с вами, как трещина в карбоне. Не торопитесь её «чинить».</p>
-            <button class="close-button" onclick="closeInstructions()">Закрыть</button>
-        </div>
-    </section>
-    <div id="reopen-instructions" class="reopen-instructions hidden">
-        <a href="#instructions" class="instructions-link" onclick="openInstructions()">Открыть инструкции заново</a>
-    </div>
-    <!-- Gallery Section with Thumbnails and Audio -->
-    <section class="gallery">
-        <div class="gallery-grid">
-            <!-- Row 1: svitok_1, chapter_2 -->
-            <div class="gallery-item">
-                <img src="svitok_1_mirror_fake.jpg" alt="Свиток I - Ничего" onclick="openModal('svitok_1_mirror_fake.jpg')">
-                <audio controls onplay="pauseOtherAudios(this)">
-                    <source src="Ionia - Ben Frost.mp3" type="audio/mp3">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            <div class="gallery-item">
-                <img src="chapter_2_trio_digital.png" alt="Свиток II - Трио" onclick="openModal('chapter_2_trio_digital.png')">
-                <audio controls onplay="pauseOtherAudios(this)">
-                    <source src="Qiankun Tu - UVB76.mp3" type="audio/mp3">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            <!-- Row 2: svitok_3, hidden_chapter -->
-            <div class="gallery-item">
-                <img src="svitok_3_milk_zero.jpg" alt="Свиток III - Ноль" onclick="openModal('svitok_3_milk_zero.jpg')">
-                <audio controls onplay="pauseOtherAudios(this)">
-                    <source src="Names - Anstam.mp3" type="audio/mp3">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            <div class="gallery-item">
-                <img src="hidden_chapter_book_main_web.webp" alt="Скрытая Часть" onclick="openModal('hidden_chapter_book_main_web.webp')">
-                <audio controls onplay="pauseOtherAudios(this)">
-                    <source src="Look_What_Your_Love_Has_Done_To_Me_Amelie_Lens_Remix_Perc.mp3" type="audio/mp3">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            <!-- Row 3: svitok_4, chapter_5 -->
-            <div class="gallery-item">
-                <img src="svitok_4_crack_hands.jpg" alt="Свиток IV - Трещина" onclick="openModal('svitok_4_crack_hands.jpg')">
-                <audio controls onplay="pauseOtherAudios(this)">
-                    <source src="Turning the Prism - Ben Frost.mp3" type="audio/mp3">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            <div class="gallery-item">
-                <img src="chapter_5_coffee.png" alt="Свиток V - Кофе" onclick="openModal('chapter_5_coffee.png')">
-                <audio controls onplay="pauseOtherAudios(this)">
-                    <source src="Memoria - Murcof.mp3" type="audio/mp3">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            <!-- Row 4: chapter_6_truck, chapter_6_dna -->
-            <div class="gallery-item">
-                <img src="chapter_6_truck.png" alt="Свиток VI - Грузовик" onclick="openModal('chapter_6_truck.png')">
-                <audio controls onplay="pauseOtherAudios(this)">
-                    <source src="Blood Rain - Ital Tek.mp3" type="audio/mp3">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            <div class="gallery-item">
-                <img src="chapter_6_dna.png" alt="Свиток VI - ДНК" onclick="openModal('chapter_6_dna.png')">
-                <audio controls onplay="pauseOtherAudios(this)">
-                    <source src="Shira Ume - 747.mp3" type="audio/mp3">
-                    Your browser does not support the audio element.
-                </audio>
+            <div class="about-image">
+                <!-- Lazy loading for cover image -->
+                <img src="cover.jpg" alt="Обложка книги 'Книга Андрея, сына Пустоты'" class="glitch-image" loading="lazy">
             </div>
         </div>
-    </section>
+        <section id="instructions" class="instructions">
+            <div class="modal-content">
+                <h3>Подготовка к чтению</h3>
+                <h3>▼ Вдохните атмосферу</h3>
+                <p><strong>Предупреждение:</strong><br>
+                История затрагивает темы эмоционального насилия, травмы и созависимости. Если эти темы вызывают дискомфорт, позаботьтесь о себе — сделайте паузу, обсудите чувства с близким человеком или обратитесь за поддержкой на горячую линию <a href="tel:124">124</a>. Работает круглосуточно.</p>
+                <p>Для погружения в историю Андрея, сына Пустоты:</p>
+                <h4>Перед началом</h4>
+                <p><strong>Настрой:</strong><br>
+                Примите нелинейность — позвольте одиночеству, цифровой тьме и обрывкам памяти вести вас.<br>
+                Откройтесь для метафор и символов — не пытайтесь рационализировать всё сразу. Позвольте образам говорить с вами.</p>
+                <p><strong>Атмосфера:</strong></p>
+                <p><strong>Рекомендации по саундтрекам для фона:</strong><br>
+                <strong>Для мрачного настроения:</strong><br>
+                Попробуйте работы <a href="https://www.youtube.com/watch?v=nj_DqmRac78" target="_blank" rel="noopener">Lustmord</a> или <a href="https://www.youtube.com/watch?v=r9W2fKZH7bw?si=b20-0jQUvv898ofP" target="_blank" rel="noopener">Vatican Shadow</a>. Их музыка часто содержит глубокие, резонирующие звуки, которые могут ассоциироваться с индустриальными пейзажами, системами или чувством неотвратимой угрозы.<br>
+                <strong>Темный или мрачный лес:</strong><br>
+                <a href="https://www.youtube.com/watch?v=EUer-Tto1ZA" target="_blank" rel="noopener">DARK FOREST Ambience and Music</a> — звуки тёмного туманного леса с эмбиентной музыкой от Martia's Muses.<br>
+                <strong>Для более лёгкого настроения:</strong><br>
+                <strong>Эмбиент с элементами глитча:</strong><br>
+                <a href="https://www.youtube.com/watch?v=68f-BTczc58" target="_blank" rel="noopener">Electronic Music Mix</a> — экспериментальный, эмбиентный, IDM, индустриальный, глитч, кинематографичный микс от Neon Rhythms.<br>
+                <a href="https://www.youtube.com/watch?v=4oxGHCb-De8" target="_blank" rel="noopener">B-SIDE Electronic Music Mix</a> — эмбиент, IDM, экспериментальный, индустриальный, глитч от Neon Rhythms.<br>
+                <a class="dropdown-trigger" onclick="toggleDropdown()">Показать больше саундтреков ▼</a></p>
+                <div class="dropdown-content">
+                    <p><strong>Темный или мрачный лес (продолжение):</strong><br>
+                    <a href="https://www.youtube.com/watch?v=9b20XeIfjs8" target="_blank" rel="noopener">Enclosed Forest</a> — зловещая фауна, жуткие звуки, ночная атмосфера от Michael Ghelfi Studios.<br>
+                    <strong>Эмбиентная электроника и минимал-техно:</strong><br>
+                    <a href="https://www.youtube.com/watch?v=2F6B9EibJjw" target="_blank" rel="noopener">AMBIENT TECHNO mix 002</a> — микс от Rob Jenkins.<br>
+                    <a href="https://www.youtube.com/watch?v=CZim0p_etvM" target="_blank" rel="noopener">Best of Antent</a> — электроника, эмбиент, синтивейв, чилл от BLUME.<br>
+                    <a href="https://www.youtube.com/watch?v=ElDaTAueHHo" target="_blank" rel="noopener">Relaxing Electronic Music</a> — расслабляющая электроника от Chill Music Lab.<br>
+                    <a href="https://www.youtube.com/watch?v=pkV9Cv6R_1Q" target="_blank" rel="noopener">Dub Techno, Minimal, Ambient Mix</a> — даб-техно и минимал от sound-tv.</p>
+                </div>
+                <p><strong>Время:</strong><br>
+                Ночь или сумерки. Мягкий свет (лампа, свеча) усилит контраст между тенями и текстом.</p>
+                <p><strong>Пространство:</strong><br>
+                Уберите гаджеты, закройте вкладки. Отключите уведомления — пусть только «Стрекоза» гудит в тишине.<br>
+                По возможности, создайте полумрак, оставив единственный источник света, направленный на книгу или экран. Это усилит ощущение изоляции и контраста, отражающего мир Андрея.</p>
+                <h4>В процессе</h4>
+                <p><strong>Ритм:</strong><br>
+                Дышите в такт тексту. Замедляйтесь на описаниях природы («пшеничное море», «чёрная вода»).<br>
+                Читайте сообщения «Гравий-Вилдада» шёпотом — их яд должен просачиваться, как уведомления.<br>
+                После скрытой главы — пауза 5 минут. Дайте образам осесть.<br>
+                При чтении диалогов Андрея, попробуйте прислушаться к его внутреннему голосу — как он звучит? Уставший, подавленный, отчаявшийся?</p>
+                <p><strong>Образы:</strong><br>
+                Ведите дневник: зарисуйте «зрачок-шприц», «цепь» или «ртутный нерв». Даже каракули сгодятся.<br>
+                Ищите повторяющиеся символы: «Орлёнок», «пустота», «Стрекоза».<br>
+                Попробуйте представить себя Андреем в его самых тяжелых моментах. Что вы чувствуете? Как бы вы реагировали?</p>
+                <p><strong>Цифровой слой:</strong><br>
+                Перечитайте сообщения «Гравий-Вилдада» — за агрессией скрывается его страх одиночества.</p>
+                <h4>Скрытая глава</h4>
+                <p><strong>Когда:</strong><br>
+                После основной истории, но перед «Словом рассказчика».</p>
+                <p><strong>Как:</strong><br>
+                Установите таймер на 15 минут. Если тяжело — прервитесь, выпейте воды.<br>
+                Спросите себя: «Чей голос в туннеле — матери, Андрея или алгоритмов?».<br>
+                Запишите ассоциации: какие запахи, звуки вызвала глава?<br>
+                После прочтения 'скрытой главы', подумайте, что было бы, если бы этот 'код' был частью вашего собственного сознания. Какие 'алгоритмы' управляют вами?</p>
+                <h4>После чтения</h4>
+                <p><strong>Рефлексия:</strong><br>
+                Прогуляйтесь или напишите письмо Андрею/матери: «Что вы хотите им сказать?».<br>
+                Перечитайте цитату: «Пустота не поглощает — она насыщает тишиной».<br>
+                Проанализируйте свои собственные 'цифровые зависимости' и их влияние на вашу жизнь. Где ваши 'лайки', 'уведомления' и 'алгоритмы'?<br>
+                Обсудите историю с кем-то. Разговор может помочь 'заземлить' сложные эмоции и образы.</p>
+                <p><strong>Заземление:</strong><br>
+                Сожмите и разожмите кулаки 10 раз.<br>
+                Выпейте тёплый чай с мёдом, ощущая тепло в ладонях.<br>
+                После завершения чтения, сделайте что-то, что требует полного физического присутствия и контакта с реальным миром: потрогайте шершавую кору дерева, ощутите холод камня, почувствуйте текстуру ткани.</p>
+                <p><strong>P.S.</strong><br>
+                История останется с вами, как трещина в карбоне. Не торопитесь её «чинить».</p>
+                <button class="close-button" onclick="closeInstructions()">Закрыть</button>
+            </div>
+        </section>
+        <div id="reopen-instructions" class="reopen-instructions hidden">
+            <a href="#instructions" class="instructions-link" onclick="openInstructions()">Открыть инструкции заново</a>
+        </div>
+        <!-- Gallery Section with Thumbnails and Audio -->
+        <section class="gallery">
+            <div class="gallery-grid">
+                <!-- Row 1: svitok_1, chapter_2 -->
+                <div class="gallery-item">
+                    <!-- Lazy loading for gallery images -->
+                    <img src="svitok_1_mirror_fake.jpg" alt="Свиток I - Ничего" loading="lazy" onclick="openModal('svitok_1_mirror_fake.jpg')">
+                    <audio controls onplay="pauseOtherAudios(this)">
+                        <source src="Ionia - Ben Frost.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="gallery-item">
+                    <img src="chapter_2_trio_digital.png" alt="Свиток II - Трио" loading="lazy" onclick="openModal('chapter_2_trio_digital.png')">
+                    <audio controls onplay="pauseOtherAudios(this)">
+                        <source src="Qiankun Tu - UVB76.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Row 2: svitok_3, hidden_chapter -->
+                <div class="gallery-item">
+                    <img src="svitok_3_milk_zero.jpg" alt="Свиток III - Ноль" loading="lazy" onclick="openModal('svitok_3_milk_zero.jpg')">
+                    <audio controls onplay="pauseOtherAudios(this)">
+                        <source src="Names - Anstam.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="gallery-item">
+                    <img src="hidden_chapter_book_main_web.webp" alt="Скрытая Часть" loading="lazy" onclick="openModal('hidden_chapter_book_main_web.webp')">
+                    <audio controls onplay="pauseOtherAudios(this)">
+                        <source src="Look_What_Your_Love_Has_Done_To_Me_Amelie_Lens_Remix_Perc.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Row 3: svitok_4, chapter_5 -->
+                <div class="gallery-item">
+                    <img src="svitok_4_crack_hands.jpg" alt="Свиток IV - Трещина" loading="lazy" onclick="openModal('svitok_4_crack_hands.jpg')">
+                    <audio controls onplay="pauseOtherAudios(this)">
+                        <source src="Turning the Prism - Ben Frost.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="gallery-item">
+                    <img src="chapter_5_coffee.png" alt="Свиток V - Кофе" loading="lazy" onclick="openModal('chapter_5_coffee.png')">
+                    <audio controls onplay="pauseOtherAudios(this)">
+                        <source src="Memoria - Murcof.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Row 4: chapter_6_truck, chapter_6_dna -->
+                <div class="gallery-item">
+                    <img src="chapter_6_truck.png" alt="Свиток VI - Грузовик" loading="lazy" onclick="openModal('chapter_6_truck.png')">
+                    <audio controls onplay="pauseOtherAudios(this)">
+                        <source src="Blood Rain - Ital Tek.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="gallery-item">
+                    <img src="chapter_6_dna.png" alt="Свиток VI - ДНК" loading="lazy" onclick="openModal('chapter_6_dna.png')">
+                    <audio controls onplay="pauseOtherAudios(this)">
+                        <source src="Shira Ume - 747.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </section>
+    </main>
+    
     <!-- Modal for Enlarged Image -->
     <div class="modal" id="imageModal">
         <img id="modalImage" src="" alt="Увеличенное изображение">
         <button class="modal-close" onclick="closeModal()">Закрыть</button>
     </div>
+    
     <div class="cta-section">
         <p>Погрузись в тьму. Читай сейчас.<br>Куда ведут твои шаги?</p>
         <a href="/kniga-andreya/book/" class="cta-button">НАЧАТЬ ПУТЬ В БЕЗДНУ</a>
     </div>
+    
     <div class="footer">
-        <p class="video-info"><a href="https://www.youtube.com/watch?v=Z1_sSbXoDH0">Ben Frost - Threshold Of Faith (Official Video)</a></p>
+        <p class="video-info"><a href="https://www.youtube.com/watch?v=Z1_sSbXoDH0" rel="noopener">Ben Frost - Threshold Of Faith (Official Video)</a></p>
         <p>2025 Кирилл Зотов, Пермь. Контакт: <a href="https://t.me/kirill_z_re">@kirill_z_re</a></p>
     </div>
+    
     <script>
         const video = document.querySelector('.header-video');
         const loadingIndicator = document.getElementById('loading-indicator');
@@ -739,6 +803,13 @@
                 }
             } else {
                 loadingIndicator.textContent = 'Загрузка...';
+            }
+        }
+
+        // Improved video loading handling
+        function handleVideoLoad() {
+            if (video.readyState >= 3) {
+                loadingIndicator.classList.add('hidden');
             }
         }
 
@@ -788,31 +859,29 @@
             modalImage.src = '';
         }
 
+        // Improved audio pausing - only stops playing audios
         function pauseOtherAudios(currentAudio) {
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
-                if (audio !== currentAudio) {
+                if (!audio.paused && audio !== currentAudio) {
                     audio.pause();
-                    audio.currentTime = 0;
                 }
             });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            video.muted = false;
-            video.play().catch(() => {
-                video.muted = true;
-                document.querySelector('.mute-button').textContent = 'Включить звук';
+            // Auto-play with muted by default
+            video.muted = true;
+            document.querySelector('.mute-button').textContent = 'Включить звук';
+            
+            video.play().catch(error => {
+                console.log('Video autoplay failed:', error);
             });
 
             video.addEventListener('progress', updateLoadingProgress);
             video.addEventListener('loadedmetadata', updateLoadingProgress);
-            video.addEventListener('canplay', () => {
-                if (!loadingIndicator.classList.contains('hidden')) {
-                    loadingIndicator.classList.add('hidden');
-                    video.removeEventListener('progress', updateLoadingProgress);
-                }
-            });
+            video.addEventListener('canplay', handleVideoLoad);
+            video.addEventListener('loadeddata', handleVideoLoad);
 
             const observer = new IntersectionObserver(handleIntersection, {
                 threshold: 0.1
