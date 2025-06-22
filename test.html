@@ -15,6 +15,7 @@
     <meta name="yandex-verification" content="c3b20cb36125f0b0" />
 
     <meta charset="UTF-8">
+    <!-- Original viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>404soul | Экспериментальная литература. Цифровая археология травмы. Пермский киберпанк</title>
     <!-- SEO Meta Tags -->
@@ -67,103 +68,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap" rel="stylesheet">
     <style>
-        /* Глобальные стили в стиле 404 */
-        :root {
-            --primary: #ff4d4d;
-            --secondary: #2a2a2a;
-            --accent: #4dff4d;
-            --text: #f0f0f0;
-            --background: #1a1a1a;
-            --glitch-red: #ff4d4d;
-            --glitch-green: #4dff4d;
-            --link: #ff8080;
-            --link-hover: #ff4d4d;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #000;
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-text-size-adjust: 100%;
-            position: relative;
-        }
-        
-        /* Анимации из 404 */
-        @keyframes glitch {
-            0% { 
-                text-shadow: 3px 0 var(--glitch-red), -3px 0 var(--glitch-green);
-                transform: translate(0);
-            }
-            20% { 
-                text-shadow: -3px 0 var(--glitch-green), 3px 0 var(--glitch-red);
-                transform: translate(-5px, 5px);
-            }
-            40% { 
-                text-shadow: 3px 0 var(--glitch-green), -3px 0 var(--glitch-red);
-                transform: translate(5px, -5px);
-            }
-            60% { 
-                text-shadow: -3px 0 var(--glitch-red), 3px 0 var(--glitch-green);
-                transform: translate(-5px, 5px);
-            }
-            80% { 
-                text-shadow: 3px 0 var(--glitch-red), -3px 0 var(--glitch-green);
-                transform: translate(5px, -5px);
-            }
-            100% { 
-                text-shadow: -3px 0 var(--glitch-green), 3px 0 var(--glitch-red);
-                transform: translate(0);
-            }
-        }
-        
-        @keyframes flicker {
-            0% { opacity: 0.5; }
-            5% { opacity: 0.7; }
-            10% { opacity: 0.3; }
-            15% { opacity: 0.8; }
-            20% { opacity: 0.4; }
-            30% { opacity: 1; }
-            70% { opacity: 0.8; }
-            80% { opacity: 0.3; }
-            90% { opacity: 0.6; }
-            100% { opacity: 0.5; }
-        }
-        
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100vh); }
-        }
-        
-        /* Элементы из 404 */
-        .scanline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: rgba(77, 255, 77, 0.3);
-            box-shadow: 0 0 10px rgba(77, 255, 77, 0.5);
-            animation: scanline 8s linear infinite;
-            z-index: 1;
-        }
-        
-        .glitch {
-            position: relative;
-            animation: glitch 1.5s infinite;
-        }
-        
-        .glitch:hover {
-            animation: glitch 0.3s infinite;
-        }
-        
         /* Skip link for accessibility */
         .skip-link {
             position: absolute;
@@ -178,20 +82,31 @@
             top: 0;
         }
         
-        .header {
-            position: relative;
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://plus.unsplash.com/premium_photo-1747099968356-5f2b91d0c1aa?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #000000;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
         }
-        
+        a {
+            color: #ff0000;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            color: #ff6666;
+        }
+.header {
+    position: relative;
+    min-height: 65vh; /* Changed from 500px to 65vh */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
         .header-video {
             position: absolute;
             top: 0;
@@ -201,111 +116,161 @@
             object-fit: cover;
             z-index: 1;
         }
-        
-        .header-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8vh 5vw; /* Added proportional padding */
+    box-sizing: border-box; /* Added to include padding in dimensions */
+    max-width: 900px; /* Added to limit width on large screens */
+}
+        /* Original CTA button sizes */
         .mute-button {
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: var(--primary);
+            background-color: #8b0000;
             color: #fff;
-            padding: 5px 10px;
+            padding: 5px 10px; /* Original size */
             border: none;
             border-radius: 5px;
             cursor: pointer;
             z-index: 3;
             font-size: 0.8em;
-            animation: flicker 3s infinite;
         }
-        
         .mute-button:hover {
             animation: glitch 0.3s infinite;
         }
-        
         .loading-indicator {
             position: absolute;
             top: 60px;
             right: 20px;
-            color: var(--text);
+            color: #f0f0f0;
             font-size: 0.8em;
-            text-shadow: 1px 0 var(--glitch-red), -1px 0 var(--glitch-green);
+            text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
             z-index: 3;
             opacity: 0.9;
             transition: opacity 0.5s ease-out;
             animation: glitch-text 0.4s infinite;
         }
-        
         .loading-indicator.hidden {
             opacity: 0;
             pointer-events: none;
         }
-        
-        @keyframes glitch-text {
-            0% { transform: translate(0); text-shadow: 1px 0 var(--glitch-red), -1px 0 var(--glitch-green); }
-            50% { transform: translate(1px, -1px); text-shadow: -1px 0 var(--glitch-red), 1px 0 var(--glitch-green); }
-            100% { transform: translate(0); text-shadow: 1px 0 var(--glitch-red), -1px 0 var(--glitch-green); }
-        }
-        
-        .subheadline {
-            font-size: 1.2em;
-            margin: 10px 0;
-            z-index: 3;
-            animation: flicker 4s infinite;
-        }
-        
-        .cta-button {
-            background-color: var(--primary);
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-top: 20px;
-            z-index: 3;
-            position: relative;
-            overflow: hidden;
-            animation: flicker 3s infinite;
-        }
-        
-        .cta-button:hover {
+.glitch {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3.2rem; /* Changed from 1.8em to 3.2rem */
+    color: #fff;
+    text-shadow: 3px 0 #ff0000, -3px 0 #00ff00; /* Increased from 2px */
+    margin: 0 0 1.5rem; /* Added bottom margin */
+    z-index: 3;
+    line-height: 1.2; /* Added for better spacing */
+}
+        .glitch:hover {
             animation: glitch 0.3s infinite;
-            background-color: #6d0000;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 77, 77, 0.5);
         }
-        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+            100% { transform: translate(0); }
+        }
+        @keyframes glitch-text {
+            0% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
+            50% { transform: translate(1px, -1px); text-shadow: -1px 0 #ff0000, 1px 0 #00ff00; }
+            100% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
+        }
+.subheadline {
+    font-size: 1.4rem; /* Increased from 1.2em */
+    margin: 0 0 2.5rem; /* Changed from 10px 0 */
+    z-index: 3;
+    opacity: 0.9; /* Added slight transparency */
+}
+        /* Original CTA button size */
+.cta-button {
+    background-color: #8b0000;
+    color: #fff;
+    padding: 12px 28px; /* Increased from 10px 20px */
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 0; /* Changed from 20px */
+    z-index: 3;
+    font-size: 1.1rem; /* Added explicit font size */
+}
+        .cta-button:hover {
+            color: #fff;
+            animation: glitch 0.3s infinite;
+        }
         .teaser {
-            background-color: #000;
+            background-color: #000000;
             padding: 20px;
             margin: 20px auto;
             max-width: 600px;
             font-style: italic;
             opacity: 1;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
         }
-        
         .glitch-text {
-            color: var(--text);
+            color: #f0f0f0;
             position: relative;
             display: inline-block;
             font-size: 1.2em;
-            animation: flicker 5s infinite;
         }
-        
+        .glitch-text::before,
+        .glitch-text::after {
+            content: 'Тьма';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            clip-path: inset(0 0 50% 0);
+        }
+        .glitch-text::before {
+            content: 'Тьма';
+            color: #ff0000;
+            opacity: 0.7;
+            animation: glitch-top 0.5s infinite, flicker 0.7s infinite;
+            transform: translate(-2px, -1px) skewX(5deg);
+        }
+        .glitch-text::after {
+            content: 'пустота';
+            color: #00ff00;
+            opacity: 0.6;
+            animation: glitch-bottom 0.6s infinite, flicker 0.9s infinite;
+            transform: translate(2px, 1px) skewX(-5deg);
+        }
+        @keyframes glitch-top {
+            0% { transform: translate(-2px, -1px) skewX(5deg); }
+            50% { transform: translate(-3px, -2px) skewX(10deg); }
+            100% { transform: translate(-2px, -1px) skewX(5deg); }
+        }
+        @keyframes glitch-bottom {
+            0% { transform: translate(2px, 1px) skewX(-5deg); }
+            50% { transform: translate(3px, 2px) skewX(-10deg); }
+            100% { transform: translate(2px, 1px) skewX(-5deg); }
+        }
+        @keyframes flicker {
+            0% { opacity: 0.7; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+        .glitch-text:hover::before {
+            animation: glitch-top 0.3s infinite, flicker 0.5s infinite;
+            transform: translate(-4px, -3px) skewX(15deg);
+        }
+        .glitch-text:hover::after {
+            animation: glitch-bottom 0.4s infinite, flicker 0.6s infinite;
+            transform: translate(4px, 3px) skewX(-15deg);
+        }
         .about {
             padding: 20px;
             max-width: 800px;
@@ -313,50 +278,46 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            background-color: #000;
+            background-color: #000000;
         }
-        
         .about-text {
             flex: 1;
             min-width: 300px;
             padding: 10px;
             text-align: left;
         }
-        
         .glitch-annotation {
-            color: var(--text);
-            text-shadow: 1px 0 var(--glitch-red), -1px 0 var(--glitch-green);
+            color: #f0f0f0;
+            text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
             position: relative;
             transition: all 0.2s;
-            animation: flicker 6s infinite;
         }
-        
         .glitch-annotation:hover {
-            animation: glitch 0.4s infinite;
+            animation: glitch-annotation 0.4s infinite;
         }
-        
+        @keyframes glitch-annotation {
+            0% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
+            25% { transform: translate(1px, -1px); text-shadow: -1px 0 #ff0000, 1px 0 #00ff00; }
+            50% { transform: translate(-1px, 1px); text-shadow: 1px 0 #00ff00, -1px 0 #ff0000; }
+            75% { transform: translate(1px, 1px); text-shadow: -1px 0 #00ff00, 1px 0 #ff0000; }
+            100% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
+        }
         .about-image {
             flex: 1;
             min-width: 200px;
             padding: 10px;
         }
-        
         .glitch-image {
             filter: brightness(100%) contrast(100%);
             max-width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
         }
-        
         .glitch-image:hover {
             filter: blur(1px) brightness(90%) contrast(150%);
-            animation: glitch 0.3s infinite;
         }
-        
         .instructions {
             display: none;
-            background-color: var(--secondary);
-            color: var(--text);
+            background-color: #1a1a1a;
+            color: #f0f0f0;
             padding: 20px;
             margin: 20px auto;
             max-width: 800px;
@@ -364,17 +325,14 @@
             box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            border: 1px solid var(--primary);
+            transition: opacity 0.5s ease, transform 0.5s ease, height 0.5s ease, padding 0.5s ease, margin 0.5s ease;
         }
-        
         .instructions.visible {
             display: block;
             opacity: 1;
             transform: translateY(0);
             animation: instructions-glitch-in 0.6s ease-out forwards;
         }
-        
         .instructions.hidden {
             opacity: 0;
             transform: translateY(20px);
@@ -382,8 +340,8 @@
             padding: 0;
             margin: 0;
             overflow: hidden;
+            animation: instructions-glitch-out 0.6s ease-out forwards;
         }
-        
         @keyframes instructions-glitch-in {
             0% { opacity: 0; transform: translateY(20px); }
             20% { transform: translate(-2px, 1px); }
@@ -392,297 +350,92 @@
             80% { transform: translate(2px, -1px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-        
+        @keyframes instructions-glitch-out {
+            0% { opacity: 1; transform: translateY(0); height: auto; padding: 20px; margin: 20px auto; }
+            20% { transform: translate(2px, -1px); }
+            40% { transform: translate(-1px, 2px); }
+            60% { transform: translate(1px, -2px); }
+            80% { transform: translate(-2px, 1px); }
+            100% { opacity: 0; transform: translateY(20px); height: 0; padding: 0; margin: 0; }
+        }
         .modal-content {
             font-size: 0.9em;
             line-height: 1.5;
             text-align: left;
         }
-        
         .modal-content h4 {
             margin: 1em 0 0.5em;
             font-size: 1.1em;
-            color: var(--primary);
         }
-        
+        /* Original close button size */
         .close-button {
-            background-color: var(--primary);
+            background-color: #8b0000;
             color: #fff;
-            padding: 5px 10px;
+            padding: 5px 10px; /* Original size */
             border: none;
             border-radius: 5px;
             cursor: pointer;
             margin: 10px auto 0;
             display: block;
-            animation: flicker 3s infinite;
         }
-        
         .close-button:hover {
             animation: glitch 0.3s infinite;
         }
-        
         .reopen-instructions {
             text-align: center;
             margin: 20px auto;
             max-width: 800px;
         }
-        
         .reopen-instructions.hidden {
             display: none;
         }
-        
         .reopen-instructions.visible {
             display: block;
         }
-        
         .cta-section {
-            background-color: #000;
+            background-color: #000000;
             padding: 30px;
-            border-top: 1px solid var(--primary);
         }
-        
         .footer {
             font-size: 0.8em;
             color: #aaa;
             padding: 10px;
-            background-color: #000;
-            border-top: 1px solid var(--primary);
+            background-color: #000000;
         }
-        
-        .footer a {
-            color: var(--link);
-        }
-        
         .footer a:hover {
             animation: glitch 0.3s infinite;
-            color: var(--link-hover);
         }
-        
+        /* Original instructions link size */
         .instructions-link {
             display: inline-block;
             margin-top: 10px;
             font-weight: bold;
-            color: var(--primary);
-            text-decoration: none;
         }
-        
         .instructions-link:hover {
             animation: glitch 0.3s infinite;
-            color: var(--link-hover);
         }
-        
         .dropdown-trigger {
-            color: var(--primary);
+            color: #ff0000;
             text-decoration: underline;
             cursor: pointer;
             display: inline-block;
             margin-top: 10px;
         }
-        
         .dropdown-trigger:hover {
-            color: var(--link-hover);
+            color: #ff6666;
             animation: glitch 0.3s infinite;
         }
-        
         .dropdown-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-out;
         }
-        
         .dropdown-content.open {
             max-height: 500px;
         }
-        
-        .video-info {
-            font-size: 0.8em;
-            color: #aaa;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-        
-        .gallery {
-            padding: 20px;
-            max-width: 800px;
-            margin: 40px auto;
-            background-color: #000;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            justify-items: center;
-        }
-        
-        .gallery-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            cursor: pointer;
-            filter: brightness(100%) contrast(100%);
-            transition: filter 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-        }
-        
-        .gallery-item img:hover {
-            filter: blur(1px) brightness(90%) contrast(150%);
-            animation: glitch 0.3s infinite;
-        }
-        
-        .gallery-item audio {
-            margin-top: 10px;
-            width: 100%;
-            max-width: 300px;
-            height: 30px;
-            background-color: var(--secondary);
-            border-radius: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .gallery-item audio:hover {
-            animation: glitch 0.3s infinite;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            filter: brightness(100%) contrast(100%);
-            transition: filter 0.3s ease;
-            border: 2px solid var(--primary);
-            border-radius: 5px;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: var(--primary);
-            color: #fff;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-            animation: flicker 3s infinite;
-        }
-        
-        .modal-close:hover {
-            animation: glitch 0.3s infinite;
-        }
-        
-        /* Элементы из 404 */
-        .glitch-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.1;
-        }
-        
-        .glitch-bg span {
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 100%;
-            animation: bg-anim 16s linear infinite;
-        }
-        
-        .glitch-bg span:nth-child(1) {
-            clip-path: polygon(0 0, 100% 0, 100% 43%, 0 39%);
-            background: var(--glitch-red);
-            animation-delay: -4s;
-        }
-        
-        .glitch-bg span:nth-child(2) {
-            clip-path: polygon(0 61%, 100% 58%, 100% 92%, 0 96%);
-            background: var(--glitch-green);
-            animation-delay: -8s;
-        }
-        
-        .glitch-bg span:nth-child(3) {
-            clip-path: polygon(44% 18%, 100% 20%, 76% 49%, 21% 55%);
-            background: var(--glitch-red);
-            animation-delay: -12s;
-        }
-        
-        @keyframes bg-anim {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .pixel {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--glitch-green);
-            border-radius: 50%;
-            opacity: 0;
-            animation: pixel-flicker 1s infinite;
-            z-index: 1;
-        }
-        
-        @keyframes pixel-flicker {
-            0% { opacity: 0; }
-            10% { opacity: 1; }
-            20% { opacity: 0; }
-            30% { opacity: 0.7; }
-            40% { opacity: 0; }
-            100% { opacity: 0; }
-        }
-        
-        .binary-rain {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.05;
-        }
-        
-        .binary-digit {
-            position: absolute;
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            color: var(--glitch-green);
-            opacity: 0;
-            animation: fall linear infinite;
-        }
-        
-        @keyframes fall {
-            to { transform: translateY(100vh); }
-        }
-        
         @media (max-width: 600px) {
-            .header {
-                min-height: 70vh;
+              .header {
+                min-height: 70vh; /* Better mobile viewport usage */
             }
             .instructions-link {
                 font-size: 1.1em;
@@ -700,26 +453,145 @@
             .dropdown-content.open {
                 max-height: 600px;
             }
+        }
+        .video-info {
+            font-size: 0.8em;
+            color: #aaa;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        /* Gallery Section Styles */
+        .gallery {
+            padding: 20px;
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #000000;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-items: center;
+        }
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .gallery-item img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            cursor: pointer;
+            filter: brightness(100%) contrast(100%);
+            transition: filter 0.3s ease;
+        }
+        .gallery-item img:hover {
+            filter: blur(1px) brightness(90%) contrast(150%);
+            animation: glitch 0.3s infinite;
+        }
+        /* Audio Player Styles */
+        .gallery-item audio {
+            margin-top: 10px;
+            width: 100%;
+            max-width: 300px;
+            height: 30px;
+            background-color: #8b0000;
+            border-radius: 5px;
+        }
+        .gallery-item audio::-webkit-media-controls-panel {
+            background-color: #8b0000;
+            color: #ffffff;
+        }
+        .gallery-item audio::-webkit-media-controls-play-button,
+        .gallery-item audio::-webkit-media-controls-volume-slider,
+        .gallery-item audio::-webkit-media-controls-current-time-display,
+        .gallery-item audio::-webkit-media-controls-time-remaining-display {
+            filter: brightness(100%) contrast(120%);
+            color: #ffffff;
+        }
+        .gallery-item audio:hover {
+            animation: glitch 0.3s infinite;
+        }
+        /* Modal Styles for Enlarged Image */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            filter: brightness(100%) contrast(100%);
+            transition: filter 0.3s ease;
+        }
+        .modal img:hover {
+            filter: blur(1px) brightness(90%) contrast(150%);
+        }
+        /* Original modal close button size */
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #8b0000;
+            color: #fff;
+            padding: 5px 10px; /* Original size */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .modal-close:hover {
+            animation: glitch 0.3s infinite;
+        }
+        @media (max-width: 768px) {
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
+            .gallery-item img {
+                max-width: 250px;
+            }
+            .gallery-item audio {
+                max-width: 250px;
+            }
         }
+        @media (max-width: 768px) {
+    .glitch {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    .subheadline {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .glitch {
+        font-size: 2rem;
+    }
+    .subheadline {
+        font-size: 1rem;
+    }
+    .header {
+        min-height: 60vh; /* Slightly reduced for mobile */
+    }
+}
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap');
     </style>
 </head>
 <body>
-    <!-- Анимированный фон -->
-    <div class="glitch-bg">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    
-    <!-- Бинарный дождь -->
-    <div class="binary-rain" id="binaryRain"></div>
-    
-    <!-- Сканирующая линия -->
-    <div class="scanline"></div>
-    
     <!-- Skip link for accessibility -->
     <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     
@@ -737,7 +609,20 @@
             <p class="subheadline">Сколько версий себя ты похоронил на этом пути?</p>
             <a href="/book/" class="cta-button">ПОГРУЗИТЬСЯ В БЕЗДНУ</a>
         </div>
+    </div><div class="header">
+    <video class="header-video" autoplay loop playsinline muted>
+        <source src="video_loop.webm" type="video/webm">
+        <source src="video_loop.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <button class="mute-button" onclick="toggleMute()">Заглушить</button>
+    <div class="loading-indicator" id="loading-indicator">Загрузка: 0%</div>
+    <div class="header-overlay">
+        <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
+        <p class="subheadline">Сколько версий себя ты похоронил на этом пути?</p>
+        <a href="/book/" class="cta-button">ПОГРУЗИТЬСЯ В БЕЗДНУ</a>
     </div>
+</div>
     
     <main id="main-content">
         <div class="teaser">
@@ -745,7 +630,7 @@
         </div>
         <div class="about">
             <div class="about-text">
-                <p class="glitch-annotation"><em>Книга Андрея, сына Пустоты</em> — психологическая драма о молодом человеке из Перми, чья жизнь тонет в рутине офисных дней, цифровой зависимости и тенях прошлого. Андрей — не герой, а обычный мужчина, чьи будни в сером офисе становятся метафорией внутренней борьбы. Экран телефона — его цепь, воспоминания о материнской хватке — груз, а вопросы о смысле жизни — тихий шёпот в пустоте. Сюрреальные образы, такие как зрачок-шприц или чёрная река, размывают реальность, затягивая в цифровой капкан. В конце пути ждёт скрытая глава — лабиринт подсознания, где Андрей сталкивается с голосом, который не отпускает. Сможешь ли ты пройти его путь, услышать тишину его души и найти свет в бездне? Эта история — вызов: столкнись с собственной тьмой.</p>
+                <p class="glitch-annotation"><em>Книга Андрея, сына Пустоты</em> — психологическая драма о молодом человеке из Перми, чья жизнь тонет в рутине офисных дней, цифровой зависимости и тенях прошлого. Андрей — не герой, а обычный мужчина, чьи будни в сером офисе становятся метафорой внутренней борьбы. Экран телефона — его цепь, воспоминания о материнской хватке — груз, а вопросы о смысле жизни — тихий шёпот в пустоте. Сюрреальные образы, такие как зрачок-шприц или чёрная река, размывают реальность, затягивая в цифровой капкан. В конце пути ждёт скрытая глава — лабиринт подсознания, где Андрей сталкивается с голосом, который не отпускает. Сможешь ли ты пройти его путь, услышать тишину его души и найти свет в бездне? Эта история — вызов: столкнись с собственной тьмой.</p>
                 <a href="#instructions" class="instructions-link" onclick="openInstructions()">▼ Как читать эту историю</a>
             </div>
             <div class="about-image">
@@ -942,6 +827,7 @@
             }
         }
 
+        // Improved video loading handling
         function handleVideoLoad() {
             if (video.readyState >= 3) {
                 loadingIndicator.classList.add('hidden');
@@ -994,6 +880,7 @@
             modalImage.src = '';
         }
 
+        // Improved audio pausing - only stops playing audios
         function pauseOtherAudios(currentAudio) {
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
@@ -1001,38 +888,6 @@
                     audio.pause();
                 }
             });
-        }
-
-        // Функции для создания эффектов из 404
-        function createBinaryDigit() {
-            const binaryRain = document.getElementById('binaryRain');
-            const digits = ['0', '1'];
-            const digit = document.createElement('div');
-            digit.classList.add('binary-digit');
-            digit.textContent = digits[Math.floor(Math.random() * digits.length)];
-            digit.style.left = `${Math.random() * 100}vw`;
-            digit.style.animationDuration = `${5 + Math.random() * 15}s`;
-            digit.style.opacity = Math.random() * 0.5;
-            digit.style.fontSize = `${10 + Math.random() * 10}px`;
-            
-            binaryRain.appendChild(digit);
-            
-            setTimeout(() => {
-                digit.remove();
-            }, parseFloat(digit.style.animationDuration) * 1000);
-        }
-
-        function createFlickeringPixels() {
-            const body = document.querySelector('body');
-            for (let i = 0; i < 100; i++) {
-                const pixel = document.createElement('div');
-                pixel.classList.add('pixel');
-                pixel.style.left = `${Math.random() * 100}vw`;
-                pixel.style.top = `${Math.random() * 100}vh`;
-                pixel.style.animationDelay = `${Math.random() * 5}s`;
-                pixel.style.animationDuration = `${1 + Math.random() * 3}s`;
-                body.appendChild(pixel);
-            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -1053,22 +908,6 @@
                 threshold: 0.1
             });
             observer.observe(instructionsSection);
-            
-            // Создаем бинарный дождь
-            setInterval(createBinaryDigit, 100);
-            
-            // Создаем мерцающие пиксели
-            createFlickeringPixels();
-            
-            // Эффект глитча для всей страницы
-            setInterval(() => {
-                document.body.style.transform = `translate(${Math.random() * 5 - 2.5}px, ${Math.random() * 5 - 2.5}px)`;
-            }, 50);
-            
-            // Эффект мерцания
-            setInterval(() => {
-                document.body.style.opacity = 0.95 + Math.random() * 0.1;
-            }, 300);
         });
     </script>
 </body>
