@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Цифровая пустота | Книга Андрея</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+        
+        /* Анимация глитчей */
+        @keyframes glitch {
+            0% { 
+                text-shadow: 3px 0 #ff4d4d, -3px 0 #4dff4d;
+                transform: translate(0);
+            }
+            20% { 
+                text-shadow: -3px 0 #4dff4d, 3px 0 #ff4d4d;
+                transform: translate(-5px, 5px);
+            }
+            40% { 
+                text-shadow: 3px 0 #4dff4d, -3px 0 #ff4d4d;
+                transform: translate(5px, -5px);
+            }
+            60% { 
+                text-shadow: -3px 0 #ff4d4d, 3px 0 #4dff4d;
+                transform: translate(-5px, 5px);
+            }
+            80% { 
+                text-shadow: 3px 0 #ff4d4d, -3px 0 #4dff4d;
+                transform: translate(5px, -5px);
+            }
+            100% { 
+                text-shadow: -3px 0 #4dff4d, 3px 0 #ff4d4d;
+                transform: translate(0);
+            }
+        }
+        
+        @keyframes flicker {
+            0% { opacity: 0.5; }
+            5% { opacity: 0.7; }
+            10% { opacity: 0.3; }
+            15% { opacity: 0.8; }
+            20% { opacity: 0.4; }
+            30% { opacity: 1; }
+            70% { opacity: 0.8; }
+            80% { opacity: 0.3; }
+            90% { opacity: 0.6; }
+            100% { opacity: 0.5; }
+        }
+        
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        /* Основной контейнер */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Эффект сканирующей линии */
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(77, 255, 77, 0.3);
+            box-shadow: 0 0 10px rgba(77, 255, 77, 0.5);
+            animation: scanline 8s linear infinite;
+            z-index: 1;
+        }
+        
+        /* Глитч-текст 404 */
+        .error-code {
+            font-family: 'Roboto', sans-serif;
+            font-size: 15rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            margin-bottom: 1rem;
+            animation: glitch 1.5s infinite;
+            position: relative;
+            color: #fff;
+        }
+        
+        .error-code::before,
+        .error-code::after {
+            content: "404";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .error-code::before {
+            left: 4px;
+            text-shadow: -4px 0 #ff4d4d;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .error-code::after {
+            left: -4px;
+            text-shadow: -4px 0 #4dff4d;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(55px, 9999px, 56px, 0); }
+            5% { clip: rect(47px, 9999px, 30px, 0); }
+            10% { clip: rect(33px, 9999px, 36px, 0); }
+            15% { clip: rect(35px, 9999px, 9px, 0); }
+            20% { clip: rect(63px, 9999px, 59px, 0); }
+            25% { clip: rect(96px, 9999px, 98px, 0); }
+            30% { clip: rect(48px, 9999px, 77px, 0); }
+            35% { clip: rect(50px, 9999px, 34px, 0); }
+            40% { clip: rect(60px, 9999px, 72px, 0); }
+            45% { clip: rect(10px, 9999px, 81px, 0); }
+            50% { clip: rect(2px, 9999px, 60px, 0); }
+            55% { clip: rect(23px, 9999px, 89px, 0); }
+            60% { clip: rect(76px, 9999px, 91px, 0); }
+            65% { clip: rect(62px, 9999px, 30px, 0); }
+            70% { clip: rect(60px, 9999px, 73px, 0); }
+            75% { clip: rect(60px, 9999px, 87px, 0); }
+            80% { clip: rect(2px, 9999px, 14px, 0); }
+            85% { clip: rect(28px, 9999px, 87px, 0); }
+            90% { clip: rect(73px, 9999px, 50px, 0); }
+            95% { clip: rect(79px, 9999px, 70px, 0); }
+            100% { clip: rect(17px, 9999px, 79px, 0); }
+        }
+        
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(52px, 9999px, 74px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            15% { clip: rect(75px, 9999px, 5px, 0); }
+            20% { clip: rect(67px, 9999px, 61px, 0); }
+            25% { clip: rect(14px, 9999px, 79px, 0); }
+            30% { clip: rect(1px, 9999px, 66px, 0); }
+            35% { clip: rect(86px, 9999px, 30px, 0); }
+            40% { clip: rect(23px, 9999px, 98px, 0); }
+            45% { clip: rect(85px, 9999px, 72px, 0); }
+            50% { clip: rect(71px, 9999px, 75px, 0); }
+            55% { clip: rect(2px, 9999px, 48px, 0); }
+            60% { clip: rect(30px, 9999px, 16px, 0); }
+            65% { clip: rect(59px, 9999px, 50px, 0); }
+            70% { clip: rect(41px, 9999px, 62px, 0); }
+            75% { clip: rect(2px, 9999px, 82px, 0); }
+            80% { clip: rect(47px, 9999px, 73px, 0); }
+            85% { clip: rect(3px, 9999px, 27px, 0); }
+            90% { clip: rect(26px, 9999px, 55px, 0); }
+            95% { clip: rect(42px, 9999px, 97px, 0); }
+            100% { clip: rect(38px, 9999px, 49px, 0); }
+        }
+        
+        /* Заголовок */
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            animation: flicker 3s infinite;
+        }
+        
+        .title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff4d4d, #4dff4d);
+        }
+        
+        /* Сообщение */
+        .message {
+            max-width: 600px;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            animation: flicker 5s infinite;
+        }
+        
+        /* Кнопка */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff4d4d, #6d0000);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: flicker 4s infinite;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 77, 77, 0.5);
+            background: linear-gradient(45deg, #ff4d4d, #ff0000);
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 50px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.7s;
+        }
+        
+        .btn:hover::before {
+            left: 120%;
+        }
+        
+        /* Анимированный фон */
+        .glitch-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.1;
+        }
+        
+        .glitch-bg span {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            animation: bg-anim 16s linear infinite;
+        }
+        
+        .glitch-bg span:nth-child(1) {
+            clip-path: polygon(0 0, 100% 0, 100% 43%, 0 39%);
+            background: #ff4d4d;
+            animation-delay: -4s;
+        }
+        
+        .glitch-bg span:nth-child(2) {
+            clip-path: polygon(0 61%, 100% 58%, 100% 92%, 0 96%);
+            background: #4dff4d;
+            animation-delay: -8s;
+        }
+        
+        .glitch-bg span:nth-child(3) {
+            clip-path: polygon(44% 18%, 100% 20%, 76% 49%, 21% 55%);
+            background: #ff4d4d;
+            animation-delay: -12s;
+        }
+        
+        @keyframes bg-anim {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Мерцающие пиксели */
+        .pixel {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #4dff4d;
+            border-radius: 50%;
+            opacity: 0;
+            animation: pixel-flicker 1s infinite;
+            z-index: 1;
+        }
+        
+        @keyframes pixel-flicker {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            20% { opacity: 0; }
+            30% { opacity: 0.7; }
+            40% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+        
+        /* Анимация велосипеда */
+        .bike {
+            position: absolute;
+            bottom: -100px;
+            left: -200px;
+            width: 300px;
+            height: 150px;
+            z-index: 1;
+            opacity: 0.2;
+            animation: ride 20s linear infinite;
+        }
+        
+        .bike svg {
+            width: 100%;
+            height: 100%;
+            fill: #4dff4d;
+        }
+        
+        @keyframes ride {
+            0% { transform: translateX(-100px) translateY(0); }
+            50% { transform: translateX(calc(100vw + 200px)) translateY(-50px); }
+            100% { transform: translateX(calc(100vw + 200px)) translateY(0); }
+        }
+        
+        /* Бинарный дождь */
+        .binary-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.05;
+        }
+        
+        .binary-digit {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #4dff4d;
+            opacity: 0;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+        
+        /* Сообщение о скором запуске */
+        .coming-soon {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            opacity: 0.6;
+            animation: flicker 6s infinite;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 10rem;
+            }
+            
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .message {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 7rem;
+            }
+            
+            .title {
+                font-size: 1.4rem;
+            }
+            
+            .message {
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+            }
+            
+            .coming-soon {
+                font-size: 0.9rem;
+                letter-spacing: 3px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto:wght@900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Анимированный фон -->
+    <div class="glitch-bg">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <!-- Бинарный дождь -->
+    <div class="binary-rain" id="binaryRain"></div>
+    
+    <!-- Сканирующая линия -->
+    <div class="scanline"></div>
+    
+    <!-- Велосипедная анимация -->
+    <div class="bike">
+        <svg viewBox="0 0 100 50">
+            <path d="M20,40 Q30,20 40,40 Q50,20 60,40 Q70,20 80,40" stroke="#4dff4d" stroke-width="2" fill="none"/>
+            <circle cx="30" cy="40" r="8" fill="none" stroke="#4dff4d" stroke-width="1"/>
+            <circle cx="70" cy="40" r="8" fill="none" stroke="#4dff4d" stroke-width="1"/>
+            <line x1="35" y1="25" x2="50" y2="15" stroke="#4dff4d" stroke-width="1"/>
+            <line x1="50" y1="15" x2="65" y2="25" stroke="#4dff4d" stroke-width="1"/>
+        </svg>
+    </div>
+    
+    <!-- Мерцающие пиксели будут созданы через JS -->
+    
+    <!-- Основной контент -->
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1 class="title">Страница растворилась в цифровой пустоте</h1>
+        <p class="message">
+            То, что вы ищете, исчезло в виртуальном пространстве. Возможно, оно уехало на карбоновом велосипеде 
+            в бесконечные просторы Zwift или потерялось среди данных NeuroLink.
+        </p>
+        <a href="/" class="btn">Вернуться в реальность</a>
+    </div>
+    
+    <!-- Сообщение о скором запуске -->
+    <div class="coming-soon">404 Soul page coming soon</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Создаем мерцающие пиксели
+            const body = document.querySelector('body');
+            for (let i = 0; i < 100; i++) {
+                const pixel = document.createElement('div');
+                pixel.classList.add('pixel');
+                pixel.style.left = `${Math.random() * 100}vw`;
+                pixel.style.top = `${Math.random() * 100}vh`;
+                pixel.style.animationDelay = `${Math.random() * 5}s`;
+                pixel.style.animationDuration = `${1 + Math.random() * 3}s`;
+                body.appendChild(pixel);
+            }
+            
+            // Создаем бинарный дождь
+            const binaryRain = document.getElementById('binaryRain');
+            const digits = ['0', '1'];
+            
+            function createBinaryDigit() {
+                const digit = document.createElement('div');
+                digit.classList.add('binary-digit');
+                digit.textContent = digits[Math.floor(Math.random() * digits.length)];
+                digit.style.left = `${Math.random() * 100}vw`;
+                digit.style.animationDuration = `${5 + Math.random() * 15}s`;
+                digit.style.opacity = Math.random() * 0.5;
+                digit.style.fontSize = `${10 + Math.random() * 10}px`;
+                
+                binaryRain.appendChild(digit);
+                
+                // Удаляем элемент после завершения анимации
+                setTimeout(() => {
+                    digit.remove();
+                }, parseFloat(digit.style.animationDuration) * 1000);
+            }
+            
+            // Создаем несколько цифр
+            setInterval(createBinaryDigit, 100);
+            
+            // Эффект глитча для всей страницы
+            setInterval(() => {
+                document.body.style.transform = `translate(${Math.random() * 5 - 2.5}px, ${Math.random() * 5 - 2.5}px)`;
+            }, 50);
+            
+            // Эффект мерцания
+            setInterval(() => {
+                document.body.style.opacity = 0.95 + Math.random() * 0.1;
+            }, 300);
+        });
+    </script>
+</body>
+</html>
