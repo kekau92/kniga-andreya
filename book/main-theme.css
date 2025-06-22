@@ -1,17 +1,12 @@
 /* Global Body & Typography */
 body {
-    background-color: #111111 !important;
-    color: #c4c4c4 !important;
-    forced-color-adjust: none;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    background-color: #111111;
+    color: #c4c4c4;
     font-family: 'Lora', serif;
     font-size: 18px;
     line-height: 1.8;
     position: relative;
     text-shadow: 0 1px 1px rgba(0,0,0,0.3);
-     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    color-scheme: dark;
 }
 body::before {
     content: "";
@@ -261,10 +256,8 @@ h2::after {
 }
 
 /* Mobile optimizations */
-@media  (forced-colors: active) (max-width: 768px) {
+@media (max-width: 768px) {
     body {
-        background-color: #000000 !important;
-        color: #c0c0c0 !important;
         font-size: 16px;
     }
     h2 {
@@ -272,16 +265,10 @@ h2::after {
     }
     .quote-block, .telegram-message {
         margin: 1.5rem 0.5rem;
-        forced-color-adjust: none;
-        background-color: #111111 !important;
-        border-color: #1e90ff !important;
     }
     .neurolink-console {
         padding: 15px;
         font-size: 10pt;
-        forced-color-adjust: none;
-        background-color: #111111 !important;
-        border-color: #1e90ff !important;
     }
     .neurolink-console pre {
         white-space: pre-wrap;
