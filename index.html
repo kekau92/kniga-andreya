@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <link rel="preload" href="video_loop.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="cover.jpg" as="image">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K93Q34YBXJ"></script>
     <script>
@@ -20,10 +22,10 @@
     <meta name="description" content="Погрузитесь в психологическую драму 'Книга Андрея, сына Пустоты' — история молодого человека из Перми, борющегося с прошлым, цифровой зависимостью и внутренними демонами. Скрытая глава и сюрреалистические образы ждут вас.">
     <meta name="keywords" content="Книга Андрея, сын Пустоты, психологическая драма, Пермь, цифровая зависимость, скрытая глава, литература">
     <meta name="robots" content="index, follow">
-    <meta name="author" content="Кирилл, Пермь">
+    <meta name="author" content="Кирилл Зотов, Пермь">
     <meta name="publisher" content="xAI">
-    <meta name="date" content="2025-05-27"> <!-- Current date for freshness -->
-    <meta name="canonical" content="https://kekau92.github.io/kniga-andreya/"> <!-- Replace with actual URL -->
+    <meta name="date" content="2025-06-22"> <!-- Current date for freshness -->
+    <meta name="canonical" content="https://404soul.ru/">    
     <meta http-equiv="content-language" content="ru">
     <meta name="hreflang" content="ru-ru">
 
@@ -31,37 +33,40 @@
     <meta property="og:title" content="Книга Андрея, сына Пустоты">
     <meta property="og:description" content="Психологическая драма о борьбе с прошлым и цифровой тьмой. Погрузитесь в мир Андрея.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kekau92.github.io/kniga-andreya/"> <!-- Replace with actual URL -->
-    <meta property="og:image" content="https://kekau92.github.io/kniga-andreya/cover.jpg"> <!-- Replace with actual image URL -->
+    <meta property="og:url" content="https://404soul.ru/">
+    <meta property="og:image" content="https://404soul.ru/cover.jpg">
     <meta property="og:locale" content="ru_RU">
 
     <!-- Structured Data (Schema.org) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Book",
-      "name": "Книга Андрея, сына Пустоты",
-      "image": "https://kekau92.github.io/kniga-andreya/cover.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "Кирилл, Пермь"
-      },
-      "description": "Психологическая драма о молодом человеке из Перми, чья жизнь тонет в рутине офисных дней, цифровой зависимости и тенях прошлого. Скрытая глава открывает лабиринт подсознания.",
-      "genre": "Psychological Drama",
-      "datePublished": "2025-05-27",
-      "publisher": {
-        "@type": "Organization",
-        "name": "xAI"
-      },
-      "url": "https://kekau92.github.io/kniga-andreya/"
-    }
-    </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "Книга Андрея, сына Пустоты",
+  "image": "https://404soul.ru/cover.jpg", // Updated
+  "author": {
+    "@type": "Person",
+    "name": "Кирилл, Пермь"
+  },
+  "description": "Психологическая драма...",
+  "genre": "Psychological Drama",
+  "datePublished": "2025-05-27",
+  "publisher": {
+    "@type": "Organization",
+    "name": "xAI"
+  },
+  "url": "https://404soul.ru/", // Updated
+  "sameAs": "https://t.me/kirill_z_re" // Add social proof
+}
+</script>
 
     <!-- Sitemap Hint -->
-    <link rel="sitemap" type="application/xml" href="https://yourdomain.com/sitemap.xml"> <!-- Replace with actual sitemap URL -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://404soul.ru/sitemap.xml">
 
     <!-- Preconnect for Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap" rel="stylesheet">
     <style>
         /* Skip link for accessibility */
         .skip-link {
@@ -159,7 +164,7 @@
         }
         .glitch {
             font-family: 'Roboto', sans-serif;
-            font-size: 2.5em;
+            font-size: 1.8em;
             color: #fff;
             text-shadow: 2px 0 #ff0000, -2px 0 #00ff00;
             margin: 0;
@@ -423,6 +428,9 @@
             max-height: 500px;
         }
         @media (max-width: 600px) {
+              .header {
+                min-height: 70vh; /* Better mobile viewport usage */
+            }
             .instructions-link {
                 font-size: 1.1em;
                 padding: 8px 12px;
@@ -586,7 +594,7 @@
             </div>
             <div class="about-image">
                 <!-- Lazy loading for cover image -->
-                <img src="cover.jpg" alt="Обложка книги 'Книга Андрея, сына Пустоты'" class="glitch-image" loading="lazy">
+                <img src="cover.jpg" alt="Обложка книги 'Книга Андрея, сына Пустоты'" class="glitch-image" loading="eager">
             </div>
         </div>
         <section id="instructions" class="instructions">
