@@ -4,19 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Глоссарий цифровой пустоты | Книга Андрея, сына Пустоты</title>
-    <meta name="description" content="Терминология велоспорта и цифровой психологии из 'Книги Андрея'. FTP, бонк, грейвел, нейролинк и другие метафоры цифровой пустоты.">
+    <meta name="description" content="Глоссарий цифровой пустоты из 'Книги Андрея, сына Пустоты'. Термины велоспорта, психологии и современной литературы: FTP, бонк, нейролинк, грейвел, цифровая пустота, карбоновая тоска, велоспорт, психология травмы, цифровая исповедь, экзистенциальная пустота, карбоновый велосипед, метафора в литературе, русская проза, современная литература.">
     <link rel="canonical" href="https://404soul.ru/terms/">
     <style>
         :root {
-            --primary: #ff4d4d;
+            --primary: #8b0000;
             --secondary: #2a2a2a;
-            --accent: #4dff4d;
+            --accent: #00ff00;
             --text: #f0f0f0;
             --background: #1a1a1a;
-            --glitch-red: #ff4d4d;
-            --glitch-green: #4dff4d;
-            --link: #ff8080;
-            --link-hover: #ff4d4d;
+            --glitch-red: #ff0000;
+            --glitch-green: #00ff00;
         }
         
         * {
@@ -33,7 +31,6 @@
             overflow-x: hidden;
         }
         
-        /* Глитч-эффекты */
         .glitch {
             position: relative;
             animation: glitch 3s infinite;
@@ -52,25 +49,9 @@
             100% { text-shadow: -2px 0 var(--glitch-green), 2px 0 var(--glitch-red); }
         }
         
-        .glitch-text::before {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            color: var(--glitch-red);
-            opacity: 0.5;
-            animation: flicker 1s infinite;
-        }
-        
-        @keyframes flicker {
-            0% { opacity: 0.5; }
-            50% { opacity: 0.2; }
-            100% { opacity: 0.5; }
-        }
-        
-        /* Заголовок страницы */
         .header {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1704076026805-5c7c73476846?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+                        url('https://images.unsplash.com/photo-1507034589631-9433cc6bc453?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             height: 40vh;
@@ -97,7 +78,6 @@
             opacity: 0.8;
         }
         
-        /* Навигация */
         .nav {
             display: flex;
             justify-content: center;
@@ -122,11 +102,6 @@
             animation: glitch 0.3s infinite;
         }
         
-        .nav a.active {
-            border-bottom: 2px solid var(--primary);
-        }
-        
-        /* Основное содержание */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -167,28 +142,6 @@
             border: 1px solid var(--primary);
         }
         
-        .term-card:hover::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--glitch-red), var(--glitch-green));
-            opacity: 0.05;
-            z-index: -1;
-            animation: glitch-bg 1s infinite;
-        }
-        
-        @keyframes glitch-bg {
-            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-            20% { clip-path: polygon(0 20%, 100% 0, 80% 100%, 0 80%); }
-            40% { clip-path: polygon(20% 0, 100% 20%, 80% 100%, 0 80%); }
-            60% { clip-path: polygon(0 40%, 100% 0, 100% 60%, 0 100%); }
-            80% { clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%); }
-            100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-        }
-        
         .term-title {
             font-size: 1.5rem;
             color: var(--primary);
@@ -208,7 +161,10 @@
         }
         
         .search-terms {
-            display: none; /* Скрываем поисковые фразы */
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 15px;
+            font-style: italic;
         }
         
         .term-description {
@@ -231,7 +187,15 @@
             color: #aaa;
         }
         
-        /* Кнопки */
+        .term-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .term-footer a:hover {
+            text-decoration: underline;
+        }
+        
         .btn {
             display: inline-block;
             background-color: var(--primary);
@@ -250,7 +214,6 @@
             background-color: #6d0000;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
-            animation: glitch 0.3s infinite;
         }
         
         .btn-secondary {
@@ -262,7 +225,6 @@
             background-color: rgba(139, 0, 0, 0.2);
         }
         
-        /* Футер */
         .footer {
             background-color: #111;
             padding: 40px 20px;
@@ -286,7 +248,6 @@
         
         .footer-links a:hover {
             color: var(--primary);
-            animation: glitch 0.3s infinite;
         }
         
         .copyright {
@@ -295,7 +256,6 @@
             margin-top: 20px;
         }
         
-        /* Адаптивность */
         @media (max-width: 768px) {
             .glossary-grid {
                 grid-template-columns: 1fr;
@@ -310,7 +270,6 @@
             }
         }
         
-        /* Анимации */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -327,8 +286,15 @@
         .term-card:nth-child(4) { animation-delay: 0.4s; }
         .term-card:nth-child(5) { animation-delay: 0.5s; }
         .term-card:nth-child(6) { animation-delay: 0.6s; }
+        .term-card:nth-child(7) { animation-delay: 0.7s; }
+        .term-card:nth-child(8) { animation-delay: 0.8s; }
+        .term-card:nth-child(9) { animation-delay: 0.9s; }
+        .term-card:nth-child(10) { animation-delay: 1.0s; }
+        .term-card:nth-child(11) { animation-delay: 1.1s; }
+        .term-card:nth-child(12) { animation-delay: 1.2s; }
+        .term-card:nth-child(13) { animation-delay: 1.3s; }
+        .term-card:nth-child(14) { animation-delay: 1.4s; }
         
-        /* Поиск */
         .search-container {
             max-width: 600px;
             margin: 0 auto 40px;
@@ -369,93 +335,35 @@
             background-color: #6d0000;
         }
         
-        /* Микроразметка */
         .microdata {
             display: none;
-        }
-        
-        /* Ссылки */
-        a {
-            color: var(--link);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--link-hover);
-            text-decoration: underline;
-        }
-        
-        .nav a {
-            color: var(--text);
-            border-bottom: 2px solid transparent;
-        }
-        
-        .nav a:hover {
-            border-bottom: 2px solid var(--primary);
-            text-decoration: none;
-        }
-        
-        .term-footer a {
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        .term-footer a:hover {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        
-        .footer-links a {
-            color: #ccc;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary);
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Roboto:wght@700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="microdata">
-        <!-- Микроразметка Schema.org -->
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "DefinedTermSet",
             "name": "Глоссарий цифровой пустоты",
-            "description": "Терминология велоспорта и цифровой психологии из 'Книги Андрея, сына Пустоты'",
+            "description": "Терминология велоспорта, цифровой психологии и современной литературы из 'Книги Андрея, сына Пустоты'",
             "hasDefinedTerm": [
-                {
-                    "@type": "DefinedTerm",
-                    "name": "FTP (Functional Threshold Power)",
-                    "description": "Ключевой показатель в велоспорте, ставший метафорой психологического предела в романе."
-                },
-                {
-                    "@type": "DefinedTerm",
-                    "name": "Бонк",
-                    "description": "Состояние полного истощения у велосипедистов, отражающее эмоциональное выгорание героя."
-                },
-                {
-                    "@type": "DefinedTerm",
-                    "name": "Нейролинк",
-                    "description": "Технология нейроинтерфейса, переосмысленная как инструмент цифровой исповеди."
-                },
-                {
-                    "@type": "DefinedTerm",
-                    "name": "Грейвел",
-                    "description": "Стиль езды по смешанным покрытиям, ставший метафорой жизненного пути вне накатанных маршрутов."
-                },
-                {
-                    "@type": "DefinedTerm",
-                    "name": "Цифровая пустота",
-                    "description": "Состояние, когда онлайн-активность не заполняет экзистенциальную пустоту."
-                },
-                {
-                    "@type": "DefinedTerm",
-                    "name": "Карбоновая тоска",
-                    "description": "Авторский неологизм, описывающий противоречие между легкостью карбоновой рамы и тяжестью душевного груза."
-                }
+                {"@type": "DefinedTerm", "name": "FTP (Functional Threshold Power)", "description": "Ключевой показатель в велоспорте, ставший метафорой психологического предела в романе."},
+                {"@type": "DefinedTerm", "name": "Бонк", "description": "Состояние полного истощения у велосипедистов, отражающее эмоциональное выгорание героя."},
+                {"@type": "DefinedTerm", "name": "Нейролинк", "description": "Технология нейроинтерфейса, переосмысленная как инструмент цифровой исповеди."},
+                {"@type": "DefinedTerm", "name": "Грейвел", "description": "Стиль езды по смешанным покрытиям, ставший метафорой жизненного пути вне накатанных маршрутов."},
+                {"@type": "DefinedTerm", "name": "Цифровая пустота", "description": "Состояние, когда онлайн-активность не заполняет экзистенциальную пустоту."},
+                {"@type": "DefinedTerm", "name": "Карбоновая тоска", "description": "Авторский неологизм, описывающий противоречие между легкостью карбоновой рамы и тяжестью душевного груза."},
+                {"@type": "DefinedTerm", "name": "Велоспорт", "description": "Спортивная дисциплина, ставшая основой для метафор в романе."},
+                {"@type": "DefinedTerm", "name": "Психология травмы", "description": "Научное направление, изучающее последствия психологических травм, отраженное в переживаниях героев."},
+                {"@type": "DefinedTerm", "name": "Цифровая исповедь", "description": "Процесс самораскрытия через цифровые технологии, центральный мотив в романе."},
+                {"@type": "DefinedTerm", "name": "Экзистенциальная пустота", "description": "Философское понятие, описывающее ощущение бессмысленности бытия, ключевое для понимания состояния героев."},
+                {"@type": "DefinedTerm", "name": "Карбоновый велосипед", "description": "Велосипед с рамой из углепластика, символизирующий стремление к легкости и совершенству."},
+                {"@type": "DefinedTerm", "name": "Метафора в литературе", "description": "Литературный прием, активно используемый в романе для передачи сложных психологических состояний."},
+                {"@type": "DefinedTerm", "name": "Русская проза", "description": "Литературное направление, к которому относится 'Книга Андрея'."},
+                {"@type": "DefinedTerm", "name": "Современная литература", "description": "Литературные произведения, созданные в настоящее время, отражающие актуальные проблемы и темы."}
             ]
         }
         </script>
@@ -463,7 +371,7 @@
 
     <header class="header">
         <h1 class="page-title glitch">Глоссарий цифровой пустоты</h1>
-        <p class="page-subtitle">Терминология велоспорта и психологии из "Книги Андрея, сына Пустоты"</p>
+        <p class="page-subtitle">Терминология велоспорта, психологии и современной литературы из "Книги Андрея, сына Пустоты"</p>
     </header>
 
     <nav class="nav">
@@ -476,9 +384,8 @@
 
     <div class="container">
         <div class="intro">
-            <p>Погрузитесь в мир терминов, которые соединяют велоспорт, цифровую реальность и психологию травмы. Каждое понятие — ключ к пониманию внутреннего ландшафта героев "Книги Андрея".</p>
-            <p>Используйте этот глоссарий как путеводитель по цифровой пустоте, где физические метрики становятся мерой душевного состояния.</p>
-            
+            <p>Погрузитесь в мир терминов, которые соединяют велоспорт, цифровую реальность, психологию травмы и современную литературу. Каждое понятие — ключ к пониманию внутреннего ландшафта героев "Книги Андрея".</p>
+            <p>Используйте этот глоссарий как путеводитель по цифровой пустоте, где физические метрики становятся мерой душевного состояния, а литературные метафоры отражают экзистенциальные поиски.</p>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Поиск терминов...">
                 <button class="search-btn">Найти</button>
@@ -486,10 +393,10 @@
         </div>
 
         <div class="glossary-grid">
-            <!-- FTP -->
             <div class="term-card">
                 <h2 class="term-title">FTP (Functional Threshold Power)</h2>
-                <p class="term-description">Ключевой показатель в велоспорте, обозначающий максимальную мощность, которую спортсмен может поддерживать в течение часа. В "Книге Андрея" FTP становится мощной метафорой психологического предела.</p>
+                <p class="search-terms">Поисковые фразы: "FTP в психологии", "метафора FTP в литературе", "велосипедные метрики как боль", "психологический FTP", "метафора FTP", "велосипедные метрики в литературе"</p>
+                <p class="term-description">Functional Threshold Power (FTP) - ключевой показатель в велоспорте, обозначающий максимальную мощность, которую спортсмен может поддерживать в течение часа. В "Книге Андрея" FTP становится мощной метафорой психологического предела.</p>
                 <div class="quote">"350... 360... 370 ватт. Каждая цифра шипит в мозгу сахарной искрой"</div>
                 <p>Когда герой достигает 95% своего FTP на подъёме к Мотовилихе, это зеркально отражает его эмоциональный крах в отношениях с матерью.</p>
                 <div class="term-footer">
@@ -498,9 +405,9 @@
                 </div>
             </div>
 
-            <!-- Бонк -->
             <div class="term-card">
                 <h2 class="term-title">Бонк (The Bonk)</h2>
+                <p class="search-terms">Поисковые фразы: "бонк в велоспорте", "гипогликемия у велосипедистов", "симптомы бонка", "истощение в велоспорте", "эмоциональное выгорание"</p>
                 <p class="term-description">Физиологическое состояние полного истощения, когда у велосипедиста заканчиваются запасы гликогена. В романе описывается как "костяная рубильня": мышцы превращаются в стекло, педали становятся "двуглавыми якорями".</p>
                 <div class="quote">"Костяная рубильня щёлкает: бонк. Мышцы оборачиваются стеклом"</div>
                 <p>Герой испытывает это на 42-м км, когда "ритм в груди сбивается с литавр на детскую погремушку" - физический крах зеркалит его эмоциональное выгорание.</p>
@@ -510,10 +417,10 @@
                 </div>
             </div>
 
-            <!-- Нейролинк -->
             <div class="term-card">
                 <h2 class="term-title">Нейролинк (NeuroLink)</h2>
-                <p class="term-description">Технология Neuralink Илона Маска переосмыслена в романе как инструмент "цифровой исповеди". Герой использует нейроинтерфейс для записи мыслей во время ночных заездов по Перми, превращая ментальный хаос в глитч-поэзию.</p>
+                <p class="search-terms">Поисковые фразы: "нейроинтерфейсы в русской прозе", "литература про нейролинк", "цифровая исповедь", "технологии в литературе", "нейротехнологии и психология"</p>
+                <p class="term-description">Технология Neuralink Илона Маска переосмыслена в романе как инструмент "цифровой исповеди". Герой использует нейроинтерфейс для записи мыслей во время ночных заездов по Перми, превращая ментальный хаос в гл Marcin поэзию.</p>
                 <div class="quote">"System Neurolink Console: TRACE: SUBJECT = ANDREI_001"</div>
                 <p>Сравниваем с "Дневником плохого года" Коэльо: если там рукопись была терапией, то здесь нейролинк - катарсис через разрушение языка.</p>
                 <div class="term-footer">
@@ -522,9 +429,9 @@
                 </div>
             </div>
 
-            <!-- Грейвел -->
             <div class="term-card">
                 <h2 class="term-title">Грейвел (Gravel)</h2>
+                <p class="search-terms">Поисковые фразы: "гравийный велосипед как метафора", "грейвел в литературе", "езда по гравию психология", "велосипедные приключения", "жизненный путь в литературе"</p>
                 <p class="term-description">Гибридный стиль езды по смешанным покрытиям. В тексте Гравий-Вилдад иронизирует: "Ты даже грейвел не осилишь - только софт-грин в маминой кладовке".</p>
                 <div class="quote">"Гравий-Вилдад мчит, князь в позолоченной маске, колёса алчут оваций"</div>
                 <p>Анализируем гравий как метафору жизненного пути вне накатанных маршрутов - с его "острыми камнями" неожиданных препятствий и "пыльными дорогами" экзистенциальных поисков.</p>
@@ -534,9 +441,9 @@
                 </div>
             </div>
 
-            <!-- Цифровая пустота -->
             <div class="term-card">
                 <h2 class="term-title">Цифровая пустота (Digital Void)</h2>
+                <p class="search-terms">Поисковые фразы: "что такое цифровая пустота", "эмоциональное выгорание в соцсетях", "пустота в цифровой литературе", "экзистенциальная пустота в литературе", "современные технологии и психология"</p>
                 <p class="term-description">Состояние, когда онлайн-активность (лайки, сторис, трекинг) не заполняет экзистенциальную пустоту. Герой ощущает её как "ртутную тишину в черепе" после бесконечного скроллинга в Telegram.</p>
                 <div class="quote">"Лента не спит, пелотон не ждёт. Без огня меня сотрут, как его. Как всех."</div>
                 <p>Сравнение с "No Logo" Наоми Кляйн: если там пустота - следствие потребительства, то здесь - продукт алгоритмического насилия.</p>
@@ -546,15 +453,111 @@
                 </div>
             </div>
 
-            <!-- Карбоновая тоска -->
             <div class="term-card">
                 <h2 class="term-title">Карбоновая тоска (Carbon Melancholy)</h2>
+                <p class="search-terms">Поисковые фразы: "карбон в психологии", "метафора велосипеда в литературе", "тоска по легкости в книгах", "карбоновый велосипед как символ", "легкость и тяжесть в литературе"</p>
                 <p class="term-description">Авторский неологизм, описывающий противоречие между легкостью карбоновой рамы "Стрекозы" и тяжестью душевного груза. Когда рама трескается, "карбон вздувается фиолетовой язвой" - искусственная легкость не выдерживает веса прошлого.</p>
                 <div class="quote">"Рама-стрекоза - карбоновое распятие в обезличенном храме виртуальной корзины"</div>
                 <p>Сравнение с "Невыносимой лёгкостью бытия": если у Кундеры легкость - экзистенциальный выбор, то здесь - побег от себя.</p>
                 <div class="term-footer">
                     <span>Свиток IV: Речь колеса-Яхве</span>
                     <a href="/book/svitok-iv">Читать</a>
+                </div>
+            </div>
+
+            <div class="term-card">
+                <h2 class="term-title">Велоспорт (Cycling)</h2>
+                <p class="search-terms">Поисковые фразы: "велоспорт в литературе", "велосипед как метафора", "спортивные достижения в книгах", "велосипедные гонки в прозе"</p>
+                <p class="term-description">Спортивная дисциплина, ставшая основой для метафор в романе. Велоспорт в "Книге Андрея" символизирует стремление к самосовершенствованию и борьбу с внутренними демонами.</p>
+                <div class="quote">"Он едет не потому, что может. Он едет, потому что боится остановиться."</div>
+                <p>Велоспорт как способ бегства от реальности и одновременно как путь к самопознанию.</p>
+                <div class="term-footer">
+                    <span>Свиток III: Ночная зияющая дорога</span>
+                    <a href="/book/svitok-iii">Читать</a>
+                </div>
+            </div>
+
+            <div class="term-card">
+                <h2 class="term-title">Психология травмы (Trauma Psychology)</h2>
+                <p class="search-terms">Поисковые фразы: "психология травмы в литературе", "травматический опыт в книгах", "психологические травмы героев"</p>
+                <p class="term-description">Научное направление, изучающее последствия психологических травм, отраженное в переживаниях героев. В романе травма представлена как "рана, зашитая смолами и мерами", которая разрывается под давлением прошлого.</p>
+                <div class="quote">"Рана не в событиях, — шепчет Нуль голосом стеклянной крошки. — Рана — петля, которой ты душишь ребёнка в себе"</div>
+                <p>Травма как центральный мотив, влияющий на поведение и решения героев.</p>
+                <div class="term-footer">
+                    <span>Свиток IV: Речь колеса-Яхве</span>
+                    <a href="/book/svitok-iv">Читать</a>
+                </div>
+            </div>
+
+            <div class="term-card">
+                <h2 class="term-title">Цифровая исповедь (Digital Confession)</h2>
+                <p class="search-terms">Поисковые фразы: "цифровая исповедь в литературе", "самораскрытие в интернете", "технологии и психология"</p>
+                <p class="term-description">Процесс самораскрытия через цифровые технологии, центральный мотив в романе. Герой использует нейролинк для записи своих мыслей, превращая внутренний монолог в публичное достояние.</p>
+                <div class="quote">"Рама-стрекоза — твоя исповедь"</div>
+                <p>Цифровая исповедь как способ освобождения от груза прошлого и поиска смысла в современном мире.</p>
+                <div class="term-footer">
+                    <span>Свиток I: Прокол</span>
+                    <a href="/book/svitok-i">Читать</a>
+                </div>
+            </div>
+
+            <div class="term-card">
+                <h2 class="term-title">Экзистенциальная пустота (Existential Void)</h2>
+                <p class="search-terms">Поисковые фразы: "экзистенциальная пустота в литературе", "философия в книгах", "бессмысленность бытия в прозе"</p>
+                <p class="term-description">Философское понятие, описывающее ощущение бессмысленности бытия, ключевое для понимания состояния героев. В романе пустота представлена как "чёрная дыра в груди", поглощающая все попытки найти смысл.</p>
+                <div class="quote">"В груди — липкий запах вины и расплавленного пластика"</div>
+                <p>Экзистенциальная пустота как двигатель сюжета и внутреннего конфликта героев.</p>
+                <div class="term-footer">
+                    <span>Свиток III: Ночная зияющая дорога</span>
+                    <a href="/book/svitok-iii">Читать</a>
+                </div>
+            </div>
+
+            <div class="term-card">
+                <h2 class="term-title">Карбоновый велосипед (Carbon Bike)</h2>
+                <p class="search-terms">Поисковые фразы: "карбоновый велосипед в литературе", "технические детали в книгах", "велосипед как символ"</p>
+                <p class="term-description">Велосипед с рамой из углепластика, символизирующий стремление к легкости и совершенству. В романе "Стрекоза" - карбоновый велосипед - становится alter ego героя, отражая его внутренние противоречия.</p>
+                <div class="quote">"Карбоновая стрекоза вздрогнула, её стон — словно скрип распрямляющегося позвоночника"</div>
+                <p>Карбоновый велосипед как символ хрупкости и одновременно прочности человеческой психики.</p>
+                <div class="term-footer">
+                    <span>Свиток VI: Замыкание круга</span>
+                    <a href="/book/svitok-vi">Читать</a>
+                </div>
+            </div>
+
+            <div class="term-card">
+                <h2 class="term-title">Метафора в литературе (Metaphor in Literature)</h2>
+                <p class="search-terms">Поисковые фразы: "метафора в литературе", "литературные приемы", "символизм в книгах"</p>
+                <p class="term-description">Литературный прием, активно используемый в романе для передачи сложных психологических состояний. Велосипедные термины и цифровые технологии служат метафорами для описания внутренних переживаний героев.</p>
+                <div class="quote">"Рама-стрекоза — карбоновое распятие в обезличенном храме виртуальной корзины"</div>
+                <p>Метафора как способ раскрытия глубинных смыслов и эмоций в тексте.</p>
+                <div class="term-footer">
+                    <span>Свиток I: Прокол</span>
+                    <a href="/book/svitok-i">Читать</a>
+                </div>
+            </div>
+
+            <div class="term-card">
+                <h2 class="term-title">Русская проза (Russian Prose)</h2>
+                <p class="search-terms">Поисковые фразы: "русская проза", "современная русская литература", "книги на русском языке"</p>
+                <p class="term-description">Литературное направление, к которому относится "Книга Андрея". Роман продолжает традиции русской литературы, исследуя внутренний мир человека и его борьбу с внешними обстоятельствами.</p>
+                <div class="quote">"В этом звенящем вакууме Андрей вдруг слышит хрупкий удушливый треск сердца"</div>
+                <p>Русская проза как зеркало души и общества, отражающее вечные вопросы бытия.</p>
+                <div class="term-footer">
+                    <span>Свиток III: Ночная зияющая дорога</span>
+                    <a href="/book/svitok-iii">Читать</a>
+                </div>
+            </div>
+
+            <div class="term-card">
+                <h2 class="term-title">Современная литература (Contemporary Literature)</h2>
+                <p class="search-terms">Поисковые фразы: "современная литература", "литература 21 века", "актуальные книги"</p>
+                <p class="term-description">Литературные произведения, созданные в настоящее время, отражающие актуальные проблемы и темы. "Книга Андрея" затрагивает вопросы цифровой эпохи, психологических травм и поиска смысла в современном мире.</p>
+                <div class="quote">"В поисках этой искры, я с жаждой вспоминаю, как моя кровь текла в такт метрикам"</div>
+                <p>Современная литература как отражение духа времени и вызовов, стоящих перед человеком в цифровую эпоху.</p>
+                <div class="term-footer">
+                    <span>Введение</span>
+                    <a href="/book/vvedenie">Читать</a>
                 </div>
             </div>
         </div>
@@ -577,16 +580,12 @@
     </footer>
 
     <script>
-        // Анимация карточек при появлении
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.term-card');
-            
-            // Задержка анимации для каждой карточки
             cards.forEach((card, index) => {
                 card.style.animationDelay = `${index * 0.1}s`;
             });
             
-            // Поиск по терминам
             const searchInput = document.querySelector('.search-input');
             searchInput.addEventListener('input', function() {
                 const searchTerm = this.value.toLowerCase();
@@ -602,7 +601,6 @@
                 });
             });
             
-            // Глитч-эффект при загрузке
             const title = document.querySelector('.page-title');
             setTimeout(() => {
                 title.classList.add('glitch');
