@@ -1,179 +1,472 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Полный глоссарий: велоспорт, травма, цифровая культура | Книга Андрея, сына Пустоты</title>
-    <meta name="description" content="Полный разбор 'Книги Андрея': как велоспорт (FTP, бонк, Strava, Zwift) становится метафорой психологической травмы и цифровой пустоты. Глоссарий терминов от 'грейвела' до 'нейролинка' в ландшафте современной пермской прозы.">
-    <link rel="canonical" href="https://404soul.ru/terms/">
-    <style>
-        :root {
-            --primary: #8b0000;
-            --secondary: #2a2a2a;
-            --accent: #00ff00;
-            --text: #f0f0f0;
-            --background: #1a1a1a;
-            --glitch-red: #ff0000;
-            --glitch-green: #00ff00;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; background-color: var(--background); color: var(--text); line-height: 1.6; overflow-x: hidden; }
-        .glitch { position: relative; animation: glitch 3s infinite; }
-        .glitch:hover { animation: glitch 0.3s infinite; }
-        @keyframes glitch {
-            0% { text-shadow: 2px 0 var(--glitch-red), -2px 0 var(--glitch-green); }
-            20% { text-shadow: -2px 0 var(--glitch-green), 2px 0 var(--glitch-red); }
-            40% { text-shadow: 2px 0 var(--glitch-green), -2px 0 var(--glitch-red); }
-            60% { text-shadow: -2px 0 var(--glitch-red), 2px 0 var(--glitch-green); }
-            80% { text-shadow: 2px 0 var(--glitch-red), -2px 0 var(--glitch-green); }
-            100% { text-shadow: -2px 0 var(--glitch-green), 2px 0 var(--glitch-red); }
-        }
-        .header { background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1507034589631-9433cc6bc453?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; }
-        .page-title { font-family: 'Roboto', sans-serif; font-size: 2.8rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 3px; }
-        .page-subtitle { font-size: 1.2rem; max-width: 700px; margin-bottom: 25px; opacity: 0.8; }
-        .nav { display: flex; justify-content: center; background-color: var(--secondary); padding: 15px; position: sticky; top: 0; z-index: 100; flex-wrap: wrap;}
-        .nav a { color: var(--text); text-decoration: none; margin: 5px 15px; padding: 5px 10px; border-bottom: 2px solid transparent; transition: all 0.3s ease; }
-        .nav a:hover, .nav a.active { border-bottom: 2px solid var(--primary); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .intro { text-align: center; max-width: 800px; margin: 0 auto 50px; }
-        .intro p { font-size: 1.1rem; margin-bottom: 20px; }
-        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin-top: 40px; }
-        .term-card { background-color: var(--secondary); border-radius: 8px; padding: 25px; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; flex-direction: column;}
-        .term-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); border: 1px solid var(--primary); }
-        .term-title { font-size: 1.5rem; color: var(--primary); margin-bottom: 15px; position: relative; display: inline-block; }
-        .term-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 50px; height: 2px; background-color: var(--primary); }
-        .term-description { margin-bottom: 15px; flex-grow: 1; }
-        .quote { font-style: italic; border-left: 3px solid var(--primary); padding-left: 15px; margin: 15px 0; opacity: 0.8; }
-        .term-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; font-size: 0.85rem; color: #aaa; }
-        .term-footer a { color: var(--primary); text-decoration: none; }
-        .term-footer a:hover { text-decoration: underline; }
-        .search-container { max-width: 600px; margin: 0 auto 40px; position: relative; }
-        .search-input { width: 100%; padding: 12px 20px; background-color: var(--secondary); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px; color: var(--text); font-size: 1rem; transition: all 0.3s ease; }
-        .search-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.3); }
-        .footer { background-color: #111; padding: 40px 20px; text-align: center; margin-top: 60px; }
-        .microdata { display: none; }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Roboto:wght@700;900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="microdata">
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "DefinedTermSet",
-            "name": "Глоссарий: велоспорт, травма и цифровая культура | Книга Андрея, сына Пустоты",
-            "description": "Полный глоссарий терминов из 'Книги Андрея, сына Пустоты'. Определения и метафоры, связывающие велоспорт (FTP, бонк, грейвел, Zwift, Strava), психологию (нарциссическая травма, глитч) и современную русскую прозу.",
-            "hasDefinedTerm": [
-                {"@type": "DefinedTerm", "name": "FTP (Functional Threshold Power)", "description": "Ключевой показатель в велоспорте, ставший метафорой психологического предела в романе."},
-                {"@type": "DefinedTerm", "name": "Бонк (The Bonk)", "description": "Состояние полного истощения у велосипедистов, отражающее эмоциональное выгорание и психологический крах героя."},
-                {"@type": "DefinedTerm", "name": "Нейролинк (NeuroLink)", "description": "Технология нейроинтерфейса, переосмысленная как инструмент цифровой исповеди и глитч-поэзии."},
-                {"@type": "DefinedTerm", "name": "Грейвел (Gravel)", "description": "Стиль езды по смешанным покрытиям, метафора жизненного пути вне накатанных маршрутов, полного хаоса и неопределенности."},
-                {"@type": "DefinedTerm", "name": "Цифровая пустота (Digital Void)", "description": "Состояние, когда онлайн-активность и погоня за одобрением не заполняют экзистенциальную пустоту, а усугубляют ее."},
-                {"@type": "DefinedTerm", "name": "Карбоновая тоска (Carbon Melancholy)", "description": "Авторский неологизм: противоречие между легкостью карбоновой рамы и тяжестью душевного груза."},
-                {"@type": "DefinedTerm", "name": "Велоспорт (Cycling)", "description": "Спортивная дисциплина, ставшая для героя способом саморазрушения и, в конечном счете, путем к исцелению."},
-                {"@type": "DefinedTerm", "name": "Психология травмы (Trauma Psychology)", "description": "Научное направление, ключ к пониманию последствий детских травм для взрослой жизни героя."},
-                {"@type": "DefinedTerm", "name": "Цифровая исповедь (Digital Confession)", "description": "Процесс самораскрытия через цифровые технологии, центральный мотив в романе."},
-                {"@type": "DefinedTerm", "name": "Экзистенциальная пустота (Existential Void)", "description": "Философское понятие, описывающее ощущение бессмысленности бытия, ключевое для понимания состояния героев."},
-                {"@type": "DefinedTerm", "name": "Карбоновый велосипед (Carbon Bike)", "description": "Велосипед с рамой из углепластика, символизирующий стремление к легкости и технологическому совершенству как способу убежать от себя."},
-                {"@type": "DefinedTerm", "name": "Метафора в литературе (Metaphor in Literature)", "description": "Литературный прием, активно используемый в романе для передачи сложных психологических состояний через язык велоспорта."},
-                {"@type": "DefinedTerm", "name": "Strava", "description": "Приложение, символизирующее одержимость метриками и самооценкой через цифры."},
-                {"@type": "DefinedTerm", "name": "Трансмиссия (Transmission)", "description": "Велосипедная трансмиссия как метафора передачи психологических травм и бремен через поколения."},
-                {"@type": "DefinedTerm", "name": "Zwift", "description": "Виртуальная велоплатформа, символизирующая эскапизм, бегство от жестокой реальности в контролируемый цифровой мир."},
-                {"@type": "DefinedTerm", "name": "Софтгрин (Softgreen)", "description": "Велосипедный сленг для лёгкого маршрута, символизирующий избегание трудностей и застревание в инфантильной позиции."},
-                {"@type": "DefinedTerm", "name": "Велодно (velodno)", "description": "Велосипедный мем, обозначающий дно, низшую точку падения, которая в романе становится точкой потенциального перерождения."},
-                {"@type": "DefinedTerm", "name": "Каденц (Cadence)", "description": "Частота вращения педалей, метафора ритма жизни и навязчивой дисциплины."},
-                {"@type": "DefinedTerm", "name": "Лайк (Like)", "description": "Социальный отклик в цифровой среде, символизирующий отчаянный поиск внешнего одобрения."},
-                {"@type": "DefinedTerm", "name": "Пелотон (Peloton)", "description": "Группа велосипедистов, метафора коллективного давления и социального конформизма."},
-                {"@type": "DefinedTerm", "name": "Нейроинтерфейс (Neurointerface)", "description": "Технология связи мозга с машиной, метафора цифрового самораскрытия и исповеди в романе."},
-                {"@type": "DefinedTerm", "name": "Краш-тест (Crash Test)", "description": "Метафора саморазрушительного поведения, где герой подсознательно проверяет себя и мир на прочность."},
-                {"@type": "DefinedTerm", "name": "Дропни руль (Drop the Bars)", "description": "Велосипедный термин для агрессивной посадки, используемый как призыв к отчаянному, саморазрушительному действию."},
-                {"@type": "DefinedTerm", "name": "Шипы (Cleats)", "description": "Крепления на велотуфлях, которые в романе символизируют неразрывную, болезненную связь героя с его травмой и велосипедом."},
-                {"@type": "DefinedTerm", "name": "Рама-стрекоза (Frame-Dragonfly)", "description": "Центральный символ романа — карбоновый велосипед, который для Андрея является одновременно и объектом вожделения, и путём к саморазрушению."},
-                {"@type": "DefinedTerm", "name": "Чёрный пелотон (Black Peloton)", "description": "Название велоклуба и метафора сообщества, которое одновременно поддерживает и оказывает давление, требуя соответствия своим нормам."},
-                {"@type": "DefinedTerm", "name": "Мантры (Mantras)", "description": "Повторяющиеся фразы 'Fake it until you make it/are it/break it', отражающие эволюцию самообмана героя в цифровую эпоху."},
-                {"@type": "DefinedTerm", "name": "Пермь (Perm)", "description": "Город, где разворачивается действие. Его индустриальные и природные ландшафты становятся полноправным персонажем, отражающим внутренний мир героя."},
-                {"@type": "DefinedTerm", "name": "Закамск (Zakamsk)", "description": "Район Перми, где живёт мать Андрея. Локация, символизирующая источник его травмы, место, куда он вынужден возвращаться."},
-                {"@type": "DefinedTerm", "name": "Велокомпьютер (Cycle Computer)", "description": "Устройство для отслеживания метрик, которое в романе становится алтарём, на который герой кладёт свою душу в обмен на цифры, подтверждающие его существование."}
-            ]
-        }
-        </script>
-    </div>
+:root {
+    --primary: #ff4d4d;
+    --secondary: #2a2a2a;
+    --accent: #4dff4d;
+    --text: #f0f0f0;
+    --background: #1a1a1a;
+    --glitch-red: #ff4d4d;
+    --glitch-green: #4dff4d;
+    --link: #ff8080;
+    --link-hover: #ff4d4d;
+}
 
-    <header class="header">
-        <h1 class="page-title glitch">Глоссарий цифровой пустоты</h1>
-        <p class="page-subtitle">Путеводитель по миру «Книги Андрея»: от велоспорта и глитч-арта до психологии нарциссической травмы.</p>
-    </header>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <nav class="nav">
-        <a href="/">Главная</a>
-        <a href="/book/">Книга</a>
-        <a href="/map/">Карта локаций</a>
-        <a href="/terms/" class="active">Глоссарий</a>
-        <a href="/hidden/">Скрытая глава</a>
-    </nav>
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Subtle noise background for digital aesthetic */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj4KICA8ZmlsdGVyIGlkPSJuIj4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIuNyIgbnVtOcthdmVzPSI0IiBzdGl0Y2hUaWxlcz0ic3BhdGlhbFN1bXMiIHNlZWQ9IjIiLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwIDAgMCAwIDAgICAgICAgMCAwIDAgMCAwICAgICAgICAwIDAgMCAwIDAgICAgICAgMCAwIDAgLjUgMCIvPgogIDwvZmlsdGVyPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgb3BhY2l0eT0iMC4wMyIvPgo8L3N2Zz4=');
+    background-size: 10px 10px;
+}
 
-    <div class="container">
-        <div class="intro">
-            <p>Это исчерпывающий глоссарий по «Книге Андрея, сына Пустоты». Здесь собраны все ключевые термины, метафоры и понятия, которые формируют уникальный язык романа. Используйте его как навигатор по сложным темам произведения, связывающим велоспорт, психологию травмы и цифровую культуру.</p>
-        </div>
+/* Glitch effects */
+.glitch {
+    position: relative;
+    animation: glitch 3s infinite;
+}
 
-        <div class="glossary-grid">
-            
-            <div class="term-card"><h2 class="term-title">FTP (Functional Threshold Power)</h2><p class="term-description">Ключевой показатель в велоспорте, измеряющий максимальную мощность. В романе FTP становится метафорой предела психологической выносливости, где погоня за цифрами отражает отчаянную попытку героя доказать свою ценность и заглушить боль травмы.</p><div class="quote">"350… 360… 370 ватт. Каждая цифра шипит в мозгу сахарной искрой..." </div><div class="term-footer"><span>Свиток III</span></div></div>
-            <div class="term-card"><h2 class="term-title">Бонк (The Bonk)</h2><p class="term-description">Состояние полного физического истощения в велоспорте. В романе это метафора психологического краха, когда все защиты рушатся, и герой сталкивается лицом к лицу со своей пустотой. Бонк — это не усталость, а момент истины.</p><div class="quote">"Костяная рубильня щёлкает: бонк. Мышцы оборачиваются стеклом..." </div><div class="term-footer"><span>Свиток III</span></div></div>
-            <div class="term-card"><h2 class="term-title">Нейролинк (NeuroLink)</h2><p class="term-description">Технология нейроинтерфейса, переосмысленная в романе как инструмент цифровой исповеди. Записи мыслей Андрея превращаются в глитч-поэзию, отражая фрагментированность его сознания под давлением травмы.</p><div class="quote">"System Neurolink Console: TRACE: SUBJECT = ANDREI_001." </div><div class="term-footer"><span>Свиток III</span></div></div>
-            <div class="term-card"><h2 class="term-title">Грейвел (Gravel)</h2><p class="term-description">Стиль езды по смешанным покрытиям. В романе — метафора жизненного пути вне накатанных маршрутов, символ принятия хаотичной, неудобной реальности как альтернативы гладкому асфальту фальшивых достижений.</p><div class="quote">"Ты даже грейвел не осилишь — только софт-грин в маминой кладовке." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Цифровая пустота</h2><p class="term-description">Состояние, когда онлайн-активность не заполняет, а лишь подчёркивает экзистенциальную пустоту. Для Андрея это «холодный туман, гудящий, стирающий душу», следствие его травмы и попыток заглушить боль.</p><div class="quote">"Лента не спит, пелотон не ждёт. Без огня меня сотрут, как его. Как всех." </div><div class="term-footer"><span>Свиток I</span></div></div>
-            <div class="term-card"><h2 class="term-title">Карбоновая тоска</h2><p class="term-description">Авторский неологизм. Описывает противоречие между внешней лёгкостью (карбоновая рама, идеальный образ) и невыносимой тяжестью душевного груза, депрессии и травмы.</p><div class="quote">"Рама-стрекоза — карбоновое распятие в обезличенном храме виртуальной корзины." </div><div class="term-footer"><span>Свиток I</span></div></div>
-            <div class="term-card"><h2 class="term-title">Велоспорт (Cycling)</h2><p class="term-description">Центральная метафора книги. Для Андрея велоспорт — это одновременно и способ самоистязания, и ритуальная практика для борьбы с внутренней болью, и, в конечном счете, дорога к возможному исцелению.</p><div class="quote">"Он едет не потому, что может. Он едет, потому что боится остановиться." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Психология травмы</h2><p class="term-description">Ключ к пониманию романа. Переживания героя, его саморазрушительное поведение и отношения с миром рассматриваются через призму последствий детской нарциссической травмы, нанесённой матерью.</p><div class="quote">"Рана не в событиях, — шепчет Нуль голосом стеклянной крошки. — Рана — петля, которой ты душишь ребёнка в себе»." </div><div class="term-footer"><span>Свиток III</span></div></div>
-            <div class="term-card"><h2 class="term-title">Цифровая исповедь</h2><p class="term-description">Процесс самораскрытия через технологии. Покупка велосипеда, посты в Strava, сообщения в чатах — всё это для героя формы исповеди, попытки быть увиденным и понятым в мире, где искренность опосредована экраном.</p><div class="quote">"Это не покупка — это исповедь." </div><div class="term-footer"><span>Свиток I</span></div></div>
-            <div class="term-card"><h2 class="term-title">Экзистенциальная пустота</h2><p class="term-description">Ощущение бессмысленности бытия, которое герой пытается заполнить экстремальными физическими нагрузками и цифровой активностью. Пустота — двигатель сюжета, толкающий Андрея на его отчаянный путь.</p><div class="quote">"В груди — липкий запах вины и расплавленного пластика." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Карбоновый велосипед</h2><p class="term-description">Символ технологического совершенства и статуса. Его лёгкость и прочность контрастируют с хрупкостью и надломом самого героя, подчёркивая разрыв между внешним образом и внутренним состоянием.</p><div class="quote">"Карбоновая стрекоза вздрогнула, её стон — словно скрип распрямляющегося позвоночника." </div><div class="term-footer"><span>Свиток VI</span></div></div>
-            <div class="term-card"><h2 class="term-title">Метафора в литературе</h2><p class="term-description">Основной художественный приём романа. Язык велоспорта и цифровых технологий используется для описания сложнейших психологических состояний: травмы, диссоциации, депрессии и поиска себя.</p><div class="quote">"Твоя 'чистота' выглядит, как трансмиссия после гонки по болоту." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Strava</h2><p class="term-description">Приложение для отслеживания тренировок, которое в романе символизирует культуру перформанса. Strava — это арена, где ценность личности измеряется цифрами, а отсутствие трека равносильно социальному небытию.</p><div class="quote">"Твоя 'Стрекоза' сейчас выглядит, как твой позвоночник — кривой, как трек в Strava после трёх энергетиков." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Трансмиссия (Transmission)</h2><p class="term-description">Велосипедная система передач как метафора передачи психологических травм между поколениями. «Забитые грязью шестерни» и «рвущаяся цепь» — образ унаследованной боли и дисфункциональных моделей поведения.</p><div class="quote">"Шестерни забиты дерьмом, цепь рвётся, как твои нервы." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Zwift</h2><p class="term-description">Виртуальная платформа для велотренировок, метафора эскапизма. Это символ бегства от болезненной реальности в контролируемый, но безжизненный цифровой мир, где достижения ненастоящие.</p><div class="quote">"Продолжаешь фоткать, будто залипаешь в Zwift вместо реальной гонки." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Софтгрин (Softgreen)</h2><p class="term-description">Велосипедный сленг для лёгкого маршрута. Используется как уничижительная характеристика, символизирующая инфантильность и страх перед вызовами. «Крутить софт-грин» — значит избегать борьбы.</p><div class="quote">"Ты даже грейвел не осилишь — только софт-грин в маминой кладовке." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Велодно (velodno)</h2><p class="term-description">Велосипедный мем (velo + дно). Метафора низшей точки падения, момента полного краха. Однако именно это «дно» оказывается плодородной почвой для возможного перерождения.</p><div class="quote">"Хочешь, вышлю тег #велодно? Лайков хватит на реанимацию." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Каденц (Cadence)</h2><p class="term-description">Частота вращения педалей. Метафора навязчивой дисциплины, ритма и порядка. Попытка контролировать внутренний хаос через строгий, механический ритуал, который в итоге оказывается бездушным.</p><div class="quote">"Каденц-Элифаз рассекает битум педалями, как лезвие судьбы..." </div><div class="term-footer"><span>Свиток II</span></div></div>
-            <div class="term-card"><h2 class="term-title">Лайк (Like)</h2><p class="term-description">Единица социального одобрения в цифровой среде. В романе символизирует отчаянный поиск внешнего подтверждения своей значимости, подпитывающий зависимость героя от чужого мнения.</p><div class="quote">"Лайк-Цофар скользит, фантом эфирных миражей, нить подписчиков тонет в облаке уведомлений." </div><div class="term-footer"><span>Свиток II</span></div></div>
-            <div class="term-card"><h2 class="term-title">Пелотон (Peloton)</h2><p class="term-description">Основная группа гонщиков. Метафора социума, коллектива, который одновременно и несёт тебя, и давит, требуя соответствия и подчинения общему ритму, стирая индивидуальность.</p><div class="quote">"Лента не спит, пелотон не ждёт. Без огня меня сотрут..." </div><div class="term-footer"><span>Свиток I</span></div></div>
-            <div class="term-card"><h2 class="term-title">Нейроинтерфейс</h2><p class="term-description">Технология связи мозга с компьютером. В романе это метафора предельного самораскрытия, когда самые потаённые мысли и травмы становятся видимыми, превращаясь в код и глитч-поэзию.</p><div class="quote">"[ANOMALY_DETECTED] > TYPE: non_digital // non_simulated [ настоящее ]" </div><div class="term-footer"><span>Свиток VI</span></div></div>
-            <div class="term-card"><h2 class="term-title">Краш-тест</h2><p class="term-description">Метафора саморазрушительного поведения. Герой бессознательно устраивает себе «краш-тесты» — физические и эмоциональные испытания на грани срыва, — чтобы почувствовать себя живым или наказать себя.</p><div class="quote">"Краш-тест пройден. Рейтинг: позор." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Дропни руль</h2><p class="term-description">Велосипедный термин, означающий переход на нижний хват руля для агрессивной аэродинамической посадки. В романе используется как призыв к отчаянному, рискованному и саморазрушительному действию.</p><div class="quote">"Дропни руль и плачь." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Шипы (Cleats)</h2><p class="term-description">Крепления на велотуфлях, жёстко соединяющие ногу с педалью. Символизируют неразрывную, болезненную связь героя с его травмой, прошлым и самим велосипедом, от которого он не может освободиться.</p><div class="quote">"Шипы на подошвах разносили хруст песка и камней, раскидывая звук по его закисленному внутреннему вакууму." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Рама-стрекоза</h2><p class="term-description">Центральный образ велосипеда Андрея. Символ хрупкой, почти невесомой мечты о свободе, скорости и трансформации, которая на деле оказывается «карбоновым распятием» и инструментом самоистязания.</p><div class="quote">"Рама-стрекоза — твоя исповедь." </div><div class="term-footer"><span>Свиток I</span></div></div>
-            <div class="term-card"><h2 class="term-title">Чёрный пелотон</h2><p class="term-description">Название велоклуба, в который вступает Андрей. Это метафора тёмного, токсичного сообщества, построенного на взаимном обесценивании, зависти и культе страданий, где поддержка неотличима от насилия.</p><div class="quote">"Чёрный Пелотон • local cycling club" </div><div class="term-footer"><span>Свиток I</span></div></div>
-            <div class="term-card"><h2 class="term-title">Мантры</h2><p class="term-description">Три фразы, отражающие эволюцию самообмана героя: от классического "Fake it until you make it" («Притворяйся, пока не получится») к "Fake it until you ARE it" («Притворяйся, пока не станешь этим») и, наконец, к саморазрушительному "Fake it until you BREAK it" («Притворяйся, пока не сломаешься»).</p><div class="quote">"fake it until you are it" </div><div class="term-footer"><span>Свиток I</span></div></div>
-            <div class="term-card"><h2 class="term-title">Пермь (Perm)</h2><p class="term-description">Город, где разворачивается действие. Его суровые уральские пейзажи, индустриальная эстетика, Кама и окраины — не просто фон, а полноправный персонаж, отражающий холод и пустоту в душе героя.</p><div class="quote">"Город за окном — парадокс белизны и тепла: снег цепляется за землю..." </div><div class="term-footer"><span>Введение</span></div></div>
-            <div class="term-card"><h2 class="term-title">Закамск (Zakamsk)</h2><p class="term-description">Отдалённый район Перми, где живёт мать Андрея. Эта локация символизирует источник его травмы, прошлое, которое его не отпускает. Поездки в Закамск — это мучительные возвращения к истокам своей боли.</p><div class="quote">"...когда её зовы — «кран потёк», «сердце прихватило» — тянули его, уже живущего отдельно, в Закамскую коммуналку." </div><div class="term-footer"><span>Свиток III½</span></div></div>
-            <div class="term-card"><h2 class="term-title">Велокомпьютер</h2><p class="term-description">Устройство для отслеживания метрик (скорость, пульс, мощность). В романе становится алтарём цифровой религии, где цифры заменяют чувства. Герой смотрит на экран, чтобы получить подтверждение, что он существует и чего-то стоит.</p><div class="quote">"Экран велокомпьютера — дохлый глаз, цифры блюют помехами." </div><div class="term-footer"><span>Свиток III</span></div></div>
+.glitch:hover {
+    animation: glitch 0.3s infinite;
+}
 
-        </div>
-    </div>
+@keyframes glitch {
+    0% { text-shadow: 2px 0 var(--glitch-red), -2px 0 var(--glitch-green); transform: translate(0, 0); }
+    20% { text-shadow: -2px 0 var(--glitch-green), 2px 0 var(--glitch-red); transform: translate(-1px, 1px); }
+    40% { text-shadow: 2px 0 var(--glitch-green), -2px 0 var(--glitch-red); transform: translate(1px, -1px); }
+    60% { text-shadow: -2px 0 var(--glitch-red), 2px 0 var(--glitch-green); transform: translate(-1px, 0); }
+    80% { text-shadow: 2px 0 var(--glitch-red), -2px 0 var(--glitch-green); transform: translate(0, 1px); }
+    100% { text-shadow: -2px 0 var(--glitch-green), 2px 0 var(--glitch-red); transform: translate(1px, -1px); }
+}
 
-    <footer class="footer">
-        </footer>
+.glitch-text::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    color: var(--glitch-red);
+    opacity: 0.5;
+    animation: flicker 1s infinite;
+}
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.querySelector('.search-input');
-            if (searchInput) {
-                const cards = document.querySelectorAll('.term-card');
-                searchInput.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
-                    cards.forEach(card => {
-                        const text = card.textContent.toLowerCase();
-                        if (text.includes(searchTerm)) {
-                            card.style.display = 'flex';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+@keyframes flicker {
+    0% { opacity: 0.5; }
+    50% { opacity: 0.2; }
+    100% { opacity: 0.5; }
+}
+
+/* Page Header */
+.header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1507034589631-9433cc6bc453?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(77, 255, 77, 0.05) 0%, rgba(255, 77, 77, 0.05) 20%, transparent 70%);
+    animation: scan-line 15s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes scan-line {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+
+.page-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    justify-content: center;
+    background-color: var(--secondary);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav a {
+    color: var(--text);
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 10px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary);
+    transition: left 0.3s ease;
+}
+
+.nav a:hover::before,
+.nav a.active::before {
+    left: 0;
+}
+
+.nav a:hover {
+    animation: none; /* Remove glitch on hover for navigation for a smoother effect with the underline */
+    text-shadow: none;
+}
+
+/* Main Content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.intro p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.term-card {
+    background-color: var(--secondary);
+    border-radius: 8px;
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.term-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--primary);
+}
+
+.term-card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--glitch-red), var(--glitch-green));
+    opacity: 0.05;
+    z-index: -1;
+    animation: glitch-bg 1s infinite;
+}
+
+@keyframes glitch-bg {
+    0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+    20% { clip-path: polygon(0 20%, 100% 0, 80% 100%, 0 80%); }
+    40% { clip-path: polygon(20% 0, 100% 20%, 80% 100%, 0 80%); }
+    60% { clip-path: polygon(0 40%, 100% 0, 100% 60%, 0 100%); }
+    80% { clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%); }
+    100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+.term-title {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.term-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary);
+}
+
+.search-terms {
+    display: none; /* Hide search phrases */
+}
+
+.term-description {
+    margin-bottom: 15px;
+}
+
+.quote {
+    font-style: italic;
+    border-left: 3px solid var(--primary);
+    padding-left: 15px;
+    margin: 15px 0;
+    opacity: 0.8;
+}
+
+.term-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin: 10px 5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    background-color: #6d0000;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+    animation: glitch 0.3s infinite;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--primary);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(139, 0, 0, 0.2);
+}
+
+/* Footer */
+.footer {
+    background-color: #111;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: #aaa;
+    margin: 0 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    animation: glitch 0.3s infinite;
+}
+
+.copyright {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .glossary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .header {
+        height: 30vh;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.term-card {
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
+}
+
+.term-card:nth-child(1) { animation-delay: 0.1s; }
+.term-card:nth-child(2) { animation-delay: 0.2s; }
+.term-card:nth-child(3) { animation-delay: 0.3s; }
+.term-card:nth-child(4) { animation-delay: 0.4s; }
+.term-card:nth-child(5) { animation-delay: 0.5s; }
+.term-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Search */
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: var(--secondary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    color: var(--text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.3);
+    /* Adding subtle glitch on focus */
+    animation: input-glitch 0.2s forwards;
+}
+
+@keyframes input-glitch {
+    0% { transform: translateX(0px); }
+    25% { transform: translateX(-1px); }
+    50% { transform: translateX(1px); }
+    75% { transform: translateX(-1px); }
+    100% { transform: translateX(0px); }
+}
+
+.search-btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 7px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #6d0000;
+}
+
+/* Microdata */
+.microdata {
+    display: none;
+}
+
+/* Links */
+a {
+    color: var(--link);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+
+.nav a {
+    color: var(--text);
+    /* border-bottom is now part of the :before pseudo-element */
+}
+
+.nav a:hover {
+    /* text-decoration is handled by the ::before pseudo-element */
+    text-decoration: none;
+}
+
+.term-footer a {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.term-footer a:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.footer-links a {
+    color: #ccc;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
