@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андрей и Алина: Цельность и ревность в лунном свете</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0f;
+            color: #e0e0e0;
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 90% 10%, rgba(40, 60, 110, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 10% 90%, rgba(70, 30, 60, 0.1) 0%, transparent 20%);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Background effects */
+        .background-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .moonlight {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(40, 60, 110, 0.4) 0%, rgba(40, 60, 110, 0) 70%);
+            filter: blur(20px);
+            z-index: 0;
+        }
+
+        .shadow-effect {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(10, 10, 15, 1) 0%, rgba(10, 10, 15, 0) 100%);
+            z-index: 1;
+        }
+
+        /* Age Gate Styles */
+        #age-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 10, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .age-gate-content {
+            background: rgba(15, 15, 25, 0.95);
+            border: 1px solid rgba(80, 80, 120, 0.3);
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            animation: gateAppear 0.6s ease-out forwards;
+        }
+
+        @keyframes gateAppear {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .age-gate-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #d0d0e0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .age-gate-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #b0b0c0;
+            line-height: 1.6;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .age-button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #confirm-age {
+            background: linear-gradient(to right, #3a3a6a, #2a2a5a);
+            color: #e0e0ff;
+            border: 1px solid #4a4a8a;
+        }
+
+        #confirm-age:hover {
+            background: linear-gradient(to right, #4a4a8a, #3a3a7a);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(60, 60, 150, 0.3);
+        }
+
+        #decline-age {
+            background: rgba(40, 20, 20, 0.7);
+            color: #e0a0a0;
+            border: 1px solid #703030;
+        }
+
+        #decline-age:hover {
+            background: rgba(60, 30, 30, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(120, 30, 30, 0.3);
+        }
+
+        /* Main Content Styles */
+        .title-container {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(100, 100, 140, 0.3);
+            position: relative;
+        }
+
+        .title-container::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(to right, #3a3a6a, #5a5a9a);
+            border-radius: 2px;
+        }
+
+        .title-container h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #e0e0ff;
+            text-shadow: 0 0 15px rgba(100, 120, 200, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .title-container h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #b0b0d0;
+            font-style: italic;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .scene {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(15, 15, 25, 0.5);
+            border-radius: 8px;
+            border-left: 3px solid rgba(100, 120, 180, 0.5);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .scene:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 20, 0.5);
+        }
+
+        .scene-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #d0d0ff;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .scene-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: rgba(100, 120, 180, 0.7);
+        }
+
+        .scene-content {
+            font-size: 1.2rem;
+            color: #d0d0d0;
+            line-height: 1.9;
+        }
+
+        .scene-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .dialogue {
+            margin: 25px 0;
+            padding-left: 30px;
+            border-left: 2px solid rgba(120, 140, 200, 0.3);
+            font-style: italic;
+            color: #c0c0e0;
+        }
+
+        .character {
+            font-weight: 600;
+            color: #a0b0e0;
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .scene-divider {
+            height: 1px;
+            background: linear-gradient(to right, rgba(80, 100, 150, 0), rgba(80, 100, 150, 0.5), rgba(80, 100, 150, 0));
+            margin: 50px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: #707090;
+            border-top: 1px solid rgba(100, 100, 140, 0.2);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #9090c0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px dashed rgba(120, 140, 200, 0.5);
+            padding-bottom: 2px;
+        }
+
+        footer a:hover {
+            color: #c0c0ff;
+            border-bottom: 1px solid rgba(160, 180, 240, 0.8);
+        }
+
+        /* Decorative elements */
+        .moon-icon {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(200, 200, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .tear-drop {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            width: 8px;
+            height: 15px;
+            background: rgba(120, 160, 220, 0.2);
+            border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+            transform: rotate(30deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .title-container h1 {
+                font-size: 2.4rem;
+            }
+            
+            .title-container h2 {
+                font-size: 1.4rem;
+            }
+            
+            .scene-title {
+                font-size: 1.5rem;
+            }
+            
+            .scene-content {
+                font-size: 1.1rem;
+            }
+            
+            .scene {
+                padding: 20px 15px;
+            }
+            
+            .age-gate-content {
+                padding: 25px;
+            }
+            
+            .age-gate-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="background-effect">
+        <div class="moonlight"></div>
+        <div class="shadow-effect"></div>
+    </div>
+    
+    <!-- Age Verification Gate -->
+    <div id="age-gate">
+        <div class="age-gate-content">
+            <h2>Возрастное ограничение</h2>
+            <p>Содержание этой страницы предназначено для взрослой аудитории и содержит материалы, подходящие только для лиц старше 18 лет.</p>
+            <p>Пожалуйста, подтвердите, что вам исполнилось 18 лет или больше, чтобы продолжить просмотр.</p>
+            <div class="buttons-container">
+                <button id="confirm-age" class="age-button">Да, мне 18 или больше</button>
+                <button id="decline-age" class="age-button">Нет, я младше 18</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content (initially hidden) -->
+    <div id="content" style="display: none;">
+        <div class="container">
+            <div class="title-container">
+                <h1>Андрей и Алина</h1>
+                <h2>Цельность и ревность в лунном свете</h2>
+            </div>
+            
+            <!-- Scene 1 -->
+            <div class="scene">
+                <div class="moon-icon"></div>
+                <h3 class="scene-title">Сцена 1: Тень на пороге</h3>
+                <div class="scene-content">
+                    <p>Был уже час ночи, когда слабый стук в дверь вырвал меня из беспокойной дремоты на диване. Я, словно выжатый лимон, пошатываясь от усталости и раздражения, поплёлся к двери. Открыл — и замер. На пороге стояла Алина: тень той девушки, которую я знал. Хрупкая и истощённая, утопавшая в пальто, будто оно брало её в плен целиком. Под глазами — тёмные круги, воспалённые, словно кисти художника, обрамляющие налитые кровью глаза. Кожа была бледной, почти синюшной, как тонкая бумага, промокшая в грязной луже.</p>
+                    
+                    <p>Лёгкий запах горечи и алкоголя вился вокруг, как яд в венах. Она качнулась, едва удерживая равновесие.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Алина:</span>
+                        <p>Андрей… — её голос дрожал, как струна под ногтем, готовая рваться.</p>
+                    </div>
+                    
+                    <p>Я впустил её, подхватив под руку, когда она споткнулась.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Андрей:</span>
+                        <p>Что с тобой? — выдохнул я. — Ты как призрак.</p>
+                    </div>
+                    
+                    <p>Она выдавила горькую улыбку.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Алина:</span>
+                        <p>Я не знала, куда идти.</p>
+                        
+                        <span class="character">Андрей:</span>
+                        <p>Почему не ко мне сразу?</p>
+                    </div>
+                    
+                    <p>Губы её дрогнули, и слёзы рванулись наружу, будто прорвало дамбу.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Алина:</span>
+                        <p>Он… — всхлипнула она, называя Гравия, как паук зовёт жертву.</p>
+                    </div>
+                    
+                    <p>Моё сердце сжалось ножом ревности. Я вдохнул её запах — микс шампуня, табака и ещё чего-то… чего я не хотел знать.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Андрей:</span>
+                        <p>Я здесь. Я помогу тебе.</p>
+                    </div>
+                    
+                    <p>Но внутри меня бурлило: часть её всё ещё жила там, с ним.</p>
+                </div>
+            </div>
+            
+            <div class="scene-divider"></div>
+            
+            <!-- Scene 2 -->
+            <div class="scene">
+                <div class="tear-drop"></div>
+                <h3 class="scene-title">Сцена 2: Тёплая тюрьма</h3>
+                <div class="scene-content">
+                    <p>Когда её слёзы утихли, Алина подняла на меня взгляд. Лицо её было измождённым, глаза — как два тёмных озера, полных боли.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Алина:</span>
+                        <p>Можно просто лечь спать? Я так устала…</p>
+                        
+                        <span class="character">Андрей:</span>
+                        <p>Конечно, — ответил я, помогая ей подняться. Мы вошли в спальню, забрались под одеяло. Она прижалась ко мне спиной, ища тепла, как замерзающий котёнок.</p>
+                    </div>
+                    
+                    <div class="dialogue">
+                        <span class="character">Алина:</span>
+                        <p>Обними меня крепче, — прошептала она, и голос её был тонким, как у ребёнка, который боится темноты. — Мне нужно чувствовать себя в безопасности.</p>
+                    </div>
+                    
+                    <p>Я прижал её к себе, губы коснулись шеи, потом плеча. Поцелуи растекались по коже, словно чёрный дождь.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Алина:</span>
+                        <p>Прикоснись ко мне. Заставь забыть.</p>
+                    </div>
+                    
+                    <p>Алина взяла мою руку и направила вниз, положив между ног. Я замер, ища в её глазах сомнение, но она кивнула. Я начал ласкать, медленно, прислушиваясь к каждому вздоху, каждому движению. Тело её отвечало, дрожа под моей ладонью, и когда я проник в неё глубже, она задрожала сильнее, стон сорвался с губ, когда оргазм накрыл её. Она обмякла в моих объятиях, прошептав:</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Алина:</span>
+                        <p>Спасибо…</p>
+                    </div>
+                    
+                    <p>Я держал её, но в голове глухо звучал вопрос: с кем она была в ту же ночь в Тбилиси?</p>
+                </div>
+            </div>
+            
+            <div class="scene-divider"></div>
+            
+            <!-- Scene 3 -->
+            <div class="scene">
+                <h3 class="scene-title">Сцена 3: Химера прошлого</h3>
+                <div class="scene-content">
+                    <p>Мы лежали в темноте, кожа к коже. Алина заговорила первой, голос её был тонкой нитью, распутывающей прошлое.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Алина:</span>
+                        <p>Гравий был… интенсивным, — сказала она, чертя пальцами узоры на моей груди. — Буря, из которой я не могла выбраться. Очаровательный в одну минуту, опасный в следующую.</p>
+                    </div>
+                    
+                    <p>Я гладил её волосы, стараясь не выдать, как её слова режут меня.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Андрей:</span>
+                        <p>Что он делал?</p>
+                        
+                        <span class="character">Алина:</span>
+                        <p>Контроль. Связывал меня, завязывал глаза.</p>
+                        
+                        <span class="character">Андрей:</span>
+                        <p>Это насилие, — выдавил я.</p>
+                        
+                        <span class="character">Алина:</span>
+                        <p>Я думала, что это любовь. Дикая, настоящая. Иногда боль была приятнее пустоты.</p>
+                    </div>
+                    
+                    <p>Моё сердце разрывалось. Я хотел найти его, вонзить в землю.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Андрей:</span>
+                        <p>Он не заслуживал тебя.</p>
+                        
+                        <span class="character">Алина:</span>
+                        <p>Я была зависима.</p>
+                    </div>
+                    
+                    <p>Мой разум заполнили образы — Алина, связанная, дрожащая под его руками, кожа её в красных следах. Муки грызли меня, как голодный зверь, но смешались с желанием защитить её. Я хотел найти его, разбить ему лицо, вырвать из её жизни.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Андрей:</span>
+                        <p>Он не заслуживал тебя, — сказал я, голос дрожал от напряжения.</p>
+                    </div>
+                    
+                    <p>Я прижал её ближе, но понимал: её плоть хранит шрамы его ДНК, и я не смогу стереть их.</p>
+                </div>
+            </div>
+            
+            <div class="scene-divider"></div>
+            
+            <!-- Scene 4 -->
+            <div class="scene">
+                <h3 class="scene-title">Сцена 4: Крик плотского единства</h3>
+                <div class="scene-content">
+                    <p>Пока Алина говорила о Гравии, мои эмоции кипели — любовь, ярость, потребность заявить на неё права. Я не выдержал. Я заглушил её слова поцелуем — яростным, почти жестоким. Мои губы столкнулись с её, и она ответила мгновенно, вцепившись в мои плечи, притягивая меня ближе.</p>
+                    
+                    <p>Одежда рассыпалась на пол, как обрывки воспоминаний. Я навис над ней, держа в ладонях её хрупкость.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Андрей:</span>
+                        <p>Я хочу в тебя войти.</p>
+                        
+                        <span class="character">Алина:</span>
+                        <p>Да, — выдохнула она, направляя меня.</p>
+                    </div>
+                    
+                    <p>Я вошёл в неё медленно, чувствуя, как её тело принимает меня. Ритм становился отчаянным. Глаза её были закрыты. Я дышал рвано, она — прерывисто.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Андрей:</span>
+                        <p>Посмотри на меня, — прошептал я, заметив блик от крестика, мерцающий на груди её, и поймал её взгляд — широко раскрытый, полный бурь и тайн.</p>
+                    </div>
+                    
+                    <div class="dialogue">
+                        <span class="character">Андрей:</span>
+                        <p>Открой рот, — прохрипел я, голос грубый от желания. Я наклонился, лизнул её приоткрытые губы и влажный язык, пробуя её на вкус — соль, сладость, боль. Она открыла рот шире, и я позволил своей слюне стечь на её язык.</p>
+                    </div>
+                    
+                    <p>Глотая её крик, я излился в неё, неся свой собственный шторм. Она прильнула ко мне, её оргазм последовал за моим. Потом я рухнул на неё, вдавливая её в матрас, её горячие выдохи касались моей кожи.</p>
+                    
+                    <p>Но даже в этот момент я не мог избавиться от мысли: была ли она с ним так же? Отвечала ли ему так же? Эта мысль убивала меня, но я держал её, надеясь, что моя любовь сможет вытеснить его тень.</p>
+                </div>
+            </div>
+            
+            <div class="scene-divider"></div>
+            
+            <!-- Scene 5 -->
+            <div class="scene">
+                <h3 class="scene-title">Сцена 5: Безмятежный лабиринт</h3>
+                <div class="scene-content">
+                    <p>Алина, измождённая, вскоре заснула. Её вздохи стали ровными, фигура обмякла, словно освободившись от напряжения. Я убрал прядь волос с её лица и смотрел на неё в тусклом свете луны. Мой разум гудел от нашей ночи — её боль, наше слияние, тень Гравия. Сон не шёл ко мне.</p>
+                    
+                    <p>Лунный свет просочился сквозь шторы, заливая комнату синевой. Полоса света легла поперёк кровати, как холодный клинок, разделяя нас. Алина спала на спине, почти неживая в этом мертвенно-перламутровом сиянии. Голова её была запрокинута, горло обнажено — хрупкая колонна, где под тонкой кожей пульсировала жизнь. Я лежал на боку, подперев голову рукой, и впитывал её — не глазами, а всем существом, каждой клеткой своей голодной плоти.</p>
+                    
+                    <p>Кожа под моими пальцами была тёплой, как лепесток, хранящий тепло солнца. Коснувшись щеки, я заметил, как дрогнули губы, выпуская лёгкий выдох. Рука моя скользнула к шее, ощущая пульс, словно пойманную птицу. Она шевельнулась, вдохи стали глубже. Я продолжил, касаясь плеч, груди, живота, ног. Каждый её вдох был откровением, картой её души.</p>
+                    
+                    <p>Но мой разум предал меня. Я видел её с ним — кровать скрипела под их весом, его грубые руки оставляли красные полосы на её запястьях. Она дрожала под ним, взгляд её — смесь страха и желания. Он шептал ей что-то грязное, а плоть её отвечала, предавая её. Жгучая боль терзала меня, как уголь. Пальцы сжали её бедро сильнее, почти до боли, словно я мог выдавить его из её прошлого.</p>
+                    
+                    <p>Я хотел быть её спасителем, единственным, кто понял её. Но он был в её прошлом, в её теле, в её боли. Мои касания были попыткой стереть его, но каждый её стон во сне казался эхом тех ночей с ним. Я закрыл глаза, представляя её глядящей на меня с благодарностью.</p>
+                    
+                    <div class="dialogue">
+                        <span class="character">Андрей:</span>
+                        <p>Да, — прошептал я в пустоту.</p>
+                    </div>
+                    
+                    <p>Но луна сдвинулась, и свет разрезал нас, как лезвие.</p>
+                </div>
+            </div>
+            
+            <footer>
+                <p><a href="https://404soul.ru" target="_blank">404soul.ru</a></p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ageGate = document.getElementById('age-gate');
+            const content = document.getElementById('content');
+            const confirmButton = document.getElementById('confirm-age');
+            const declineButton = document.getElementById('decline-age');
+            
+            // Check if user has already confirmed age
+            if(localStorage.getItem('ageConfirmed') === 'true') {
+                ageGate.style.display = 'none';
+                content.style.display = 'block';
+            }
+            
+            // Handle age confirmation
+            confirmButton.addEventListener('click', function() {
+                localStorage.setItem('ageConfirmed', 'true');
+                ageGate.style.opacity = '0';
+                setTimeout(function() {
+                    ageGate.style.display = 'none';
+                    content.style.display = 'block';
+                    
+                    // Animate content appearance
+                    content.style.opacity = '0';
+                    content.style.transition = 'opacity 1s ease';
+                    setTimeout(function() {
+                        content.style.opacity = '1';
+                    }, 100);
+                }, 500);
+            });
+            
+            // Handle age decline
+            declineButton.addEventListener('click', function() {
+                ageGate.style.transition = 'all 0.8s ease';
+                ageGate.style.backgroundColor = 'rgba(20, 5, 5, 0.97)';
+                
+                setTimeout(function() {
+                    ageGate.innerHTML = `
+                        <div class="age-gate-content">
+                            <h2>Доступ запрещён</h2>
+                            <p>Сожалеем, но вы не можете просматривать этот контент.</p>
+                            <p>Пожалуйста, вернитесь, когда вам исполнится 18 лет.</p>
+                        </div>
+                    `;
+                }, 800);
+            });
+            
+            // Add subtle parallax effect to moonlight
+            window.addEventListener('mousemove', function(e) {
+                const moonlight = document.querySelector('.moonlight');
+                const x = (window.innerWidth - e.pageX) / 100;
+                const y = (window.innerHeight - e.pageY) / 100;
+                moonlight.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
