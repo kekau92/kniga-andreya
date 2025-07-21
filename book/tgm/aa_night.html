@@ -398,7 +398,7 @@
     
     <!-- Music Control Button -->
     <div id="music-control">
-        <button id="toggle-music">Sound On</button>
+        <button id="toggle-music">Включить звук</button>
     </div>
     
     <!-- Age Verification Gate -->
@@ -681,10 +681,10 @@
             toggleButton.addEventListener('click', function() {
                 if (audio.paused) {
                     audio.play();
-                    toggleButton.textContent = 'Sound Off';
+                    toggleButton.textContent = 'Заглушить';
                 } else {
                     audio.pause();
-                    toggleButton.textContent = 'Sound On';
+                    toggleButton.textContent = 'Включить звук';
                 }
             });
             
