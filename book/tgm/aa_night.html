@@ -79,6 +79,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+ _
+
             z-index: 1000;
             backdrop-filter: blur(10px);
         }
@@ -321,6 +323,25 @@
             transform: rotate(30deg);
         }
 
+        /* Music Control Styles */
+        #music-control {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1001;
+        }
+
+        #music-control button {
+            background: rgba(15, 15, 25, 0.8);
+            color: #e0e0e0;
+            border: 1px solid rgba(80, 80, 120, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
@@ -369,6 +390,17 @@
         <div class="shadow-effect"></div>
     </div>
     
+    <!-- Audio Element -->
+    <audio id="background-music" loop preload="auto">
+        <source src="Excavation (Part 2).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- Music Control Button -->
+    <div id="music-control">
+        <button id="toggle-music">Sound On</button>
+    </div>
+    
     <!-- Age Verification Gate -->
     <div id="age-gate">
         <div class="age-gate-content">
@@ -390,10 +422,11 @@
                 <h2>Цельность и ревность в лунном свете</h2>
             </div>
             
-            <!-- Scene 1 -->
+            <!-- Scene 1 with Image -->
             <div class="scene">
                 <div class="moon-icon"></div>
                 <h3 class="scene-title">Сцена 1: Тень на пороге</h3>
+                <img src="alina_wolves.png" alt="Алина и волки" style="width: 100%; margin-bottom: 20px;">
                 <div class="scene-content">
                     <p>Был уже час ночи, когда слабый стук в дверь вырвал меня из беспокойной дремоты на диване. Я, словно выжатый лимон, пошатываясь от усталости и раздражения, поплёлся к двери. Открыл — и замер. На пороге стояла Алина: тень той девушки, которую я знал. Хрупкая и истощённая, утопавшая в пальто, будто оно брало её в плен целиком. Под глазами — тёмные круги, воспалённые, словно кисти художника, обрамляющие налитые кровью глаза. Кожа была бледной, почти синюшной, как тонкая бумага, промокшая в грязной луже.</p>
                     
@@ -602,6 +635,8 @@
             const content = document.getElementById('content');
             const confirmButton = document.getElementById('confirm-age');
             const declineButton = document.getElementById('decline-age');
+            const audio = document.getElementById('background-music');
+            const toggleButton = document.getElementById('toggle-music');
             
             // Check if user has already confirmed age
             if(localStorage.getItem('ageConfirmed') === 'true') {
@@ -640,6 +675,17 @@
                         </div>
                     `;
                 }, 800);
+            });
+            
+            // Handle music toggle
+            toggleButton.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play();
+                    toggleButton.textContent = 'Sound Off';
+                } else {
+                    audio.pause();
+                    toggleButton.textContent = 'Sound On';
+                }
             });
             
             // Add subtle parallax effect to moonlight
