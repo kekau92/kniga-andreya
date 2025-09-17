@@ -299,7 +299,7 @@
 
     <audio id="audioPlayer" loop>
         <!-- Замените URL на действительный путь к аудиофайлу -->
-        <source src="https://example.com/audio/spiral.mp3" type="audio/mp3">
+        <source src="spiral.mp3">
         Ваш браузер не поддерживает аудио элемент.
     </audio>
 
@@ -315,7 +315,7 @@
             playButton.addEventListener('click', function() {
                 if (isPlaying) {
                     audioPlayer.pause();
-                    playButton.textContent = 'Воспроизвести';
+                    playButton.textContent = 'Включить звук';
                 } else {
                     audioPlayer.play()
                         .then(() => {
