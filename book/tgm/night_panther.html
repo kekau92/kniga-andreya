@@ -174,7 +174,7 @@
         </header>
         
         <div class="audio-control">
-            <button class="audio-btn" id="playButton">Включить звук</button>
+            <button class="audio-btn" id="toggle-music">Включить звук</button>
         </div>
         
         <div class="story-section">
@@ -282,7 +282,7 @@
             <div class="section-content">
                 <p>А потом поводок натянулся — резко, жестоко, как рывок цепи. Она встала на задние лапы, выросла, как чёрная геральдическая фигура на фоне серых панелек, её когти-кинжалы повисли в воздухе, поблескивая в свете уличных фонарей.</p>
                 <p>Она рванулась к салону с цветами, где за стеклом замерла девушка с телефоном, её лицо побелело, пальцы застыли на экране. Я упёрся ногами в асфальт, кожаные ремни поводка впились в ладонь до хруста костей. Меня потащило, как тряпичную куклу, по тротуару, усыпанному жёлтыми листьями и окурками.</p>
-                <p>Она не слушалась больше. Она везде лезла, обнюхивала всё, рвалась ко всему, что шевелилось — к голубям, к кошке, что метнулась под машину, к запаху шавермы, пропитанному специями, доносившемуся из ларька. Её сила была абсолютной, первозданной, и моя иллюзия контроля порвалась, как тот поводок, который трещал последним предупреждением.</p>
+                <p>Она не слушалась больше. Она везде лезла, обнюхивала всё, рвалась ко всему, что шевелилось — к голубям, к кошке, что метнулась под машина, к запаху шавермы, пропитанному специями, доносившемуся из ларька. Её сила была абсолютной, первозданной, и моя иллюзия контроля порвалась, как тот поводок, который трещал последним предупреждением.</p>
                 <p>Я был просто грузиком на конце её воли. Ярлыком с надписью «Корм». А где-то за моей спиной, в тени, шаги того мужчины в клёшах затихли, но я знал — он всё ещё там, наблюдает, молчит, ждёт.</p>
             </div>
             <div class="image-container">
@@ -295,7 +295,7 @@
         </footer>
     </div>
 
-    <audio id="audioPlayer" loop>
+    <audio id="audioPlayer" loop preload="auto">
         <source src="spiral.mp3" type="audio/mp3">
         Ваш браузер не поддерживает аудио элемент.
     </audio>
@@ -303,44 +303,39 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const audioPlayer = document.getElementById('audioPlayer');
-            const playButton = document.getElementById('playButton');
-            let isPlaying = false;
+            const toggleButton = document.getElementById('toggle-music');
             
             // Устанавливаем громкость на 50% по умолчанию
             audioPlayer.volume = 0.5;
             
-            playButton.addEventListener('click', function() {
-                if (isPlaying) {
-                    audioPlayer.pause();
-                    playButton.textContent = 'Включить звук';
-                    isPlaying = false;
-                } else {
-                    // Пытаемся воспроизвести аудио
+            // Обработка переключения музыки
+            toggleButton.addEventListener('click', function() {
+                if (audioPlayer.paused) {
                     const playPromise = audioPlayer.play();
                     
                     if (playPromise !== undefined) {
                         playPromise.then(() => {
                             // Аудио успешно воспроизводится
-                            playButton.textContent = 'Остановить';
-                            isPlaying = true;
+                            toggleButton.textContent = 'Остановить';
                         }).catch(error => {
                             console.error("Ошибка воспроизведения аудио:", error);
                             alert("Не удалось воспроизвести аудио. Возможно, файл не найден или формат не поддерживается.");
                         });
                     }
+                } else {
+                    audioPlayer.pause();
+                    toggleButton.textContent = 'Включить звук';
                 }
             });
             
-            // Обработка окончания аудио (хотя у нас loop, на всякий случай)
+            // Обработка окончания аудио
             audioPlayer.addEventListener('ended', function() {
-                playButton.textContent = 'Включить звук';
-                isPlaying = false;
+                toggleButton.textContent = 'Включить звук';
             });
             
             // Обработка паузы
             audioPlayer.addEventListener('pause', function() {
-                playButton.textContent = 'Включить звук';
-                isPlaying = false;
+                toggleButton.textContent = 'Включить звук';
             });
         });
     </script>
