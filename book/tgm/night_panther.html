@@ -292,13 +292,13 @@
             </div>
         </div>
         
-        <footer>
-            <p>© 2023 История о ночной пантере</p>
-        </footer>
+            <footer>
+                <p><a href="https://404soul.ru" target="_blank">404soul.ru</a></p>
+            </footer>
     </div>
 
     <audio id="audioPlayer" loop>
-        <source src="ваша-музыка.mp3" type="audio/mp3">
+        <source src="spiral.mp3" type="audio/mp3">
         Ваш браузер не поддерживает аудио элемент.
     </audio>
 
@@ -314,7 +314,7 @@
             playButton.addEventListener('click', function() {
                 if (isPlaying) {
                     audioPlayer.pause();
-                    playButton.textContent = 'Воспроизвести';
+                    playButton.textContent = 'Включить звук<';
                 } else {
                     audioPlayer.play()
                         .then(() => {
