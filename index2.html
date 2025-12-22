@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Онлайн-инструмент самонаблюдения в эпоху цифровой зависимости. Книга Андрея, сына Пустоты — психологический эксперимент, а не развлечение.">
+    <meta name="keywords" content="психология, цифровая зависимость, самонаблюдение, травма, 18+">
+    <meta name="author" content="Кирилл Зотов">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Это не книга. Это психологический эксперимент.">
+    <meta property="og:description" content="Онлайн-инструмент самонаблюдения для поколения цифровой тревоги. 18+">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://404soul.ru">
+    
+    <title>Книга Андрея, сына Пустоты | 404soul</title>
+    
+    <style>
+        /* ============================================
+           БАЗОВЫЕ СТИЛИ И ТИПОГРАФИКА
+        ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-primary: #0a0a0a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #999;
+            --accent-red: #ff4444;
+            --accent-green: #00ff00;
+            --accent-yellow: #ffdd00;
+            --border-color: #333;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+        
+        /* ============================================
+           ПРОГРЕСС-БАР
+        ============================================ */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-green));
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+        
+        /* ============================================
+           КОНТЕЙНЕР И РАЗМЕТКА
+        ============================================ */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 60px 20px 120px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px 80px;
+            }
+            body {
+                font-size: 15px;
+            }
+        }
+        
+        /* ============================================
+           ТИПОГРАФИКА
+        ============================================ */
+        h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1.5em;
+            letter-spacing: -0.02em;
+            animation: glitch 3s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 90%, 100% { 
+                transform: translate(0); 
+                opacity: 1;
+            }
+            92% { 
+                transform: translate(-2px, 1px); 
+                opacity: 0.8;
+            }
+            94% { 
+                transform: translate(2px, -1px); 
+                opacity: 0.9;
+            }
+        }
+        
+        h2 {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 2.5em 0 1em;
+            letter-spacing: -0.01em;
+        }
+        
+        h3 {
+            font-size: 1em;
+            font-weight: 600;
+            margin: 2em 0 0.8em;
+            color: var(--text-secondary);
+        }
+        
+        p {
+            margin-bottom: 1.2em;
+        }
+        
+        strong {
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        /* ============================================
+           СПИСКИ
+        ============================================ */
+        ul {
+            list-style: none;
+            margin: 1.5em 0;
+        }
+        
+        ul li {
+            position: relative;
+            padding-left: 1.5em;
+            margin-bottom: 0.8em;
+        }
+        
+        ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-red);
+            font-size: 1.2em;
+        }
+        
+        /* ============================================
+           ЭМОДЗИ-ЗАГОЛОВКИ
+        ============================================ */
+        .emoji-header {
+            background: rgba(255, 68, 68, 0.1);
+            border-left: 3px solid var(--accent-red);
+            padding: 1.5em;
+            margin: 2.5em 0 1.5em;
+            border-radius: 4px;
+        }
+        
+        .emoji-header.warning {
+            background: rgba(255, 221, 0, 0.1);
+            border-color: var(--accent-yellow);
+        }
+        
+        /* ============================================
+           ТАБЛИЦА "ЧТО ЭТО / ЧТО ЭТО НЕ"
+        ============================================ */
+        .contrast-table {
+            display: grid;
+            gap: 2em;
+            margin: 2em 0;
+        }
+        
+        .contrast-block {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5em;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .contrast-block h3 {
+            margin-top: 0;
+            margin-bottom: 1em;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .contrast-block ul li::before {
+            content: '×';
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+        
+        .contrast-block.positive ul li::before {
+            content: '✓';
+            color: var(--accent-green);
+        }
+        
+        /* ============================================
+           БЛОК КОДА (ДНЕВНИК)
+        ============================================ */
+        .code-block {
+            background: rgba(0, 255, 0, 0.05);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            padding: 1.5em;
+            margin: 2em 0;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.8;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        /* ============================================
+           КОНТАКТЫ ЭКСТРЕННОЙ ПОМОЩИ
+        ============================================ */
+        .emergency-contacts {
+            background: rgba(255, 68, 68, 0.15);
+            border: 2px solid var(--accent-red);
+            padding: 1.5em;
+            margin: 2em 0;
+            border-radius: 4px;
+        }
+        
+        .emergency-contacts strong {
+            display: block;
+            margin-bottom: 0.5em;
+            font-size: 1.1em;
+        }
+        
+        .emergency-contacts p {
+            margin-bottom: 0.5em;
+        }
+        
+        /* ============================================
+           РАЗДЕЛИТЕЛИ
+        ============================================ */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 3em 0;
+            opacity: 0.5;
+        }
+        
+        /* ============================================
+           ФИНАЛЬНЫЙ БЛОК (CTA)
+        ============================================ */
+        .final-cta {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--accent-green);
+            padding: 2em;
+            margin: 3em 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .checklist {
+            text-align: left;
+            margin: 2em auto;
+            max-width: 400px;
+        }
+        
+        .checklist li {
+            margin-bottom: 1em;
+            font-size: 0.95em;
+        }
+        
+        /* ============================================
+           КНОПКИ
+        ============================================ */
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            padding: 1em 2.5em;
+            margin: 1.5em 0 1em;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background: #00dd00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 255, 0, 0.3);
+        }
+        
+        .secondary-links {
+            margin-top: 1.5em;
+            font-size: 0.9em;
+        }
+        
+        .secondary-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin: 0 1em;
+            transition: color 0.3s ease;
+        }
+        
+        .secondary-links a:hover {
+            color: var(--accent-green);
+        }
+        
+        /* ============================================
+           ФУТЕР
+        ============================================ */
+        footer {
+            text-align: center;
+            padding: 3em 0 2em;
+            color: var(--text-secondary);
+            font-size: 0.85em;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4em;
+        }
+        
+        /* ============================================
+           АНИМАЦИИ ПОЯВЛЕНИЯ
+        ============================================ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+        
+        /* ============================================
+           ACCESSIBILITY
+        ============================================ */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Прогресс-бар -->
+    <div id="progress-bar"></div>
+    
+    <div class="container">
+        <!-- ЗАГОЛОВОК -->
+        <section class="fade-in">
+            <h1>Это не книга. Это психологический эксперимент.</h1>
+            
+            <p>Остановись на минуту.</p>
+            
+            <p>Этот проект — <strong>не развлечение</strong><br>
+            и не контент «на фоне».</p>
+            
+            <p>Это набор текстов, которые работают как психологический тест,<br>
+            только вопросы задаёт не автор —<br>
+            их задаёт твоё тело.</p>
+            
+            <p>Ты читаешь фразу —<br>
+            в груди сжимается —<br>
+            ты понимаешь, что эта тема для тебя живая.</p>
+            
+            <p>Вот и весь принцип.</p>
+        </section>
+        
+        <hr>
+        
+        <!-- ЧТО ЭТО / ЧТО ЭТО НЕ -->
+        <section class="fade-in">
+            <h2>ЧТО ЭТО / ЧТО ЭТО НЕ</h2>
+            
+            <div class="contrast-table">
+                <div class="contrast-block">
+                    <h3>Здесь нет:</h3>
+                    <ul>
+                        <li>сюжета, который нужно «понять»</li>
+                        <li>персонажей, за которых нужно переживать</li>
+                        <li>советов, как «стать лучше»</li>
+                    </ul>
+                </div>
+                
+                <div class="contrast-block positive">
+                    <h3>Здесь есть:</h3>
+                    <ul>
+                        <li>фразы, которые могут задеть</li>
+                        <li>ситуации, в которых ты узнаешь себя</li>
+                        <li>паузы, где можно услышать свои мысли</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <hr>
+        
+        <!-- КОГДА НЕ СТОИТ ЧИТАТЬ -->
+        <section class="fade-in">
+            <div class="emoji-header warning">
+                <h2>❗ КОГДА НЕ СТОИТ ЧИТАТЬ</h2>
+                
+                <p>Если прямо сейчас у тебя:</p>
+                
+                <ul>
+                    <li>острый эмоциональный кризис</li>
+                    <li>ощущение, что ты «на грани»</li>
+                    <li>мысли о саморазрушении</li>
+                    <li>состояние, в котором любое переживание может накрыть</li>
+                </ul>
+                
+                <p>👉 <strong>пожалуйста, не продолжай</strong>.</p>
+                
+                <p>Это не тест на смелость.<br>
+                Это забота о себе.</p>
+            </div>
+            
+            <div class="emergency-contacts">
+                <h3>Экстренная помощь:</h3>
+                
+                <p><strong>Россия</strong><br>
+                8-800-2000-122 — телефон доверия (круглосуточно)<br>
+                051 — неотложная психологическая помощь МЧС</p>
+                
+                <p><strong>Другие страны</strong><br>
+                <a href="https://findahelpline.com" target="_blank" style="color: var(--accent-green);">findahelpline.com</a> — база международных линий помощи</p>
+            </div>
+        </section>
+        
+        <hr>
+        
+        <!-- СТОП-СИГНАЛЫ -->
+        <section class="fade-in">
+            <div class="emoji-header">
+                <h2>🛑 СТОП-СИГНАЛЫ ВО ВРЕМЯ ЧТЕНИЯ</h2>
+                
+                <p>Читая дальше, <strong>следи за телом</strong>, а не за смыслом.</p>
+                
+                <p>Остановись, если появилось:</p>
+                
+                <ul>
+                    <li>учащённое дыхание</li>
+                    <li>напряжение в груди или горле</li>
+                    <li>дрожь, холод</li>
+                    <li>желание срочно уйти в соцсети</li>
+                </ul>
+                
+                <p>Это не слабость.<br>
+                Это сигнал.</p>
+                
+                <p>Закрой страницу.<br>
+                Сделай паузу.<br>
+                Вернёшься — если захочешь.</p>
+            </div>
+        </section>
+        
+        <hr>
+        
+        <!-- КАК ЧИТАТЬ -->
+        <section class="fade-in">
+            <h2>КАК ЭТО ЧИТАТЬ (КОНКРЕТНО)</h2>
+            
+            <ul>
+                <li><strong>Один свиток</strong> ≈ 10–15 минут чтения</li>
+                <li>Читай <strong>не больше 2 свитков</strong> за раз</li>
+                <li>Между чтениями — <strong>минимум 4 часа паузы</strong></li>
+            </ul>
+            
+            <p>Почему так медленно?</p>
+            
+            <p>Потому что это не сюжет, который нужно проглотить.<br>
+            Это опыт, который нужно переварить.</p>
+            
+            <p>Если хочется читать дальше —<br>
+            <strong>часто это не интерес, а попытка не чувствовать паузу.</strong></p>
+            
+            <p>Остановись.</p>
+        </section>
+        
+        <hr>
+        
+        <!-- ДНЕВНИК -->
+        <section class="fade-in">
+            <h2>ПРО ДНЕВНИК (КОРОТКО)</h2>
+            
+            <p>Иногда полезно зафиксировать отклик.<br>
+            Без оформления. Без «работы над собой».</p>
+            
+            <p>Достаточно четырёх строк:</p>
+            
+            <div class="code-block">
+                <pre>СВИТОК: Туннель
+ФРАЗА: «песок точил кожу»
+ТЕЛО: ком в горле, холодные руки
+МЫСЛЬ: вспомнил ту ночь в августе</pre>
+            </div>
+            
+            <p>Можно писать криво.<br>
+            Можно не писать вообще.<br>
+            Можно просто скриншотить фразы.</p>
+            
+            <p>Главное — <strong>не заставлять себя</strong>.</p>
+        </section>
+        
+        <hr>
+        
+        <!-- ЕСЛИ НЕТ ДОСТУПА К ТЕРАПИИ -->
+        <section class="fade-in">
+            <h2>ЕСЛИ У ТЕБЯ НЕТ ДОСТУПА К ТЕРАПИИ</h2>
+            
+            <p>Ты не сломан(а).<br>
+            Так живёт большинство людей.</p>
+            
+            <p>Этот проект не заменяет помощь,<br>
+            но может быть минимальной формой поддержки.</p>
+            
+            <p>Если станет тяжело:<br>
+            — ищи бесплатные линии помощи<br>
+            — анонимные чаты<br>
+            — группы взаимоподдержки</p>
+            
+            <p>Просить помощи — не провал.<br>
+            Это навык.</p>
+        </section>
+        
+        <hr>
+        
+        <!-- ЮРИДИЧЕСКОЕ -->
+        <section class="fade-in">
+            <h2>⚖️ ЮРИДИЧЕСКОЕ УВЕДОМЛЕНИЕ</h2>
+            
+            <p>Этот сайт — художественный онлайн-проект,<br>
+            а не медицинская или психологическая помощь.</p>
+            
+            <p>Автор не врач и не психолог.<br>
+            Этот проект — форма художественного высказывания,<br>
+            а не медицинская рекомендация.</p>
+            
+            <p>Если тебе станет плохо —<br>
+            обратись к специалисту или в экстренные службы.</p>
+        </section>
+        
+        <hr>
+        
+        <!-- ФИНАЛЬНЫЙ CTA -->
+        <section class="fade-in">
+            <div class="final-cta">
+                <h2>ГОТОВ(А) ЛИ ТЫ ПРОДОЛЖИТЬ?</h2>
+                
+                <p>Если ты дочитал(а) до этого места<br>
+                и всё ещё здесь —<br>
+                возможно, ты готов(а).</p>
+                
+                <p>Если нет —<br>
+                ты ничего не теряешь, закрыв страницу.</p>
+                
+                <p>Проект никуда не денется.</p>
+                
+                <hr style="margin: 2em 0; opacity: 0.3;">
+                
+                <div class="checklist">
+                    <p style="margin-bottom: 1em; font-size: 0.95em;">Прежде чем нажать кнопку, убедись:</p>
+                    <ul>
+                        <li>Ты прочитал(а) про стоп-сигналы</li>
+                        <li>Ты понимаешь, что это не терапия</li>
+                        <li>Ты готов(а) к дискомфорту</li>
+                    </ul>
+                </div>
+                
+                <a href="instruction.html" class="btn-primary">ПРОДОЛЖИТЬ → Инструкция</a>
+                
+                <div class="secondary-links">
+                    <a href="javascript:history.back()">Мне нужно подумать</a>
+                    <span style="color: var(--border-color);">|</span>
+                    <a href="#emergency">Контакты помощи</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ФУТЕР -->
+        <footer>
+            <p><strong>Статус документа:</strong><br>
+            v1.3 · финальная · online-only · 18+</p>
+            
+            <p style="margin-top: 2em; opacity: 0.5;">
+                © 2025 Кирилл Зотов · <a href="https://404soul.ru" style="color: inherit;">404soul.ru</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- СКРИПТЫ -->
+    <script>
+        // Прогресс-бар при скролле
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+        
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Простая аналитика scroll depth (можно подключить к Google Analytics)
+        let maxScroll = 0;
+        window.addEventListener('scroll', function() {
+            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            if (scrollPercent > maxScroll) {
+                maxScroll = scrollPercent;
+                // Здесь можно отправлять события в GA4:
+                // gtag('event', 'scroll_depth', { 'value': Math.round(maxScroll) });
+            }
+        });
+        
+        // Отслеживание времени на странице
+        let startTime = Date.now();
+        window.addEventListener('beforeunload', function() {
+            const timeSpent = Math.round((Date.now() - startTime) / 1000);
+            // Здесь можно отправлять в аналитику:
+            // gtag('event', 'time_on_page', { 'value': timeSpent });
+        });
+    </script>
+</body>
+</html>
