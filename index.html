@@ -50,47 +50,42 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>404soul | Экспериментальная литература. Цифровая археология травмы. Пермский киберпанк</title>
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Погрузитесь в уникальный трансмедийный нарратив «Книга Андрея, сына Пустоты». Исследуйте темы травмы, цифровой зависимости и поиска себя через глитч-арт и уральский урбанизм. Начните свой путь в бездну на 404soul.ru">
-    <meta name="keywords" content="Книга Андрея, сын Пустоты, психологическая драма, Пермь, цифровая зависимость, скрытая глава, литература">
+    <!-- ПРАВКА SEO: новый title (60-65 символов) -->
+    <title>404soul — экспериментальная онлайн-литература о памяти и цифровой тьме</title>
+    
+    <!-- ПРАВКА SEO: новый description (140-160 символов) -->
+    <meta name="description" content="404soul — экспериментальный онлайн-литературный проект. Нелинейный текст, визуальные фрагменты и звук. Память, цифровая зависимость и утрата идентичности.">
+    
+    <!-- ПРАВКА SEO: удалён keywords (не используется Google) -->
+    
     <meta name="robots" content="index, follow">
     <meta name="author" content="Кирилл Зотов, Пермь">
-    <meta name="publisher" content="xAI">
-    <meta name="date" content="2025-06-22">
-    <meta name="canonical" content="https://404soul.ru/">    
+    <link rel="canonical" href="https://404soul.ru/">    
     <meta http-equiv="content-language" content="ru">
-    <meta name="hreflang" content="ru-ru">
 
-    <!-- Open Graph Tags for Social Media Sharing -->
-    <meta property="og:title" content="Книга Андрея, сына Пустоты">
-    <meta property="og:description" content="Психологическая драма о борьбе с прошлым и цифровой тьмой. Погрузитесь в мир Андрея.">
+    <!-- ПРАВКА SEO: улучшенные Open Graph теги -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://404soul.ru/">
+    <meta property="og:title" content="404soul — цифровая археология памяти">
+    <meta property="og:description" content="Экспериментальный онлайн-проект: текст, изображение и звук. Не терапия. Не игра.">
     <meta property="og:image" content="https://404soul.ru/cover.jpg">
+    <meta property="og:url" content="https://404soul.ru/">
     <meta property="og:locale" content="ru_RU">
 
-    <!-- Structured Data (Schema.org) -->
+    <!-- ПРАВКА SEO: Schema.org изменён с Book на CreativeWork -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Book",
-      "name": "Книга Андрея, сына Пустоты",
-      "image": "https://404soul.ru/cover.jpg",
+      "@type": "CreativeWork",
+      "name": "404soul",
+      "description": "Экспериментальный онлайн-литературный проект о памяти, травме и цифровой зависимости.",
       "author": {
         "@type": "Person",
-        "name": "Кирилл, Пермь"
+        "name": "Кирилл Зотов"
       },
-      "description": "Психологическая драма...",
-      "genre": "Psychological Drama",
-      "datePublished": "2025-05-27",
-      "publisher": {
-        "@type": "Organization",
-        "name": "xAI"
-      },
-      "url": "https://404soul.ru/",
-      "sameAs": "https://t.me/kirill_z_re"
+      "genre": ["Experimental literature", "Digital narrative"],
+      "inLanguage": "ru",
+      "url": "https://404soul.ru/"
     }
     </script>
 
@@ -408,6 +403,11 @@
             background-color: #000000;
         }
         
+        .gallery h2 {
+            font-size: 1.3em;
+            margin-bottom: 1.5em;
+        }
+        
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -534,21 +534,33 @@
         <button class="mute-button" onclick="toggleMute()">Заглушить</button>
         <div class="loading-indicator" id="loading-indicator">Загрузка: 0%</div>
         <div class="header-overlay">
+            <!-- ПРАВКА SEO: H1 остаётся один, правильный -->
             <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
-            <p class="subheadline">Сколько версий себя ты похоронил на этом пути?</p>
-            <a href="/warning.html" class="cta-button">ПОГРУЗИТЬСЯ В БЕЗДНУ</a>
+            <p class="subheadline">Онлайн-литературный проект о памяти, цифровой зависимости и утрате идентичности.</p>
+            <a href="/warning.html" class="cta-button">ПЕРЕЙТИ К ПРОЕКТУ</a>
         </div>
     </div>
     
     <main id="main-content">
         <div class="teaser">
-            <p class="glitch-text">Тьма следит, экран мерцает, а пустота зовёт. Андрей шагает, но куда?</p>
+            <p class="glitch-text">Тьма следит. Экран мерцает. Память искажена.</p>
         </div>
         
         <div class="about">
-            <div class="about-text">
-                <p class="glitch-annotation"><em>Книга Андрея, сына Пустоты</em> — психологическая драма о молодом человеке из Перми, чья жизнь тонет в рутине офисных дней, цифровой зависимости и тенях прошлого. Андрей — не герой, а обычный мужчина, чьи будни в сером офисе становятся метафорой внутренней борьбы. Экран телефона — его цепь, воспоминания о материнской хватке — груз, а вопросы о смысле жизни — тихий шёпот в пустоте. Сюрреальные образы, такие как зрачок-шприц или чёрная река, размывают реальность, затягивая в цифровой капкан. В конце пути ждёт скрытая глава — лабиринт подсознания, где Андрей сталкивается с голосом, который не отпускает. Сможешь ли ты пройти его путь, услышать тишину его души и найти свет в бездне? Эта история — вызов: столкнись с собственной тьмой.</p>
-            </div>
+           <div class="about-text">
+        <p><em>Книга Андрея, сына Пустоты</em> — нелинейный цифровой текст,
+        соединяющий литературный нарратив, визуальные фрагменты и аудио-следы.</p>
+
+        <p>
+        Проект исследует повседневность молодого мужчины из Перми:
+        офис, телефон, прошлое и пустоту между ними.
+        </p>
+
+        <p>
+        Это не игра и не терапия.<br>
+        Это художественный эксперимент.
+        </p>
+    </div>
             <div class="about-image">
                 <img src="cover.jpg" alt="Обложка книги 'Книга Андрея, сына Пустоты'" class="glitch-image" loading="eager">
             </div>
@@ -556,6 +568,8 @@
         
         <!-- Gallery Section with Thumbnails and Audio -->
         <section class="gallery">
+            <!-- ПРАВКА SEO: добавлен H2 для иерархии -->
+            <h2>Фрагменты</h2>
             <div class="gallery-grid">
                 <!-- Row 1: svitok_1, chapter_2 -->
                 <div class="gallery-item">
