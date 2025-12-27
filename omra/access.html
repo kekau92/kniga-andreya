@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMRA Lab | Access Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* CRT monitor effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            position: relative;
+            z-index: 3;
+        }
+
+        .terminal {
+            border: 1px solid #00ff00;
+            padding: 30px;
+            background: rgba(0, 20, 0, 0.8);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: flicker 3s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .status {
+            color: #00ff00;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        .error {
+            color: #ff0000;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            background: #000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        input[type="password"]::placeholder {
+            color: #005500;
+        }
+
+        button {
+            background: #000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 12px 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+
+        .content {
+            display: none;
+            margin-top: 30px;
+            line-height: 1.6;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .divider {
+            border-top: 1px solid #00ff00;
+            margin: 20px 0;
+            opacity: 0.3;
+        }
+
+        .tally-container {
+            margin-top: 30px;
+            border: 1px solid #00ff00;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .instruction {
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            color: #00dd00;
+        }
+
+        a {
+            color: #00ff00;
+            text-decoration: none;
+            border-bottom: 1px dotted #00ff00;
+        }
+
+        a:hover {
+            color: #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        @media (max-width: 600px) {
+            .terminal {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="terminal">
+            <h1>OMRA Lab | Access Verification</h1>
+            
+            <div id="login-screen">
+                <div class="status">
+                    [STATUS] SCREENING COMPLETED<br>
+                    [CLEARANCE] OMEGA-LEVEL PENDING<br>
+                    [NODE] PERM_RESEARCH_DIVISION
+                </div>
+                
+                <div class="divider"></div>
+                
+                <p style="margin-bottom: 20px; font-size: 0.9em;">
+                    Enter your Access Key to proceed.<br>
+                    Введите ключ доступа для продолжения.
+                </p>
+                
+                <input 
+                    type="password" 
+                    id="access-key" 
+                    placeholder="ACCESS_KEY_________"
+                    autocomplete="off"
+                />
+                
+                <div id="error-message" class="error" style="display: none;">
+                    [ERROR] INVALID KEY | КЛЮЧ НЕДЕЙСТВИТЕЛЕН
+                </div>
+                
+                <button onclick="verifyAccess()">VERIFY | ПРОВЕРИТЬ</button>
+            </div>
+            
+            <div id="content-screen" class="content">
+                <div class="status">
+                    [ACCESS] GRANTED<br>
+                    [CLEARANCE] OMEGA-LEVEL CONFIRMED<br>
+                    [SYNC] READY
+                </div>
+                
+                <div class="divider"></div>
+                
+                <h2 style="font-size: 1em; margin: 20px 0; color: #00ff00;">
+                    TELEGRAM GROUP ACCESS REQUEST
+                </h2>
+                
+                <div class="instruction">
+                    You are now cleared to request Telegram Group invite.<br>
+                    Submit your identification below. Data transmitted via encrypted webhook.<br>
+                    No metadata stored. Anonymous access protocol active.
+                </div>
+                
+                <div class="instruction" style="color: #00ff00; margin-top: 15px;">
+                    Вам предоставлен доступ к запросу приглашения в Telegram-группу.<br>
+                    Отправьте вашу идентификацию ниже. Данные передаются через зашифрованный webhook.<br>
+                    Метаданные не сохраняются. Протокол анонимного доступа активен.
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="tally-container">
+                    <!-- Replace with your actual Tally.so embed code -->
+                    <iframe 
+                        data-tally-src="https://tally.so/embed/YOUR_FORM_ID?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                        loading="lazy" 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        title="OMRA Lab Access Request"
+                        style="border: none;">
+                    </iframe>
+                    <script>
+                        var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+                    </script>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <p style="font-size: 0.8em; color: #007700; margin-top: 20px;">
+                    After submission, you will receive the invite link within 24-48 hours.<br>
+                    Check your Telegram DMs from @omra_lab_bot (or manual admin contact).<br><br>
+                    После отправки вы получите ссылку-приглашение в течение 24-48 часов.<br>
+                    Проверьте личные сообщения в Telegram от @omra_lab_bot (или вручную от администратора).
+                </p>
+                
+                <p style="font-size: 0.75em; margin-top: 30px; color: #005500;">
+                    <a href="https://404soul.ru">404soul.ru</a> | lab@404soul.ru
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Access key (change this to your actual key)
+        const VALID_KEY = 'OMRA_RECOVERY_2025';
+        
+        function verifyAccess() {
+            const input = document.getElementById('access-key').value;
+            const errorMsg = document.getElementById('error-message');
+            const loginScreen = document.getElementById('login-screen');
+            const contentScreen = document.getElementById('content-screen');
+            
+            if (input.trim().toUpperCase() === VALID_KEY) {
+                // Hide login, show content
+                loginScreen.style.display = 'none';
+                contentScreen.classList.add('active');
+                errorMsg.style.display = 'none';
+            } else {
+                // Show error
+                errorMsg.style.display = 'block';
+                document.getElementById('access-key').value = '';
+                document.getElementById('access-key').focus();
+            }
+        }
+        
+        // Allow Enter key to submit
+        document.getElementById('access-key').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyAccess();
+            }
+        });
+    </script>
+</body>
+</html>
