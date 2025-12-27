@@ -128,13 +128,6 @@
             opacity: 0.3;
         }
 
-        .tally-container {
-            margin-top: 30px;
-            border: 1px solid #00ff00;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
         .instruction {
             font-size: 0.85em;
             margin-bottom: 15px;
@@ -150,6 +143,33 @@
         a:hover {
             color: #fff;
             border-bottom: 1px solid #fff;
+        }
+
+        .telegram-link {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #00ff00;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .telegram-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 15px 40px;
+            background: #000;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 1em;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        .telegram-button:hover {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
         }
 
         @media (max-width: 600px) {
@@ -205,49 +225,46 @@
                 <div class="divider"></div>
                 
                 <h2 style="font-size: 1em; margin: 20px 0; color: #00ff00;">
-                    TELEGRAM GROUP ACCESS REQUEST
+                    TELEGRAM GROUP ACCESS
                 </h2>
                 
                 <div class="instruction">
-                    You are now cleared to request Telegram Group invite.<br>
-                    Submit your identification below. Data transmitted via encrypted webhook.<br>
-                    No metadata stored. Anonymous access protocol active.
-                </div>
-                
-                <div class="instruction" style="color: #00ff00; margin-top: 15px;">
-                    Вам предоставлен доступ к запросу приглашения в Telegram-группу.<br>
-                    Отправьте вашу идентификацию ниже. Данные передаются через зашифрованный webhook.<br>
-                    Метаданные не сохраняются. Протокол анонимного доступа активен.
+                    You are now cleared to join the OMRA Lab Telegram Group.<br>
+                    Click the button below to receive your invite.<br><br>
+                    Вам предоставлен доступ к Telegram-группе OMRA Lab.<br>
+                    Нажмите кнопку ниже для получения приглашения.
                 </div>
                 
                 <div class="divider"></div>
                 
-                <div class="tally-container">
-                    <!-- Replace with your actual Tally.so embed code -->
-                    <iframe 
-                        data-tally-src="https://tally.so/embed/YOUR_FORM_ID?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-                        loading="lazy" 
-                        width="100%" 
-                        height="400" 
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0" 
-                        title="OMRA Lab Access Request"
-                        style="border: none;">
-                    </iframe>
-                    <script>
-                        var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
-                    </script>
+                <div class="telegram-link">
+                    <div style="margin-bottom: 15px; font-size: 0.9em;">
+                        JOIN THE LAB | ПРИСОЕДИНИТЬСЯ К ЛАБОРАТОРИИ
+                    </div>
+                    
+                    <a href="[YOUR_TELEGRAM_GROUP_INVITE_LINK]" class="telegram-button" target="_blank">
+                        → ENTER GROUP | ВОЙТИ В ГРУППУ ←
+                    </a>
+                    
+                    <div style="margin-top: 20px; font-size: 0.8em; color: #007700;">
+                        After joining, read 00_TERMINAL first for navigation.<br>
+                        После присоединения сначала прочитайте 00_TERMINAL для навигации.
+                    </div>
                 </div>
                 
                 <div class="divider"></div>
                 
-                <p style="font-size: 0.8em; color: #007700; margin-top: 20px;">
-                    After submission, you will receive the invite link within 24-48 hours.<br>
-                    Check your Telegram DMs from @omra_lab_bot (or manual admin contact).<br><br>
-                    После отправки вы получите ссылку-приглашение в течение 24-48 часов.<br>
-                    Проверьте личные сообщения в Telegram от @omra_lab_bot (или вручную от администратора).
-                </p>
+                <div style="font-size: 0.8em; color: #007700; margin-top: 20px;">
+                    <p><strong>CRITICAL REMINDER | ВАЖНОЕ НАПОМИНАНИЕ:</strong></p>
+                    <p style="margin-top: 10px;">
+                        This is not therapy. This is documentation.<br>
+                        This is not community. This is a mirror.<br>
+                        The work is yours alone.<br><br>
+                        Это не терапия. Это документация.<br>
+                        Это не сообщество. Это зеркало.<br>
+                        Работа — только ваша.
+                    </p>
+                </div>
                 
                 <p style="font-size: 0.75em; margin-top: 30px; color: #005500;">
                     <a href="https://404soul.ru">404soul.ru</a> | lab@404soul.ru
@@ -257,7 +274,7 @@
     </div>
 
     <script>
-        // Access key (change this to your actual key)
+        // Access key
         const VALID_KEY = 'OMRA_RECOVERY_2025';
         
         function verifyAccess() {
