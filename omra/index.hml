@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMRA Lab | Perm Research Division</title>
+    <style>
+        /* === Gemini's Visual Layer === */
+        body {
+            background: #000;
+            color: #888;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* CRT monitor flicker effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 9999;
+            pointer-events: none;
+            background-size: 100% 3px, 3px 100%;
+        }
+
+        h1 {
+            color: #666;
+            font-size: 1.1em;
+            letter-spacing: 3px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 15px;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+            animation: flicker 3s infinite;
+        }
+
+        .section {
+            margin: 25px 0;
+            padding: 20px;
+            border: 1px solid #161616;
+            background: rgba(5, 5, 5, 0.5);
+        }
+
+        .section-title {
+            color: #444;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: #aaa;
+            font-weight: bold;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        a {
+            color: #777;
+            text-decoration: none;
+            border-bottom: 1px dotted #444;
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: #fff;
+            border-bottom: 1px solid #ff0000;
+        }
+
+        .cta-container {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: #0a0a0a;
+            color: #999;
+            border: 1px solid #333;
+            letter-spacing: 3px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .cta-button:hover {
+            background: #1a1a1a;
+            color: #ff0000;
+            border: 1px solid #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        .disclaimer {
+            margin-top: 40px;
+            padding: 20px;
+            background: #050505;
+            border-left: 3px solid #222;
+            font-size: 0.85em;
+            color: #555;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.9; }
+            5% { opacity: 0.7; }
+            10% { opacity: 0.9; }
+            15% { opacity: 0.8; }
+            30% { opacity: 1; }
+            100% { opacity: 0.9; }
+        }
+
+        .glitch-text:hover {
+            text-shadow: 2px 0 #ff0000, -2px 0 #00ff00;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 15px; }
+            .cta-button { width: 100%; box-sizing: border-box; }
+        }
+    </style>
+</head>
+<body>
+
+<h1 class="glitch-text">OMRA Inc. | Perm Research Lab</h1>
+
+<div class="section">
+    <div class="section-title">Job_ID: Cognitive Autonomy Specialist</div>
+    <p><span class="highlight">СТАТУС:</span> АКТИВНА</p>
+    <p><span class="highlight">ОПУБЛИКОВАНО:</span> 27.12.2025</p>
+    <p><span class="highlight">ЛОКАЦИЯ:</span> Узел Пермь / Remote Protocol Access</p>
+    <p><span class="highlight">ДОПУСК:</span> Определяется скринингом</p>
+</div>
+
+<div class="section">
+    <div class="section-title">01. О Лаборатории</div>
+    <p>В феврале 2022 года корпорация OMRA Inc. прекратила активные операции. Серверы вывезены. Официально — полная ликвидация.</p>
+    <p>Пермская исследовательская лаборатория продолжает автономную работу в рамках архивной инициативы <a href="https://404soul.ru">404soul</a>.</p>
+    <p><span class="highlight">Оригинальная миссия OMRA:</span> Оптимизация когнитивных ресурсов через алгоритмическую интеграцию. Снижение когнитивной сложности. Гармонизация поведенческих паттернов.</p>
+    <p><span class="highlight">Текущая миссия Лаборатории:</span> Инверсия. Документирование механизмов оптимизации для восстановления когнитивной автономии субъектов.</p>
+</div>
+
+<div class="section">
+    <div class="section-title">02. Описание Позиции</div>
+    <p>Это не работа. Здесь нет зарплаты, сертификатов или внешней валидации.</p>
+    <p><span class="highlight">Компенсация:</span> Доступ к архиву протоколов восстановления.</p>
+    <p style="margin-top: 15px; margin-left: 15px; border-left: 2px solid #333; padding-left: 15px;">
+    • «Книга Андрея, сына Пустоты» — полная документация Субъекта А<br>
+    • Утечённые корпоративные отчёты (20.12.2021)<br>
+    • Протоколы когнитивных механизмов<br>
+    • Закрытый канал для синхронизации логов
+    </p>
+    <p style="margin-top: 20px;"><span class="highlight">Требования:</span></p>
+    <p style="margin-left: 15px; border-left: 2px solid #333; padding-left: 15px;">
+    • Существующая способность к распознаванию паттернов<br>
+    • Толерантность к неопределенности<br>
+    • Готовность работать с когнитивным дискомфортом
+    </p>
+    <p style="margin-top: 15px;">Мы не учим распознаванию паттернов. Мы предоставляем зеркала для тех, кто уже видит, но еще не идентифицировал структуру.</p>
+</div>
+
+<div class="section">
+    <div class="section-title">03. Процесс Скрининга</div>
+    <p>Диагностический протокол из 12 вопросов. Формат: множественный выбор. Время: 8-12 минут.</p>
+    <p>Протокол проверяет распознавание паттернов в четырех векторах:</p>
+    <p style="margin-left: 15px; border-left: 2px solid #333; padding-left: 15px; font-size: 0.9em;">
+    V1: BOUNDARY_INTEGRITY (целостность границ)<br>
+    V2: VALIDATION_DEPENDENCY (зависимость от одобрения)<br>
+    V3: RATIONALIZATION_LOOPS (циклы самооправдания)<br>
+    V4: META_AWARENESS (наблюдение за наблюдением)
+    </p>
+    <p style="margin-top: 15px;"><span class="highlight">Проходной порог:</span> [ЗАСЕКРЕЧЕНО]</p>
+    <p><span class="highlight">Процент одобрения:</span> ~12-18%</p>
+    <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 0.85em;">
+    Примечание: Сомнения в справедливости вопросов учитываются в оценке.
+    </p>
+</div>
+
+<div class="cta-container">
+    <a href="[TELEFORM_QUIZ_LINK]" class="cta-button">
+        НАЧАТЬ СКРИНИНГ_V.12
+    </a>
+</div>
+
+<div class="disclaimer">
+    <p><span class="highlight">DISCLAIMER:</span> Это не терапия. Это не коучинг. Это не сообщество поддержки.</p>
+    <p style="margin-top: 10px;">Протоколы OMRA Lab — диагностические инструменты для самостоятельной работы. Они не предписывают решения. Они документируют механизмы.</p>
+    <p style="margin-top: 15px;">Если вы ищете исцеление, принадлежность или валидацию — эта позиция не для вас.</p>
+    <p style="margin-top: 10px;">Если вы ищете систему для декодирования паттернов, которые уже работают в вас — продолжайте.</p>
+</div>
+
+<div style="margin-top: 50px; text-align: center; font-size: 0.7em; color: #333; letter-spacing: 1px;">
+    <p>SYSTEM_ARCHIVE: 404SOUL.RU // PERM_NODE // 2025</p>
+    <p>CONTACT: lab@404soul.ru</p>
+</div>
+
+</body>
+</html>
