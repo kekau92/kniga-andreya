@@ -644,20 +644,38 @@
         <button class="modal-close" onclick="closeModal()">Закрыть</button>
     </div>
     
-   <div class="footer" style="padding: 60px 0 40px 0; background: #000; text-align: center; border-top: 1px solid #111;">
+<div class="footer" style="padding: 60px 0 40px 0; background: #000; text-align: center;">
     
     <p style="margin-bottom: 25px;">
-        <a href="/omra/" class="glitch-annotation" style="color: #444; text-decoration: none; font-size: 0.8em; letter-spacing: 1.5px; font-family: 'Courier New', monospace; display: inline-block;">
+        <a href="/omra/" 
+           class="glitch-annotation" 
+           style="color: #444; 
+                  text-decoration: none; 
+                  font-size: 0.8em; 
+                  letter-spacing: 2px; 
+                  font-family: monospace; 
+                  animation: none; /* Отключаем постоянную тряску */
+                  opacity: 0.6;
+                  transition: opacity 0.3s ease;">
             [ERR_RECOVERY] OMRA_LAB // PERM_NODE // SCREENING_ACTIVE
         </a>
     </p>
 
-    <p style="font-size: 0.75em; color: #666; font-family: 'Open Sans', sans-serif; letter-spacing: 0.5px;">
+    <p style="font-size: 0.75em; color: #333; font-family: sans-serif;">
         2025 Кирилл Зотов, Пермь. 
-        <a href="https://t.me/kirill_z_re" target="_blank" style="color: #666; text-decoration: none; margin-left: 10px; border-bottom: 1px dotted #333;">@kirill_z_re</a>
+        <a href="https://t.me/kirill_z_re" style="color: #333; text-decoration: none;">@kirill_z_re</a>
     </p>
     
 </div>
+
+<style>
+    /* Добавляем эффект глитча ТОЛЬКО при наведении, чтобы не раздражать глаза */
+    .glitch-annotation:hover {
+        animation: glitch-annotation 0.3s infinite !important;
+        opacity: 1 !important;
+        color: #666 !important;
+    }
+</style>
     
     <script>
         const video = document.querySelector('.header-video');
