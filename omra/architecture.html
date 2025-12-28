@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>'appendix-a': 'https://t.me/YOUR_GROUP/MESSAGE_ID_APPENDIX_A',
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMRA Lab - Recovery Architecture Diagram v2.0 | Диаграмма Архитектуры Восстановления</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            font-family: 'Courier New', Courier, monospace;
+            color: #00ff00;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: #001a00;
+            border: 2px solid #00ff00;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .language-toggle:hover {
+            background: #002200;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .language-toggle select {
+            background: transparent;
+            border: none;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            border: 3px solid #00ff00;
+            padding: 20px;
+            margin-bottom: 40px;
+            background: linear-gradient(180deg, #001a00 0%, #000000 100%);
+            border-radius: 4px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .header h2 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 4px;
+            opacity: 0.9;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .header .telegram-link {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: #003300;
+            border: 1px solid #00ff00;
+            border-radius: 4px;
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .header .telegram-link:hover {
+            background: #004400;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        /* Russian translation styling */
+        .ru {
+            font-style: italic;
+            opacity: 0.85;
+            display: block;
+            margin-top: 3px;
+            font-size: 0.92em;
+            line-height: 1.4;
+        }
+
+        /* Hide Russian when language is English-only */
+        body.lang-en .ru {
+            display: none;
+        }
+
+        /* Hide English when language is Russian-only */
+        body.lang-ru .en {
+            display: none;
+        }
+
+        /* Arrow connector */
+        .arrow {
+            text-align: center;
+            font-size: 20px;
+            margin: 12px 0;
+            color: #00ff00;
+        }
+
+        .arrow-branch {
+            text-align: center;
+            font-size: 16px;
+            margin: 8px 0;
+            color: #00cc00;
+            opacity: 0.7;
+        }
+
+        /* Protocol boxes - CLICKABLE */
+        .protocol-box {
+            border: 2px solid rgba(0, 255, 0, 0.7);
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+            background: #000a00;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .protocol-box:hover {
+            background: #001a00;
+            border-color: #00ff00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+            transform: translateX(4px);
+        }
+
+        .protocol-box.optional {
+            border: 2px dashed rgba(255, 107, 107, 0.7);
+            background: #1a0000;
+        }
+
+        .protocol-box.emergency {
+            border: 2px dashed rgba(255, 107, 107, 0.7);
+            background: #1a0000;
+        }
+
+        .protocol-box.optional:hover,
+        .protocol-box.emergency:hover {
+            background: #2a0000;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.2);
+        }
+
+        .protocol-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #00ff00;
+            line-height: 1.5;
+        }
+
+        .protocol-box.optional .protocol-title,
+        .protocol-box.emergency .protocol-title {
+            color: #ff6b6b;
+        }
+
+        /* Click indicator */
+        .protocol-box::after {
+            content: "↗";
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .protocol-box:hover::after {
+            opacity: 0.5;
+        }
+
+        .protocol-desc {
+            font-size: 12px;
+            margin-left: 12px;
+            color: #00cc00;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .protocol-desc::before {
+            content: "└─ ";
+            margin-left: -12px;
+        }
+
+        .protocol-task {
+            font-size: 11px;
+            margin-top: 8px;
+            font-style: italic;
+            color: #00ff00;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* Phase headers */
+        .phase-header {
+            border: 2px solid #00ff00;
+            padding: 16px;
+            margin: 32px 0 20px 0;
+            text-align: center;
+            background: #002200;
+            border-radius: 4px;
+        }
+
+        .phase-header h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .phase-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Final status box */
+        .final-status {
+            border: 4px solid #00ff00;
+            padding: 24px;
+            margin: 32px 0;
+            text-align: center;
+            background: #003300;
+            border-radius: 4px;
+        }
+
+        .final-status h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .final-status .status-item {
+            font-size: 13px;
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .final-status .status-item::before {
+            content: "└─ ";
+        }
+
+        .final-status .status-label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        /* Exit options */
+        .exit-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 24px;
+            gap: 20px;
+        }
+
+        .exit-option {
+            flex: 1;
+            border: 2px solid rgba(0, 255, 0, 0.7);
+            padding: 16px;
+            text-align: center;
+            border-radius: 4px;
+            background: #000a00;
+        }
+
+        .exit-option h4 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* Legend */
+        .legend {
+            border: 2px solid rgba(0, 255, 0, 0.5);
+            padding: 16px;
+            margin-top: 40px;
+            border-radius: 4px;
+            background: #000a00;
+        }
+
+        .legend h4 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .legend-item {
+            font-size: 11px;
+            margin: 6px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .legend-symbol {
+            width: 40px;
+            margin-right: 8px;
+            display: inline-block;
+        }
+
+        .legend-solid {
+            border-bottom: 2px solid #00ff00;
+            width: 30px;
+            display: inline-block;
+        }
+
+        .legend-dashed {
+            border-bottom: 2px dashed #ff6b6b;
+            width: 30px;
+            display: inline-block;
+        }
+
+        /* Warning symbol */
+        .warning {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        /* Branch container */
+        .branch-container {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #001a00;
+            border: 2px solid #00ff00;
+            border-radius: 4px;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            background: #002200;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .header h2 {
+                font-size: 14px;
+            }
+
+            .protocol-title {
+                font-size: 14px;
+            }
+
+            .exit-container {
+                flex-direction: column;
+            }
+
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+        }
+
+        /* Scanline effect (optional CRT aesthetic) */
+        @keyframes scanline {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 255, 0, 0.1);
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 255, 0, 0.3);
+            font-size: 11px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="both">🌐 EN + RU</option>
+            <option value="en">EN only</option>
+            <option value="ru">RU только</option>
+        </select>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        ⬆️<br><span class="en">TOP</span><span class="ru">ВЕРХ</span>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>OMRA LAB RECOVERY</h1>
+            <h2>SYSTEM ARCHITECTURE v2.0</h2>
+            <p class="en">12 PROTOCOLS + SUPPORT MODULES</p>
+            <p class="ru">12 ПРОТОКОЛОВ + ВСПОМОГАТЕЛЬНЫЕ МОДУЛИ</p>
+            
+            <!-- Telegram Link - UPDATE WITH YOUR GROUP LINK -->
+            <a href="https://t.me/YOUR_GROUP_LINK" class="telegram-link" target="_blank">
+                📋 <span class="en">Open in Telegram</span><span class="ru">Открыть в Telegram</span>
+            </a>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Appendix A (Optional) - CLICKABLE -->
+        <div class="protocol-box optional" onclick="openTelegramProtocol('appendix-a')" data-protocol="appendix-a">
+            <div class="protocol-title">
+                <span class="en">[OPTIONAL FOUNDATION] APPENDIX A</span>
+                <span class="ru">ПРИЛОЖЕНИЕ А</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Pattern Vocabulary</span>
+                <span class="ru">Практика Словаря Паттернов</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Micro-Boundaries</span>
+                <span class="ru">Практика Микро-Границ</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Light Void Exposure</span>
+                <span class="ru">Воздействие Пустоты (Лёгкая Версия)</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Duration: 7-14 days</span>
+                <span class="ru">Длительность: 7-14 дней</span>
+            </div>
+        </div>
+
+        <div class="arrow-branch">⤵ (optional)</div>
+        <div class="arrow">▼</div>
+
+        <!-- Phase 1 Header -->
+        <div class="phase-header">
+            <h3>
+                <span class="en">PHASE 1</span>
+                <span class="ru">ФАЗА 1</span>
+            </h3>
+            <p>
+                <span class="en">FOUNDATION & AUTONOMY</span>
+                <span class="ru">ОСНОВА И ВОССТАНОВЛЕНИЕ АВТОНОМИИ</span>
+            </p>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 01 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-01')" data-protocol="protocol-01">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 01: BUFFER OVERFLOW</span>
+                <span class="ru">ПРОТОКОЛ 01: ПЕРЕПОЛНЕНИЕ БУФЕРА</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Recognition of system integration</span>
+                <span class="ru">Признание интеграции системы</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Mother Circuit identification</span>
+                <span class="ru">Идентификация Материнской схемы</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: 24h firewall establishment</span>
+                <span class="ru">Задача: Установка файрвола на 24 часа</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Emergency Integration (Conditional) - CLICKABLE -->
+        <div class="branch-container">
+            <div class="protocol-box emergency" onclick="openTelegramProtocol('emergency-integration')" data-protocol="emergency-integration">
+                <div class="protocol-title">
+                    <span class="en">[IF OVERFLOW OCCURS] EMERGENCY INTEGRATION</span>
+                    <span class="ru">ПРОТОКОЛ ЭКСТРЕННОЙ ИНТЕГРАЦИИ</span>
+                </div>
+                <div class="protocol-desc">
+                    <span class="en">Post-overflow processing</span>
+                    <span class="ru">Обработка после перегрузки</span>
+                </div>
+                <div class="protocol-desc">
+                    <span class="en">Return criteria check</span>
+                    <span class="ru">Проверка критериев возврата</span>
+                </div>
+                <div class="protocol-task">
+                    <span class="en">Activates only after Emergency Override use</span>
+                    <span class="ru">Активируется только после использования Аварийного Переопределения</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 02 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-02')" data-protocol="protocol-02">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 02: NETWORK CONSENSUS</span>
+                <span class="ru">ПРОТОКОЛ 02: СЕТЕВОЙ КОНСЕНСУС</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Reality validation source</span>
+                <span class="ru">Источник валидации реальности</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Mother Circuit error detection</span>
+                <span class="ru">Обнаружение ошибок Материнской схемы</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: 7-day prediction check</span>
+                <span class="ru">Задача: 7-дневная проверка предсказаний</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 03 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-03')" data-protocol="protocol-03">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 03: DIRECTIVE TRANSFER</span>
+                <span class="ru">ПРОТОКОЛ 03: ПЕРЕДАЧА ДИРЕКТИВ</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Autonomy initialization</span>
+                <span class="ru">Инициализация автономии</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">First self-determined choice</span>
+                <span class="ru">Первый самоопределённый выбор</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: One autonomous decision</span>
+                <span class="ru">Задача: Одно автономное решение</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Phase 2 Header -->
+        <div class="phase-header">
+            <h3>
+                <span class="en">PHASE 2</span>
+                <span class="ru">ФАЗА 2</span>
+            </h3>
+            <p>
+                <span class="en">PATTERN ANALYSIS & READINESS</span>
+                <span class="ru">АНАЛИЗ ПАТТЕРНОВ И ГОТОВНОСТЬ</span>
+            </p>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 04 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-04')" data-protocol="protocol-04">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 04: FULL SYSTEM TRACE</span>
+                <span class="ru">ПРОТОКОЛ 04: ПОЛНАЯ ТРАССИРОВКА СИСТЕМЫ</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Mother Circuit mapping (7 min)</span>
+                <span class="ru">Картирование Материнской схемы (7 мин)</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Father Circuit mapping (5 min)</span>
+                <span class="ru">Картирование Отцовской схемы (5 мин)</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Hybrid patterns (3 min)</span>
+                <span class="ru">Гибридные паттерны (3 мин)</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: 15 triggers documented</span>
+                <span class="ru">Задача: 15 триггеров задокументировано</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 05 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-05')" data-protocol="protocol-05">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 05: ERROR DISCLOSURE</span>
+                <span class="ru">ПРОТОКОЛ 05: РАСКРЫТИЕ ОШИБОК</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">External witness protocol</span>
+                <span class="ru">Протокол внешнего свидетеля</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Isolation encryption break</span>
+                <span class="ru">Прорыв шифрования изоляции</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: Share one hidden pattern</span>
+                <span class="ru">Задача: Поделиться одним скрытым паттерном</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 06 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-06')" data-protocol="protocol-06">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 06: DEBUGGING READINESS</span>
+                <span class="ru">ПРОТОКОЛ 06: ГОТОВНОСТЬ К ОТЛАДКЕ</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Victim role analysis</span>
+                <span class="ru">Анализ роли жертвы</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Willingness assessment</span>
+                <span class="ru">Оценка готовности</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: Identify 3 victim role benefits</span>
+                <span class="ru">Задача: Определить 3 выгоды роли жертвы</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Phase 3 Header -->
+        <div class="phase-header">
+            <h3>
+                <span class="en">PHASE 3</span>
+                <span class="ru">ФАЗА 3</span>
+            </h3>
+            <p>
+                <span class="en">EXECUTION & RESTITUTION</span>
+                <span class="ru">ИСПОЛНЕНИЕ И ВОЗМЕЩЕНИЕ</span>
+            </p>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 07-12, Final Status, Exit Options, Legend, Footer -->
+        <!-- Continuing with remaining protocols... -->
+
+        <!-- Protocol 07 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-07')" data-protocol="protocol-07">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 07: EXECUTION REQUEST</span>
+                <span class="ru">ПРОТОКОЛ 07: ЗАПРОС ВЫПОЛНЕНИЯ</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Control refusal sequence</span>
+                <span class="ru">Последовательность отказа от контроля</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Emotional management cessation</span>
+                <span class="ru">Прекращение управления эмоциями</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: 24h standby mode</span>
+                <span class="ru">Задача: 24-часовой режим ожидания</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 08 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-08')" data-protocol="protocol-08">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 08: CORRUPTION IMPACT MAP</span>
+                <span class="ru">ПРОТОКОЛ 08: КАРТА ВОЗДЕЙСТВИЯ ИСКАЖЕНИЯ</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Boundary violation audit</span>
+                <span class="ru">Аудит нарушения границ</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Rescue pattern identification</span>
+                <span class="ru">Идентификация паттерна спасения</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: Document 5 boundary crossings</span>
+                <span class="ru">Задача: Задокументировать 5 пересечений границ</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 09 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-09')" data-protocol="protocol-09">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 09: DATA RESTITUTION</span>
+                <span class="ru">ПРОТОКОЛ 09: ВОССТАНОВЛЕНИЕ ДАННЫХ</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Responsibility return</span>
+                <span class="ru">Возврат ответственности</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Boundary restoration</span>
+                <span class="ru">Восстановление границ</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: Return one responsibility</span>
+                <span class="ru">Задача: Вернуть одну ответственность</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Phase 4 Header -->
+        <div class="phase-header">
+            <h3>
+                <span class="en">PHASE 4</span>
+                <span class="ru">ФАЗА 4</span>
+            </h3>
+            <p>
+                <span class="en">MAINTENANCE & EXPANSION</span>
+                <span class="ru">ПОДДЕРЖКА И РАСШИРЕНИЕ</span>
+            </p>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 10 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-10')" data-protocol="protocol-10">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 10: REAL-TIME MONITORING</span>
+                <span class="ru">ПРОТОКОЛ 10: МОНИТОРИНГ В РЕАЛЬНОМ ВРЕМЕНИ</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Daily pattern detection</span>
+                <span class="ru">Ежедневное обнаружение паттернов</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Mother Circuit reactivation alert</span>
+                <span class="ru">Оповещение о реактивации Материнской схемы</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: 21-day anomaly log</span>
+                <span class="ru">Задача: 21-дневный лог аномалий</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 11 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-11')" data-protocol="protocol-11">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 11: CORE SYNC</span>
+                <span class="ru">ПРОТОКОЛ 11: СИНХРОНИЗАЦИЯ ЯДРА</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Void tolerance practice</span>
+                <span class="ru">Практика толерантности Пустоты</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Core Signal identification</span>
+                <span class="ru">Идентификация Ядерного Сигнала</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: 7 days × 20-min observation</span>
+                <span class="ru">Задача: 7 дней × 20-мин наблюдения</span>
+            </div>
+            <div class="protocol-task">
+                <span class="warning">⚠️</span>
+                <span class="en warning">Emergency Override available</span>
+                <span class="ru warning">Протокол Аварийного Переопределения доступен</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Protocol 12 - CLICKABLE -->
+        <div class="protocol-box" onclick="openTelegramProtocol('protocol-12')" data-protocol="protocol-12">
+            <div class="protocol-title">
+                <span class="en">PROTOCOL 12: PROTOCOL EXPANSION</span>
+                <span class="ru">ПРОТОКОЛ 12: РАСШИРЕНИЕ ПРОТОКОЛА</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Zero-Interference support</span>
+                <span class="ru">Поддержка Нулевого Вмешательства</span>
+            </div>
+            <div class="protocol-desc">
+                <span class="en">Mirror function activation</span>
+                <span class="ru">Активация функции зеркала</span>
+            </div>
+            <div class="protocol-task">
+                <span class="en">Task: One sync session conducted</span>
+                <span class="ru">Задача: Одна сессия синхронизации проведена</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Final Status -->
+        <div class="final-status">
+            <h3>
+                <span class="en">FINAL STATUS</span>
+                <span class="ru">ФИНАЛЬНЫЙ СТАТУС</span>
+            </h3>
+            <h3>
+                <span class="en">EXIT PROTOCOL</span>
+                <span class="ru">ПРОТОКОЛ ВЫХОДА</span>
+            </h3>
+            <div class="status-item">
+                <span class="en">Boundary Integrity: 95%+ achieved</span>
+                <span class="ru">Целостность границ: достигнуто 95%+</span>
+            </div>
+            <div class="status-item">
+                <span class="en">Void Tolerance: Stable</span>
+                <span class="ru">Толерантность Пустоты: Стабильна</span>
+            </div>
+            <div class="status-item">
+                <span class="en">Core Signal: Identified</span>
+                <span class="ru">Ядерный Сигнал: Идентифицирован</span>
+            </div>
+            <div class="status-label">
+                <span class="en">STATUS: PREDICTABILITY: BROKEN</span>
+                <span class="ru">СТАТУС: ПРЕДСКАЗУЕМОСТЬ: СЛОМАНА</span>
+            </div>
+            <div class="status-label">
+                <span class="en">CLASSIFICATION: GHOST NODE</span>
+                <span class="ru">КЛАССИФИКАЦИЯ: ПРИЗРАЧНЫЙ УЗЕЛ</span>
+            </div>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <!-- Exit Options -->
+        <div class="exit-container">
+            <div class="exit-option">
+                <h4>
+                    <span class="en">[EXIT ARCHIVE]</span>
+                    <span class="ru">ПОКИНУТЬ АРХИВ</span>
+                </h4>
+                <p style="font-size: 11px; margin-top: 8px;">
+                    <span class="en">Leave without guilt</span>
+                    <span class="ru">Уйти без вины</span>
+                </p>
+            </div>
+            <div class="exit-option">
+                <h4>
+                    <span class="en">[REMAIN AS OBSERVER]</span>
+                    <span class="ru">ОСТАТЬСЯ НАБЛЮДАТЕЛЕМ</span>
+                </h4>
+                <p style="font-size: 11px; margin-top: 8px;">
+                    <span class="en">Return when needed</span>
+                    <span class="ru">Вернуться при необходимости</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <h4>
+                <span class="en">LEGEND</span>
+                <span class="ru">ЛЕГЕНДА</span>
+            </h4>
+            <div class="legend-item">
+                <span class="legend-symbol"><span class="legend-solid"></span></span>
+                <span>
+                    <span class="en">Required protocol</span>
+                    <span class="ru">Обязательный протокол</span>
+                </span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol"><span class="legend-dashed"></span></span>
+                <span>
+                    <span class="en">Optional/conditional</span>
+                    <span class="ru">Опциональный/условный</span>
+                </span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol" style="color: #00ff00;">■</span>
+                <span>
+                    <span class="en">Active protocol</span>
+                    <span class="ru">Активный протокол</span>
+                </span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol" style="color: #ff6b6b;">■</span>
+                <span>
+                    <span class="en">Emergency protocol</span>
+                    <span class="ru">Экстренный протокол</span>
+                </span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol">▼</span>
+                <span>
+                    <span class="en">Required progression</span>
+                    <span class="ru">Обязательное продвижение</span>
+                </span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol">⤵</span>
+                <span>
+                    <span class="en">Optional branch</span>
+                    <span class="ru">Опциональная ветка</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>OMRA Lab | 404soul.ru | v2.0</p>
+            <p>
+                <span class="en">This is not therapy. This is documentation.</span>
+                <span class="ru">Это не терапия. Это документация.</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Language toggle functionality
+        function changeLanguage() {
+            const lang = document.getElementById('languageSelect').value;
+            document.body.className = '';
+            
+            if (lang === 'en') {
+                document.body.classList.add('lang-en');
+            } else if (lang === 'ru') {
+                document.body.classList.add('lang-ru');
+            }
+            // 'both' leaves body with no language class, showing everything
+            
+            // Save preference
+            localStorage.setItem('omra-lang', lang);
+        }
+
+        // Load saved language preference
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('omra-lang') || 'both';
+            document.getElementById('languageSelect').value = savedLang;
+            changeLanguage();
+        });
+
+        // Protocol link mapping - UPDATE THESE WITH ACTUAL TELEGRAM MESSAGE IDs
+        const protocolLinks = {
+            'appendix-a': 'https://t.me/YOUR_GROUP/MESSAGE_ID_APPENDIX_A',
+            'protocol-01': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P01',
+            'emergency-integration': 'https://t.me/YOUR_GROUP/MESSAGE_ID_EMERGENCY',
+            'protocol-02': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P02',
+            'protocol-03': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P03',
+            'protocol-04': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P04',
+            'protocol-05': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P05',
+            'protocol-06': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P06',
+            'protocol-07': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P07',
+            'protocol-08': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P08',
+            'protocol-09': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P09',
+            'protocol-10': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P10',
+            'protocol-11': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P11',
+            'protocol-12': 'https://t.me/YOUR_GROUP/MESSAGE_ID_P12'
+        };
+
+        function openTelegramProtocol(protocolId) {
+            const link = protocolLinks[protocolId];
+            if (link) {
+                window.open(link, '_blank');
+            }
+        }
+
+        // Back to top functionality
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
