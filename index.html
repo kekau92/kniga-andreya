@@ -610,6 +610,128 @@
             animation: glitch 0.3s infinite;
         }
         
+        /* ═══════════════════════════════════════
+           OMRA SYSTEM INJECTIONS (НОВОЕ)
+           ═══════════════════════════════════════ */
+        .omra-injection {
+            position: fixed;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75em;
+            color: #00ff00;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid #00ff00;
+            padding: 8px 12px;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            letter-spacing: 0.5px;
+        }
+        
+        .omra-injection.active {
+            animation: injectAppear 0.3s forwards, injectGlitch 0.5s infinite;
+        }
+        
+        @keyframes injectAppear {
+            from { 
+                opacity: 0; 
+                transform: translateY(-10px) scale(0.95);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @keyframes injectGlitch {
+            0%, 90% { 
+                transform: translate(0, 0);
+                filter: none;
+            }
+            92% { 
+                transform: translate(-2px, 1px);
+                filter: hue-rotate(90deg);
+            }
+            94% { 
+                transform: translate(2px, -1px);
+                filter: hue-rotate(-90deg);
+            }
+            96% { 
+                transform: translate(-1px, -1px);
+                filter: none;
+            }
+            98% { 
+                transform: translate(1px, 1px);
+                filter: hue-rotate(45deg);
+            }
+            100% { 
+                transform: translate(0, 0);
+                filter: none;
+            }
+        }
+        
+        .omra-injection.fade-out {
+            animation: injectFadeOut 0.5s forwards;
+        }
+        
+        @keyframes injectFadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; transform: translateY(10px); }
+        }
+        
+        /* Scan line effect overlay */
+        .omra-scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to bottom, 
+                rgba(0, 255, 0, 0.8), 
+                rgba(0, 255, 0, 0.3),
+                transparent);
+            z-index: 9998;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .omra-scanline.scanning {
+            animation: scanlineMove 3s linear;
+        }
+        
+        @keyframes scanlineMove {
+            from { 
+                top: 0; 
+                opacity: 0.8;
+            }
+            to { 
+                top: 100%; 
+                opacity: 0;
+            }
+        }
+        
+        /* Background flash when OMRA takes over */
+        .omra-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 0, 0.05);
+            z-index: 9997;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .omra-flash.active {
+            animation: omraFlash 0.3s;
+        }
+        
+        @keyframes omraFlash {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
         @media (max-width: 768px) {
             .gallery-grid {
                 grid-template-columns: 1fr;
@@ -640,6 +762,12 @@
         <div class="boot-line">ДОСТУП [ОГРАНИЧЕН]</div>
         <div class="boot-line">[ОЖИДАНИЕ_ПОДТВЕРЖДЕНИЯ<span class="boot-blink">_</span>]</div>
     </div>
+
+    <!-- ═══════════════════════════════════════
+         OMRA SYSTEM INJECTIONS (НОВОЕ)
+         ═══════════════════════════════════════ -->
+    <div class="omra-scanline" id="omra-scanline"></div>
+    <div class="omra-flash" id="omra-flash"></div>
 
     <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     
@@ -781,11 +909,11 @@
             <span class="sys-code">[ERR_RECOVERY]</span> 
             OMRA_LAB // 
             <span class="sys-node">NODE_PERM_58.0105°N_56.2502°E</span> // 
-            <span class="sys-status blink">SCREENING_ACTIVE</span>
+            <a href="/omra/" style="text-decoration: none;"><span class="sys-status blink">SCREENING_ACTIVE</span></a>
             <br>
             <span style="font-size: 0.9em; color: #222;">
                 последний_вход: [УДАЛЕНО] | 
-                статус_субъекта: <a href="/omra/">████████</a>
+                статус_субъекта: <a href="/404">████████</a>
             </span>
         </div>
     </div>
@@ -870,6 +998,86 @@
             video.addEventListener('canplay', handleVideoLoad);
             video.addEventListener('loadeddata', handleVideoLoad);
         });
+
+        // ═══════════════════════════════════════
+        // OMRA SYSTEM INJECTION LOGIC
+        // ═══════════════════════════════════════
+        
+        const omraMessages = [
+            { text: '[СУБЪЕКТ_ИДЕНТИФИЦИРОВАН]', position: 'top-right', delay: 8000 },
+            { text: 'ПРОТОКОЛ_НАБЛЮДЕНИЯ::АКТИВЕН', position: 'top-left', delay: 15000 },
+            { text: 'СБОР_ДАННЫХ::58.0105°N_56.2502°E', position: 'bottom-left', delay: 23000 },
+            { text: '[ПОВЕДЕНЧЕСКИЙ_ПАТТЕРН::ЗАПИСАН]', position: 'bottom-right', delay: 31000 },
+            { text: 'OMRA_NODE::PERM::ONLINE', position: 'center', delay: 40000 }
+        ];
+        
+        function createOMRAInjection(message, position) {
+            const injection = document.createElement('div');
+            injection.className = 'omra-injection';
+            injection.textContent = message;
+            
+            // Position the injection
+            const positions = {
+                'top-left': { top: '20px', left: '20px' },
+                'top-right': { top: '20px', right: '20px' },
+                'bottom-left': { bottom: '80px', left: '20px' },
+                'bottom-right': { bottom: '80px', right: '20px' },
+                'center': { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }
+            };
+            
+            Object.assign(injection.style, positions[position] || positions['top-right']);
+            
+            document.body.appendChild(injection);
+            
+            // Trigger scanline effect
+            const scanline = document.getElementById('omra-scanline');
+            scanline.classList.add('scanning');
+            setTimeout(() => scanline.classList.remove('scanning'), 3000);
+            
+            // Trigger background flash
+            const flash = document.getElementById('omra-flash');
+            flash.classList.add('active');
+            setTimeout(() => flash.classList.remove('active'), 300);
+            
+            // Animate in
+            setTimeout(() => injection.classList.add('active'), 50);
+            
+            // Fade out and remove
+            setTimeout(() => {
+                injection.classList.remove('active');
+                injection.classList.add('fade-out');
+                setTimeout(() => injection.remove(), 500);
+            }, 4000);
+        }
+        
+        // Schedule OMRA injections
+        omraMessages.forEach(msg => {
+            setTimeout(() => {
+                createOMRAInjection(msg.text, msg.position);
+            }, msg.delay);
+        });
+        
+        // Optional: Add random glitch injections
+        function randomOMRAGlitch() {
+            const glitchMessages = [
+                '[ДАННЫЕ_ПОВРЕЖДЕНЫ]',
+                'ERR::MEMORY_LEAK',
+                'СУБЪЕКТ::████████',
+                '[ВОССТАНОВЛЕНИЕ...]',
+                'OMRA::WATCHING'
+            ];
+            
+            const randomMsg = glitchMessages[Math.floor(Math.random() * glitchMessages.length)];
+            const randomPos = ['top-left', 'top-right', 'bottom-left', 'bottom-right'][Math.floor(Math.random() * 4)];
+            
+            createOMRAInjection(randomMsg, randomPos);
+            
+            // Schedule next random glitch (between 45-90 seconds)
+            setTimeout(randomOMRAGlitch, 45000 + Math.random() * 45000);
+        }
+        
+        // Start random glitches after 50 seconds
+        setTimeout(randomOMRAGlitch, 50000);
     </script>
 
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"ce25fed84c364e448ffc48f0dbef4d5f","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
