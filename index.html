@@ -274,7 +274,7 @@
             right: 70px; /* Moved left to avoid corner bracket */
             background-color: var(--omra-red);
             color: #fff;
-            padding: 6px 12px;
+            padding: 8px 14px;
             border: none;
             border-radius: 3px;
             cursor: pointer;
@@ -283,6 +283,11 @@
             font-family: var(--font-code);
             touch-action: manipulation;
             transition: all 0.3s ease;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .mute-button:hover {
@@ -616,24 +621,24 @@
             position: relative;
         }
         
-        /* Glitch effect on gallery images */
+        /* Glitch effect on gallery images - PHASE 2: Extended to 5s cycle */
         .gallery-item img {
-            animation: imageGlitch 3s infinite;
+            animation: imageGlitch 5s infinite; /* Was 3s */
         }
         
         @keyframes imageGlitch {
-            0%, 90% { 
+            0%, 92% {  /* Adjusted timing for 5s cycle */
                 filter: brightness(90%) contrast(110%);
             }
-            91% { 
+            93% { 
                 filter: brightness(90%) contrast(110%) hue-rotate(90deg);
                 transform: translate(2px, 0);
             }
-            92% { 
+            94% { 
                 filter: brightness(90%) contrast(110%) hue-rotate(-90deg);
                 transform: translate(-2px, 0);
             }
-            93% { 
+            95% { 
                 filter: brightness(90%) contrast(110%);
                 transform: translate(0, 0);
             }
@@ -690,7 +695,7 @@
         .gallery-item audio {
             margin-top: 10px;
             width: 100%;
-            height: 30px;
+            height: 44px;
             border-radius: 3px;
             outline: none;
         }
@@ -736,18 +741,19 @@
             right: 20px;
             background-color: var(--omra-red);
             color: #fff;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border: none;
             border-radius: 3px;
             cursor: pointer;
-            font-size: 0.9em;
+            font-size: 1em;
             font-family: var(--font-code);
             touch-action: manipulation;
-            min-width: 44px;
-            min-height: 44px;
+            min-width: 50px;
+            min-height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
         }
         
         .modal-close:hover {
@@ -826,7 +832,7 @@
         .sys-timestamp {
             margin-top: 10px;
             font-size: 0.9em;
-            color: #444;
+            color: #666; /* PHASE 2: Increased from #444 for better contrast */
         }
         
         /* ARG Hint - almost invisible */
@@ -837,7 +843,7 @@
         }
         
         .arg-hint p {
-            color: #0f0f0f;
+            color: #1a1a1a; /* PHASE 2: Increased from #0f0f0f for better contrast */
             font-size: 0.7em;
             font-family: var(--font-code);
             line-height: 1.6;
@@ -848,7 +854,7 @@
             margin-top: 15px;
             font-size: 0.7em;
             color: #1a1a1a;
-            opacity: 0.05;
+            opacity: 0.08; /* PHASE 2: Increased from 0.05 for slightly better discoverability */
             font-family: var(--font-code);
             line-height: 1.4;
         }
@@ -872,6 +878,62 @@
             pointer-events: all;
         }
         
+        /* PHASE 3: Reduced motion accessibility support */
+        @media (prefers-reduced-motion: reduce) {
+            .scan-line {
+                animation: none;
+            }
+            
+            .gallery-item img {
+                animation: none !important;
+            }
+            
+            .glitch:hover {
+                animation: none;
+            }
+            
+            .terminal-line.blink::after {
+                animation: none;
+                opacity: 1;
+            }
+            
+            .tracking-data {
+                animation: none;
+            }
+            
+            .fade-out-overlay {
+                transition: opacity 0.5s ease; /* Faster for reduced motion */
+            }
+        }
+        
+        /* PHASE 3: Ultra-small devices (320px) */
+        @media (max-width: 320px) {
+            .glitch {
+                font-size: 1em;
+                letter-spacing: 1px;
+            }
+            
+            .tracking-data {
+                font-size: 0.7em;
+                line-height: 1.6;
+            }
+            
+            .terminal-access {
+                font-size: 0.8em;
+                padding: 12px;
+            }
+            
+            .corner-brackets span {
+                width: 15px;
+                height: 15px;
+            }
+            
+            .mute-button {
+                font-size: 0.7em;
+                padding: 6px 10px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .gallery-grid {
                 grid-template-columns: 1fr;
@@ -881,7 +943,7 @@
                 font-size: 0.7em;
             }
             .terminal-access {
-                font-size: 0.8em;
+                font-size: 0.85em; /* Increased from 0.8em */
                 padding: 15px;
             }
             .glitch {
@@ -900,7 +962,7 @@
                 font-size: 1.2em;
             }
             .tracking-data {
-                font-size: 0.6em;
+                font-size: 0.7em; /* Increased from 0.6em */
                 top: 120px;
                 left: 10px;
             }
@@ -914,6 +976,13 @@
         }
         
         @media (max-width: 480px) {
+            .tracking-data {
+                font-size: 0.75em; /* Increased from 0.65em - PHASE 1 fix */
+                line-height: 1.8; /* Better readability */
+            }
+            .terminal-access {
+                font-size: 0.85em; /* Increased from 0.8em - PHASE 1 fix */
+            }
             .terminal-yes, .terminal-no {
                 padding: 10px 20px;
                 font-size: 0.95em;
@@ -1047,9 +1116,13 @@ NOTE:
             </div>
             
             <div class="gallery-grid">
-                <div class="gallery-item" data-id="001" data-clicks="0">
+                <div class="gallery-item" 
+                     data-id="001" 
+                     data-clicks="0"
+                     role="article"
+                     aria-labelledby="evidence-001-title">
                     <div class="evidence-header">
-                        <span class="title">СВИТОК I: НИЧЕГО</span>
+                        <span class="title" id="evidence-001-title">СВИТОК I: НИЧЕГО</span>
                     </div>
                     <img src="svitok_1_mirror_fake.jpg" 
                          alt="Свиток I - Ничего" 
@@ -1061,7 +1134,10 @@ NOTE:
                         <span class="meta-label">DATE:</span> 2019-03-15<br>
                         <span class="meta-label">HINT:</span> why_fake?
                     </div>
-                    <audio controls preload="none" onplay="pauseOtherAudios(this)">
+                    <audio controls 
+                           preload="none" 
+                           onplay="pauseOtherAudios(this)"
+                           aria-label="Аудио к свитку I: Ionia - Ben Frost">
                         <source src="Ionia - Ben Frost.mp3" type="audio/mp3">
                     </audio>
                 </div>
@@ -1209,7 +1285,10 @@ NOTE:
     
     <div class="modal" id="imageModal">
         <img id="modalImage" src="" alt="Увеличенное изображение">
-        <button class="modal-close" onclick="closeModal()">×</button>
+        <button class="modal-close" 
+                onclick="closeModal()"
+                aria-label="Закрыть изображение"
+                role="button">×</button>
     </div>
     
     <!-- INTERACTIVE FOOTER -->
@@ -1239,7 +1318,7 @@ NOTE:
                 <span class="sys-label">STATUS:</span>
                 <span class="sys-status" id="screening-status">SCREENING</span>
                 <span class="sys-counter">
-                    (визитов: <span id="visit-count">???</span>)
+                    (визит #<span id="visit-count">???</span>)
                 </span>
             </div>
             
@@ -1414,7 +1493,7 @@ NOTE:
             }
         }, 160000);
         
-        // Scroll interference
+        // Scroll interference (DISABLED ON MOBILE per review consensus)
         let scrollInterferenceCount = 0;
         let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         let observerShown = false;
@@ -1433,20 +1512,23 @@ NOTE:
                 observerShown = true;
                 observerLine.classList.add('visible');
                 
-                setTimeout(() => {
-                    const offset = isMobile ? 10 : 18;
-                    window.scrollTo({
-                        top: currentScroll - offset,
-                        behavior: 'smooth'
-                    });
-                }, 200);
+                // Minimal interference only on desktop
+                if (!isMobile) {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: currentScroll - 18,
+                            behavior: 'smooth'
+                        });
+                    }, 200);
+                }
                 
                 setTimeout(() => {
                     observerLine.classList.remove('visible');
                 }, 3000);
             }
             
-            const interferenceChance = isMobile ? 0.06 : 0.12;
+            // Additional interference ONLY on desktop, reduced frequency (was 0.12, now 0.05)
+            const interferenceChance = isMobile ? 0 : 0.05;
             if (
                 scrollingDown &&
                 scrollInterferenceCount < 1 &&
@@ -1455,7 +1537,7 @@ NOTE:
                 Math.random() < interferenceChance
             ) {
                 scrollInterferenceCount++;
-                const offset = isMobile ? (10 + Math.random() * 15) : (15 + Math.random() * 25);
+                const offset = 15 + Math.random() * 25;
                 window.scrollTo({
                     top: currentScroll - offset,
                     behavior: 'smooth'
