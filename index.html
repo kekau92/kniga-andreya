@@ -621,10 +621,9 @@
             position: relative;
         }
         
-        /* Glitch effect on gallery images - PHASE 2: Extended to 5s cycle */
-        .gallery-item img {
-            animation: imageGlitch 5s infinite; /* Was 3s */
-        }
+        /* Glitch effect on gallery images - PHASE 4.4: Controlled by JavaScript (randomized) */
+        /* CSS animation removed - now triggered randomly via JS for unpredictability */
+        /* .gallery-item img { animation: imageGlitch 5s infinite; } - REMOVED */
         
         @keyframes imageGlitch {
             0%, 92% {  /* Adjusted timing for 5s cycle */
@@ -1023,7 +1022,7 @@ NOTE:
     
     <div class="header">
         <video class="header-video" autoplay loop playsinline muted poster="cover.jpg">
-            <source src="video_loop_small.webm" type="video/webm">
+            <source src="video_loop.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
         
@@ -1037,10 +1036,10 @@ NOTE:
                 <span class="br-br"></span>
             </div>
             <div class="tracking-data">
-                OMRA_SYSTEM_v3.2<br>
-                SUBJECT: UNKNOWN<br>
-                LOCATION: 58.0105°N 56.2502°E<br>
-                STATUS: OBSERVING
+                <span id="tracking-line-1">OMRA_SYSTEM_v3.2</span><br>
+                <span id="tracking-line-2">SUBJECT: UNKNOWN</span><br>
+                <span id="tracking-line-3">LOCATION: 58.0105°N 56.2502°E</span><br>
+                <span id="tracking-line-4">STATUS: OBSERVING</span>
             </div>
         </div>
         
@@ -1060,7 +1059,7 @@ NOTE:
                 <div class="terminal-line blink">> доступ_к_файлам? [Y/N]</div>
                 <div class="terminal-input">
                     <a href="#" class="terminal-yes" onclick="enterSystem(event)">Y</a>
-                    <span class="terminal-no">N</span>
+                    <span class="terminal-no" onclick="handleRefusal(event)">N</span>
                 </div>
             </div>
             
@@ -1347,6 +1346,9 @@ NOTE:
     </div>
     
     <script>
+        // Mobile detection (used by multiple features)
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
         const video = document.querySelector('.header-video');
         const loadingIndicator = document.getElementById('loading-indicator');
         const observerLine = document.getElementById('observer-line');
@@ -1389,6 +1391,36 @@ NOTE:
             setTimeout(() => {
                 document.getElementById('screening-status').textContent = 'SCREENING [ARCHIVED]';
             }, 3000);
+        }
+        
+        // PHASE 4.1: Sequential tracking data for mobile (cycles through fields)
+        // isMobile declared at top of script section
+        if (isMobile) {
+            const trackingLines = [
+                'OMRA_SYSTEM_v3.2',
+                'SUBJECT: UNKNOWN',
+                'LOCATION: 58.0105°N 56.2502°E',
+                'STATUS: OBSERVING'
+            ];
+            
+            let currentTrackingIndex = 0;
+            const trackingData = document.querySelector('.tracking-data');
+            
+            function cycleTrackingData() {
+                // Show current line prominently, dim others
+                trackingData.innerHTML = `
+                    <span style="opacity: ${currentTrackingIndex === 0 ? '1' : '0.3'}">${trackingLines[0]}</span><br>
+                    <span style="opacity: ${currentTrackingIndex === 1 ? '1' : '0.3'}">${trackingLines[1]}</span><br>
+                    <span style="opacity: ${currentTrackingIndex === 2 ? '1' : '0.3'}">${trackingLines[2]}</span><br>
+                    <span style="opacity: ${currentTrackingIndex === 3 ? '1' : '0.3'}">${trackingLines[3]}</span>
+                `;
+                
+                currentTrackingIndex = (currentTrackingIndex + 1) % trackingLines.length;
+            }
+            
+            // Start cycling
+            setInterval(cycleTrackingData, 3000);
+            cycleTrackingData(); // Initial call
         }
         
         // Black Peloton easter egg - click counter
@@ -1457,7 +1489,7 @@ NOTE:
             });
         }
         
-        // Enter system with fade out transition
+        // Enter system with fade out transition (PHASE 4: Reduced to 1.5s)
         function enterSystem(event) {
             event.preventDefault();
             const overlay = document.getElementById('fadeOverlay');
@@ -1465,6 +1497,26 @@ NOTE:
             
             setTimeout(() => {
                 window.location.href = '/warning.html';
+            }, 1500); // PHASE 4: Changed from 2000ms to 1500ms (archival transition)
+        }
+        
+        // PHASE 4: Handle terminal "N" refusal attempt
+        function handleRefusal(event) {
+            event.preventDefault();
+            const noButton = event.target;
+            const terminalLine = document.querySelector('.terminal-line.blink');
+            
+            // Glitch effect on button
+            noButton.style.animation = 'glitch 0.2s';
+            setTimeout(() => noButton.style.animation = '', 200);
+            
+            // System registers refusal
+            terminalLine.classList.remove('blink');
+            terminalLine.textContent = '> отказ_зарегистрирован. доступ_неизбежен.';
+            
+            // Force entry after 2 seconds
+            setTimeout(() => {
+                enterSystem(event);
             }, 2000);
         }
         
@@ -1498,7 +1550,7 @@ NOTE:
         let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         let observerShown = false;
         let scrollTimeout;
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        // isMobile already declared above - removed duplicate
         
         window.addEventListener('scroll', () => {
             if (scrollTimeout) return;
@@ -1591,6 +1643,23 @@ NOTE:
             });
         }
         
+        // PHASE 4.4: Randomized glitch timing (replaces fixed CSS animation)
+        function scheduleRandomGlitch(element) {
+            // Random delay between 5-9 seconds
+            const delay = 5000 + Math.random() * 4000;
+            
+            setTimeout(() => {
+                // Apply glitch effect
+                element.style.animation = 'imageGlitch 0.3s';
+                
+                // Remove animation after completion and schedule next glitch
+                setTimeout(() => {
+                    element.style.animation = 'none';
+                    scheduleRandomGlitch(element); // Recursive call for next glitch
+                }, 300);
+            }, delay);
+        }
+        
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             video.muted = true;
@@ -1598,6 +1667,14 @@ NOTE:
             
             video.play().catch(error => {
                 console.log('Video autoplay failed:', error);
+            });
+            
+            // PHASE 4.4: Start randomized glitch for all gallery images
+            document.querySelectorAll('.gallery-item img').forEach(img => {
+                // Stagger initial start time for each image
+                setTimeout(() => {
+                    scheduleRandomGlitch(img);
+                }, Math.random() * 3000); // Start within first 3 seconds, randomized
             });
         });
     </script>
