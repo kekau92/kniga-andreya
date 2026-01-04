@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="preload" href="video_loop.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="video_loop_small.webm" as="video" type="video/webm">
     <link rel="preload" href="cover.jpg" as="image">
     <meta name="yandex-verification" content="8b3ed45f660d0e42" />
     
@@ -82,7 +82,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap" rel="stylesheet"></noscript>
     
     <style>
         .skip-link {
@@ -99,7 +100,7 @@
         }
         
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             background-color: #000000;
             color: #f0f0f0;
             margin: 0;
@@ -163,10 +164,21 @@
             cursor: pointer;
             z-index: 3;
             font-size: 0.8em;
+            touch-action: manipulation; /* Улучшает отклик на мобильных */
         }
         
         .mute-button:hover {
             animation: glitch 0.3s infinite;
+        }
+        
+        /* Уменьшить отступы на маленьких экранах */
+        @media (max-width: 480px) {
+            .mute-button {
+                top: 10px;
+                right: 10px;
+                font-size: 0.75em;
+                padding: 4px 8px;
+            }
         }
         
         .loading-indicator {
@@ -187,8 +199,18 @@
             pointer-events: none;
         }
         
+        /* Переместить ниже на маленьких экранах */
+        @media (max-width: 480px) {
+            .loading-indicator {
+                top: 40px;
+                right: 10px;
+                font-size: 0.7em;
+            }
+        }
+        
         .glitch {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-weight: 500;
             font-size: 1.8em;
             color: #fff;
             text-shadow: 2px 0 #ff0000, -2px 0 #00ff00;
@@ -243,10 +265,20 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.8s ease;
+            max-width: 90%;
+            text-align: center;
         }
         
         .observer-line.visible {
             opacity: 1;
+        }
+        
+        /* Лучше видно на мобильных */
+        @media (max-width: 768px) {
+            .observer-line {
+                font-size: 0.85em;
+                bottom: 30px;
+            }
         }
         
         /* NOTE: не виден при выделении - видим только при скролле */
@@ -514,6 +546,14 @@
             filter: blur(1px) brightness(90%) contrast(150%);
         }
         
+        /* На мобильных - больше места для изображения */
+        @media (max-width: 768px) {
+            .modal img {
+                max-width: 95%;
+                max-height: 80%;
+            }
+        }
+        
         .modal-close {
             position: absolute;
             top: 20px;
@@ -525,10 +565,27 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 0.9em;
+            touch-action: manipulation;
+            min-width: 44px; /* Минимальный размер для тач-таргета */
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .modal-close:hover {
             animation: glitch 0.3s infinite;
+        }
+        
+        /* Больше кнопка на мобильных */
+        @media (max-width: 768px) {
+            .modal-close {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                min-width: 50px;
+                min-height: 50px;
+            }
         }
         
         .footer {
@@ -606,9 +663,8 @@ last_revision: [REDACTED]
     <div class="observer-line" id="observer-line">Я всё ещё здесь?</div>
     
     <div class="header">
-        <video class="header-video" autoplay loop playsinline muted>
-            <source src="video_loop.webm" type="video/webm">
-            <source src="video_loop.mp4" type="video/mp4">
+        <video class="header-video" autoplay loop playsinline muted poster="https://images.unsplash.com/photo-1765410850770-7d7bc8928f17?q=80&w=1369&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            <source src="video_loop_small.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
         <button class="mute-button" onclick="toggleMute()">Заглушить</button>
@@ -661,14 +717,14 @@ last_revision: [REDACTED]
             <div class="gallery-grid">
                 <div class="gallery-item">
                     <img src="svitok_1_mirror_fake.jpg" alt="Свиток I - Ничего" loading="lazy" onclick="openModal('svitok_1_mirror_fake.jpg')">
-                    <audio controls onplay="pauseOtherAudios(this)">
+                    <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Ionia - Ben Frost.mp3" type="audio/mp3">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
                 <div class="gallery-item">
                     <img src="chapter_2_trio_digital.png" alt="Свиток II - Трио" loading="lazy" onclick="openModal('chapter_2_trio_digital.png')">
-                    <audio controls onplay="pauseOtherAudios(this)">
+                    <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Qiankun Tu - UVB76.mp3" type="audio/mp3">
                         Your browser does not support the audio element.
                     </audio>
@@ -676,14 +732,14 @@ last_revision: [REDACTED]
                 
                 <div class="gallery-item">
                     <img src="svitok_3_milk_zero.jpg" alt="Свиток III - Ноль" loading="lazy" onclick="openModal('svitok_3_milk_zero.jpg')">
-                    <audio controls onplay="pauseOtherAudios(this)">
+                    <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Names - Anstam.mp3" type="audio/mp3">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
                 <div class="gallery-item">
                     <img src="hidden_chapter_book_main_web.webp" alt="Скрытая Часть" loading="lazy" onclick="openModal('hidden_chapter_book_main_web.webp')">
-                    <audio controls onplay="pauseOtherAudios(this)">
+                    <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Look_What_Your_Love_Has_Done_To_Me_Amelie_Lens_Remix_Perc.mp3" type="audio/mp3">
                         Your browser does not support the audio element.
                     </audio>
@@ -691,14 +747,14 @@ last_revision: [REDACTED]
                 
                 <div class="gallery-item">
                     <img src="svitok_4_crack_hands.jpg" alt="Свиток IV - Трещина" loading="lazy" onclick="openModal('svitok_4_crack_hands.jpg')">
-                    <audio controls onplay="pauseOtherAudios(this)">
+                    <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Turning the Prism - Ben Frost.mp3" type="audio/mp3">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
                 <div class="gallery-item">
                     <img src="chapter_5_coffee.png" alt="Свиток V - Кофе" loading="lazy" onclick="openModal('chapter_5_coffee.png')">
-                    <audio controls onplay="pauseOtherAudios(this)">
+                    <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Memoria - Murcof.mp3" type="audio/mp3">
                         Your browser does not support the audio element.
                     </audio>
@@ -706,14 +762,14 @@ last_revision: [REDACTED]
                 
                 <div class="gallery-item">
                     <img src="chapter_6_truck.png" alt="Свиток VI - Грузовик" loading="lazy" onclick="openModal('chapter_6_truck.png')">
-                    <audio controls onplay="pauseOtherAudios(this)">
+                    <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Blood Rain - Ital Tek.mp3" type="audio/mp3">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
                 <div class="gallery-item">
                     <img src="chapter_6_dna.png" alt="Свиток VI - ДНК" loading="lazy" onclick="openModal('chapter_6_dna.png')">
-                    <audio controls onplay="pauseOtherAudios(this)">
+                    <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Shira Ume - 747.mp3" type="audio/mp3">
                         Your browser does not support the audio element.
                     </audio>
@@ -781,6 +837,9 @@ last_revision: [REDACTED]
         // НЕСТАБИЛЬНОЕ СОСТОЯНИЕ ЗАГРУЗКИ
         // ═══════════════════════════════════════
         setInterval(() => {
+            // Не работать когда вкладка неактивна (экономия батареи)
+            if (document.hidden) return;
+            
             if (Math.random() < 0.08) {
                 loadingIndicator.classList.remove('hidden');
                 loadingIndicator.textContent = 'Загрузка: —';
@@ -811,8 +870,16 @@ last_revision: [REDACTED]
         let scrollInterferenceCount = 0;
         let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         let observerShown = false;
+        let scrollTimeout;
+        
+        // Проверка мобильного устройства
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
         window.addEventListener('scroll', () => {
+            // Throttle: выполнять не чаще раза в 100ms
+            if (scrollTimeout) return;
+            scrollTimeout = setTimeout(() => scrollTimeout = null, 100);
+            
             const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
             const scrollingDown = currentScroll > lastScrollTop;
             const scrollSpeed = Math.abs(currentScroll - lastScrollTop);
@@ -822,10 +889,11 @@ last_revision: [REDACTED]
                 observerShown = true;
                 observerLine.classList.add('visible');
                 
-                // Легкое нарушение скролла
+                // Легкое нарушение скролла (меньше на мобильных)
                 setTimeout(() => {
+                    const offset = isMobile ? 10 : 18;
                     window.scrollTo({
-                        top: currentScroll - 18,
+                        top: currentScroll - offset,
                         behavior: 'smooth'
                     });
                 }, 200);
@@ -836,16 +904,17 @@ last_revision: [REDACTED]
                 }, 3000);
             }
 
-            // Дополнительные легкие нарушения скролла
+            // Дополнительные легкие нарушения скролла (реже на мобильных)
+            const interferenceChance = isMobile ? 0.06 : 0.12;
             if (
                 scrollingDown &&
-                scrollInterferenceCount < 1 && // только 1 раз после фразы
+                scrollInterferenceCount < 1 &&
                 observerShown &&
-                scrollSpeed < 4 && // только при медленном скролле
-                Math.random() < 0.12
+                scrollSpeed < 4 &&
+                Math.random() < interferenceChance
             ) {
                 scrollInterferenceCount++;
-                const offset = 15 + Math.random() * 25;
+                const offset = isMobile ? (10 + Math.random() * 15) : (15 + Math.random() * 25);
 
                 window.scrollTo({
                     top: currentScroll - offset,
@@ -903,6 +972,12 @@ last_revision: [REDACTED]
             const modalImage = document.getElementById('modalImage');
             modalImage.src = imageSrc;
             modal.style.display = 'flex';
+            
+            // Закрытие по Escape
+            document.addEventListener('keydown', handleEscapeKey);
+            
+            // Закрытие по клику вне изображения
+            modal.addEventListener('click', handleOutsideClick);
         }
 
         function closeModal() {
@@ -910,6 +985,19 @@ last_revision: [REDACTED]
             const modalImage = document.getElementById('modalImage');
             modal.style.display = 'none';
             modalImage.src = '';
+            
+            // Удалить обработчики
+            document.removeEventListener('keydown', handleEscapeKey);
+            modal.removeEventListener('click', handleOutsideClick);
+        }
+        
+        function handleEscapeKey(e) {
+            if (e.key === 'Escape') closeModal();
+        }
+        
+        function handleOutsideClick(e) {
+            const modalImage = document.getElementById('modalImage');
+            if (e.target !== modalImage) closeModal();
         }
 
         function pauseOtherAudios(currentAudio) {
