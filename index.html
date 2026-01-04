@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="preload" href="video_loop_small.webm" as="video" type="video/webm">
+    <link rel="preload" href="video_loop.webm" as="video" type="video/webm">
     <link rel="preload" href="cover.jpg" as="image">
     <meta name="yandex-verification" content="8b3ed45f660d0e42" />
     
@@ -82,15 +82,33 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,400&family=Roboto:wght@500&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet"></noscript>
     
     <style>
+        :root {
+            /* Color palette */
+            --bg-void: #0a0a0a;
+            --text-ghost: #d8d8d8;
+            --omra-green: #00ff41;
+            --omra-red: #8b0000;
+            --omra-warning: #ff4444;
+            --glitch-cyan: #00ffff;
+            --glitch-magenta: #ff00ff;
+            --trauma-purple: #5a2a44;
+            --trauma-teal: #14503c;
+            --dirty-brown: #3a2a1a;
+            
+            /* Typography */
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-code: 'IBM Plex Mono', 'Courier New', monospace;
+        }
+        
         .skip-link {
             position: absolute;
             top: -40px;
             left: 0;
-            background: #8b0000;
+            background: var(--omra-red);
             color: white;
             padding: 8px;
             z-index: 100;
@@ -100,16 +118,18 @@
         }
         
         body {
-            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background-color: #000000;
-            color: #f0f0f0;
+            font-family: var(--font-body);
+            font-weight: 300;
+            background: linear-gradient(to bottom, var(--bg-void) 0%, #0f0f0f 50%, var(--bg-void) 100%);
+            color: var(--text-ghost);
             margin: 0;
             padding: 0;
             text-align: center;
+            letter-spacing: 0.3px;
         }
         
         a {
-            color: #ff0000;
+            color: var(--omra-warning);
             text-decoration: underline;
             transition: color 0.2s ease;
         }
@@ -118,6 +138,14 @@
             color: #ff6666;
         }
         
+        a:focus {
+            outline: 2px solid var(--omra-green);
+            outline-offset: 2px;
+        }
+        
+        /* ═══════════════════════════════════════
+           HEADER WITH OMRA SURVEILLANCE OVERLAY
+           ═══════════════════════════════════════ */
         .header {
             position: relative;
             min-height: 500px;
@@ -136,6 +164,94 @@
             height: 100%;
             object-fit: cover;
             z-index: 1;
+            filter: contrast(1.1) brightness(0.8);
+        }
+        
+        /* OMRA Surveillance Overlay */
+        .omra-ui {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            font-family: var(--font-code);
+        }
+        
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to bottom, var(--omra-green), transparent);
+            opacity: 0.6;
+            animation: scanlineMove 4s linear infinite;
+        }
+        
+        @keyframes scanlineMove {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        
+        .corner-brackets {
+            position: absolute;
+            inset: 20px;
+        }
+        
+        .corner-brackets span {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-color: var(--omra-green);
+            opacity: 0.7;
+        }
+        
+        .br-tl {
+            top: 0;
+            left: 0;
+            border-top: 2px solid var(--omra-green);
+            border-left: 2px solid var(--omra-green);
+        }
+        
+        .br-tr {
+            top: 0;
+            right: 0;
+            border-top: 2px solid var(--omra-green);
+            border-right: 2px solid var(--omra-green);
+        }
+        
+        .br-bl {
+            bottom: 0;
+            left: 0;
+            border-bottom: 2px solid var(--omra-green);
+            border-left: 2px solid var(--omra-green);
+        }
+        
+        .br-br {
+            bottom: 0;
+            right: 0;
+            border-bottom: 2px solid var(--omra-green);
+            border-right: 2px solid var(--omra-green);
+        }
+        
+        .tracking-data {
+            position: absolute;
+            top: 60px;
+            left: 20px;
+            font-size: 0.75em;
+            color: var(--omra-green);
+            text-shadow: 0 0 10px var(--omra-green);
+            line-height: 1.6;
+            text-align: left;
+            animation: dataFlicker 0.1s infinite;
+        }
+        
+        @keyframes dataFlicker {
+            0%, 90% { opacity: 1; }
+            95% { opacity: 0.7; }
+            100% { opacity: 1; }
         }
         
         .header-overlay {
@@ -145,7 +261,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            z-index: 2;
+            z-index: 3;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -156,22 +272,24 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: #8b0000;
+            background-color: var(--omra-red);
             color: #fff;
             padding: 5px 10px;
             border: none;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
-            z-index: 3;
+            z-index: 4;
             font-size: 0.8em;
-            touch-action: manipulation; /* Улучшает отклик на мобильных */
+            font-family: var(--font-code);
+            touch-action: manipulation;
+            transition: all 0.3s ease;
         }
         
         .mute-button:hover {
+            background-color: var(--omra-warning);
             animation: glitch 0.3s infinite;
         }
         
-        /* Уменьшить отступы на маленьких экранах */
         @media (max-width: 480px) {
             .mute-button {
                 top: 10px;
@@ -185,13 +303,13 @@
             position: absolute;
             top: 60px;
             right: 20px;
-            color: #f0f0f0;
+            color: var(--text-ghost);
             font-size: 0.8em;
-            text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
-            z-index: 3;
+            font-family: var(--font-code);
+            text-shadow: 1px 0 var(--omra-warning), -1px 0 var(--omra-green);
+            z-index: 4;
             opacity: 0.9;
             transition: opacity 0.5s ease-out;
-            animation: glitch-text 0.4s infinite;
         }
         
         .loading-indicator.hidden {
@@ -199,23 +317,27 @@
             pointer-events: none;
         }
         
-        /* Переместить ниже на маленьких экранах */
         @media (max-width: 480px) {
             .loading-indicator {
                 top: 40px;
                 right: 10px;
                 font-size: 0.7em;
             }
+            .tracking-data {
+                font-size: 0.65em;
+                top: 100px;
+            }
         }
         
         .glitch {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            font-weight: 500;
+            font-family: var(--font-body);
+            font-weight: 600;
             font-size: 1.8em;
             color: #fff;
-            text-shadow: 2px 0 #ff0000, -2px 0 #00ff00;
+            text-shadow: 2px 0 var(--omra-warning), -2px 0 var(--omra-green);
             margin: 0;
-            z-index: 3;
+            letter-spacing: 2px;
+            z-index: 4;
         }
         
         .glitch:hover {
@@ -231,37 +353,103 @@
             100% { transform: translate(0); }
         }
         
-        @keyframes glitch-text {
-            0% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
-            50% { transform: translate(1px, -1px); text-shadow: -1px 0 #ff0000, 1px 0 #00ff00; }
-            100% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
-        }
-        
         .subheadline {
             font-size: 1.2em;
-            margin: 10px 0;
-            z-index: 3;
-            opacity: 0.85;
+            margin: 15px 0;
+            z-index: 4;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* ═══════════════════════════════════════
+           TERMINAL ACCESS PROMPT (NEW)
+           ═══════════════════════════════════════ */
+        .terminal-access {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--omra-green);
+            font-family: var(--font-code);
+            font-size: 0.9em;
+            max-width: 500px;
+            text-align: left;
+            z-index: 4;
+            opacity: 0;
+            animation: terminalFadeIn 1s forwards;
+            animation-delay: 3s;
+        }
+        
+        @keyframes terminalFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .terminal-line {
+            color: var(--omra-green);
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+        
+        .terminal-line.blink::after {
+            content: '_';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .terminal-input {
+            margin-top: 15px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .terminal-yes, .terminal-no {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid var(--omra-green);
+            color: var(--omra-green);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-code);
+        }
+        
+        .terminal-yes:hover {
+            background: var(--omra-green);
+            color: #000;
+        }
+        
+        .terminal-no {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: #666;
+            color: #666;
         }
         
         .subheadline-detail {
             font-size: 0.9em;
-            margin-top: 30px;
+            margin-top: 20px;
             color: #999;
             max-width: 500px;
-            line-height: 1.4;
+            line-height: 1.5;
+            z-index: 4;
         }
         
-        /* OBSERVER LINE - "Я всё ещё здесь?" */
+        /* ═══════════════════════════════════════
+           OBSERVER LINE
+           ═══════════════════════════════════════ */
         .observer-line {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 0.75em;
-            color: #2a2a2a;
-            font-family: 'Courier New', monospace;
-            z-index: 3;
+            color: #3a3a3a;
+            font-family: var(--font-code);
+            z-index: 5;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.8s ease;
@@ -273,65 +461,34 @@
             opacity: 1;
         }
         
-        /* Лучше видно на мобильных */
         @media (max-width: 768px) {
             .observer-line {
-                font-size: 0.85em;
-                bottom: 30px;
+                font-size: 0.9em;
+                bottom: 40px;
+                color: #4a4a4a;
+                padding: 8px 15px;
+                background: rgba(0, 0, 0, 0.5);
             }
         }
         
-        /* NOTE: не виден при выделении - видим только при скролле */
-        .note-hidden {
-            font-size: 0.75em;
-            color: #2a2a2a;
-            margin: 5px 0;
-            user-select: none;
-        }
-        
-        .access-prompt {
-            margin-top: 30px;
-            z-index: 3;
-            opacity: 0;
-            animation: accessFadeIn 1s forwards;
-            animation-delay: 10s;
-        }
-        
-        @keyframes accessFadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .access-prompt-label {
-            font-family: 'Courier New', monospace;
-            font-size: 0.85em;
-            color: #00ff00;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-        
-        .cta-button {
-            background-color: rgba(139, 0, 0, 0.3);
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: normal;
-            border: 1px solid #8b0000;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            background-color: rgba(139, 0, 0, 0.7);
-            color: #fff;
-            animation: glitch 0.3s infinite;
+        /* ═══════════════════════════════════════
+           FOUND NOTES
+           ═══════════════════════════════════════ */
+        .found-note {
+            font-family: var(--font-code);
+            font-size: 0.8em;
+            color: #555;
+            background: rgba(40, 40, 40, 0.3);
+            padding: 10px 15px;
+            margin: 30px auto;
+            max-width: 600px;
+            border-left: 2px solid var(--omra-red);
+            line-height: 1.6;
+            text-align: left;
         }
         
         .teaser {
-            background-color: #000000;
+            background-color: transparent;
             padding: 20px;
             margin: 20px auto;
             max-width: 600px;
@@ -340,185 +497,147 @@
         }
         
         .glitch-text {
-            color: #f0f0f0;
+            color: var(--text-ghost);
             position: relative;
             display: inline-block;
             font-size: 1.2em;
         }
         
-        .glitch-text::before,
-        .glitch-text::after {
-            content: 'Тьма';
-            position: absolute;
-            left: 0;
-            width: 100%;
-            clip-path: inset(0 0 50% 0);
-        }
-        
-        .glitch-text::before {
-            content: 'Тьма';
-            color: #ff0000;
-            opacity: 0.7;
-            animation: glitch-top 0.5s infinite, flicker 0.7s infinite;
-            transform: translate(-2px, -1px) skewX(5deg);
-        }
-        
-        .glitch-text::after {
-            content: 'пустота';
-            color: #00ff00;
-            opacity: 0.6;
-            animation: glitch-bottom 0.6s infinite, flicker 0.9s infinite;
-            transform: translate(2px, 1px) skewX(-5deg);
-        }
-        
-        @keyframes glitch-top {
-            0% { transform: translate(-2px, -1px) skewX(5deg); }
-            50% { transform: translate(-3px, -2px) skewX(10deg); }
-            100% { transform: translate(-2px, -1px) skewX(5deg); }
-        }
-        
-        @keyframes glitch-bottom {
-            0% { transform: translate(2px, 1px) skewX(-5deg); }
-            50% { transform: translate(3px, 2px) skewX(-10deg); }
-            100% { transform: translate(2px, 1px) skewX(-5deg); }
-        }
-        
-        @keyframes flicker {
-            0% { opacity: 0.7; }
-            50% { opacity: 0.3; }
-            100% { opacity: 0.7; }
-        }
-        
-        .glitch-text:hover::before {
-            animation: glitch-top 0.3s infinite, flicker 0.5s infinite;
-            transform: translate(-4px, -3px) skewX(15deg);
-        }
-        
-        .glitch-text:hover::after {
-            animation: glitch-bottom 0.4s infinite, flicker 0.6s infinite;
-            transform: translate(4px, 3px) skewX(-15deg);
-        }
-        
         .about {
-            padding: 20px;
-            max-width: 800px;
+            padding: 40px 20px;
+            max-width: 700px;
             margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            background-color: #000000;
-        }
-        
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-            padding: 10px;
             text-align: left;
         }
         
-        .glitch-annotation {
-            color: #f0f0f0;
-            text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
-            position: relative;
-            transition: all 0.2s;
+        .about h3 {
+            font-size: 0.9em;
+            font-family: var(--font-code);
+            color: #666;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
         }
         
-        .glitch-annotation:hover {
-            animation: glitch-annotation 0.4s infinite;
+        .about p {
+            margin-bottom: 15px;
+            line-height: 1.7;
         }
         
-        @keyframes glitch-annotation {
-            0% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
-            25% { transform: translate(1px, -1px); text-shadow: -1px 0 #ff0000, 1px 0 #00ff00; }
-            50% { transform: translate(-1px, 1px); text-shadow: 1px 0 #00ff00, -1px 0 #ff0000; }
-            75% { transform: translate(1px, 1px); text-shadow: -1px 0 #00ff00, 1px 0 #ff0000; }
-            100% { transform: translate(0); text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; }
-        }
-        
-        .about-image {
-            flex: 1;
-            min-width: 200px;
-            padding: 10px;
-        }
-        
-        .glitch-image {
-            filter: brightness(100%) contrast(100%);
-            max-width: 100%;
-        }
-        
-        .glitch-image:hover {
-            filter: blur(1px) brightness(90%) contrast(150%);
-        }
-        
+        /* ═══════════════════════════════════════
+           EVIDENCE BOARD GALLERY (NEW)
+           ═══════════════════════════════════════ */
         .gallery {
-            padding: 20px;
-            max-width: 800px;
+            padding: 40px 20px;
+            max-width: 900px;
             margin: 40px auto;
-            background-color: #000000;
+            background-color: transparent;
         }
         
         .gallery h2 {
-            font-size: 1.3em;
-            margin-bottom: 1.5em;
-            font-family: 'Courier New', monospace;
-            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            font-family: var(--font-code);
+            color: var(--omra-green);
             letter-spacing: 2px;
+            text-align: left;
+        }
+        
+        .gallery-meta {
+            font-family: var(--font-code);
+            font-size: 0.75em;
+            color: #666;
+            margin-bottom: 30px;
+            text-align: left;
+            line-height: 1.6;
         }
         
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 30px;
             justify-items: center;
         }
         
         .gallery-item {
             display: flex;
             flex-direction: column;
-            align-items: center;
             width: 100%;
+            background: rgba(20, 20, 20, 0.5);
+            border: 1px solid #333;
+            padding: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item::before {
+            content: "EVIDENCE_" attr(data-id);
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-family: var(--font-code);
+            font-size: 0.65em;
+            color: #444;
+        }
+        
+        .gallery-item:hover {
+            border-color: var(--omra-red);
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+        }
+        
+        .gallery-item:focus-within {
+            border-color: var(--omra-red);
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
+        }
+        
+        .evidence-header {
+            font-family: var(--font-code);
+            font-size: 0.8em;
+            color: #888;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .evidence-header .title {
+            color: var(--text-ghost);
+            font-weight: 400;
         }
         
         .gallery-item img {
             width: 100%;
-            max-width: 300px;
+            max-width: 400px;
             height: auto;
             aspect-ratio: 1 / 1;
             object-fit: cover;
             cursor: pointer;
-            filter: brightness(100%) contrast(100%);
+            filter: brightness(90%) contrast(110%);
             transition: filter 0.3s ease;
+            margin: 0 auto 10px;
         }
         
         .gallery-item img:hover {
-            filter: blur(1px) brightness(90%) contrast(150%);
-            animation: glitch 0.3s infinite;
+            filter: brightness(100%) contrast(120%);
+        }
+        
+        .evidence-meta {
+            font-family: var(--font-code);
+            font-size: 0.7em;
+            color: #666;
+            margin: 10px 0;
+            line-height: 1.6;
+            text-align: left;
+        }
+        
+        .meta-label {
+            color: #888;
         }
         
         .gallery-item audio {
             margin-top: 10px;
             width: 100%;
-            max-width: 300px;
             height: 30px;
-            background-color: #8b0000;
-            border-radius: 5px;
-        }
-        
-        .gallery-item audio::-webkit-media-controls-panel {
-            background-color: #8b0000;
-            color: #ffffff;
-        }
-        
-        .gallery-item audio::-webkit-media-controls-play-button,
-        .gallery-item audio::-webkit-media-controls-volume-slider,
-        .gallery-item audio::-webkit-media-controls-current-time-display,
-        .gallery-item audio::-webkit-media-controls-time-remaining-display {
-            filter: brightness(100%) contrast(120%);
-            color: #ffffff;
-        }
-        
-        .gallery-item audio:hover {
-            animation: glitch 0.3s infinite;
+            background-color: var(--omra-red);
+            border-radius: 3px;
         }
         
         .modal {
@@ -528,7 +647,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -538,15 +657,8 @@
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
-            filter: brightness(100%) contrast(100%);
-            transition: filter 0.3s ease;
         }
         
-        .modal img:hover {
-            filter: blur(1px) brightness(90%) contrast(150%);
-        }
-        
-        /* На мобильных - больше места для изображения */
         @media (max-width: 768px) {
             .modal img {
                 max-width: 95%;
@@ -558,15 +670,16 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: #8b0000;
+            background-color: var(--omra-red);
             color: #fff;
-            padding: 5px 10px;
+            padding: 8px 12px;
             border: none;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
             font-size: 0.9em;
+            font-family: var(--font-code);
             touch-action: manipulation;
-            min-width: 44px; /* Минимальный размер для тач-таргета */
+            min-width: 44px;
             min-height: 44px;
             display: flex;
             align-items: center;
@@ -574,72 +687,115 @@
         }
         
         .modal-close:hover {
-            animation: glitch 0.3s infinite;
+            background-color: var(--omra-warning);
         }
         
-        /* Больше кнопка на мобильных */
         @media (max-width: 768px) {
             .modal-close {
                 top: 10px;
                 right: 10px;
-                padding: 8px 12px;
+                padding: 10px 14px;
                 min-width: 50px;
                 min-height: 50px;
             }
         }
         
+        /* ═══════════════════════════════════════
+           INTERACTIVE FOOTER (NEW)
+           ═══════════════════════════════════════ */
         .footer {
             font-size: 0.8em;
             color: #aaa;
-            padding: 40px 0;
-            background-color: #000000;
-        }
-        
-        .footer a:hover {
-            animation: glitch 0.3s infinite;
+            padding: 40px 20px;
+            background-color: transparent;
         }
         
         .system-footer {
-            margin-top: 20px;
-            font-family: 'Courier New', monospace;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(20, 20, 20, 0.5);
+            border: 1px solid #222;
+            font-family: var(--font-code);
             font-size: 0.75em;
-            color: #333;
+            color: #444;
             letter-spacing: 1px;
             line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .system-footer .sys-code {
-            color: #8b0000;
+        .sys-line {
+            margin: 5px 0;
         }
         
-        .system-footer .sys-node {
+        .sys-code {
+            color: var(--omra-red);
+        }
+        
+        .sys-label {
+            color: #666;
+        }
+        
+        .sys-link, .coordinates {
+            color: #888;
+            text-decoration: none;
+            border-bottom: 1px dashed #555;
+            transition: all 0.3s ease;
+        }
+        
+        .sys-link:hover, .coordinates:hover {
+            color: var(--omra-green);
+            border-bottom-color: var(--omra-green);
+            text-shadow: 0 0 10px var(--omra-green);
+        }
+        
+        .sys-status {
+            color: #777;
+        }
+        
+        .sys-counter {
+            color: #555;
+            font-size: 0.9em;
+        }
+        
+        .sys-timestamp {
+            margin-top: 10px;
+            font-size: 0.9em;
             color: #444;
         }
         
-        .system-footer .sys-status {
-            color: #555;
+        /* ARG Hint - almost invisible */
+        .arg-hint {
+            margin-top: 40px;
+            padding: 20px;
+            user-select: none;
         }
         
-        .system-footer a {
-            color: #555;
-            text-decoration: none;
-            border-bottom: 1px dashed #333;
+        .arg-hint p {
+            color: #0f0f0f;
+            font-size: 0.7em;
+            font-family: var(--font-code);
+            line-height: 1.6;
         }
         
-        .system-footer a:hover {
-            color: #8b0000;
-            animation: glitch 0.3s infinite;
+        /* Hidden error for Black Peloton */
+        .sys-error {
+            margin-top: 15px;
+            font-size: 0.7em;
+            color: #1a1a1a;
+            opacity: 0.05;
+            font-family: var(--font-code);
+            line-height: 1.4;
         }
         
         @media (max-width: 768px) {
             .gallery-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
-            .gallery-item img {
-                max-width: 250px;
-            }
-            .gallery-item audio {
-                max-width: 250px;
+            .system-footer {
+                font-size: 0.7em;
             }
         }
         
@@ -655,32 +811,64 @@
 OMRA_ARCHIVE
 first_record: 2019
 last_revision: [REDACTED]
+
+NOTE:
+чёрная_пантера_знает_путь
+ищи_в_первом_свитке
+там_где_ничего_нет
 -->
 
     <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     
-    <!-- OBSERVER LINE (появляется при первом скролле) -->
+    <!-- OBSERVER LINE -->
     <div class="observer-line" id="observer-line">Я всё ещё здесь?</div>
     
     <div class="header">
-        <video class="header-video" autoplay loop playsinline muted poster="https://images.unsplash.com/photo-1765410850770-7d7bc8928f17?q=80&w=1369&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-            <source src="video_loop_small.webm" type="video/webm">
+        <video class="header-video" autoplay loop playsinline muted poster="cover.jpg">
+            <source src="video_loop.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
-        <button class="mute-button" onclick="toggleMute()">Заглушить</button>
-        <div class="loading-indicator" id="loading-indicator">Загрузка: 0%</div>
+        
+        <!-- OMRA SURVEILLANCE OVERLAY -->
+        <div class="omra-ui">
+            <div class="scan-line"></div>
+            <div class="corner-brackets">
+                <span class="br-tl"></span>
+                <span class="br-tr"></span>
+                <span class="br-bl"></span>
+                <span class="br-br"></span>
+            </div>
+            <div class="tracking-data">
+                OMRA_SYSTEM_v3.2<br>
+                SUBJECT: UNKNOWN<br>
+                LOCATION: 58.0105°N 56.2502°E<br>
+                STATUS: OBSERVING
+            </div>
+        </div>
+        
+        <button class="mute-button" onclick="toggleMute()">MUTE</button>
+        <div class="loading-indicator hidden" id="loading-indicator">Загрузка...</div>
+        
         <div class="header-overlay">
             <h1 class="glitch">Книга Андрея, сына Пустоты</h1>
             
-            <p class="subheadline">Андрей больше не отвечает на звонки.</p>
+            <p class="subheadline">Я всё ещё здесь?</p>
             
-            <div class="access-prompt" id="access-prompt">
-                <div class="access-prompt-label">[СИСТЕМА_ОБНАРУЖИЛА_ЗАПРОС]</div>
-                <a href="/warning.html" class="cta-button">разрешить_доступ?</a>
+            <!-- TERMINAL ACCESS PROMPT -->
+            <div class="terminal-access">
+                <div class="terminal-line">> omra_system_v3.2</div>
+                <div class="terminal-line">> загрузка_файлов... [████████░░] 82%</div>
+                <div class="terminal-line">> статус: андрей_001 [НАБЛЮДЕНИЕ]</div>
+                <div class="terminal-line blink">> доступ_к_файлам? [Y/N]</div>
+                <div class="terminal-input">
+                    <a href="/warning.html" class="terminal-yes">Y</a>
+                    <span class="terminal-no">N</span>
+                </div>
             </div>
             
             <p class="subheadline-detail">
-                Онлайн-литературный проект о памяти, цифровой зависимости и утрате идентичности.
+                Нелинейный цифровой текст.<br>
+                Пермь. 2019–2025.
             </p>
         </div>
     </div>
@@ -690,116 +878,263 @@ last_revision: [REDACTED]
             <p class="glitch-text">Тьма следит. Экран мерцает. Память искажена.</p>
         </div>
         
-        <p class="note-hidden">запись не относится к текущему сеансу</p>
+        <!-- FOUND NOTE -->
+        <p class="found-note">
+            [найдено в телефоне андрея]<br>
+            "мама звонила 47 раз. я не ответил.<br>
+            или ответил? я не помню."
+        </p>
         
         <div class="about">
-            <div class="about-text">
-                <p><em>Книга Андрея, сына Пустоты</em> — нелинейный цифровой текст,
-                соединяющий литературный нарратив, визуальные фрагменты и аудио-следы.</p>
-
-                <p>
-                Проект исследует повседневность молодого мужчины из Перми:
-                офис, телефон, прошлое и пустоту между ними.
-                </p>
-
-                <p>
-                Это не игра и не терапия.<br>
-                Это художественный эксперимент.
-                </p>
-            </div>
-            <div class="about-image">
-                <img src="cover.jpg" alt="Обложка книги 'Книга Андрея, сына Пустоты'" class="glitch-image" loading="eager">
-            </div>
+            <h3>// О ПРОЕКТЕ //</h3>
+            <p>
+                Офис → Телефон → Пустота → ?
+            </p>
+            <p>
+                Это не игра.<br>
+                Это не терапия.<br>
+                Это не ты.
+            </p>
+            <p>
+                Или ты?
+            </p>
         </div>
         
+        <!-- FOUND NOTE -->
+        <p class="found-note">
+            [OMRA_LOG_20190315]<br>
+            субъект_001: паттерн_повторяется<br>
+            мать → экран → мать → экран<br>
+            рекомендация: продолжить_наблюдение
+        </p>
+        
+        <!-- EVIDENCE BOARD GALLERY -->
         <section class="gallery">
-            <h2>// найдено //</h2>
+            <h2>// EVIDENCE_ARCHIVE //</h2>
+            <div class="gallery-meta">
+                SOURCE: OMRA_LEAK_2022<br>
+                STATUS: [ЧАСТИЧНО_ВОССТАНОВЛЕНО]<br>
+                ACCESS: PUBLIC_RELEASE
+            </div>
+            
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="svitok_1_mirror_fake.jpg" alt="Свиток I - Ничего" loading="lazy" onclick="openModal('svitok_1_mirror_fake.jpg')">
+                <div class="gallery-item" data-id="001" data-clicks="0">
+                    <div class="evidence-header">
+                        <span class="title">СВИТОК I: НИЧЕГО</span>
+                    </div>
+                    <img src="svitok_1_mirror_fake.jpg" 
+                         alt="Свиток I - Ничего" 
+                         loading="lazy" 
+                         decoding="async"
+                         onclick="openModal('svitok_1_mirror_fake.jpg', this)">
+                    <div class="evidence-meta">
+                        <span class="meta-label">FILE:</span> svitok_1_mirror_fake.jpg<br>
+                        <span class="meta-label">DATE:</span> 2019-03-15<br>
+                        <span class="meta-label">HINT:</span> why_fake?
+                    </div>
                     <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Ionia - Ben Frost.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
                     </audio>
                 </div>
-                <div class="gallery-item">
-                    <img src="chapter_2_trio_digital.png" alt="Свиток II - Трио" loading="lazy" onclick="openModal('chapter_2_trio_digital.png')">
+                
+                <div class="gallery-item" data-id="002">
+                    <div class="evidence-header">
+                        <span class="title">СВИТОК II: ТРИО</span>
+                    </div>
+                    <img src="chapter_2_trio_digital.png" 
+                         alt="Свиток II - Трио" 
+                         loading="lazy"
+                         decoding="async"
+                         onclick="openModal('chapter_2_trio_digital.png', this)">
+                    <div class="evidence-meta">
+                        <span class="meta-label">FILE:</span> chapter_2_trio_digital.png<br>
+                        <span class="meta-label">DATE:</span> 2019-04-22<br>
+                        <span class="meta-label">TAGS:</span> #trio_code
+                    </div>
                     <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Qiankun Tu - UVB76.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
                     </audio>
                 </div>
                 
-                <div class="gallery-item">
-                    <img src="svitok_3_milk_zero.jpg" alt="Свиток III - Ноль" loading="lazy" onclick="openModal('svitok_3_milk_zero.jpg')">
+                <div class="gallery-item" data-id="003">
+                    <div class="evidence-header">
+                        <span class="title">СВИТОК III: НОЛЬ</span>
+                    </div>
+                    <img src="svitok_3_milk_zero.jpg" 
+                         alt="Свиток III - Ноль" 
+                         loading="lazy"
+                         decoding="async"
+                         onclick="openModal('svitok_3_milk_zero.jpg', this)">
+                    <div class="evidence-meta">
+                        <span class="meta-label">FILE:</span> svitok_3_milk_zero.jpg<br>
+                        <span class="meta-label">DATE:</span> 2019-05-11<br>
+                        <span class="meta-label">SUBJECT:</span> молочный_ноль
+                    </div>
                     <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Names - Anstam.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
                     </audio>
                 </div>
-                <div class="gallery-item">
-                    <img src="hidden_chapter_book_main_web.webp" alt="Скрытая Часть" loading="lazy" onclick="openModal('hidden_chapter_book_main_web.webp')">
+                
+                <div class="gallery-item" data-id="004">
+                    <div class="evidence-header">
+                        <span class="title">СКРЫТАЯ ЧАСТЬ</span>
+                    </div>
+                    <img src="hidden_chapter_book_main_web.webp" 
+                         alt="Скрытая Часть" 
+                         loading="lazy"
+                         decoding="async"
+                         onclick="openModal('hidden_chapter_book_main_web.webp', this)">
+                    <div class="evidence-meta">
+                        <span class="meta-label">FILE:</span> hidden_chapter.webp<br>
+                        <span class="meta-label">STATUS:</span> [CLASSIFIED]<br>
+                        <span class="meta-label">ACCESS:</span> restricted
+                    </div>
                     <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Look_What_Your_Love_Has_Done_To_Me_Amelie_Lens_Remix_Perc.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
                     </audio>
                 </div>
                 
-                <div class="gallery-item">
-                    <img src="svitok_4_crack_hands.jpg" alt="Свиток IV - Трещина" loading="lazy" onclick="openModal('svitok_4_crack_hands.jpg')">
+                <div class="gallery-item" data-id="005">
+                    <div class="evidence-header">
+                        <span class="title">СВИТОК IV: ТРЕЩИНА</span>
+                    </div>
+                    <img src="svitok_4_crack_hands.jpg" 
+                         alt="Свиток IV - Трещина" 
+                         loading="lazy"
+                         decoding="async"
+                         onclick="openModal('svitok_4_crack_hands.jpg', this)">
+                    <div class="evidence-meta">
+                        <span class="meta-label">FILE:</span> svitok_4_crack_hands.jpg<br>
+                        <span class="meta-label">DATE:</span> 2019-07-03<br>
+                        <span class="meta-label">TAGS:</span> #hands #crack
+                    </div>
                     <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Turning the Prism - Ben Frost.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <div class="gallery-item">
-                    <img src="chapter_5_coffee.png" alt="Свиток V - Кофе" loading="lazy" onclick="openModal('chapter_5_coffee.png')">
-                    <audio controls preload="none" onplay="pauseOtherAudios(this)">
-                        <source src="Memoria - Murcof.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
                     </audio>
                 </div>
                 
-                <div class="gallery-item">
-                    <img src="chapter_6_truck.png" alt="Свиток VI - Грузовик" loading="lazy" onclick="openModal('chapter_6_truck.png')">
+                <div class="gallery-item" data-id="006">
+                    <div class="evidence-header">
+                        <span class="title">СВИТОК V: КОФЕ</span>
+                    </div>
+                    <img src="chapter_5_coffee.png" 
+                         alt="Свиток V - Кофе" 
+                         loading="lazy"
+                         decoding="async"
+                         onclick="openModal('chapter_5_coffee.png', this)">
+                    <div class="evidence-meta">
+                        <span class="meta-label">FILE:</span> chapter_5_coffee.png<br>
+                        <span class="meta-label">DATE:</span> 2019-08-14<br>
+                        <span class="meta-label">SUBJECT:</span> routine
+                    </div>
                     <audio controls preload="none" onplay="pauseOtherAudios(this)">
-                        <source src="Blood Rain - Ital Tek.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
+                        <source src="Memoria - Murcof.mp3" type="audio/mp3">
                     </audio>
                 </div>
-                <div class="gallery-item">
-                    <img src="chapter_6_dna.png" alt="Свиток VI - ДНК" loading="lazy" onclick="openModal('chapter_6_dna.png')">
+                
+                <div class="gallery-item" data-id="007">
+                    <div class="evidence-header">
+                        <span class="title">СВИТОК VI: ГРУЗОВИК</span>
+                    </div>
+                    <img src="chapter_6_truck.png" 
+                         alt="Свиток VI - Грузовик" 
+                         loading="lazy"
+                         decoding="async"
+                         onclick="openModal('chapter_6_truck.png', this)">
+                    <div class="evidence-meta">
+                        <span class="meta-label">FILE:</span> chapter_6_truck.png<br>
+                        <span class="meta-label">DATE:</span> 2019-09-22<br>
+                        <span class="meta-label">TAGS:</span> #transport
+                    </div>
+                    <audio controls preload="none" onplay="pauseOtherAudios(this)">
+                        <source src="Blood Rain - Ital Tek.mp3" type="audio/mp3">
+                    </audio>
+                </div>
+                
+                <div class="gallery-item" data-id="008">
+                    <div class="evidence-header">
+                        <span class="title">СВИТОК VI: ДНК</span>
+                    </div>
+                    <img src="chapter_6_dna.png" 
+                         alt="Свиток VI - ДНК" 
+                         loading="lazy"
+                         decoding="async"
+                         onclick="openModal('chapter_6_dna.png', this)">
+                    <div class="evidence-meta">
+                        <span class="meta-label">FILE:</span> chapter_6_dna.png<br>
+                        <span class="meta-label">DATE:</span> 2019-09-22<br>
+                        <span class="meta-label">COORD:</span> 58.0105,56.2502
+                    </div>
                     <audio controls preload="none" onplay="pauseOtherAudios(this)">
                         <source src="Shira Ume - 747.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
                     </audio>
                 </div>
             </div>
         </section>
         
-        <p class="note-hidden">кажется, я уже здесь был</p>
+        <!-- FOUND NOTE -->
+        <p class="found-note">
+            кажется, я уже здесь был
+        </p>
     </main>
     
     <div class="modal" id="imageModal">
         <img id="modalImage" src="" alt="Увеличенное изображение">
-        <button class="modal-close" onclick="closeModal()">Закрыть</button>
+        <button class="modal-close" onclick="closeModal()">×</button>
     </div>
     
+    <!-- INTERACTIVE FOOTER -->
     <div class="footer">
-        <p style="margin-top: 20px; font-size: 0.8em; color: #aaa;">
+        <p style="margin-top: 20px; font-size: 0.8em; color: #666;">
             2025 Кирилл Зотов, Пермь. 
-            <a href="https://t.me/kirill_z_re" style="color: #aaa; text-decoration: none;">@kirill_z_re</a>
+            <a href="https://t.me/kirill_z_re" style="color: #666; text-decoration: none;">@kirill_z_re</a>
         </p>
+        
         <div class="system-footer">
-            <span class="sys-code">[ERR_RECOVERY]</span> 
-            OMRA_LAB // 
-            <span class="sys-node" id="sys-node">NODE_PERM_58.0105°N_56.2502°E</span> // 
-            <a href="/omra/" style="text-decoration: none;"><span class="sys-status">SCREENING</span></a>
-            <br>
-            <span style="font-size: 0.9em; color: #222;">
-                последний_вход: [УДАЛЕНО] | 
-                статус_субъекта: —
-            </span>
+            <div class="sys-line">
+                <span class="sys-code">[ERR_RECOVERY]</span>
+                <a href="/omra/" class="sys-link">OMRA_LAB</a>
+            </div>
+            
+            <div class="sys-line">
+                <span class="sys-label">NODE:</span>
+                <a href="#" class="coordinates" 
+                   data-lat="58.0105" 
+                   data-lon="56.2502"
+                   onclick="openMap(this); return false;">
+                    PERM_58.0105°N_56.2502°E
+                </a>
+            </div>
+            
+            <div class="sys-line">
+                <span class="sys-label">STATUS:</span>
+                <span class="sys-status" id="screening-status">SCREENING</span>
+                <span class="sys-counter">
+                    (визитов: <span id="visit-count">???</span>)
+                </span>
+            </div>
+            
+            <div class="sys-timestamp">
+                последний_вход: <span id="last-access">[ВЫЧИСЛЕНИЕ...]</span>
+            </div>
+            
+            <!-- Hidden Black Peloton hint -->
+            <div class="sys-error">
+                [ERROR_LOG]: channel_leak_detected<br>
+                trace: telegram/black_peloton<br>
+                source: svitok_1_metadata<br>
+                status: unauthorized_access
+            </div>
+        </div>
+        
+        <!-- ARG Hint (almost invisible) -->
+        <div class="arg-hint">
+            <p>
+                некоторые изображения содержат больше, чем видно<br>
+                некоторые звуки скрывают слова<br>
+                некоторые координаты ведут к ответам<br>
+                чёрная пантера знает путь
+            </p>
         </div>
     </div>
     
@@ -807,39 +1142,116 @@ last_revision: [REDACTED]
         const video = document.querySelector('.header-video');
         const loadingIndicator = document.getElementById('loading-indicator');
         const observerLine = document.getElementById('observer-line');
-
-        // ═══════════════════════════════════════
-        // DELAYED ACTION (дрейф реакции)
-        // ═══════════════════════════════════════
+        
+        // Track visits
+        let visits = parseInt(localStorage.getItem('omra_visits') || '0');
+        visits++;
+        localStorage.setItem('omra_visits', visits);
+        document.getElementById('visit-count').textContent = visits;
+        
+        // Timestamp
+        function updateTimestamp() {
+            const lastSeen = localStorage.getItem('omra_seen');
+            if (lastSeen) {
+                const date = new Date(parseInt(lastSeen));
+                const diff = Date.now() - date;
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                if (days > 0) {
+                    document.getElementById('last-access').textContent = `${days} дней назад`;
+                } else {
+                    document.getElementById('last-access').textContent = `${hours} часов назад`;
+                }
+            } else {
+                document.getElementById('last-access').textContent = 'первый визит';
+            }
+            localStorage.setItem('omra_seen', Date.now());
+        }
+        updateTimestamp();
+        
+        // Map function
+        function openMap(el) {
+            const lat = el.dataset.lat;
+            const lon = el.dataset.lon;
+            window.open(`https://www.google.com/maps?q=${lat},${lon}`, '_blank');
+        }
+        
+        // Occasionally change status
+        if (Math.random() < 0.25) {
+            setTimeout(() => {
+                document.getElementById('screening-status').textContent = 'SCREENING [ARCHIVED]';
+            }, 3000);
+        }
+        
+        // Black Peloton easter egg - click counter
+        const firstEvidence = document.querySelector('[data-id="001"]');
+        if (firstEvidence) {
+            const img = firstEvidence.querySelector('img');
+            img.addEventListener('click', function(e) {
+                let clicks = parseInt(firstEvidence.dataset.clicks);
+                clicks++;
+                firstEvidence.dataset.clicks = clicks;
+                
+                if (clicks === 3) {
+                    const hint = document.createElement('div');
+                    hint.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: rgba(0, 0, 0, 0.95);
+                        border: 1px solid var(--omra-green);
+                        color: var(--omra-green);
+                        padding: 20px 30px;
+                        font-family: var(--font-code);
+                        font-size: 0.9em;
+                        z-index: 10000;
+                        text-align: center;
+                        box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+                    `;
+                    hint.innerHTML = `
+                        <div style="margin-bottom: 10px;">[ СИСТЕМА ОБНАРУЖИЛА ПАТТЕРН ]</div>
+                        <div>чёрная пантера живёт в telegram</div>
+                        <div style="margin-top: 15px; font-size: 0.8em; color: #666;">
+                            ищи где ничего нет
+                        </div>
+                    `;
+                    document.body.appendChild(hint);
+                    setTimeout(() => {
+                        hint.style.opacity = '0';
+                        hint.style.transition = 'opacity 1s';
+                        setTimeout(() => hint.remove(), 1000);
+                    }, 4000);
+                }
+            });
+        }
+        
+        // Delayed action (drift)
         function delayedAction(fn) {
-            const drift = Math.random() < 0.15; // 15% случаев
+            const drift = Math.random() < 0.15;
             if (drift) {
                 setTimeout(fn, 600 + Math.random() * 800);
             } else {
                 fn();
             }
         }
-
+        
         function toggleMute() {
             delayedAction(() => {
                 const button = document.querySelector('.mute-button');
                 if (video.muted) {
                     video.muted = false;
-                    button.textContent = 'Заглушить';
+                    button.textContent = 'MUTE';
                 } else {
                     video.muted = true;
-                    button.textContent = 'Включить звук';
+                    button.textContent = 'UNMUTE';
                 }
             });
         }
-
-        // ═══════════════════════════════════════
-        // НЕСТАБИЛЬНОЕ СОСТОЯНИЕ ЗАГРУЗКИ
-        // ═══════════════════════════════════════
+        
+        // Unstable loading
         setInterval(() => {
-            // Не работать когда вкладка неактивна (экономия батареи)
             if (document.hidden) return;
-            
             if (Math.random() < 0.08) {
                 loadingIndicator.classList.remove('hidden');
                 loadingIndicator.textContent = 'Загрузка: —';
@@ -848,48 +1260,39 @@ last_revision: [REDACTED]
                 }, 1200);
             }
         }, 20000);
-
-        // ═══════════════════════════════════════
-        // РАССИНХРОНИЗАЦИЯ ВРЕМЕНИ (видео)
-        // ═══════════════════════════════════════
+        
+        // Video desync
         setTimeout(() => {
             if (Math.random() < 0.3) {
                 video.playbackRate = 0.98;
             }
         }, 90000);
-
+        
         setTimeout(() => {
             if (Math.random() < 0.1) {
                 video.playbackRate = 1.01;
             }
         }, 160000);
-
-        // ═══════════════════════════════════════
-        // SCROLL INTERFERENCE (нарушение скролла)
-        // ═══════════════════════════════════════
+        
+        // Scroll interference
         let scrollInterferenceCount = 0;
         let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         let observerShown = false;
         let scrollTimeout;
-        
-        // Проверка мобильного устройства
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
+        
         window.addEventListener('scroll', () => {
-            // Throttle: выполнять не чаще раза в 100ms
             if (scrollTimeout) return;
             scrollTimeout = setTimeout(() => scrollTimeout = null, 100);
             
             const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
             const scrollingDown = currentScroll > lastScrollTop;
             const scrollSpeed = Math.abs(currentScroll - lastScrollTop);
-
-            // Показать "Я всё ещё здесь?" при первом медленном скролле
+            
             if (!observerShown && currentScroll > 100 && scrollSpeed < 4) {
                 observerShown = true;
                 observerLine.classList.add('visible');
                 
-                // Легкое нарушение скролла (меньше на мобильных)
                 setTimeout(() => {
                     const offset = isMobile ? 10 : 18;
                     window.scrollTo({
@@ -898,13 +1301,11 @@ last_revision: [REDACTED]
                     });
                 }, 200);
                 
-                // Убрать фразу через 3 секунды
                 setTimeout(() => {
                     observerLine.classList.remove('visible');
                 }, 3000);
             }
-
-            // Дополнительные легкие нарушения скролла (реже на мобильных)
+            
             const interferenceChance = isMobile ? 0.06 : 0.12;
             if (
                 scrollingDown &&
@@ -915,78 +1316,37 @@ last_revision: [REDACTED]
             ) {
                 scrollInterferenceCount++;
                 const offset = isMobile ? (10 + Math.random() * 15) : (15 + Math.random() * 25);
-
                 window.scrollTo({
                     top: currentScroll - offset,
                     behavior: 'smooth'
                 });
             }
-
+            
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         }, { passive: true });
-
-        // ═══════════════════════════════════════
-        // OMRA "ARCHIVED" СЛУЧАЙНО
-        // ═══════════════════════════════════════
-        if (Math.random() < 0.25) {
-            setTimeout(() => {
-                document.getElementById('sys-node').textContent = 
-                    'NODE_PERM_58.0105°N_56.2502°E (archived)';
-            }, 3000);
-        }
-
-        // ═══════════════════════════════════════
-        // OMRA REMEMBER (localStorage - не реагирует)
-        // ═══════════════════════════════════════
-        if (!localStorage.getItem('omra_seen')) {
-            localStorage.setItem('omra_seen', Date.now());
-        } else {
-            document.body.setAttribute('data-return', 'true');
-        }
-
-        // ═══════════════════════════════════════
-        // STANDARD FUNCTIONS
-        // ═══════════════════════════════════════
-        function updateLoadingProgress() {
-            if (video.duration && video.buffered.length > 0) {
-                const buffered = video.buffered.end(0);
-                const percent = Math.round((buffered / video.duration) * 100);
-                loadingIndicator.textContent = `Загрузка: ${percent}%`;
-                if (percent >= 100) {
-                    loadingIndicator.classList.add('hidden');
-                    video.removeEventListener('progress', updateLoadingProgress);
-                }
-            } else {
-                loadingIndicator.textContent = 'Загрузка...';
-            }
-        }
-
-        function handleVideoLoad() {
-            if (video.readyState >= 3) {
-                loadingIndicator.classList.add('hidden');
-            }
-        }
-
-        function openModal(imageSrc) {
+        
+        // Modal functions
+        function openModal(imageSrc, imgElement) {
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
             modalImage.src = imageSrc;
             modal.style.display = 'flex';
             
-            // Закрытие по Escape
             document.addEventListener('keydown', handleEscapeKey);
-            
-            // Закрытие по клику вне изображения
             modal.addEventListener('click', handleOutsideClick);
+            
+            // Don't trigger click counter when opening modal
+            if (imgElement && imgElement.parentElement.dataset.id === '001') {
+                event.stopPropagation();
+            }
         }
-
+        
         function closeModal() {
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
             modal.style.display = 'none';
             modalImage.src = '';
             
-            // Удалить обработчики
             document.removeEventListener('keydown', handleEscapeKey);
             modal.removeEventListener('click', handleOutsideClick);
         }
@@ -999,7 +1359,7 @@ last_revision: [REDACTED]
             const modalImage = document.getElementById('modalImage');
             if (e.target !== modalImage) closeModal();
         }
-
+        
         function pauseOtherAudios(currentAudio) {
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
@@ -1008,19 +1368,15 @@ last_revision: [REDACTED]
                 }
             });
         }
-
+        
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             video.muted = true;
-            document.querySelector('.mute-button').textContent = 'Включить звук';
+            document.querySelector('.mute-button').textContent = 'UNMUTE';
             
             video.play().catch(error => {
                 console.log('Video autoplay failed:', error);
             });
-
-            video.addEventListener('progress', updateLoadingProgress);
-            video.addEventListener('loadedmetadata', updateLoadingProgress);
-            video.addEventListener('canplay', handleVideoLoad);
-            video.addEventListener('loadeddata', handleVideoLoad);
         });
     </script>
 
